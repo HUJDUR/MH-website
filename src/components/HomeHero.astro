@@ -1,0 +1,145 @@
+---
+import Button from './Button.astro';
+---
+
+<section class="relative isolate grain flex min-h-[100svh] flex-col overflow-hidden bg-ink-950">
+  <!-- Background: aerial orbit of the works. The poster carries the first paint;
+       the video is only fetched once it can actually play. -->
+  <div class="absolute inset-0 -z-10">
+    <!-- Cooled and knocked back so the daylight footage sits inside the dark
+         palette instead of fighting it. -->
+    <img
+      src="/video/facility-poster.jpg"
+      alt=""
+      aria-hidden="true"
+      class="absolute inset-0 h-full w-full scale-105 object-cover [filter:saturate(0.62)_contrast(1.08)_brightness(0.72)]"
+    />
+    <video
+      data-hero-video
+      poster="/video/facility-poster.jpg"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="none"
+      class="absolute inset-0 h-full w-full scale-105 object-cover opacity-0 transition-opacity duration-1000 [filter:saturate(0.62)_contrast(1.08)_brightness(0.72)]"
+    >
+    </video>
+    <!-- Cyan cast ties the aerial back to the brand's second colour. -->
+    <div class="absolute inset-0 bg-arc-600/12 mix-blend-color"></div>
+
+    <div
+      class="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/55 to-ink-950/75"
+    >
+    </div>
+    <div
+      class="absolute inset-0 bg-linear-to-r from-ink-950/90 via-ink-950/30 to-transparent"
+    >
+    </div>
+  </div>
+
+  <div class="shell flex flex-1 flex-col justify-end pb-14 pt-32 lg:pb-20">
+    <div class="max-w-4xl">
+      <p
+        data-reveal
+        class="eyebrow flex items-center gap-3"
+      >
+        <span class="h-px w-10 bg-flame-500"></span>
+        20+ years of steel fabrication
+      </p>
+
+      <h1
+        data-reveal
+        style="--reveal-delay:120ms"
+        class="mt-6 text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-[5.5rem] lg:leading-[0.98]"
+      >
+        <!-- Inline on small screens, split into two lines once there is room.
+             The explicit {' '} is required: the build strips the whitespace
+             between the two elements, which would run the words together. -->
+        <span class="sm:block">We build the steel</span>{' '}
+        <span class="text-flame-500">others build on.</span>
+      </h1>
+
+      <p
+        data-reveal
+        style="--reveal-delay:240ms"
+        class="lede mt-8 max-w-xl"
+      >
+        Heavy welded constructions for shipbuilding, offshore and infrastructure
+        — cut, formed, welded, finished and delivered from a single facility.
+      </p>
+
+      <div
+        data-reveal
+        style="--reveal-delay:340ms"
+        class="mt-10 flex flex-wrap items-center gap-3"
+      >
+        <Button href="/contact">Request a quote</Button>
+        <Button href="/capabilities" variant="outline">Our capabilities</Button>
+      </div>
+    </div>
+
+    <!-- Sector strip doubles as the scroll cue on tall screens. -->
+    <div
+      data-reveal
+      style="--reveal-delay:460ms"
+      class="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/10 pt-6 lg:mt-20"
+    >
+      <span class="text-[0.6875rem] uppercase tracking-[0.18em] text-steel-400">
+        Sectors
+      </span>
+      {
+        ['Shipbuilding', 'Offshore & energy', 'Infrastructure', 'Industrial'].map(
+          (sector) => (
+            <span class="font-display text-sm font-semibold text-white/90">
+              {sector}
+            </span>
+          )
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  // Pick a source by viewport, and only after the page has settled — the hero
+  // must never compete with the poster or the fonts for early bandwidth.
+  const video = document.querySelector<HTMLVideoElement>('[data-hero-video]');
+
+  if (video) {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    // `saveData` is non-standard but widely supported on the browsers where it
+    // matters most; treat its absence as "no constraint".
+    const connection = (navigator as any).connection;
+    const saveData = Boolean(connection?.saveData);
+    const slowNetwork = /2g/.test(connection?.effectiveType ?? '');
+
+    if (!prefersReducedMotion && !saveData && !slowNetwork) {
+      const src =
+        window.innerWidth >= 1024
+          ? '/video/facility-1080.mp4'
+          : '/video/facility-720.mp4';
+
+      const start = () => {
+        video.src = src;
+        video.load();
+        video.addEventListener(
+          'canplay',
+          () => {
+            video.classList.remove('opacity-0');
+            void video.play().catch(() => {
+              /* Autoplay refused — the poster stays, which is fine. */
+            });
+          },
+          { once: true }
+        );
+      };
+
+      if (document.readyState === 'complete') start();
+      else window.addEventListener('load', start, { once: true });
+    }
+  }
+</script>

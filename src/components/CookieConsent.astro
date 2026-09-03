@@ -1,0 +1,145 @@
+---
+/**
+ * Cookie consent banner.
+ *
+ * The site sets no cookies of its own beyond the one that records this
+ * choice. The only consent-relevant thing on the site is the Google Maps
+ * embed on /contact, which is held back until consent is given — see the
+ * `[data-consent-embed]` handling in the script below.
+ *
+ * Storage: a first-party cookie `mh_cookie_consent` = 'all' | 'essential',
+ * kept for one year. `window.mhCookieConsent.open()` reopens the banner,
+ * which is what the footer's "Cookie settings" link calls.
+ */
+---
+
+<div
+  data-cookie-banner
+  hidden
+  role="dialog"
+  aria-modal="false"
+  aria-label="Cookie consent"
+  class="fixed inset-x-0 bottom-0 z-90 p-4 sm:p-6"
+>
+  <div
+    class="shell mx-auto max-w-4xl rounded-2xl border border-white/10 bg-ink-850/97 p-6 shadow-[0_24px_60px_-20px_rgb(0,0,0,0.9)] backdrop-blur-xl sm:p-8"
+  >
+    <h2 class="font-display text-xs font-semibold uppercase tracking-[0.18em] text-flame-500">
+      Cookies
+    </h2>
+    <p class="mt-4 text-sm leading-relaxed text-steel-200">
+      We use one essential cookie to remember this choice. Optional cookies are
+      set only by the Google Maps embed on our contact page — reject them and
+      the map simply is not loaded. We run no advertising or analytics
+      tracking.
+    </p>
+    <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
+      <button
+        type="button"
+        data-cookie-accept
+        class="rounded-full bg-flame-500 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-flame-400 hover:shadow-[0_0_40px_-8px] hover:shadow-flame-500/80"
+      >
+        Accept all
+      </button>
+      <button
+        type="button"
+        data-cookie-reject
+        class="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:border-white/40"
+      >
+        Reject optional
+      </button>
+      <a
+        href="/cookies"
+        class="text-sm text-steel-300 underline-offset-4 transition-colors hover:text-flame-500 hover:underline sm:ml-auto"
+      >
+        Cookie policy
+      </a>
+    </div>
+  </div>
+</div>
+
+<style is:global>
+  /* The mobile menu takes the whole screen; the banner waits its turn. */
+  body:has([data-site-header][data-menu-open='true']) [data-cookie-banner] {
+    display: none;
+  }
+</style>
+
+<script>
+  const COOKIE_NAME = 'mh_cookie_consent';
+  const ONE_YEAR = 60 * 60 * 24 * 365;
+
+  type Consent = 'all' | 'essential';
+
+  const read = (): Consent | null => {
+    const match = document.cookie.match(
+      new RegExp(`(?:^|; )${COOKIE_NAME}=(all|essential)`)
+    );
+    return (match?.[1] as Consent) ?? null;
+  };
+
+  const write = (value: Consent) => {
+    const secure = location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = `${COOKIE_NAME}=${value}; Max-Age=${ONE_YEAR}; Path=/; SameSite=Lax${secure}`;
+  };
+
+  const banner = document.querySelector<HTMLElement>('[data-cookie-banner]');
+
+  /**
+   * Embeds that would set third-party cookies render as a placeholder and
+   * only become real iframes once consent is given.
+   */
+  const applyToEmbeds = (consent: Consent | null) => {
+    document
+      .querySelectorAll<HTMLElement>('[data-consent-embed]')
+      .forEach((holder) => {
+        const placeholder = holder.querySelector<HTMLElement>(
+          '[data-embed-placeholder]'
+        );
+        const loaded = holder.querySelector('iframe');
+
+        if (consent === 'all') {
+          if (placeholder) placeholder.hidden = true;
+          if (loaded) return;
+
+          const frame = document.createElement('iframe');
+          frame.src = holder.dataset.embedSrc ?? '';
+          frame.title = holder.dataset.embedTitle ?? '';
+          frame.className = holder.dataset.embedClass ?? '';
+          frame.loading = 'lazy';
+          frame.referrerPolicy = 'no-referrer-when-downgrade';
+          frame.allowFullscreen = true;
+          holder.append(frame);
+        } else {
+          loaded?.remove();
+          if (placeholder) placeholder.hidden = false;
+        }
+      });
+  };
+
+  const decide = (value: Consent) => {
+    write(value);
+    applyToEmbeds(value);
+    if (banner) banner.hidden = true;
+  };
+
+  banner
+    ?.querySelector('[data-cookie-accept]')
+    ?.addEventListener('click', () => decide('all'));
+  banner
+    ?.querySelector('[data-cookie-reject]')
+    ?.addEventListener('click', () => decide('essential'));
+
+  const stored = read();
+  applyToEmbeds(stored);
+  if (!stored && banner) banner.hidden = false;
+
+  // Used by the footer's "Cookie settings" link and the map placeholder.
+  window.mhCookieConsent = {
+    get: read,
+    set: decide,
+    open: () => {
+      if (banner) banner.hidden = false;
+    },
+  };
+</script>

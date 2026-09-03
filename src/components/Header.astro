@@ -1,0 +1,242 @@
+---
+import { primaryNav, site } from '../data/site';
+
+interface Props {
+  /** Sits transparently over a full-bleed hero until the page is scrolled. */
+  transparent?: boolean;
+}
+
+const { transparent = false } = Astro.props;
+const path = Astro.url.pathname;
+
+const isActive = (href: string) =>
+  href === '/' ? path === '/' : path.startsWith(href);
+---
+
+<header
+  data-site-header
+  data-transparent={transparent ? 'true' : 'false'}
+  class:list={[
+    'fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-500',
+    'border-b',
+    transparent
+      ? 'border-transparent bg-transparent'
+      : 'border-white/8 bg-ink-950/85 backdrop-blur-xl',
+  ]}
+>
+  <div class="shell flex h-18 items-center justify-between gap-6 lg:h-22">
+    <a
+      href="/"
+      class="group relative z-10 flex items-center gap-3"
+      aria-label={`${site.name} — home`}
+    >
+      <img
+        src="/logo/metal-holland-color.svg"
+        alt={site.name}
+        width="180"
+        height="30"
+        class="h-6 w-auto transition-opacity duration-300 group-hover:opacity-80 sm:h-7"
+      />
+    </a>
+
+    <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary">
+      {
+        primaryNav.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? 'page' : undefined}
+            class:list={[
+              'relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300',
+              isActive(item.href)
+                ? 'text-white'
+                : 'text-steel-300 hover:text-white',
+            ]}
+          >
+            {item.label}
+            <span
+              class:list={[
+                'absolute inset-x-4 -bottom-px h-px origin-left bg-flame-500 transition-transform duration-400 ease-[var(--ease-out-expo)]',
+                isActive(item.href) ? 'scale-x-100' : 'scale-x-0',
+              ]}
+              aria-hidden="true"
+            />
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a
+        href="/contact"
+        class="hidden rounded-full bg-flame-500 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-flame-400 hover:shadow-[0_0_32px_-6px] hover:shadow-flame-500/70 sm:inline-flex"
+      >
+        Request a quote
+      </a>
+
+      <button
+        type="button"
+        data-menu-toggle
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="relative z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/12 text-white transition-colors duration-300 hover:border-white/30 lg:hidden"
+      >
+        <span class="sr-only">Toggle menu</span>
+        <span class="relative block h-3.5 w-5" aria-hidden="true">
+          <span
+            data-bar="top"
+            class="absolute left-0 top-0 h-px w-full bg-current transition-transform duration-400 ease-[var(--ease-out-expo)]"
+          ></span>
+          <span
+            data-bar="bottom"
+            class="absolute bottom-0 left-0 h-px w-full bg-current transition-transform duration-400 ease-[var(--ease-out-expo)]"
+          ></span>
+        </span>
+      </button>
+    </div>
+  </div>
+
+</header>
+
+<!-- Mobile / tablet menu. Deliberately a sibling of <header>, not a child: the
+     header carries backdrop-blur, which would make it the containing block for
+     any position:fixed descendant and clip this panel to the height of the bar.
+     Sits just below the header's z-index so the logo and close button stay live. -->
+<div
+  id="mobile-menu"
+  data-menu-panel
+  hidden
+  class="fixed inset-0 z-40 flex flex-col bg-ink-950/98 backdrop-blur-2xl lg:hidden"
+>
+  <div class="shell flex flex-1 flex-col overflow-y-auto pt-28 pb-10">
+    <nav class="flex flex-col" aria-label="Mobile">
+      {
+        primaryNav.map((item, i) => (
+          <a
+            href={item.href}
+            data-menu-item
+            class="group border-b border-white/8 py-5 first:border-t"
+          >
+            <span class="flex items-baseline justify-between gap-4">
+              <span class="font-display text-2xl font-bold text-white transition-colors duration-300 group-hover:text-flame-500 sm:text-3xl">
+                {item.label}
+              </span>
+              <span class="font-display text-xs text-steel-400">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+            </span>
+            {item.blurb && (
+              <span class="mt-1.5 block text-sm text-steel-400">
+                {item.blurb}
+              </span>
+            )}
+          </a>
+        ))
+      }
+    </nav>
+
+    <a
+      href="/contact"
+      data-menu-item
+      class="mt-8 inline-flex items-center justify-center rounded-full bg-flame-500 px-6 py-4 font-semibold text-white"
+    >
+      Request a quote
+    </a>
+  </div>
+</div>
+
+<script>
+  // --- Header background on scroll ---------------------------------------
+  const header = document.querySelector<HTMLElement>('[data-site-header]');
+
+  if (header) {
+    const startsTransparent = header.dataset.transparent === 'true';
+    const solidClasses = ['bg-ink-950/85', 'backdrop-blur-xl', 'border-white/8'];
+    const clearClasses = ['bg-transparent', 'border-transparent'];
+
+    const sync = () => {
+      // Menu open counts as "scrolled" so the bar never sits on a bare hero.
+      const solid = window.scrollY > 24 || header.dataset.menuOpen === 'true';
+      if (!startsTransparent) return;
+      header.classList.toggle('shadow-[0_1px_0_0_rgb(255,255,255,0.06)]', solid);
+      solidClasses.forEach((c) => header.classList.toggle(c, solid));
+      clearClasses.forEach((c) => header.classList.toggle(c, !solid));
+    };
+
+    sync();
+    window.addEventListener('scroll', sync, { passive: true });
+
+    // --- Mobile menu -----------------------------------------------------
+    const toggle = header.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+    const panel = document.querySelector<HTMLElement>('[data-menu-panel]');
+    const barTop = header.querySelector<HTMLElement>('[data-bar="top"]');
+    const barBottom = header.querySelector<HTMLElement>('[data-bar="bottom"]');
+    const items = document.querySelectorAll<HTMLElement>('[data-menu-item]');
+
+    if (toggle && panel) {
+      let open = false;
+
+      const setOpen = (next: boolean) => {
+        open = next;
+        header.dataset.menuOpen = String(next);
+        toggle.setAttribute('aria-expanded', String(next));
+        document.body.style.overflow = next ? 'hidden' : '';
+
+        if (next) {
+          panel.hidden = false;
+          // Force a frame so the entry transition actually runs.
+          requestAnimationFrame(() => {
+            panel.style.opacity = '1';
+            items.forEach((el, i) => {
+              el.style.transition =
+                'opacity .5s var(--ease-out-expo), transform .5s var(--ease-out-expo)';
+              el.style.transitionDelay = `${80 + i * 45}ms`;
+              el.style.opacity = '1';
+              el.style.transform = 'none';
+            });
+          });
+        } else {
+          panel.style.opacity = '0';
+          items.forEach((el) => {
+            el.style.transitionDelay = '0ms';
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(1rem)';
+          });
+          window.setTimeout(() => {
+            if (!open) panel.hidden = true;
+          }, 320);
+        }
+
+        barTop?.style.setProperty(
+          'transform',
+          next ? 'translateY(6px) rotate(45deg)' : 'none'
+        );
+        barBottom?.style.setProperty(
+          'transform',
+          next ? 'translateY(-7px) rotate(-45deg)' : 'none'
+        );
+
+        sync();
+      };
+
+      // Initial hidden state for the entry animation.
+      panel.style.opacity = '0';
+      panel.style.transition = 'opacity .35s var(--ease-out-expo)';
+      items.forEach((el) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(1rem)';
+      });
+
+      toggle.addEventListener('click', () => setOpen(!open));
+      panel.addEventListener('click', (e) => {
+        if ((e.target as HTMLElement).closest('a')) setOpen(false);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && open) setOpen(false);
+      });
+      // A resize into desktop layout should not leave the body locked.
+      window.addEventListener('resize', () => {
+        if (open && window.innerWidth >= 1024) setOpen(false);
+      });
+    }
+  }
+</script>

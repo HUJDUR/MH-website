@@ -1,0 +1,115 @@
+---
+import { contact, footerNav, site } from '../data/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="relative overflow-hidden border-t border-white/8 bg-ink-900">
+  <div
+    class="pointer-events-none absolute -right-40 -top-40 h-[32rem] w-[32rem] rounded-full bg-flame-500/8 blur-[120px]"
+    aria-hidden="true"
+  >
+  </div>
+
+  <div class="shell relative py-16 lg:py-24">
+    <div class="grid gap-14 lg:grid-cols-[1.15fr_2fr]">
+      <div>
+        <img
+          src="/logo/metal-holland-color.svg"
+          alt={site.name}
+          width="220"
+          height="37"
+          class="h-7 w-auto"
+        />
+        <p class="mt-6 max-w-sm text-sm leading-relaxed text-steel-400">
+          {site.description}
+        </p>
+
+        <div class="mt-8 flex flex-col gap-2 text-sm">
+          <a
+            href={`mailto:${contact.email}`}
+            class="w-fit text-white transition-colors hover:text-flame-500"
+          >
+            {contact.email}
+          </a>
+          <a
+            href={`tel:${contact.phoneHref}`}
+            class="w-fit text-white transition-colors hover:text-flame-500"
+          >
+            {contact.phone}
+          </a>
+        </div>
+      </div>
+
+      <div class="grid gap-10 sm:grid-cols-3">
+        {
+          footerNav.map((group) => (
+            <div>
+              <h2 class="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-steel-400">
+                {group.title}
+              </h2>
+              <ul class="mt-5 space-y-3">
+                {group.items.map((item) => (
+                  <li>
+                    <a
+                      href={item.href}
+                      class="text-sm text-steel-200 transition-colors hover:text-flame-500"
+                    >
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="mt-16 border-t border-white/8 pt-8">
+      <div>
+        <h2
+          class="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-steel-400"
+        >
+          {contact.works.label}
+        </h2>
+        <address class="mt-3 text-sm not-italic leading-relaxed text-steel-300">
+          {contact.works.lines.map((line) => <span class="block">{line}</span>)}
+        </address>
+      </div>
+    </div>
+
+    <div
+      class="mt-12 flex flex-col gap-4 border-t border-white/8 pt-8 text-xs text-steel-400 sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>&copy; {year} {site.name}. All rights reserved.</p>
+      <p class="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <span>{contact.registration.vat}</span>
+        <a href="/cookies" class="transition-colors hover:text-flame-500">
+          Cookie policy
+        </a>
+        <button
+          type="button"
+          data-cookie-settings
+          class="transition-colors hover:text-flame-500"
+        >
+          Cookie settings
+        </button>
+        <a
+          href={contact.social.linkedin}
+          class="transition-colors hover:text-flame-500"
+          rel="noopener noreferrer"
+          target="_blank">LinkedIn</a
+        >
+      </p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>('[data-cookie-settings]')
+    .forEach((el) =>
+      el.addEventListener('click', () => window.mhCookieConsent?.open())
+    );
+</script>

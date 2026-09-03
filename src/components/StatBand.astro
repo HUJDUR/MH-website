@@ -1,0 +1,45 @@
+---
+import { stats } from '../data/content';
+import Reveal from './Reveal.astro';
+
+/**
+ * Dividers are per-cell rather than a grid-gap trick, so the outer text still
+ * lines up with the page gutter instead of being pushed in by a border.
+ * 2 columns below `lg`, 4 at and above it.
+ */
+const cellRules = (i: number) =>
+  [
+    i % 2 !== 0 && 'border-l',
+    i % 2 === 0 && i !== 0 && 'lg:border-l',
+    i >= 2 && 'border-t lg:border-t-0',
+    i % 2 !== 0 && 'pl-5 sm:pl-8',
+    i % 2 === 0 && i !== 0 && 'lg:pl-8',
+  ]
+    .filter(Boolean)
+    .join(' ');
+---
+
+<section class="border-y border-white/8 bg-ink-900">
+  <div class="shell">
+    <dl class="grid grid-cols-2 lg:grid-cols-4">
+      {
+        stats.map((stat, i) => (
+          <Reveal
+            delay={i * 90}
+            class={`border-white/8 py-10 pr-5 sm:pr-8 lg:py-16 ${cellRules(i)}`}
+          >
+            <dt class="font-display text-3xl font-bold tracking-tight text-white tabular-nums sm:text-4xl lg:text-5xl">
+              {stat.value}
+            </dt>
+            <dd class="mt-3">
+              <span class="block text-sm font-medium text-steel-200">
+                {stat.label}
+              </span>
+              <span class="mt-1 block text-xs text-steel-400">{stat.sub}</span>
+            </dd>
+          </Reveal>
+        ))
+      }
+    </dl>
+  </div>
+</section>

@@ -1,0 +1,163 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Reveal from '../components/Reveal.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { values, certifications } from '../data/content';
+import { img } from '../data/images';
+---
+
+<Base
+  title="About"
+  description="Metal Holland combines Dutch engineering and project management with a full steel fabrication facility — cutting, forming, welding and finishing heavy constructions in house."
+  transparentHeader
+>
+  <PageHero
+    eyebrow="About"
+    title="Dutch standards, real capacity."
+    lede="A fabrication company built the way its clients wish more suppliers were built: one shop, one responsible party, and a straight answer about what is possible."
+    image="operator-console"
+    imageAlt="A Metal Holland operator at a machine control panel"
+    position="center 40%"
+  />
+
+  <!-- ── Story ─────────────────────────────────────────────────────────── -->
+  <section class="shell py-24 lg:py-32">
+    <div class="grid gap-14 lg:grid-cols-12 lg:gap-20">
+      <div class="lg:col-span-5">
+        <Reveal>
+          <p class="eyebrow">Our story</p>
+        </Reveal>
+        <Reveal delay={80}>
+          <h2 class="mt-4 text-3xl leading-[1.08] sm:text-4xl lg:text-[3rem] lg:leading-[1.05]">
+            Built around a shop floor, not a sales desk.
+          </h2>
+        </Reveal>
+      </div>
+
+      <div class="space-y-6 leading-relaxed text-steel-300 lg:col-span-6 lg:col-start-7">
+        <Reveal delay={120}>
+          <p class="lede">
+            Metal Holland exists because clients in the Dutch maritime and
+            infrastructure world kept needing the same two things at once:
+            engineering they could talk to in their own language, and fabrication
+            capacity large enough to matter.
+          </p>
+        </Reveal>
+        <Reveal delay={180}>
+          <p>
+            So we built both under one roof in Šamac. Project management, work
+            preparation and client contact sit alongside the floor, and cutting,
+            forming, welding, finishing and loading happen in our own halls, on
+            our own equipment, with our own people. There is no chain of
+            subcontractors between an enquiry and the steel.
+          </p>
+        </Reveal>
+        <Reveal delay={240}>
+          <p>
+            The result is unglamorous and hard to fake: sections that arrive on
+            the agreed date, at the agreed size, with the file that proves how
+            they were made. Most of our work now comes from clients who have
+            already sent us something once.
+          </p>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Values ────────────────────────────────────────────────────────── -->
+  <section class="border-y border-white/8 bg-ink-900 py-24 lg:py-32">
+    <div class="shell">
+      <SectionHeading
+        eyebrow="How we work"
+        title="Four things we will not trade away."
+      />
+
+      <div class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 sm:grid-cols-2 lg:mt-20">
+        {
+          values.map((value, i) => (
+            <Reveal delay={(i % 2) * 100} class="bg-ink-900 p-8 lg:p-10">
+              <span class="font-display text-xs font-semibold tabular-nums text-flame-500">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 class="mt-4 text-xl leading-snug sm:text-2xl">
+                {value.title}
+              </h3>
+              <p class="mt-4 leading-relaxed text-steel-400">{value.body}</p>
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── People ────────────────────────────────────────────────────────── -->
+  <section class="shell py-24 lg:py-32">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <Reveal class="overflow-hidden rounded-2xl">
+        <Image
+          src={img('team-workshop')}
+          alt="Metal Holland fabricators at work in the hall"
+          widths={[600, 900, 1400]}
+          sizes="(min-width:1024px) 46vw, 92vw"
+          loading="lazy"
+          class="aspect-4/3 w-full object-cover"
+        />
+      </Reveal>
+
+      <div>
+        <SectionHeading
+          eyebrow="People"
+          title="50+ people, most of them holding a torch."
+          lede="Welders, fitters, machine operators, work preparers and project
+            engineers. The ratio matters: this is a company where the majority of
+            staff are the ones actually making things."
+        />
+        <Reveal delay={240}>
+          <p class="mt-6 leading-relaxed text-steel-400">
+            We train our own welders and keep their qualifications current
+            because the alternative — hiring certification in when a project
+            demands it — produces exactly the kind of surprise nobody wants three
+            weeks before delivery.
+          </p>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Certifications ────────────────────────────────────────────────── -->
+  <section class="border-t border-white/8 bg-ink-900 py-24 lg:py-28">
+    <div class="shell">
+      <SectionHeading
+        eyebrow="Certification"
+        title="Audited, not asserted."
+        align="center"
+      />
+      <div class="mx-auto mt-14 grid max-w-6xl gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 sm:grid-cols-2 lg:grid-cols-5">
+        {
+          certifications.map((cert, i) => (
+            <Reveal
+              delay={i * 80}
+              class="flex flex-col items-center gap-3 bg-ink-900 p-6 text-center lg:p-7"
+            >
+              <span class="font-display text-base font-bold text-white">
+                {cert.code}
+              </span>
+              <span class="text-xs leading-relaxed text-steel-400">
+                {cert.label}
+              </span>
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <CallToAction
+    title="Work with us."
+    body="Whether you need a single section or a year of capacity, the conversation starts the same way — send the drawings and tell us the date."
+    image="welder-beam"
+  />
+</Base>

@@ -1,0 +1,195 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import Reveal from '../components/Reveal.astro';
+import { contact, site } from '../data/site';
+
+/** Update when the substance of this policy changes. */
+const lastUpdated = '3 September 2026';
+
+const cookieTable = [
+  {
+    name: 'mh_cookie_consent',
+    provider: `${site.name} (this website)`,
+    purpose:
+      'Records whether you accepted or rejected optional cookies, so you are not asked again on every page.',
+    duration: '1 year',
+    category: 'Essential',
+  },
+  {
+    name: 'NID, SOCS, CONSENT and similar',
+    provider: 'Google Maps (Google Ireland Ltd.)',
+    purpose:
+      'Set by the Google Maps embed on our contact page, and only if you choose to load it. Google uses them to remember map preferences and for security and abuse prevention. We have no access to them.',
+    duration: 'Up to 24 months, set by Google',
+    category: 'Optional',
+  },
+];
+---
+
+<Base
+  title="Cookie policy"
+  description="How Metal Holland uses cookies: one essential cookie to remember your choice, and optional third-party cookies only if you load the Google Maps embed."
+  transparentHeader
+>
+  <PageHero
+    eyebrow="Legal"
+    title="Cookie policy."
+    lede="A short policy, because it is a short list. We set one cookie of our own and no tracking cookies at all."
+    image="operator-console"
+    imageAlt="A machine operator's console in the fabrication hall"
+  />
+
+  <section class="shell py-20 lg:py-28">
+    <div class="grid gap-14 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-7">
+        <div class="space-y-10 leading-relaxed text-steel-300">
+          <Reveal>
+            <div>
+              <h2 class="text-2xl text-white sm:text-3xl">What cookies are</h2>
+              <p class="mt-4">
+                A cookie is a small text file that a website asks your browser
+                to store. It lets a site remember something between page loads —
+                a preference, a session, or, on many sites, your behaviour
+                across the web. Similar technologies such as local storage work
+                the same way in practice and are covered by this policy.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <div>
+              <h2 class="text-2xl text-white sm:text-3xl">What we use</h2>
+              <p class="mt-4">
+                This website sets one cookie of its own. It records whether you
+                accepted or rejected optional cookies, so the banner does not
+                reappear on every page. It holds nothing else — no identifier,
+                no profile, no history.
+              </p>
+              <p class="mt-4">
+                We run no analytics, no advertising pixels and no social media
+                trackers. Nothing on this site follows you to another one.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={140}>
+            <div>
+              <h2 class="text-2xl text-white sm:text-3xl">
+                The one third party
+              </h2>
+              <p class="mt-4">
+                Our contact page can show our location on an embedded Google
+                map. Google sets its own cookies when that map loads, which is
+                why the map stays switched off until you accept optional
+                cookies or press Load map. If you decline, the map is never
+                requested and Google is never contacted — and you can still open
+                the same pin directly in Google Maps, on Google&rsquo;s own
+                terms, through the link next to it.
+              </p>
+              <p class="mt-4">
+                What Google does with those cookies is governed by its privacy
+                policy, not ours.
+              </p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div>
+              <h2 class="text-2xl text-white sm:text-3xl">Changing your mind</h2>
+              <p class="mt-4">
+                Your choice is not final. Reopen the banner with the button
+                below and decide again — rejecting after having accepted also
+                removes the map from the page.
+              </p>
+              <p class="mt-4">
+                You can delete cookies at any time in your browser settings, or
+                block them entirely. Blocking the consent cookie only means you
+                will be asked again on your next visit; nothing else on this
+                site depends on cookies to work.
+              </p>
+              <button
+                type="button"
+                data-cookie-settings
+                class="mt-6 rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:border-flame-500 hover:text-flame-500"
+              >
+                Cookie settings
+              </button>
+            </div>
+          </Reveal>
+
+          <Reveal delay={260}>
+            <div>
+              <h2 class="text-2xl text-white sm:text-3xl">Contact</h2>
+              <p class="mt-4">
+                Questions about this policy go to <a
+                  href={`mailto:${contact.email}`}
+                  class="text-flame-500 underline-offset-4 transition-colors hover:text-white hover:underline"
+                  >{contact.email}</a
+                >, or to {site.name}, {contact.works.lines.join(', ')}.
+              </p>
+              <p class="mt-4 text-sm text-steel-400">
+                Last updated: {lastUpdated}
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+
+      <!-- ── Cookie table ──────────────────────────────────────────────── -->
+      <div class="lg:col-span-4 lg:col-start-9">
+        <Reveal delay={120}>
+          <h2
+            class="font-display text-xs font-semibold uppercase tracking-[0.18em] text-flame-500"
+          >
+            Every cookie, listed
+          </h2>
+          <div class="mt-6 grid gap-5">
+            {
+              cookieTable.map((cookie) => (
+                <div class="rounded-2xl border border-white/8 bg-ink-900 p-7">
+                  <div class="flex flex-wrap items-center gap-3">
+                    <span class="font-display text-sm font-bold text-white">
+                      {cookie.name}
+                    </span>
+                    <span
+                      class:list={[
+                        'rounded-full px-2.5 py-1 font-display text-[0.625rem] font-semibold uppercase tracking-[0.12em]',
+                        cookie.category === 'Essential'
+                          ? 'bg-arc-500/12 text-arc-400'
+                          : 'bg-flame-500/12 text-flame-400',
+                      ]}
+                    >
+                      {cookie.category}
+                    </span>
+                  </div>
+                  <p class="mt-4 text-sm leading-relaxed text-steel-300">
+                    {cookie.purpose}
+                  </p>
+                  <dl class="mt-5 space-y-2 text-xs text-steel-400">
+                    <div class="flex gap-3">
+                      <dt class="w-20 shrink-0">Set by</dt>
+                      <dd class="text-steel-200">{cookie.provider}</dd>
+                    </div>
+                    <div class="flex gap-3">
+                      <dt class="w-20 shrink-0">Kept for</dt>
+                      <dd class="text-steel-200">{cookie.duration}</dd>
+                    </div>
+                  </dl>
+                </div>
+              ))
+            }
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>('[data-cookie-settings]')
+    .forEach((el) =>
+      el.addEventListener('click', () => window.mhCookieConsent?.open())
+    );
+</script>

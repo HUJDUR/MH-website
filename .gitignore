@@ -1,0 +1,19 @@
+# build output
+dist/
+.astro/
+
+# dependencies
+node_modules/
+
+# screenshots from scripts/shoot.mjs (dev only)
+shots/
+media/
+
+# environment
+.env
+.env.production
+
+# editor / OS
+.DS_Store
+Thumbs.db
+*.log

@@ -1,0 +1,168 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHero from '../components/PageHero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Reveal from '../components/Reveal.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { capabilities, processSteps } from '../data/content';
+import { img } from '../data/images';
+---
+
+<Base
+  title="Capabilities"
+  description="CNC plasma cutting, forming and rolling, certified welding, assembly and finishing — Metal Holland's fabrication capabilities from plate to primed section."
+  transparentHeader
+>
+  <PageHero
+    eyebrow="Capabilities"
+    title="From plate to primed section."
+    lede="Cutting, forming, welding, finishing and delivery run in one building, on one schedule, under one responsibility."
+    image="plasma-head"
+    imageAlt="Plasma cutting head working across heavy steel plate"
+  />
+
+  <!-- ── Capability detail ─────────────────────────────────────────────── -->
+  <div class="divide-y divide-white/8">
+    {
+      capabilities.map((cap, i) => (
+        <section id={cap.id} class="scroll-mt-24 py-20 lg:py-28">
+          <div class="shell">
+            <div
+              class:list={[
+                'grid items-center gap-10 lg:grid-cols-2 lg:gap-20',
+              ]}
+            >
+              <Reveal
+                class:list={[
+                  'overflow-hidden rounded-2xl',
+                  // Alternate the image side so the page does not march.
+                  i % 2 === 1 && 'lg:order-2',
+                ]}
+              >
+                <Image
+                  src={img(cap.image)}
+                  alt={cap.title}
+                  widths={[600, 900, 1400]}
+                  sizes="(min-width:1024px) 46vw, 92vw"
+                  loading={i === 0 ? 'eager' : 'lazy'}
+                  class="aspect-4/3 h-full w-full object-cover"
+                />
+              </Reveal>
+
+              <div>
+                <Reveal>
+                  <span class="font-display text-xs font-semibold tabular-nums tracking-[0.2em] text-flame-500">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </Reveal>
+                <Reveal delay={80}>
+                  <h2 class="mt-4 text-3xl leading-[1.1] sm:text-4xl lg:text-[2.75rem]">
+                    {cap.title}
+                  </h2>
+                </Reveal>
+                <Reveal delay={140}>
+                  <p class="mt-5 text-lg leading-relaxed text-steel-300">
+                    {cap.summary}
+                  </p>
+                </Reveal>
+                <Reveal delay={200}>
+                  <p class="mt-4 leading-relaxed text-steel-400">{cap.detail}</p>
+                </Reveal>
+
+                <Reveal delay={260}>
+                  <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+                    {cap.points.map((point) => (
+                      <li class="flex gap-3 text-sm leading-relaxed text-steel-200">
+                        <span
+                          class="mt-2 h-1 w-1 shrink-0 rounded-full bg-flame-500"
+                          aria-hidden="true"
+                        />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))
+    }
+  </div>
+
+  <!-- ── Process ───────────────────────────────────────────────────────── -->
+  <section class="border-t border-white/8 bg-ink-900 py-24 lg:py-32">
+    <div class="shell">
+      <SectionHeading
+        eyebrow="How a project runs"
+        title="Five stages, and you hear from us at each of them."
+        lede="Heavy fabrication goes wrong quietly, weeks before anyone notices. Our
+          answer is a fixed rhythm of reporting rather than a promise to call if
+          something comes up."
+      />
+
+      <ol class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 lg:mt-20 lg:grid-cols-5">
+        {
+          processSteps.map((step, i) => (
+            <Reveal
+              as="li"
+              delay={i * 80}
+              class="flex flex-col gap-4 bg-ink-900 p-7 lg:p-8"
+            >
+              <span class="font-display text-sm font-bold tabular-nums text-flame-500">
+                {step.step}
+              </span>
+              <h3 class="text-lg leading-snug">{step.title}</h3>
+              <p class="text-sm leading-relaxed text-steel-400">{step.body}</p>
+            </Reveal>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- ── Materials ─────────────────────────────────────────────────────── -->
+  <section class="shell py-24 lg:py-32">
+    <div class="grid gap-14 lg:grid-cols-12 lg:gap-20">
+      <div class="lg:col-span-5">
+        <SectionHeading
+          eyebrow="Materials"
+          title="Carbon steel, stainless, aluminium."
+          lede="Material is ordered against certificate and kept traceable through
+            cutting, fitting and welding, so the heat number on the delivery file
+            is the heat number in the construction."
+        />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7">
+        <dl class="grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 sm:grid-cols-2">
+          {
+            [
+              ['Structural steel', 'S235 · S275 · S355 · higher grades on request'],
+              ['Shipbuilding grades', 'Classification-approved plate and sections'],
+              ['Stainless', '304 · 316 and duplex, in a separated work area'],
+              ['Aluminium', 'Marine grades, welded by qualified procedure'],
+              ['Plate', 'Up to [200] mm thickness'],
+              ['Sections', 'Beams, hollow sections, pipe and bar'],
+            ].map(([term, detail], i) => (
+              <Reveal delay={i * 60} class="bg-ink-950 p-6">
+                <dt class="font-display text-sm font-semibold text-white">
+                  {term}
+                </dt>
+                <dd class="mt-2 text-sm leading-relaxed text-steel-400">
+                  {detail}
+                </dd>
+              </Reveal>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction
+    title="Not sure it can be built?"
+    body="Send the drawing anyway. Half of what we do starts with a client asking whether a section can be made in one piece — and it usually can."
+    image="grinding-sparks"
+  />
+</Base>

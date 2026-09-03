@@ -1,0 +1,306 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import HomeHero from '../components/HomeHero.astro';
+import StatBand from '../components/StatBand.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import Reveal from '../components/Reveal.astro';
+import Button from '../components/Button.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { capabilities, industries, certifications } from '../data/content';
+import { img } from '../data/images';
+import { site } from '../data/site';
+---
+
+<Base
+  title={`${site.name} — ${site.tagline}`}
+  bareTitle
+  description={site.description}
+  transparentHeader
+>
+  <HomeHero />
+  <StatBand />
+
+  <!-- ── Intro ─────────────────────────────────────────────────────────── -->
+  <section class="shell py-24 lg:py-36">
+    <div class="grid gap-14 lg:grid-cols-12 lg:gap-20">
+      <div class="lg:col-span-5">
+        <Reveal>
+          <p class="eyebrow">Who we are</p>
+        </Reveal>
+        <Reveal delay={80}>
+          <h2 class="mt-4 text-3xl leading-[1.08] sm:text-4xl lg:text-[3.25rem] lg:leading-[1.05]">
+            A fabrication shop, not a broker.
+          </h2>
+        </Reveal>
+
+        <!-- Anchors the short column so the section does not read as a hole
+             next to the body copy. -->
+        <Reveal delay={220} class="mt-10 hidden lg:block">
+          <div class="overflow-hidden rounded-2xl">
+            <Image
+              src={img('operator-console')}
+              alt="A Metal Holland operator at the controls of a cutting machine"
+              widths={[400, 700, 1000]}
+              sizes="40vw"
+              loading="lazy"
+              class="aspect-4/3 w-full object-cover"
+            />
+          </div>
+        </Reveal>
+      </div>
+
+      <div class="lg:col-span-6 lg:col-start-7">
+        <Reveal delay={120}>
+          <p class="lede">
+            Metal Holland cuts, forms, welds and finishes heavy steel
+            constructions in its own halls. Nothing is quietly passed down a
+            chain of subcontractors — the plate that arrives on our yard leaves
+            it as a finished section, with the documentation to match.
+          </p>
+        </Reveal>
+        <Reveal delay={200}>
+          <p class="mt-6 leading-relaxed text-steel-300">
+            That is the whole proposition. Dutch project management and
+            engineering discipline, combined with the capacity, cranage and
+            skilled trades of a full production facility. Clients in
+            shipbuilding, offshore and infrastructure use us because a single
+            responsible party is simpler to plan around than five.
+          </p>
+        </Reveal>
+        <Reveal delay={280}>
+          <div class="mt-9">
+            <Button href="/about" variant="ghost">More about Metal Holland</Button>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Capabilities ──────────────────────────────────────────────────── -->
+  <section class="relative border-t border-white/8 bg-ink-900 py-24 lg:py-36">
+    <div class="shell">
+      <div class="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+        <SectionHeading
+          eyebrow="Capabilities"
+          title="Everything from plate to primed section, under one roof."
+          class="lg:max-w-2xl"
+        />
+        <Reveal delay={200} class="shrink-0">
+          <Button href="/capabilities" variant="outline">All capabilities</Button>
+        </Reveal>
+      </div>
+
+      <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
+        {
+          capabilities.map((cap, i) => (
+            <Reveal
+              delay={i * 100}
+              as="article"
+              class="group relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-2xl border border-white/8 bg-ink-850 p-7 transition-colors duration-500 hover:border-white/20"
+            >
+              <a href={`/capabilities#${cap.id}`} class="absolute inset-0 z-20">
+                <span class="sr-only">{cap.title}</span>
+              </a>
+
+              <Image
+                src={img(cap.image)}
+                alt=""
+                widths={[400, 700, 1000]}
+                sizes="(min-width:1024px) 22vw, (min-width:640px) 45vw, 90vw"
+                loading="lazy"
+                class="absolute inset-0 -z-10 h-full w-full object-cover opacity-75 transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-108"
+              />
+              <div class="absolute inset-0 -z-10 bg-linear-to-t from-ink-950 via-ink-950/80 to-ink-950/25" />
+
+              <span class="font-display text-xs font-semibold tabular-nums text-flame-500">
+                {String(i + 1).padStart(2, '0')}
+              </span>
+              <h3 class="mt-3 text-xl leading-snug">{cap.title}</h3>
+              <p class="mt-3 text-sm leading-relaxed text-steel-300">
+                {cap.summary}
+              </p>
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Split feature: the works ──────────────────────────────────────── -->
+  <section class="shell py-24 lg:py-36">
+    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <Reveal class="relative">
+        <div class="overflow-hidden rounded-2xl">
+          <Image
+            src={img('facility-aerial')}
+            alt="Aerial view of the Metal Holland production facility and yard"
+            widths={[600, 900, 1400, 2000]}
+            sizes="(min-width:1024px) 46vw, 92vw"
+            loading="lazy"
+            class="aspect-4/3 w-full object-cover lg:aspect-5/6"
+          />
+        </div>
+        <!-- Inset card gives the flat aerial shot some depth. -->
+        <div
+          class="absolute -bottom-6 -right-2 hidden w-56 rounded-xl border border-white/10 bg-ink-850/95 p-5 backdrop-blur-md sm:block lg:-right-8"
+        >
+          <p class="font-display text-3xl font-bold text-white">32,000 m²+</p>
+          <p class="mt-1 text-xs leading-relaxed text-steel-400">
+            of production area, with overhead cranage in every hall
+          </p>
+        </div>
+      </Reveal>
+
+      <div>
+        <SectionHeading
+          eyebrow="The facility"
+          title="Capacity you can plan a programme around."
+          lede="Four halls, gantry cutting tables, drilling lines, rolls and welding
+            bays — sized for sections that leave on a low-loader, not in a crate."
+        />
+
+        <Reveal delay={220}>
+          <ul class="mt-10 space-y-px overflow-hidden rounded-xl border border-white/8">
+            {
+              [
+                ['Covered halls', 'Cutting, forming, fitting, welding, finishing'],
+                ['Overhead cranage', 'Up to [XX] tonnes per hall'],
+                ['Outdoor yard', 'Blasting, priming, storage and loading'],
+                ['Transport', 'Abnormal loads to yards and sites across Europe'],
+              ].map(([label, value]) => (
+                <li class="flex flex-col gap-1 bg-white/2 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+                  <span class="font-display text-sm font-semibold text-white">
+                    {label}
+                  </span>
+                  <span class="text-sm text-steel-400 sm:text-right">
+                    {value}
+                  </span>
+                </li>
+              ))
+            }
+          </ul>
+        </Reveal>
+
+        <Reveal delay={300}>
+          <div class="mt-9">
+            <Button href="/facility" variant="ghost">
+              Facility &amp; equipment
+            </Button>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Industries ────────────────────────────────────────────────────── -->
+  <section class="border-t border-white/8 bg-ink-900 py-24 lg:py-36">
+    <div class="shell">
+      <SectionHeading
+        eyebrow="Industries"
+        title="Four sectors. One set of standards."
+        lede="The tolerances and the paperwork differ. The discipline behind them
+          does not."
+      />
+
+      <div class="mt-16 grid gap-6 md:grid-cols-2 lg:mt-20">
+        {
+          industries.map((industry, i) => (
+            <Reveal
+              delay={(i % 2) * 120}
+              as="article"
+              class="group relative isolate overflow-hidden rounded-2xl border border-white/8"
+            >
+              <a href={`/industries#${industry.id}`} class="absolute inset-0 z-20">
+                <span class="sr-only">{industry.title}</span>
+              </a>
+
+              <div class="relative aspect-16/10 overflow-hidden">
+                <Image
+                  src={img(industry.image)}
+                  alt={industry.title}
+                  widths={[500, 800, 1200, 1600]}
+                  sizes="(min-width:768px) 45vw, 92vw"
+                  loading="lazy"
+                  class="h-full w-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-105"
+                />
+                <div class="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/40 to-transparent" />
+              </div>
+
+              <div class="relative -mt-20 p-7">
+                <h3 class="text-2xl">{industry.title}</h3>
+                <p class="mt-3 max-w-md text-sm leading-relaxed text-steel-300">
+                  {industry.summary}
+                </p>
+                <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-flame-500">
+                  What we build
+                  <svg
+                    viewBox="0 0 16 16"
+                    fill="none"
+                    aria-hidden="true"
+                    class="h-3.5 w-3.5 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:translate-x-1"
+                  >
+                    <path
+                      d="M1 8h13M9 3l5 5-5 5"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </Reveal>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Quality / certification ───────────────────────────────────────── -->
+  <section class="shell py-24 lg:py-32">
+    <div class="grid gap-14 lg:grid-cols-12 lg:gap-20">
+      <div class="lg:col-span-5">
+        <SectionHeading
+          eyebrow="Quality"
+          title="The certificate is only the summary."
+          lede="Qualified procedures, certified welders, recorded inspections. The
+            delivery file is assembled as the work happens, not reconstructed
+            afterwards."
+        />
+      </div>
+
+      <div class="lg:col-span-6 lg:col-start-7">
+        <div class="grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 sm:grid-cols-2">
+          {
+            certifications.map((cert, i) => (
+              <Reveal
+                delay={i * 90}
+                class={`flex flex-col justify-between gap-6 bg-ink-950 p-7 ${
+                  // An odd count would otherwise leave a hole in the last row.
+                  i === certifications.length - 1 && certifications.length % 2 === 1
+                    ? 'sm:col-span-2 sm:flex-row sm:items-center sm:gap-8'
+                    : ''
+                }`}
+              >
+                <span class="font-display text-lg font-bold text-white">
+                  {cert.code}
+                </span>
+                <span class="text-sm leading-relaxed text-steel-400">
+                  {cert.label}
+                </span>
+              </Reveal>
+            ))
+          }
+        </div>
+        <Reveal delay={380}>
+          <p class="mt-5 text-xs leading-relaxed text-steel-400">
+            Certificates and scope statements are available on request.
+          </p>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction />
+</Base>

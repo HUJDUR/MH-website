@@ -1,0 +1,133 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import { site, contact } from '../data/site';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Set on the homepage so the title is not "Metal Holland | Metal Holland". */
+  bareTitle?: boolean;
+  /** Absolute or root-relative path to the social share image. */
+  ogImage?: string;
+  /** Header starts transparent over a full-bleed hero. */
+  transparentHeader?: boolean;
+}
+
+const {
+  title,
+  description = site.description,
+  bareTitle = false,
+  ogImage = '/video/facility-poster.jpg',
+  transparentHeader = false,
+} = Astro.props;
+
+const pageTitle = bareTitle ? title : `${title} | ${site.shortName}`;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
+const ogImageUrl = new URL(ogImage, Astro.site ?? site.url).href;
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: site.name,
+  url: site.url,
+  description: site.description,
+  logo: new URL('/logo/metal-holland-color.svg', Astro.site ?? site.url).href,
+  email: contact.email,
+  telephone: contact.phone,
+  vatID: '401899980009',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: contact.works.lines[0],
+    postalCode: '76230',
+    addressLocality: 'Šamac',
+    addressCountry: 'BA',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 45.05029,
+    longitude: 18.4777441,
+  },
+  hasMap: contact.works.mapUrl,
+};
+---
+
+<!doctype html>
+<html lang={site.locale} class="scroll-pt-24">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="icon" type="image/svg+xml" href="/logo/mh-mark-color.svg" />
+    <meta name="theme-color" content="#06090c" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Reveal animations only apply when scripting is on, so no-JS visitors
+         are never left with permanently hidden content. -->
+    <script is:inline>
+      document.documentElement.classList.add('js');
+    </script>
+
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(organizationSchema)}
+    />
+  </head>
+
+  <body>
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:rounded-full focus:bg-flame-500 focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"
+    >
+      Skip to content
+    </a>
+
+    <Header transparent={transparentHeader} />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <CookieConsent />
+
+    <script>
+      // --- Scroll reveal -------------------------------------------------
+      const revealables = document.querySelectorAll<HTMLElement>('[data-reveal]');
+      const prefersReducedMotion = window.matchMedia(
+        '(prefers-reduced-motion: reduce)'
+      ).matches;
+
+      if (prefersReducedMotion || !('IntersectionObserver' in window)) {
+        revealables.forEach((el) => el.setAttribute('data-reveal', 'is-visible'));
+      } else {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.setAttribute('data-reveal', 'is-visible');
+              observer.unobserve(entry.target);
+            }
+          },
+          { rootMargin: '0px 0px -12% 0px', threshold: 0.05 }
+        );
+        revealables.forEach((el) => observer.observe(el));
+      }
+    </script>
+  </body>
+</html>

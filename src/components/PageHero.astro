@@ -1,0 +1,66 @@
+---
+import { Image } from 'astro:assets';
+import { img } from '../data/images';
+import Reveal from './Reveal.astro';
+
+interface Props {
+  eyebrow: string;
+  title: string;
+  lede?: string;
+  /** Slug from src/assets/img. */
+  image: string;
+  imageAlt: string;
+  /** Vertical focus of the background crop. */
+  position?: string;
+}
+
+const {
+  eyebrow,
+  title,
+  lede,
+  image,
+  imageAlt,
+  position = 'center',
+} = Astro.props;
+---
+
+<section class="relative isolate grain overflow-hidden bg-ink-950">
+  <div class="absolute inset-0 -z-10">
+    <Image
+      src={img(image)}
+      alt={imageAlt}
+      widths={[640, 1024, 1600, 2400]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+      class="h-full w-full object-cover opacity-45"
+      style={`object-position:${position}`}
+    />
+    <div
+      class="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/70 to-ink-950/85"
+    >
+    </div>
+  </div>
+
+  <div class="shell flex min-h-[62vh] flex-col justify-end pb-16 pt-36 sm:min-h-[68vh] sm:pb-20 lg:pb-24 lg:pt-44">
+    <Reveal>
+      <p class="eyebrow">{eyebrow}</p>
+    </Reveal>
+
+    <Reveal delay={90}>
+      <h1
+        class="mt-5 max-w-4xl text-4xl leading-[1.05] sm:text-5xl lg:text-7xl lg:leading-[1.02]"
+      >
+        {title}
+      </h1>
+    </Reveal>
+
+    {
+      lede && (
+        <Reveal delay={180}>
+          <p class="lede mt-7 max-w-2xl">{lede}</p>
+        </Reveal>
+      )
+    }
+  </div>
+</section>

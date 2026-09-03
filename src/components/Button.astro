@@ -1,0 +1,52 @@
+---
+interface Props {
+  href: string;
+  variant?: 'solid' | 'outline' | 'ghost';
+  class?: string;
+  /** Renders the small arrow that slides on hover. */
+  arrow?: boolean;
+  target?: string;
+  rel?: string;
+}
+
+const {
+  href,
+  variant = 'solid',
+  class: className = '',
+  arrow = true,
+  ...rest
+} = Astro.props;
+
+const base =
+  'group inline-flex items-center gap-2.5 rounded-full px-6 py-3.5 text-sm font-semibold transition-all duration-300';
+
+const variants = {
+  solid:
+    'bg-flame-500 text-white hover:bg-flame-400 hover:shadow-[0_0_40px_-8px] hover:shadow-flame-500/80',
+  outline:
+    'border border-white/20 text-white hover:border-white/50 hover:bg-white/5',
+  ghost: 'text-white hover:text-flame-500 px-0',
+} as const;
+---
+
+<a href={href} class:list={[base, variants[variant], className]} {...rest}>
+  <slot />
+  {
+    arrow && (
+      <svg
+        viewBox="0 0 16 16"
+        fill="none"
+        aria-hidden="true"
+        class="h-3.5 w-3.5 shrink-0 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:translate-x-1"
+      >
+        <path
+          d="M1 8h13M9 3l5 5-5 5"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </svg>
+    )
+  }
+</a>

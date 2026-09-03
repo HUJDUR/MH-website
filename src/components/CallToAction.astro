@@ -1,0 +1,62 @@
+---
+import { Image } from 'astro:assets';
+import { img } from '../data/images';
+import Button from './Button.astro';
+import Reveal from './Reveal.astro';
+
+interface Props {
+  eyebrow?: string;
+  title?: string;
+  body?: string;
+  image?: string;
+}
+
+const {
+  eyebrow = 'Start a project',
+  title = 'Send us the drawings.',
+  body = 'Tell us what you need built and by when. We will come back with a realistic price, a realistic date, and any questions the drawings raise.',
+  image = 'welding-arc',
+} = Astro.props;
+---
+
+<section class="relative isolate grain overflow-hidden">
+  <div class="absolute inset-0 -z-10">
+    <Image
+      src={img(image)}
+      alt=""
+      widths={[640, 1024, 1600, 2400]}
+      sizes="100vw"
+      loading="lazy"
+      class="h-full w-full object-cover opacity-60"
+    />
+    <div class="absolute inset-0 bg-ink-950/55"></div>
+    <div
+      class="absolute inset-0 bg-linear-to-r from-ink-950 via-ink-950/75 to-ink-950/25"
+    >
+    </div>
+  </div>
+
+  <div class="shell py-24 lg:py-36">
+    <div class="max-w-2xl">
+      <Reveal>
+        <p class="eyebrow">{eyebrow}</p>
+      </Reveal>
+      <Reveal delay={80}>
+        <h2 class="mt-4 text-3xl leading-[1.08] sm:text-5xl lg:text-6xl">
+          {title}
+        </h2>
+      </Reveal>
+      <Reveal delay={160}>
+        <p class="lede mt-6">{body}</p>
+      </Reveal>
+      <Reveal delay={240}>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <Button href="/contact">Request a quote</Button>
+          <Button href="/capabilities" variant="outline">
+            See what we can build
+          </Button>
+        </div>
+      </Reveal>
+    </div>
+  </div>
+</section>

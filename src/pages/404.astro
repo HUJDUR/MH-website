@@ -1,0 +1,52 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Button from '../components/Button.astro';
+import { img } from '../data/images';
+import { primaryNav } from '../data/site';
+---
+
+<Base title="Page not found" description="The page you were looking for is not here.">
+  <section class="relative isolate grain flex min-h-[80svh] items-center overflow-hidden">
+    <div class="absolute inset-0 -z-10">
+      <Image
+        src={img('grinding-sparks')}
+        alt=""
+        widths={[800, 1400, 2000]}
+        sizes="100vw"
+        loading="eager"
+        class="h-full w-full object-cover opacity-25"
+      />
+      <div class="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/80 to-ink-950/60"></div>
+    </div>
+
+    <div class="shell py-32">
+      <p class="eyebrow">Error 404</p>
+      <h1 class="mt-5 max-w-3xl text-4xl leading-[1.05] sm:text-6xl lg:text-7xl">
+        This one did not make it off the plate.
+      </h1>
+      <p class="lede mt-7 max-w-xl">
+        The page you were looking for has moved or never existed. The rest of the
+        site is intact.
+      </p>
+
+      <div class="mt-10 flex flex-wrap gap-3">
+        <Button href="/">Back to home</Button>
+        <Button href="/contact" variant="outline">Contact us</Button>
+      </div>
+
+      <nav class="mt-14 flex flex-wrap gap-x-7 gap-y-3" aria-label="Site sections">
+        {
+          primaryNav.map((item) => (
+            <a
+              href={item.href}
+              class="text-sm text-steel-400 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white"
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </section>
+</Base>
