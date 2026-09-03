@@ -1,31 +1,41 @@
 ---
 import { Image } from 'astro:assets';
-import Base from '../layouts/Base.astro';
-import PageHero from '../components/PageHero.astro';
-import Reveal from '../components/Reveal.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import CallToAction from '../components/CallToAction.astro';
-import { industries } from '../data/content';
-import { img } from '../data/images';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Reveal from '../../components/Reveal.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import CallToAction from '../../components/CallToAction.astro';
+
+import { img } from '../../data/images';
+import { localePaths, t, href, localeMeta } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+export const getStaticPaths = localePaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const d = t(locale);
+const L = (path: string) => href(locale, path);
+
 ---
 
 <Base
-  title="Industries"
-  description="Metal Holland fabricates for shipbuilding and yachtbuilding, offshore and energy, infrastructure and bridges, and industrial machine building."
+  locale={locale}
+  title={d.industriesPage.title}
+  description={d.industriesPage.description}
   transparentHeader
 >
   <PageHero
-    eyebrow="Industries"
-    title="Where our steel ends up."
-    lede="Hulls, platforms, bridges and machines. Different rules, different paperwork, the same shop floor discipline behind all of them."
+    eyebrow={d.industriesPage.eyebrow}
+    title={d.industriesPage.heroTitle}
+    lede={d.industriesPage.heroLede}
     image="industry-shipbuilding"
-    imageAlt="A vessel at sea at sunset"
+    imageAlt={d.industriesPage.heroAlt}
     position="center 60%"
   />
 
-  <div class="divide-y divide-white/8">
+  <div class="divide-y divide-line/8">
     {
-      industries.map((industry, i) => (
+      d.content.industries.map((industry, i) => (
         <section id={industry.id} class="scroll-mt-24 py-20 lg:py-28">
           <div class="shell grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
             <Reveal
@@ -52,7 +62,7 @@ import { img } from '../data/images';
             >
               <Reveal>
                 <p class="eyebrow-arc">
-                  {String(i + 1).padStart(2, '0')} — Sector
+                  {String(i + 1).padStart(2, '0')} — {d.common.sector}
                 </p>
               </Reveal>
               <Reveal delay={80}>
@@ -66,9 +76,9 @@ import { img } from '../data/images';
                 </p>
               </Reveal>
               <Reveal delay={200}>
-                <ul class="mt-8 space-y-px overflow-hidden rounded-xl border border-white/8">
+                <ul class="mt-8 space-y-px overflow-hidden rounded-xl border border-line/8">
                   {industry.bullets.map((bullet) => (
-                    <li class="bg-white/2 px-5 py-3.5 text-sm text-steel-200">
+                    <li class="bg-line/2 px-5 py-3.5 text-sm text-steel-200">
                       {bullet}
                     </li>
                   ))}
@@ -82,30 +92,17 @@ import { img } from '../data/images';
   </div>
 
   <!-- ── Why clients come to us ────────────────────────────────────────── -->
-  <section class="border-t border-white/8 bg-ink-900 py-24 lg:py-32">
+  <section class="border-t border-line/8 bg-ink-900 py-24 lg:py-32">
     <div class="shell">
       <SectionHeading
-        eyebrow="Working with us"
-        title="What a fabrication partner is actually for."
+        eyebrow={d.industriesPage.workingEyebrow}
+        title={d.industriesPage.workingTitle}
         align="center"
       />
 
-      <div class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 md:grid-cols-3">
+      <div class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8 md:grid-cols-3">
         {
-          [
-            {
-              title: 'Capacity that absorbs a peak',
-              body: 'Yards and OEMs use us to take the overflow their own shop cannot swallow without pushing everything else back.',
-            },
-            {
-              title: 'One party, whole scope',
-              body: 'Cutting, welding, coating and transport come from us. There is no gap between suppliers for a problem to fall into.',
-            },
-            {
-              title: 'Documentation that survives audit',
-              body: 'Certificates, procedures and inspection records are gathered as the work runs, so handover is not an archaeology exercise.',
-            },
-          ].map((item, i) => (
+          d.industriesPage.working.map((item, i) => (
             <Reveal delay={i * 100} class="bg-ink-900 p-8 lg:p-10">
               <h3 class="text-xl leading-snug">{item.title}</h3>
               <p class="mt-4 text-sm leading-relaxed text-steel-400">
@@ -119,8 +116,9 @@ import { img } from '../data/images';
   </section>
 
   <CallToAction
-    title="Your sector not listed?"
-    body="If it is heavy, welded and made of steel, it is probably work we know. Tell us what you are building."
+    locale={locale}
+    title={d.industriesPage.ctaTitle}
+    body={d.industriesPage.ctaBody}
     image="hall-overview"
   />
 </Base>

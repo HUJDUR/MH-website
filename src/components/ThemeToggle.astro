@@ -1,0 +1,126 @@
+---
+/**
+ * Dark ⇄ light switch.
+ *
+ * Dark is the default and the design's native state — a visitor who has never
+ * touched this gets dark, whatever their OS says. The choice is remembered in
+ * localStorage (a functional preference, no cookie) and applied by the inline
+ * script in Base.astro before first paint, so the page never flashes.
+
+ */
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale?: Locale;
+}
+
+const { locale = 'en' } = Astro.props;
+const d = t(locale);
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  aria-pressed="false"
+  class="relative flex h-9 w-9 items-center justify-center rounded-full border border-line/12 text-steel-300 transition-colors duration-300 hover:border-line/30 hover:text-heading"
+>
+  <span
+    class="sr-only"
+    data-theme-label
+    data-label-light={d.nav.theme.toLight}
+    data-label-dark={d.nav.theme.toDark}>{d.nav.theme.toLight}</span>
+
+  <!-- Sun and moon cross-fade rather than swap, so the control never jumps. -->
+  <svg
+    viewBox="0 0 20 20"
+    fill="none"
+    aria-hidden="true"
+    class="absolute h-4 w-4 transition-all duration-500 ease-[var(--ease-out-expo)]"
+    data-icon="sun"
+  >
+    <circle cx="10" cy="10" r="3.6" stroke="currentColor" stroke-width="1.5" />
+    <path
+      d="M10 1.6v2M10 16.4v2M18.4 10h-2M3.6 10h-2M15.9 4.1l-1.4 1.4M5.5 14.5l-1.4 1.4M15.9 15.9l-1.4-1.4M5.5 5.5L4.1 4.1"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+    />
+  </svg>
+
+  <svg
+    viewBox="0 0 20 20"
+    fill="none"
+    aria-hidden="true"
+    class="absolute h-4 w-4 transition-all duration-500 ease-[var(--ease-out-expo)]"
+    data-icon="moon"
+  >
+    <path
+      d="M16.5 11.8A7 7 0 0 1 8.2 3.5a7 7 0 1 0 8.3 8.3Z"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linejoin="round"
+    />
+  </svg>
+</button>
+
+<style is:global>
+  /* Driven by the attribute rather than toggled classes: stacking `opacity-0`
+     on `opacity-100` leaves the winner to CSS source order, not to intent. */
+  [data-theme-toggle] [data-icon='moon'] {
+    opacity: 0;
+    transform: rotate(-90deg) scale(0);
+  }
+
+  html[data-theme='light'] [data-theme-toggle] [data-icon='sun'] {
+    opacity: 0;
+    transform: rotate(90deg) scale(0);
+  }
+
+  html[data-theme='light'] [data-theme-toggle] [data-icon='moon'] {
+    opacity: 1;
+    transform: none;
+  }
+</style>
+
+<script>
+  const STORAGE_KEY = 'mh-theme';
+
+  type Theme = 'dark' | 'light';
+
+  const buttons = document.querySelectorAll<HTMLButtonElement>(
+    '[data-theme-toggle]'
+  );
+
+  const paint = (theme: Theme) => {
+    // Setting the attribute is the whole visual change — the icons and every
+    // colour token follow from it in CSS.
+    document.documentElement.dataset.theme = theme;
+
+    const light = theme === 'light';
+    buttons.forEach((button) => {
+      button.setAttribute('aria-pressed', String(light));
+      const label = button.querySelector<HTMLElement>('[data-theme-label]');
+      if (label) {
+        label.textContent =
+          (light ? label.dataset.labelDark : label.dataset.labelLight) ?? '';
+      }
+    });
+  };
+
+  // The inline script in Base.astro has already set the attribute; read it
+  // back rather than re-deriving, so the two can never disagree.
+  paint(document.documentElement.dataset.theme === 'light' ? 'light' : 'dark');
+
+  buttons.forEach((button) =>
+    button.addEventListener('click', () => {
+      const next: Theme =
+        document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+      paint(next);
+      try {
+        localStorage.setItem(STORAGE_KEY, next);
+      } catch {
+        /* Private mode or blocked storage — the choice just will not persist. */
+      }
+    })
+  );
+</script>

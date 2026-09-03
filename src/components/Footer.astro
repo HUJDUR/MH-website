@@ -1,10 +1,17 @@
 ---
-import { contact, footerNav, site } from '../data/site';
+import { contact, site } from '../data/site';
+import { t, href, type Locale } from '../i18n';
 
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
 const year = new Date().getFullYear();
 ---
 
-<footer class="relative overflow-hidden border-t border-white/8 bg-ink-900">
+<footer class="relative overflow-hidden border-t border-line/8 bg-ink-900">
   <div
     class="pointer-events-none absolute -right-40 -top-40 h-[32rem] w-[32rem] rounded-full bg-flame-500/8 blur-[120px]"
     aria-hidden="true"
@@ -22,19 +29,19 @@ const year = new Date().getFullYear();
           class="h-7 w-auto"
         />
         <p class="mt-6 max-w-sm text-sm leading-relaxed text-steel-400">
-          {site.description}
+          {d.site.description}
         </p>
 
         <div class="mt-8 flex flex-col gap-2 text-sm">
           <a
             href={`mailto:${contact.email}`}
-            class="w-fit text-white transition-colors hover:text-flame-500"
+            class="w-fit text-heading transition-colors hover:text-flame-500"
           >
             {contact.email}
           </a>
           <a
             href={`tel:${contact.phoneHref}`}
-            class="w-fit text-white transition-colors hover:text-flame-500"
+            class="w-fit text-heading transition-colors hover:text-flame-500"
           >
             {contact.phone}
           </a>
@@ -43,7 +50,7 @@ const year = new Date().getFullYear();
 
       <div class="grid gap-10 sm:grid-cols-3">
         {
-          footerNav.map((group) => (
+          d.footer.groups.map((group) => (
             <div>
               <h2 class="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-steel-400">
                 {group.title}
@@ -52,7 +59,7 @@ const year = new Date().getFullYear();
                 {group.items.map((item) => (
                   <li>
                     <a
-                      href={item.href}
+                      href={href(locale, item.href)}
                       class="text-sm text-steel-200 transition-colors hover:text-flame-500"
                     >
                       {item.label}
@@ -66,34 +73,49 @@ const year = new Date().getFullYear();
       </div>
     </div>
 
-    <div class="mt-16 border-t border-white/8 pt-8">
+    <div class="mt-16 grid gap-8 border-t border-line/8 pt-8 sm:grid-cols-2">
       <div>
         <h2
           class="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-steel-400"
         >
-          {contact.works.label}
+          {d.footer.officeLabel}
         </h2>
         <address class="mt-3 text-sm not-italic leading-relaxed text-steel-300">
-          {contact.works.lines.map((line) => <span class="block">{line}</span>)}
+          {[...contact.works.lines, d.footer.country].map((line) => (
+            <span class="block">{line}</span>
+          ))}
         </address>
+      </div>
+      <div>
+        <h2
+          class="font-display text-[0.6875rem] font-semibold uppercase tracking-[0.18em] text-steel-400"
+        >
+          {d.contactPage.hoursLabel}
+        </h2>
+        <p class="mt-3 text-sm leading-relaxed text-steel-300">
+          {d.contactPage.hours}
+        </p>
       </div>
     </div>
 
     <div
-      class="mt-12 flex flex-col gap-4 border-t border-white/8 pt-8 text-xs text-steel-400 sm:flex-row sm:items-center sm:justify-between"
+      class="mt-12 flex flex-col gap-4 border-t border-line/8 pt-8 text-xs text-steel-400 sm:flex-row sm:items-center sm:justify-between"
     >
-      <p>&copy; {year} {site.name}. All rights reserved.</p>
+      <p>&copy; {year} {site.name}. {d.footer.rights}</p>
       <p class="flex flex-wrap items-center gap-x-5 gap-y-2">
         <span>{contact.registration.vat}</span>
-        <a href="/cookies" class="transition-colors hover:text-flame-500">
-          Cookie policy
+        <a
+          href={href(locale, '/cookies')}
+          class="transition-colors hover:text-flame-500"
+        >
+          {d.footer.cookiePolicy}
         </a>
         <button
           type="button"
           data-cookie-settings
           class="transition-colors hover:text-flame-500"
         >
-          Cookie settings
+          {d.footer.cookieSettings}
         </button>
         <a
           href={contact.social.linkedin}

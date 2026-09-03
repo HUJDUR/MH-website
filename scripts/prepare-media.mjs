@@ -7,8 +7,9 @@ import sharp from 'sharp';
 import { mkdir } from 'node:fs/promises';
 import path from 'node:path';
 
-const PHOTOS = 'media/Photos for website';
+const PHOTOS = 'media/Projects';
 const INDUSTRIES = 'media/Industries present';
+const MACHINES = 'media/Machines';
 const OUT = 'src/assets/img';
 
 /**
@@ -43,17 +44,34 @@ const SELECTION = [
   [`${PHOTOS}/Z62_2292.JPG`, 'workshop-hall', 2400],
   [`${PHOTOS}/Z62_2276.JPG`, 'hall-overview', 2400],
   [`${PHOTOS}/IMG_1069.JPG`, 'machine-hall', 2400],
-  ['media/dji_fly_20260819_132552_0015_1787140299227_photo.jpg', 'facility-aerial', 2600],
-  ['media/dji_fly_20260819_132744_0017_1787140298854_photo.jpg', 'facility-aerial-2', 2600],
+  // One drone shot now stands in for both aerials — the second angle was
+  // dropped from /media. Add a source here if another one turns up.
+  ['media/MH sky.jpg', 'facility-aerial', 2600],
+  ['media/MH sky.jpg', 'facility-aerial-2', 2600],
 
   // People
   [`${PHOTOS}/Z62_2283.JPG`, 'operator-console', 2400],
   [`${PHOTOS}/Z62_2285.JPG`, 'team-workshop', 2400],
 
   // Industries served
-  [`${INDUSTRIES}/Sjipbuilding.jpg`, 'industry-shipbuilding', 2400],
+  [`${INDUSTRIES}/Shipbuilding.jpg`, 'industry-shipbuilding', 2400],
   [`${INDUSTRIES}/Offshore sector.jpg`, 'industry-offshore', 2400],
   [`${INDUSTRIES}/Infrastructure.jpg`, 'industry-infrastructure', 2400],
+
+  // Renewable energy — rooftop arrays on the halls
+  ['media/Solar panels 2.jpg', 'solar-roof', 2400],
+  ['media/Solar panels 3.jpg', 'solar-array', 2400],
+  ['media/Solar panels 1.jpg', 'solar-overhead', 2400],
+
+  // Machines — slugs match `content.machines` in the locale dictionaries
+  [`${MACHINES}/ESAB.JPG`, 'machine-esab', 2400],
+  [`${MACHINES}/Messer.JPG`, 'machine-messer', 2400],
+  [`${MACHINES}/Durma.JPG`, 'machine-durma', 2400],
+  [`${MACHINES}/Vernet.JPG`, 'machine-vernet', 2400],
+  [`${MACHINES}/QFIN.JPG`, 'machine-qfin', 2400],
+  // The forklift fleet is shown as video on the facility page, so the two
+  // stills in media/Machines are not brought in — the clip's poster frame
+  // (public/video/forklifts-poster.jpg) covers the no-video case.
 ];
 
 await mkdir(OUT, { recursive: true });

@@ -3,11 +3,23 @@ import { Image } from 'astro:assets';
 import Base from '../layouts/Base.astro';
 import Button from '../components/Button.astro';
 import { img } from '../data/images';
-import { primaryNav } from '../data/site';
+import { t, href, defaultLocale } from '../i18n';
+
+// The 404 answers for any unmatched path, so it uses the default language;
+// the header's language switcher still takes the visitor anywhere.
+const locale = defaultLocale;
+const d = t(locale);
 ---
 
-<Base title="Page not found" description="The page you were looking for is not here.">
-  <section class="relative isolate grain flex min-h-[80svh] items-center overflow-hidden">
+<Base
+  locale={locale}
+  title={d.notFound.title}
+  description={d.notFound.description}
+>
+  <section
+    data-theme="dark"
+    class="relative isolate grain flex min-h-[80svh] items-center overflow-hidden"
+  >
     <div class="absolute inset-0 -z-10">
       <Image
         src={img('grinding-sparks')}
@@ -23,24 +35,25 @@ import { primaryNav } from '../data/site';
     <div class="shell py-32">
       <p class="eyebrow">Error 404</p>
       <h1 class="mt-5 max-w-3xl text-4xl leading-[1.05] sm:text-6xl lg:text-7xl">
-        This one did not make it off the plate.
+        {d.notFound.heading}
       </h1>
       <p class="lede mt-7 max-w-xl">
-        The page you were looking for has moved or never existed. The rest of the
-        site is intact.
+        {d.notFound.body}
       </p>
 
       <div class="mt-10 flex flex-wrap gap-3">
-        <Button href="/">Back to home</Button>
-        <Button href="/contact" variant="outline">Contact us</Button>
+        <Button href={href(locale, '/')}>{d.common.backToHome}</Button>
+        <Button href={href(locale, '/contact')} variant="outline">
+          {d.common.contactUs}
+        </Button>
       </div>
 
-      <nav class="mt-14 flex flex-wrap gap-x-7 gap-y-3" aria-label="Site sections">
+      <nav class="mt-14 flex flex-wrap gap-x-7 gap-y-3" aria-label={d.nav.siteSections}>
         {
-          primaryNav.map((item) => (
+          d.nav.items.map((item) => (
             <a
-              href={item.href}
-              class="text-sm text-steel-400 underline decoration-white/20 underline-offset-4 transition-colors hover:text-white"
+              href={href(locale, item.href)}
+              class="text-sm text-steel-400 underline decoration-line/20 underline-offset-4 transition-colors hover:text-heading"
             >
               {item.label}
             </a>

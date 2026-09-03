@@ -3,23 +3,26 @@ import { Image } from 'astro:assets';
 import { img } from '../data/images';
 import Button from './Button.astro';
 import Reveal from './Reveal.astro';
+import { t, href, type Locale } from '../i18n';
 
 interface Props {
+  locale: Locale;
   eyebrow?: string;
   title?: string;
   body?: string;
   image?: string;
 }
 
-const {
-  eyebrow = 'Start a project',
-  title = 'Send us the drawings.',
-  body = 'Tell us what you need built and by when. We will come back with a realistic price, a realistic date, and any questions the drawings raise.',
-  image = 'welding-arc',
-} = Astro.props;
+const { locale, image = 'welding-arc' } = Astro.props;
+const d = t(locale);
+
+// Defaults fall back to the contact page's own copy in the active language.
+const eyebrow = Astro.props.eyebrow ?? d.contactPage.eyebrow;
+const title = Astro.props.title ?? d.contactPage.heroTitle;
+const body = Astro.props.body ?? d.contactPage.heroLede;
 ---
 
-<section class="relative isolate grain overflow-hidden">
+<section data-theme="dark" class="relative isolate grain overflow-hidden">
   <div class="absolute inset-0 -z-10">
     <Image
       src={img(image)}
@@ -51,9 +54,9 @@ const {
       </Reveal>
       <Reveal delay={240}>
         <div class="mt-10 flex flex-wrap gap-3">
-          <Button href="/contact">Request a quote</Button>
-          <Button href="/capabilities" variant="outline">
-            See what we can build
+          <Button href={href(locale, '/contact')}>{d.common.requestQuote}</Button>
+          <Button href={href(locale, '/capabilities')} variant="outline">
+            {d.common.seeWhatWeBuild}
           </Button>
         </div>
       </Reveal>

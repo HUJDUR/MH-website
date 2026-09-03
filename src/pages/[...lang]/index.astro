@@ -1,36 +1,46 @@
 ---
 import { Image } from 'astro:assets';
-import Base from '../layouts/Base.astro';
-import HomeHero from '../components/HomeHero.astro';
-import StatBand from '../components/StatBand.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import Reveal from '../components/Reveal.astro';
-import Button from '../components/Button.astro';
-import CallToAction from '../components/CallToAction.astro';
-import { capabilities, industries, certifications } from '../data/content';
-import { img } from '../data/images';
-import { site } from '../data/site';
+import Base from '../../layouts/Base.astro';
+import HomeHero from '../../components/HomeHero.astro';
+import StatBand from '../../components/StatBand.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Reveal from '../../components/Reveal.astro';
+import Button from '../../components/Button.astro';
+import CallToAction from '../../components/CallToAction.astro';
+
+import { img } from '../../data/images';
+import { site } from '../../data/site';
+import { localePaths, t, href, localeMeta } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+export const getStaticPaths = localePaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const d = t(locale);
+const L = (path: string) => href(locale, path);
+
 ---
 
 <Base
-  title={`${site.name} — ${site.tagline}`}
+  locale={locale}
+  title={`${site.name} — ${d.site.tagline}`}
   bareTitle
-  description={site.description}
+  description={d.site.description}
   transparentHeader
 >
-  <HomeHero />
-  <StatBand />
+  <HomeHero locale={locale} />
+  <StatBand locale={locale} />
 
   <!-- ── Intro ─────────────────────────────────────────────────────────── -->
   <section class="shell py-24 lg:py-36">
     <div class="grid gap-14 lg:grid-cols-12 lg:gap-20">
       <div class="lg:col-span-5">
         <Reveal>
-          <p class="eyebrow">Who we are</p>
+          <p class="eyebrow">{d.home.whoEyebrow}</p>
         </Reveal>
         <Reveal delay={80}>
           <h2 class="mt-4 text-3xl leading-[1.08] sm:text-4xl lg:text-[3.25rem] lg:leading-[1.05]">
-            A fabrication shop, not a broker.
+            {d.home.whoTitle}
           </h2>
         </Reveal>
 
@@ -40,7 +50,7 @@ import { site } from '../data/site';
           <div class="overflow-hidden rounded-2xl">
             <Image
               src={img('operator-console')}
-              alt="A Metal Holland operator at the controls of a cutting machine"
+              alt={d.home.heroAlt}
               widths={[400, 700, 1000]}
               sizes="40vw"
               loading="lazy"
@@ -52,25 +62,14 @@ import { site } from '../data/site';
 
       <div class="lg:col-span-6 lg:col-start-7">
         <Reveal delay={120}>
-          <p class="lede">
-            Metal Holland cuts, forms, welds and finishes heavy steel
-            constructions in its own halls. Nothing is quietly passed down a
-            chain of subcontractors — the plate that arrives on our yard leaves
-            it as a finished section, with the documentation to match.
-          </p>
+          <p class="lede">{d.home.whoBody1}</p>
         </Reveal>
         <Reveal delay={200}>
-          <p class="mt-6 leading-relaxed text-steel-300">
-            That is the whole proposition. Dutch project management and
-            engineering discipline, combined with the capacity, cranage and
-            skilled trades of a full production facility. Clients in
-            shipbuilding, offshore and infrastructure use us because a single
-            responsible party is simpler to plan around than five.
-          </p>
+          <p class="mt-6 leading-relaxed text-steel-300">{d.home.whoBody2}</p>
         </Reveal>
         <Reveal delay={280}>
           <div class="mt-9">
-            <Button href="/about" variant="ghost">More about Metal Holland</Button>
+            <Button href={L('/about')} variant="ghost">{d.common.moreAbout}</Button>
           </div>
         </Reveal>
       </div>
@@ -78,28 +77,31 @@ import { site } from '../data/site';
   </section>
 
   <!-- ── Capabilities ──────────────────────────────────────────────────── -->
-  <section class="relative border-t border-white/8 bg-ink-900 py-24 lg:py-36">
+  <section class="relative border-t border-line/8 bg-ink-900 py-24 lg:py-36">
     <div class="shell">
       <div class="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
         <SectionHeading
-          eyebrow="Capabilities"
-          title="Everything from plate to primed section, under one roof."
+          eyebrow={d.home.capabilitiesEyebrow}
+          title={d.home.capabilitiesTitle}
           class="lg:max-w-2xl"
         />
         <Reveal delay={200} class="shrink-0">
-          <Button href="/capabilities" variant="outline">All capabilities</Button>
+          <Button href={L('/capabilities')} variant="outline">
+            {d.common.allCapabilities}
+          </Button>
         </Reveal>
       </div>
 
       <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
         {
-          capabilities.map((cap, i) => (
+          d.content.capabilities.map((cap, i) => (
             <Reveal
               delay={i * 100}
               as="article"
-              class="group relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-2xl border border-white/8 bg-ink-850 p-7 transition-colors duration-500 hover:border-white/20"
+              data-theme="dark"
+              class="group relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-2xl border border-line/8 bg-ink-850 p-7 transition-colors duration-500 hover:border-line/20"
             >
-              <a href={`/capabilities#${cap.id}`} class="absolute inset-0 z-20">
+              <a href={`${L('/capabilities')}#${cap.id}`} class="absolute inset-0 z-20">
                 <span class="sr-only">{cap.title}</span>
               </a>
 
@@ -134,7 +136,7 @@ import { site } from '../data/site';
         <div class="overflow-hidden rounded-2xl">
           <Image
             src={img('facility-aerial')}
-            alt="Aerial view of the Metal Holland production facility and yard"
+            alt={d.home.facilityAlt}
             widths={[600, 900, 1400, 2000]}
             sizes="(min-width:1024px) 46vw, 92vw"
             loading="lazy"
@@ -143,34 +145,28 @@ import { site } from '../data/site';
         </div>
         <!-- Inset card gives the flat aerial shot some depth. -->
         <div
-          class="absolute -bottom-6 -right-2 hidden w-56 rounded-xl border border-white/10 bg-ink-850/95 p-5 backdrop-blur-md sm:block lg:-right-8"
+          class="absolute -bottom-6 -right-2 hidden w-56 rounded-xl border border-line/10 bg-ink-850/95 p-5 backdrop-blur-md sm:block lg:-right-8"
         >
-          <p class="font-display text-3xl font-bold text-white">32,000 m²+</p>
+          <p class="font-display text-3xl font-bold text-heading">{d.content.stats[1].value}</p>
           <p class="mt-1 text-xs leading-relaxed text-steel-400">
-            of production area, with overhead cranage in every hall
+            {d.home.facilityInset}
           </p>
         </div>
       </Reveal>
 
       <div>
         <SectionHeading
-          eyebrow="The facility"
-          title="Capacity you can plan a programme around."
-          lede="Four halls, gantry cutting tables, drilling lines, rolls and welding
-            bays — sized for sections that leave on a low-loader, not in a crate."
+          eyebrow={d.home.facilityEyebrow}
+          title={d.home.facilityTitle}
+          lede={d.home.facilityLede}
         />
 
         <Reveal delay={220}>
-          <ul class="mt-10 space-y-px overflow-hidden rounded-xl border border-white/8">
+          <ul class="mt-10 space-y-px overflow-hidden rounded-xl border border-line/8">
             {
-              [
-                ['Covered halls', 'Cutting, forming, fitting, welding, finishing'],
-                ['Overhead cranage', 'Up to [XX] tonnes per hall'],
-                ['Outdoor yard', 'Blasting, priming, storage and loading'],
-                ['Transport', 'Abnormal loads to yards and sites across Europe'],
-              ].map(([label, value]) => (
-                <li class="flex flex-col gap-1 bg-white/2 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
-                  <span class="font-display text-sm font-semibold text-white">
+              d.home.facilityRows.map(({ label, value }) => (
+                <li class="flex flex-col gap-1 bg-line/2 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
+                  <span class="font-display text-sm font-semibold text-heading">
                     {label}
                   </span>
                   <span class="text-sm text-steel-400 sm:text-right">
@@ -184,8 +180,8 @@ import { site } from '../data/site';
 
         <Reveal delay={300}>
           <div class="mt-9">
-            <Button href="/facility" variant="ghost">
-              Facility &amp; equipment
+            <Button href={L('/facility')} variant="ghost">
+              {d.common.facilityEquipment}
             </Button>
           </div>
         </Reveal>
@@ -194,24 +190,24 @@ import { site } from '../data/site';
   </section>
 
   <!-- ── Industries ────────────────────────────────────────────────────── -->
-  <section class="border-t border-white/8 bg-ink-900 py-24 lg:py-36">
+  <section class="border-t border-line/8 bg-ink-900 py-24 lg:py-36">
     <div class="shell">
       <SectionHeading
-        eyebrow="Industries"
-        title="Four sectors. One set of standards."
+        eyebrow={d.home.industriesEyebrow}
+        title={d.home.industriesTitle}
         lede="The tolerances and the paperwork differ. The discipline behind them
           does not."
       />
 
       <div class="mt-16 grid gap-6 md:grid-cols-2 lg:mt-20">
         {
-          industries.map((industry, i) => (
+          d.content.industries.map((industry, i) => (
             <Reveal
               delay={(i % 2) * 120}
               as="article"
-              class="group relative isolate overflow-hidden rounded-2xl border border-white/8"
+              class="group relative isolate overflow-hidden rounded-2xl border border-line/8"
             >
-              <a href={`/industries#${industry.id}`} class="absolute inset-0 z-20">
+              <a href={`${L('/industries')}#${industry.id}`} class="absolute inset-0 z-20">
                 <span class="sr-only">{industry.title}</span>
               </a>
 
@@ -233,7 +229,7 @@ import { site } from '../data/site';
                   {industry.summary}
                 </p>
                 <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-flame-500">
-                  What we build
+                  {d.common.whatWeBuild}
                   <svg
                     viewBox="0 0 16 16"
                     fill="none"
@@ -257,33 +253,99 @@ import { site } from '../data/site';
     </div>
   </section>
 
+  <!-- ── Renewable energy ──────────────────────────────────────────────── -->
+  <section class="border-t border-line/8 bg-ink-900 py-24 lg:py-32">
+    <div class="shell">
+      <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div class="lg:col-span-5">
+          <SectionHeading
+            eyebrow={d.home.energyEyebrow}
+            title={d.home.energyTitle}
+            lede={d.home.energyLede}
+          />
+          <Reveal delay={240}>
+            <p class="mt-6 max-w-xl leading-relaxed text-steel-400">
+              {d.home.energyBody}
+            </p>
+          </Reveal>
+
+          <Reveal delay={320}>
+            <dl class="mt-10 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8">
+              {
+                d.home.energyFigures.map((figure) => (
+                  <div class="flex flex-col bg-ink-900 p-5 sm:p-6">
+                    <dt class="font-display text-lg font-bold text-heading tabular-nums sm:text-xl">
+                      {figure.value}
+                    </dt>
+                    <dd class="mt-1 text-xs leading-relaxed text-steel-400">
+                      {figure.label}
+                    </dd>
+                  </div>
+                ))
+              }
+            </dl>
+          </Reveal>
+        </div>
+
+        <!-- One wide shot carries the story; the two below it give scale. -->
+        <div class="grid gap-4 lg:col-span-6 lg:col-start-7">
+          <Reveal delay={120} class="overflow-hidden rounded-2xl">
+            <Image
+              src={img(d.home.energyImages[0].slug)}
+              alt={d.home.energyImages[0].alt}
+              widths={[600, 900, 1400, 1800]}
+              sizes="(min-width:1024px) 46vw, 92vw"
+              loading="lazy"
+              class="aspect-16/10 w-full object-cover"
+            />
+          </Reveal>
+
+          <div class="grid grid-cols-2 gap-4">
+            {
+              d.home.energyImages.slice(1).map((shot, i) => (
+                <Reveal delay={200 + i * 90} class="overflow-hidden rounded-2xl">
+                  <Image
+                    src={img(shot.slug)}
+                    alt={shot.alt}
+                    widths={[400, 700, 1000]}
+                    sizes="(min-width:1024px) 23vw, 46vw"
+                    loading="lazy"
+                    class="aspect-4/3 w-full object-cover"
+                  />
+                </Reveal>
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Quality / certification ───────────────────────────────────────── -->
   <section class="shell py-24 lg:py-32">
     <div class="grid gap-14 lg:grid-cols-12 lg:gap-20">
       <div class="lg:col-span-5">
         <SectionHeading
-          eyebrow="Quality"
-          title="The certificate is only the summary."
-          lede="Qualified procedures, certified welders, recorded inspections. The
-            delivery file is assembled as the work happens, not reconstructed
-            afterwards."
+          eyebrow={d.home.qualityEyebrow}
+          title={d.home.qualityTitle}
+          lede={d.home.qualityLede}
         />
       </div>
 
       <div class="lg:col-span-6 lg:col-start-7">
-        <div class="grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 sm:grid-cols-2">
+        <div class="grid gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8 sm:grid-cols-2">
           {
-            certifications.map((cert, i) => (
+            d.content.certifications.map((cert, i) => (
               <Reveal
                 delay={i * 90}
                 class={`flex flex-col justify-between gap-6 bg-ink-950 p-7 ${
                   // An odd count would otherwise leave a hole in the last row.
-                  i === certifications.length - 1 && certifications.length % 2 === 1
+                  i === d.content.certifications.length - 1 && d.content.certifications.length % 2 === 1
                     ? 'sm:col-span-2 sm:flex-row sm:items-center sm:gap-8'
                     : ''
                 }`}
               >
-                <span class="font-display text-lg font-bold text-white">
+                <span class="font-display text-lg font-bold text-heading">
                   {cert.code}
                 </span>
                 <span class="text-sm leading-relaxed text-steel-400">
@@ -295,12 +357,12 @@ import { site } from '../data/site';
         </div>
         <Reveal delay={380}>
           <p class="mt-5 text-xs leading-relaxed text-steel-400">
-            Certificates and scope statements are available on request.
+            {d.home.qualityNote}
           </p>
         </Reveal>
       </div>
     </div>
   </section>
 
-  <CallToAction />
+  <CallToAction locale={locale} />
 </Base>

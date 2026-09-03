@@ -1,0 +1,148 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Reveal from '../../components/Reveal.astro';
+import { contact, site } from '../../data/site';
+import { localePaths, t, href, localeMeta } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+export const getStaticPaths = localePaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const d = t(locale);
+const L = (path: string) => href(locale, path);
+
+---
+
+<Base
+  locale={locale}
+  title={d.cookiesPage.title}
+  description={d.cookiesPage.description}
+  transparentHeader
+>
+  <PageHero
+    eyebrow={d.cookiesPage.eyebrow}
+    title={d.cookiesPage.heroTitle}
+    lede={d.cookiesPage.heroLede}
+    image="operator-console"
+    imageAlt={d.cookiesPage.heroAlt}
+  />
+
+  <section class="shell py-20 lg:py-28">
+    <div class="grid gap-14 lg:grid-cols-12 lg:gap-16">
+      <div class="lg:col-span-7">
+        <div class="space-y-10 leading-relaxed text-steel-300">
+          <Reveal>
+            <div>
+              <h2 class="text-2xl text-heading sm:text-3xl">{d.cookiesPage.whatTitle}</h2>
+              <p class="mt-4">{d.cookiesPage.whatBody}</p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <div>
+              <h2 class="text-2xl text-heading sm:text-3xl">{d.cookiesPage.useTitle}</h2>
+              <p class="mt-4">{d.cookiesPage.useBody1}</p>
+              <p class="mt-4">{d.cookiesPage.useBody2}</p>
+              <p class="mt-4">{d.cookiesPage.useBody3}</p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={140}>
+            <div>
+              <h2 class="text-2xl text-heading sm:text-3xl">{d.cookiesPage.thirdTitle}</h2>
+              <p class="mt-4">{d.cookiesPage.thirdBody1}</p>
+              <p class="mt-4">{d.cookiesPage.thirdBody2}</p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div>
+              <h2 class="text-2xl text-heading sm:text-3xl">{d.cookiesPage.changeTitle}</h2>
+              <p class="mt-4">{d.cookiesPage.changeBody1}</p>
+              <p class="mt-4">{d.cookiesPage.changeBody2}</p>
+              <button
+                type="button"
+                data-cookie-settings
+                class="mt-6 rounded-full border border-line/15 px-6 py-3 text-sm font-semibold text-heading transition-colors duration-300 hover:border-flame-500 hover:text-flame-500"
+              >
+                {d.cookiesPage.settingsButton}
+              </button>
+            </div>
+          </Reveal>
+
+          <Reveal delay={260}>
+            <div>
+              <h2 class="text-2xl text-heading sm:text-3xl">{d.cookiesPage.contactTitle}</h2>
+              <p class="mt-4">
+                {d.cookiesPage.contactBody} <a
+                  href={`mailto:${contact.email}`}
+                  class="text-flame-500 underline-offset-4 transition-colors hover:text-heading hover:underline"
+                  >{contact.email}</a
+                >{d.cookiesPage.contactBodyOr} {site.name}, {contact.works.lines.join(', ')}.
+              </p>
+              <p class="mt-4 text-sm text-steel-400">
+                {d.cookiesPage.lastUpdatedLabel}: {d.cookiesPage.lastUpdated}
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </div>
+
+      <!-- ── Cookie table ──────────────────────────────────────────────── -->
+      <div class="lg:col-span-4 lg:col-start-9">
+        <Reveal delay={120}>
+          <h2
+            class="font-display text-xs font-semibold uppercase tracking-[0.18em] text-flame-500"
+          >
+            {d.cookiesPage.tableTitle}
+          </h2>
+          <div class="mt-6 grid gap-5">
+            {
+              d.cookiesPage.table.map((cookie) => (
+                <div class="rounded-2xl border border-line/8 bg-ink-900 p-7">
+                  <div class="flex flex-wrap items-center gap-3">
+                    <span class="font-display text-sm font-bold text-heading">
+                      {cookie.name}
+                    </span>
+                    <span
+                      class:list={[
+                        'rounded-full px-2.5 py-1 font-display text-[0.625rem] font-semibold uppercase tracking-[0.12em]',
+                        cookie.category === 'essential'
+                          ? 'bg-arc-500/12 text-arc-400'
+                          : 'bg-flame-500/12 text-flame-400',
+                      ]}
+                    >
+                      {cookie.category === 'essential' ? d.cookiesPage.essential : d.cookiesPage.optional}
+                    </span>
+                  </div>
+                  <p class="mt-4 text-sm leading-relaxed text-steel-300">
+                    {cookie.purpose}
+                  </p>
+                  <dl class="mt-5 space-y-2 text-xs text-steel-400">
+                    <div class="flex gap-3">
+                      <dt class="w-20 shrink-0">{d.cookiesPage.setBy}</dt>
+                      <dd class="text-steel-200">{cookie.provider}</dd>
+                    </div>
+                    <div class="flex gap-3">
+                      <dt class="w-20 shrink-0">{d.cookiesPage.keptFor}</dt>
+                      <dd class="text-steel-200">{cookie.duration}</dd>
+                    </div>
+                  </dl>
+                </div>
+              ))
+            }
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<script>
+  document
+    .querySelectorAll<HTMLButtonElement>('[data-cookie-settings]')
+    .forEach((el) =>
+      el.addEventListener('click', () => window.mhCookieConsent?.open())
+    );
+</script>

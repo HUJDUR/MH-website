@@ -10,7 +10,16 @@
  * Storage: a first-party cookie `mh_cookie_consent` = 'all' | 'essential',
  * kept for one year. `window.mhCookieConsent.open()` reopens the banner,
  * which is what the footer's "Cookie settings" link calls.
+
  */
+import { t, href, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
 ---
 
 <div
@@ -18,20 +27,17 @@
   hidden
   role="dialog"
   aria-modal="false"
-  aria-label="Cookie consent"
+  aria-label={d.cookieBanner.label}
   class="fixed inset-x-0 bottom-0 z-90 p-4 sm:p-6"
 >
   <div
-    class="shell mx-auto max-w-4xl rounded-2xl border border-white/10 bg-ink-850/97 p-6 shadow-[0_24px_60px_-20px_rgb(0,0,0,0.9)] backdrop-blur-xl sm:p-8"
+    class="shell mx-auto max-w-4xl rounded-2xl border border-line/10 bg-ink-850/97 p-6 shadow-[0_24px_60px_-20px_rgb(0,0,0,0.9)] backdrop-blur-xl sm:p-8"
   >
     <h2 class="font-display text-xs font-semibold uppercase tracking-[0.18em] text-flame-500">
-      Cookies
+      {d.cookieBanner.heading}
     </h2>
     <p class="mt-4 text-sm leading-relaxed text-steel-200">
-      We use one essential cookie to remember this choice. Optional cookies are
-      set only by the Google Maps embed on our contact page — reject them and
-      the map simply is not loaded. We run no advertising or analytics
-      tracking.
+      {d.cookieBanner.body}
     </p>
     <div class="mt-6 flex flex-col gap-3 sm:flex-row sm:items-center">
       <button
@@ -39,20 +45,20 @@
         data-cookie-accept
         class="rounded-full bg-flame-500 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-flame-400 hover:shadow-[0_0_40px_-8px] hover:shadow-flame-500/80"
       >
-        Accept all
+        {d.cookieBanner.accept}
       </button>
       <button
         type="button"
         data-cookie-reject
-        class="rounded-full border border-white/15 px-6 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:border-white/40"
+        class="rounded-full border border-line/15 px-6 py-3 text-sm font-semibold text-heading transition-colors duration-300 hover:border-line/40"
       >
-        Reject optional
+        {d.cookieBanner.reject}
       </button>
       <a
-        href="/cookies"
+        href={href(locale, '/cookies')}
         class="text-sm text-steel-300 underline-offset-4 transition-colors hover:text-flame-500 hover:underline sm:ml-auto"
       >
-        Cookie policy
+        {d.cookieBanner.policy}
       </a>
     </div>
   </div>

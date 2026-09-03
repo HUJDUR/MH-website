@@ -1,0 +1,100 @@
+---
+/**
+ * A muted, looping clip that behaves like a photograph.
+ *
+ * The poster carries the first paint and the video is only fetched once the
+ * page has loaded — and not at all for visitors who asked for reduced motion
+ * or are on a metered or slow connection. Those visitors keep the poster,
+ * which is why the poster has to stand on its own as an image.
+ *
+ * The homepage hero keeps its own copy of this logic: it layers filters,
+ * a colour cast and two gradients that only make sense there.
+ */
+interface Props {
+  /** Served at viewports ≥1024px. */
+  src1080: string;
+  /** Served below that, and the fallback if the wide source is missing. */
+  src720: string;
+  poster: string;
+  /** Describe the footage — this stands in for the video for many visitors. */
+  alt: string;
+  class?: string;
+}
+
+const { src1080, src720, poster, alt, class: className = '' } = Astro.props;
+---
+
+<div class:list={['relative overflow-hidden', className]}>
+  <img
+    src={poster}
+    alt={alt}
+    class="absolute inset-0 h-full w-full object-cover"
+  />
+  <video
+    data-ambient-video
+    data-src-wide={src1080}
+    data-src-narrow={src720}
+    poster={poster}
+    muted
+    loop
+    playsinline
+    preload="none"
+    aria-hidden="true"
+    class="absolute inset-0 h-full w-full object-cover opacity-0 transition-opacity duration-1000"
+  >
+  </video>
+</div>
+
+<script>
+  // One handler for every ambient clip on the page.
+  const videos = document.querySelectorAll<HTMLVideoElement>(
+    '[data-ambient-video]'
+  );
+
+  if (videos.length) {
+    const prefersReducedMotion = window.matchMedia(
+      '(prefers-reduced-motion: reduce)'
+    ).matches;
+
+    // `saveData` is non-standard but widely supported where it matters most;
+    // treat its absence as "no constraint".
+    const connection = (navigator as any).connection;
+    const saveData = Boolean(connection?.saveData);
+    const slowNetwork = /2g/.test(connection?.effectiveType ?? '');
+
+    if (!prefersReducedMotion && !saveData && !slowNetwork) {
+      // Below the fold by definition, so wait until it is actually approached
+      // rather than spending bandwidth on a clip nobody scrolls to.
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (!entry.isIntersecting) continue;
+            const video = entry.target as HTMLVideoElement;
+            observer.unobserve(video);
+
+            video.src =
+              (window.innerWidth >= 1024
+                ? video.dataset.srcWide
+                : video.dataset.srcNarrow) ?? '';
+            video.load();
+            video.addEventListener(
+              'canplay',
+              () => {
+                video.classList.remove('opacity-0');
+                void video.play().catch(() => {
+                  /* Autoplay refused — the poster stays, which is fine. */
+                });
+              },
+              { once: true }
+            );
+          }
+        },
+        { rootMargin: '400px 0px' }
+      );
+
+      const start = () => videos.forEach((video) => observer.observe(video));
+      if (document.readyState === 'complete') start();
+      else window.addEventListener('load', start, { once: true });
+    }
+  }
+</script>
