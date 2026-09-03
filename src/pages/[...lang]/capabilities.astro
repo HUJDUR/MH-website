@@ -1,31 +1,41 @@
 ---
 import { Image } from 'astro:assets';
-import Base from '../layouts/Base.astro';
-import PageHero from '../components/PageHero.astro';
-import SectionHeading from '../components/SectionHeading.astro';
-import Reveal from '../components/Reveal.astro';
-import CallToAction from '../components/CallToAction.astro';
-import { capabilities, processSteps } from '../data/content';
-import { img } from '../data/images';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import SectionHeading from '../../components/SectionHeading.astro';
+import Reveal from '../../components/Reveal.astro';
+import CallToAction from '../../components/CallToAction.astro';
+
+import { img } from '../../data/images';
+import { localePaths, t, href, localeMeta } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+export const getStaticPaths = localePaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const d = t(locale);
+const L = (path: string) => href(locale, path);
+
 ---
 
 <Base
-  title="Capabilities"
-  description="CNC plasma cutting, forming and rolling, certified welding, assembly and finishing — Metal Holland's fabrication capabilities from plate to primed section."
+  locale={locale}
+  title={d.capabilitiesPage.title}
+  description={d.capabilitiesPage.description}
   transparentHeader
 >
   <PageHero
-    eyebrow="Capabilities"
-    title="From plate to primed section."
-    lede="Cutting, forming, welding, finishing and delivery run in one building, on one schedule, under one responsibility."
+    eyebrow={d.capabilitiesPage.eyebrow}
+    title={d.capabilitiesPage.heroTitle}
+    lede={d.capabilitiesPage.heroLede}
     image="plasma-head"
-    imageAlt="Plasma cutting head working across heavy steel plate"
+    imageAlt={d.capabilitiesPage.heroAlt}
   />
 
   <!-- ── Capability detail ─────────────────────────────────────────────── -->
-  <div class="divide-y divide-white/8">
+  <div class="divide-y divide-line/8">
     {
-      capabilities.map((cap, i) => (
+      d.content.capabilities.map((cap, i) => (
         <section id={cap.id} class="scroll-mt-24 py-20 lg:py-28">
           <div class="shell">
             <div
@@ -92,19 +102,17 @@ import { img } from '../data/images';
   </div>
 
   <!-- ── Process ───────────────────────────────────────────────────────── -->
-  <section class="border-t border-white/8 bg-ink-900 py-24 lg:py-32">
+  <section class="border-t border-line/8 bg-ink-900 py-24 lg:py-32">
     <div class="shell">
       <SectionHeading
-        eyebrow="How a project runs"
-        title="Five stages, and you hear from us at each of them."
-        lede="Heavy fabrication goes wrong quietly, weeks before anyone notices. Our
-          answer is a fixed rhythm of reporting rather than a promise to call if
-          something comes up."
+        eyebrow={d.capabilitiesPage.processEyebrow}
+        title={d.capabilitiesPage.processTitle}
+        lede={d.capabilitiesPage.processLede}
       />
 
-      <ol class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 lg:mt-20 lg:grid-cols-5">
+      <ol class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8 lg:mt-20 lg:grid-cols-5">
         {
-          processSteps.map((step, i) => (
+          d.content.processSteps.map((step, i) => (
             <Reveal
               as="li"
               delay={i * 80}
@@ -127,26 +135,17 @@ import { img } from '../data/images';
     <div class="grid gap-14 lg:grid-cols-12 lg:gap-20">
       <div class="lg:col-span-5">
         <SectionHeading
-          eyebrow="Materials"
-          title="Carbon steel, stainless, aluminium."
-          lede="Material is ordered against certificate and kept traceable through
-            cutting, fitting and welding, so the heat number on the delivery file
-            is the heat number in the construction."
+          eyebrow={d.capabilitiesPage.materialsEyebrow}
+          title={d.capabilitiesPage.materialsTitle}
+          lede={d.capabilitiesPage.materialsLede}
         />
       </div>
       <div class="lg:col-span-6 lg:col-start-7">
-        <dl class="grid gap-px overflow-hidden rounded-2xl border border-white/8 bg-white/8 sm:grid-cols-2">
+        <dl class="grid gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8 sm:grid-cols-2">
           {
-            [
-              ['Structural steel', 'S235 · S275 · S355 · higher grades on request'],
-              ['Shipbuilding grades', 'Classification-approved plate and sections'],
-              ['Stainless', '304 · 316 and duplex, in a separated work area'],
-              ['Aluminium', 'Marine grades, welded by qualified procedure'],
-              ['Plate', 'Up to [200] mm thickness'],
-              ['Sections', 'Beams, hollow sections, pipe and bar'],
-            ].map(([term, detail], i) => (
+            d.capabilitiesPage.materials.map(({ term, detail }, i) => (
               <Reveal delay={i * 60} class="bg-ink-950 p-6">
-                <dt class="font-display text-sm font-semibold text-white">
+                <dt class="font-display text-sm font-semibold text-heading">
                   {term}
                 </dt>
                 <dd class="mt-2 text-sm leading-relaxed text-steel-400">
@@ -161,8 +160,9 @@ import { img } from '../data/images';
   </section>
 
   <CallToAction
-    title="Not sure it can be built?"
-    body="Send the drawing anyway. Half of what we do starts with a client asking whether a section can be made in one piece — and it usually can."
+    locale={locale}
+    title={d.capabilitiesPage.ctaTitle}
+    body={d.capabilitiesPage.ctaBody}
     image="grinding-sparks"
   />
 </Base>

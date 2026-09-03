@@ -24,7 +24,10 @@ const {
 } = Astro.props;
 ---
 
-<section class="relative isolate grain overflow-hidden bg-ink-950">
+<section
+  data-theme="dark"
+  class="relative isolate grain overflow-hidden bg-ink-950"
+>
   <div class="absolute inset-0 -z-10">
     <Image
       src={img(image)}

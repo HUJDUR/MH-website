@@ -4,8 +4,19 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import { site, contact } from '../data/site';
+import {
+  locales,
+  localeMeta,
+  defaultLocale,
+  href,
+  canonicalPath,
+  t,
+  type Locale,
+} from '../i18n';
 
 interface Props {
+  /** Which language this page is rendered in. */
+  locale: Locale;
   title: string;
   description?: string;
   /** Set on the homepage so the title is not "Metal Holland | Metal Holland". */
@@ -17,23 +28,34 @@ interface Props {
 }
 
 const {
+  locale = defaultLocale,
   title,
-  description = site.description,
+  description,
   bareTitle = false,
   ogImage = '/video/facility-poster.jpg',
   transparentHeader = false,
 } = Astro.props;
 
+const d = t(locale);
+const meta = localeMeta[locale];
 const pageTitle = bareTitle ? title : `${title} | ${site.shortName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 const ogImageUrl = new URL(ogImage, Astro.site ?? site.url).href;
+
+/** The same page in every language, for hreflang. */
+const here = canonicalPath(Astro.url.pathname);
+const alternates = locales.map((code) => ({
+  code,
+  hreflang: localeMeta[code].hreflang,
+  url: new URL(href(code, here), Astro.site ?? site.url).href,
+}));
 
 const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: site.name,
   url: site.url,
-  description: site.description,
+  description: d.site.description,
   logo: new URL('/logo/metal-holland-color.svg', Astro.site ?? site.url).href,
   email: contact.email,
   telephone: contact.phone,
@@ -55,13 +77,33 @@ const organizationSchema = {
 ---
 
 <!doctype html>
-<html lang={site.locale} class="scroll-pt-24">
+<html lang={meta.htmlLang} data-theme="dark" class="scroll-pt-24">
   <head>
     <meta charset="utf-8" />
+    <!-- Blocking on purpose: this has to settle the theme before the first
+         paint, or a returning light-mode visitor gets a black flash. -->
+    <script is:inline>
+      try {
+        if (localStorage.getItem('mh-theme') === 'light') {
+          document.documentElement.dataset.theme = 'light';
+        }
+      } catch {}
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{pageTitle}</title>
-    <meta name="description" content={description} />
+    <meta name="description" content={description ?? d.site.description} />
     <link rel="canonical" href={canonical} />
+
+    {
+      alternates.map((alt) => (
+        <link rel="alternate" hreflang={alt.hreflang} href={alt.url} />
+      ))
+    }
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(href(defaultLocale, here), Astro.site ?? site.url).href}
+    />
 
     <link rel="icon" type="image/svg+xml" href="/logo/mh-mark-color.svg" />
     <meta name="theme-color" content="#06090c" />
@@ -69,8 +111,9 @@ const organizationSchema = {
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={pageTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={description ?? d.site.description} />
     <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={meta.hreflang.replace('-', '_')} />
     <meta property="og:image" content={ogImageUrl} />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -93,18 +136,18 @@ const organizationSchema = {
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:rounded-full focus:bg-flame-500 focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"
     >
-      Skip to content
+      {d.nav.skipToContent}
     </a>
 
-    <Header transparent={transparentHeader} />
+    <Header transparent={transparentHeader} locale={locale} />
 
     <main id="main">
       <slot />
     </main>
 
-    <Footer />
+    <Footer locale={locale} />
 
-    <CookieConsent />
+    <CookieConsent locale={locale} />
 
     <script>
       // --- Scroll reveal -------------------------------------------------

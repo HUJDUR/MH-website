@@ -5,15 +5,23 @@ interface Props {
   /** Rendered element. Use a semantic tag where one applies. */
   as?: string;
   class?: string;
+  /** Anything else — `data-theme`, `id`, `aria-*` — lands on the element. */
+  [key: string]: unknown;
 }
 
-const { delay = 0, as: Tag = 'div', class: className = '' } = Astro.props;
+const {
+  delay = 0,
+  as: Tag = 'div',
+  class: className = '',
+  ...rest
+} = Astro.props;
 ---
 
 <Tag
   data-reveal
   style={delay ? `--reveal-delay:${delay}ms` : undefined}
   class={className}
+  {...rest}
 >
   <slot />
 </Tag>

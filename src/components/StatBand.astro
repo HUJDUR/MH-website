@@ -1,6 +1,13 @@
 ---
-import { stats } from '../data/content';
 import Reveal from './Reveal.astro';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const stats = t(locale).content.stats;
 
 /**
  * Dividers are per-cell rather than a grid-gap trick, so the outer text still
@@ -19,16 +26,16 @@ const cellRules = (i: number) =>
     .join(' ');
 ---
 
-<section class="border-y border-white/8 bg-ink-900">
+<section class="border-y border-line/8 bg-ink-900">
   <div class="shell">
     <dl class="grid grid-cols-2 lg:grid-cols-4">
       {
         stats.map((stat, i) => (
           <Reveal
             delay={i * 90}
-            class={`border-white/8 py-10 pr-5 sm:pr-8 lg:py-16 ${cellRules(i)}`}
+            class={`border-line/8 py-10 pr-5 sm:pr-8 lg:py-16 ${cellRules(i)}`}
           >
-            <dt class="font-display text-3xl font-bold tracking-tight text-white tabular-nums sm:text-4xl lg:text-5xl">
+            <dt class="font-display text-3xl font-bold tracking-tight text-heading tabular-nums sm:text-4xl lg:text-5xl">
               {stat.value}
             </dt>
             <dd class="mt-3">

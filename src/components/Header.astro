@@ -1,34 +1,40 @@
 ---
-import { primaryNav, site } from '../data/site';
+import { site } from '../data/site';
+import ThemeToggle from './ThemeToggle.astro';
+import LanguageToggle from './LanguageToggle.astro';
+import { t, href, canonicalPath, type Locale } from '../i18n';
 
 interface Props {
   /** Sits transparently over a full-bleed hero until the page is scrolled. */
   transparent?: boolean;
+  locale: Locale;
 }
 
-const { transparent = false } = Astro.props;
-const path = Astro.url.pathname;
+const { transparent = false, locale } = Astro.props;
+const d = t(locale);
+const here = canonicalPath(Astro.url.pathname);
 
-const isActive = (href: string) =>
-  href === '/' ? path === '/' : path.startsWith(href);
+const isActive = (target: string) =>
+  target === '/' ? here === '/' : here.startsWith(target);
 ---
 
 <header
   data-site-header
   data-transparent={transparent ? 'true' : 'false'}
+  data-theme={transparent ? 'dark' : undefined}
   class:list={[
     'fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-500',
     'border-b',
     transparent
       ? 'border-transparent bg-transparent'
-      : 'border-white/8 bg-ink-950/85 backdrop-blur-xl',
+      : 'border-line/8 bg-ink-950/85 backdrop-blur-xl',
   ]}
 >
   <div class="shell flex h-18 items-center justify-between gap-6 lg:h-22">
     <a
-      href="/"
+      href={href(locale, '/')}
       class="group relative z-10 flex items-center gap-3"
-      aria-label={`${site.name} — home`}
+      aria-label={`${site.name} — ${d.common.backToHome}`}
     >
       <img
         src="/logo/metal-holland-color.svg"
@@ -39,17 +45,17 @@ const isActive = (href: string) =>
       />
     </a>
 
-    <nav class="hidden items-center gap-1 lg:flex" aria-label="Primary">
+    <nav class="hidden items-center gap-1 lg:flex" aria-label={d.nav.primary}>
       {
-        primaryNav.map((item) => (
+        d.nav.items.map((item) => (
           <a
-            href={item.href}
+            href={href(locale, item.href)}
             aria-current={isActive(item.href) ? 'page' : undefined}
             class:list={[
               'relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-300',
               isActive(item.href)
-                ? 'text-white'
-                : 'text-steel-300 hover:text-white',
+                ? 'text-heading'
+                : 'text-steel-300 hover:text-heading',
             ]}
           >
             {item.label}
@@ -66,11 +72,14 @@ const isActive = (href: string) =>
     </nav>
 
     <div class="flex items-center gap-3">
+      <LanguageToggle locale={locale} path={Astro.url.pathname} />
+      <ThemeToggle locale={locale} />
+
       <a
-        href="/contact"
+        href={href(locale, '/contact')}
         class="hidden rounded-full bg-flame-500 px-5 py-2.5 text-sm font-semibold text-white transition-all duration-300 hover:bg-flame-400 hover:shadow-[0_0_32px_-6px] hover:shadow-flame-500/70 sm:inline-flex"
       >
-        Request a quote
+        {d.nav.quote}
       </a>
 
       <button
@@ -78,9 +87,9 @@ const isActive = (href: string) =>
         data-menu-toggle
         aria-expanded="false"
         aria-controls="mobile-menu"
-        class="relative z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/12 text-white transition-colors duration-300 hover:border-white/30 lg:hidden"
+        class="relative z-10 flex h-11 w-11 items-center justify-center rounded-full border border-line/12 text-heading transition-colors duration-300 hover:border-line/30 lg:hidden"
       >
-        <span class="sr-only">Toggle menu</span>
+        <span class="sr-only">{d.nav.toggleMenu}</span>
         <span class="relative block h-3.5 w-5" aria-hidden="true">
           <span
             data-bar="top"
@@ -108,16 +117,16 @@ const isActive = (href: string) =>
   class="fixed inset-0 z-40 flex flex-col bg-ink-950/98 backdrop-blur-2xl lg:hidden"
 >
   <div class="shell flex flex-1 flex-col overflow-y-auto pt-28 pb-10">
-    <nav class="flex flex-col" aria-label="Mobile">
+    <nav class="flex flex-col" aria-label={d.nav.mobile}>
       {
-        primaryNav.map((item, i) => (
+        d.nav.items.map((item, i) => (
           <a
-            href={item.href}
+            href={href(locale, item.href)}
             data-menu-item
-            class="group border-b border-white/8 py-5 first:border-t"
+            class="group border-b border-line/8 py-5 first:border-t"
           >
             <span class="flex items-baseline justify-between gap-4">
-              <span class="font-display text-2xl font-bold text-white transition-colors duration-300 group-hover:text-flame-500 sm:text-3xl">
+              <span class="font-display text-2xl font-bold text-heading transition-colors duration-300 group-hover:text-flame-500 sm:text-3xl">
                 {item.label}
               </span>
               <span class="font-display text-xs text-steel-400">
@@ -135,11 +144,11 @@ const isActive = (href: string) =>
     </nav>
 
     <a
-      href="/contact"
+      href={href(locale, '/contact')}
       data-menu-item
       class="mt-8 inline-flex items-center justify-center rounded-full bg-flame-500 px-6 py-4 font-semibold text-white"
     >
-      Request a quote
+      {d.nav.quote}
     </a>
   </div>
 </div>
@@ -150,7 +159,7 @@ const isActive = (href: string) =>
 
   if (header) {
     const startsTransparent = header.dataset.transparent === 'true';
-    const solidClasses = ['bg-ink-950/85', 'backdrop-blur-xl', 'border-white/8'];
+    const solidClasses = ['bg-ink-950/85', 'backdrop-blur-xl', 'border-line/8'];
     const clearClasses = ['bg-transparent', 'border-transparent'];
 
     const sync = () => {
@@ -158,6 +167,10 @@ const isActive = (href: string) =>
       const solid = window.scrollY > 24 || header.dataset.menuOpen === 'true';
       if (!startsTransparent) return;
       header.classList.toggle('shadow-[0_1px_0_0_rgb(255,255,255,0.06)]', solid);
+      // Over the hero photo the bar keeps light text whatever the page theme;
+      // once it has a solid background it follows the theme like everything else.
+      if (solid) delete header.dataset.theme;
+      else header.dataset.theme = 'dark';
       solidClasses.forEach((c) => header.classList.toggle(c, solid));
       clearClasses.forEach((c) => header.classList.toggle(c, !solid));
     };

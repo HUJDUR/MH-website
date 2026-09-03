@@ -1,8 +1,19 @@
 ---
 import Button from './Button.astro';
+import { t, href, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const d = t(locale);
 ---
 
-<section class="relative isolate grain flex min-h-[100svh] flex-col overflow-hidden bg-ink-950">
+<section
+  data-theme="dark"
+  class="relative isolate grain flex min-h-[100svh] flex-col overflow-hidden bg-ink-950"
+>
   <!-- Background: aerial orbit of the works. The poster carries the first paint;
        the video is only fetched once it can actually play. -->
   <div class="absolute inset-0 -z-10">
@@ -38,14 +49,14 @@ import Button from './Button.astro';
     </div>
   </div>
 
-  <div class="shell flex flex-1 flex-col justify-end pb-14 pt-32 lg:pb-20">
+  <div class="shell flex flex-1 flex-col justify-end pb-20 pt-32 lg:pb-28">
     <div class="max-w-4xl">
       <p
         data-reveal
         class="eyebrow flex items-center gap-3"
       >
         <span class="h-px w-10 bg-flame-500"></span>
-        20+ years of steel fabrication
+        {d.home.heroEyebrow}
       </p>
 
       <h1
@@ -56,8 +67,8 @@ import Button from './Button.astro';
         <!-- Inline on small screens, split into two lines once there is room.
              The explicit {' '} is required: the build strips the whitespace
              between the two elements, which would run the words together. -->
-        <span class="sm:block">We build the steel</span>{' '}
-        <span class="text-flame-500">others build on.</span>
+        <span class="sm:block">{d.home.heroTitleA}</span>{' '}
+        <span class="text-flame-500">{d.home.heroTitleB}</span>
       </h1>
 
       <p
@@ -65,8 +76,7 @@ import Button from './Button.astro';
         style="--reveal-delay:240ms"
         class="lede mt-8 max-w-xl"
       >
-        Heavy welded constructions for shipbuilding, offshore and infrastructure
-        — cut, formed, welded, finished and delivered from a single facility.
+        {d.home.heroLede}
       </p>
 
       <div
@@ -74,30 +84,13 @@ import Button from './Button.astro';
         style="--reveal-delay:340ms"
         class="mt-10 flex flex-wrap items-center gap-3"
       >
-        <Button href="/contact">Request a quote</Button>
-        <Button href="/capabilities" variant="outline">Our capabilities</Button>
+        <Button href={href(locale, '/contact')}>{d.common.requestQuote}</Button>
+        <Button href={href(locale, '/capabilities')} variant="outline">
+          {d.common.ourCapabilities}
+        </Button>
       </div>
     </div>
 
-    <!-- Sector strip doubles as the scroll cue on tall screens. -->
-    <div
-      data-reveal
-      style="--reveal-delay:460ms"
-      class="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3 border-t border-white/10 pt-6 lg:mt-20"
-    >
-      <span class="text-[0.6875rem] uppercase tracking-[0.18em] text-steel-400">
-        Sectors
-      </span>
-      {
-        ['Shipbuilding', 'Offshore & energy', 'Infrastructure', 'Industrial'].map(
-          (sector) => (
-            <span class="font-display text-sm font-semibold text-white/90">
-              {sector}
-            </span>
-          )
-        )
-      }
-    </div>
   </div>
 </section>
 

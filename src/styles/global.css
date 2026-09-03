@@ -32,12 +32,98 @@
   --color-arc-500: #5dbee4;
   --color-arc-400: #8ad3ef;
 
+  /* Semantic pair. Headings and hairlines are the two things that must invert
+     with the theme; everything else rides on the ramps above. Literal
+     `text-white` is reserved for text sitting on orange, which never flips. */
+  --color-heading: #ffffff;
+  --color-line: #ffffff;
+
   --font-display: 'Archivo Variable', 'Archivo', ui-sans-serif, system-ui, sans-serif;
   --font-sans: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 
   --breakpoint-xs: 30rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Theme. Dark is the default and the design's native state; light re-points
+   the same tokens so every existing utility flips without touching markup.
+
+   The ramps keep their meaning in both: `ink` runs page → raised panel,
+   `steel` runs muted → emphatic text. In light mode both are inverted, which
+   is why `ink-900` (a panel) is lighter than `ink-950` (the page) either way.
+
+   Sections that sit on a photograph carry `data-theme="dark"` so they stay
+   dark islands on a light page — white text on a dark image, as designed.
+--------------------------------------------------------------------------- */
+html[data-theme='light'],
+html[data-theme='light'] [data-theme='light'] {
+  --color-ink-950: #eef1f4;
+  --color-ink-900: #ffffff;
+  --color-ink-850: #f7f9fa;
+  --color-ink-800: #eff3f6;
+  --color-ink-700: #e2e8ed;
+  --color-ink-600: #d3dbe2;
+  --color-ink-500: #bcc7d1;
+
+  --color-steel-400: #5d6c7a;
+  --color-steel-300: #4a5865;
+  --color-steel-200: #37424e;
+  --color-steel-100: #2a333d;
+  --color-steel-50: #1b222a;
+
+  /* Both accents are darkened until small text on them clears WCAG AA (4.5:1)
+     against the page ground — the untouched brand values sit near 3:1 on
+     white, which fails at the 11px the eyebrows use. */
+  --color-flame-600: #9c3208;
+  --color-flame-500: #bd3e0e;
+  --color-flame-400: #d24f18;
+  --color-flame-300: #e4703c;
+
+  --color-arc-600: #12657f;
+  --color-arc-500: #156b8a;
+  --color-arc-400: #166f92;
+
+  --color-heading: #0b1116;
+  --color-line: #0b1116;
+
+  color-scheme: light;
+}
+
+/* Re-asserts the dark values for a subtree — used by photo-backed sections. */
+[data-theme='dark'] {
+  --color-ink-950: #06090c;
+  --color-ink-900: #0a0e13;
+  --color-ink-850: #0f151b;
+  --color-ink-800: #141b23;
+  --color-ink-700: #1d262f;
+  --color-ink-600: #2a353f;
+  --color-ink-500: #3d4a56;
+
+  --color-steel-400: #6f8090;
+  --color-steel-300: #93a3b1;
+  --color-steel-200: #b9c5ce;
+  --color-steel-100: #d2dce2;
+  --color-steel-50: #eef3f6;
+
+  --color-flame-600: #d94a24;
+  --color-flame-500: #f16139;
+  --color-flame-400: #f78463;
+  --color-flame-300: #fba98f;
+
+  --color-arc-600: #3ba3cd;
+  --color-arc-500: #5dbee4;
+  --color-arc-400: #8ad3ef;
+
+  --color-heading: #ffffff;
+  --color-line: #ffffff;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
 }
 
 @layer base {
@@ -66,7 +152,7 @@
   h2,
   h3,
   h4 {
-    @apply font-display text-white;
+    @apply font-display text-heading;
     font-variation-settings: 'wght' 700;
     letter-spacing: -0.02em;
     text-wrap: balance;
@@ -111,7 +197,7 @@
 
   /* Hairline used to separate stacked blocks without a hard border. */
   .rule {
-    @apply h-px w-full bg-linear-to-r from-white/12 via-white/6 to-transparent;
+    @apply h-px w-full bg-linear-to-r from-line/12 via-line/6 to-transparent;
   }
 }
 
@@ -179,8 +265,8 @@ html.js [data-reveal='is-visible'] {
 .hatch {
   background-image: repeating-linear-gradient(
     135deg,
-    rgb(255 255 255 / 0.03) 0px,
-    rgb(255 255 255 / 0.03) 1px,
+    color-mix(in srgb, var(--color-line) 3%, transparent) 0px,
+    color-mix(in srgb, var(--color-line) 3%, transparent) 1px,
     transparent 1px,
     transparent 7px
   );

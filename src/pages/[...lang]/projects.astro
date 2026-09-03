@@ -1,26 +1,45 @@
 ---
 import { Image } from 'astro:assets';
-import Base from '../layouts/Base.astro';
-import PageHero from '../components/PageHero.astro';
-import Reveal from '../components/Reveal.astro';
-import CallToAction from '../components/CallToAction.astro';
-import { projects } from '../data/content';
-import { img } from '../data/images';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Reveal from '../../components/Reveal.astro';
+import CallToAction from '../../components/CallToAction.astro';
 
-const sectors = ['All', ...new Set(projects.map((p) => p.sector))];
+import { img } from '../../data/images';
+import { localePaths, t, href, localeMeta } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+export const getStaticPaths = localePaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const d = t(locale);
+const L = (path: string) => href(locale, path);
+
+/**
+ * The "all" pill carries an empty value rather than a label, so the filter
+ * script keeps working when the labels are translated.
+ */
+const sectors = [
+  { value: '', label: d.projectsPage.all },
+  ...[...new Set(d.content.projects.map((p) => p.sector))].map((sector) => ({
+    value: sector,
+    label: sector,
+  })),
+];
 ---
 
 <Base
-  title="Projects"
-  description="Selected fabrication work by Metal Holland — bridge sections, hull sections, pipe spools, welded girders and serial machine frames."
+  locale={locale}
+  title={d.projectsPage.title}
+  description={d.projectsPage.description}
   transparentHeader
 >
   <PageHero
-    eyebrow="Projects"
-    title="Selected work."
-    lede="A cross-section of what leaves the yard. Client names and figures are shared on request where confidentiality allows."
+    eyebrow={d.projectsPage.eyebrow}
+    title={d.projectsPage.heroTitle}
+    lede={d.projectsPage.heroLede}
     image="truss-assembly"
-    imageAlt="A welded truss assembly on trestles in the fabrication hall"
+    imageAlt={d.projectsPage.heroAlt}
   />
 
   <section class="shell py-20 lg:py-28">
@@ -28,21 +47,21 @@ const sectors = ['All', ...new Set(projects.map((p) => p.sector))];
          full list is present for crawlers and no-JS visitors. -->
     <Reveal>
       <div
-        class="flex flex-wrap items-center gap-2 border-b border-white/8 pb-6"
+        class="flex flex-wrap items-center gap-2 border-b border-line/8 pb-6"
         data-filter-bar
       >
         <span class="mr-2 text-[0.6875rem] uppercase tracking-[0.18em] text-steel-400">
-          Filter
+          {d.projectsPage.filter}
         </span>
         {
           sectors.map((sector, i) => (
             <button
               type="button"
-              data-filter={sector}
+              data-filter={sector.value}
               aria-pressed={i === 0 ? 'true' : 'false'}
-              class="rounded-full border border-white/12 px-4 py-2 text-sm text-steel-300 transition-colors duration-300 hover:border-white/35 hover:text-white aria-pressed:border-flame-500 aria-pressed:bg-flame-500 aria-pressed:text-white"
+              class="rounded-full border border-line/12 px-4 py-2 text-sm text-steel-300 transition-colors duration-300 hover:border-line/35 hover:text-white aria-pressed:border-flame-500 aria-pressed:bg-flame-500 aria-pressed:text-white"
             >
-              {sector}
+              {sector.label}
             </button>
           ))
         }
@@ -51,12 +70,12 @@ const sectors = ['All', ...new Set(projects.map((p) => p.sector))];
 
     <div class="mt-10 grid gap-6 md:grid-cols-2 lg:mt-14 lg:grid-cols-3" data-project-grid>
       {
-        projects.map((project, i) => (
+        d.content.projects.map((project, i) => (
           <Reveal
             as="article"
             delay={(i % 3) * 90}
             data-sector={project.sector}
-            class="group flex flex-col overflow-hidden rounded-2xl border border-white/8 bg-ink-900 transition-colors duration-500 hover:border-white/20"
+            class="group flex flex-col overflow-hidden rounded-2xl border border-line/8 bg-ink-900 transition-colors duration-500 hover:border-line/20"
           >
             <div class="relative overflow-hidden">
               <Image
@@ -92,14 +111,15 @@ const sectors = ['All', ...new Set(projects.map((p) => p.sector))];
         hidden
         class="mt-14 text-center text-sm text-steel-400"
       >
-        No projects listed in this sector yet.
+        {d.projectsPage.empty}
       </p>
     </Reveal>
   </section>
 
   <CallToAction
-    title="References for your sector."
-    body="Ask and we will put you in touch with clients doing work like yours — the most useful reference is always the one that matches your own drawings."
+    locale={locale}
+    title={d.projectsPage.ctaTitle}
+    body={d.projectsPage.ctaBody}
     image="steel-sections"
   />
 </Base>
@@ -119,14 +139,14 @@ const sectors = ['All', ...new Set(projects.map((p) => p.sector))];
       );
       if (!button) return;
 
-      const sector = button.dataset.filter!;
+      const sector = button.dataset.filter ?? '';
       buttons.forEach((b) =>
         b.setAttribute('aria-pressed', String(b === button))
       );
 
       let shown = 0;
       cards.forEach((card) => {
-        const match = sector === 'All' || card.dataset.sector === sector;
+        const match = !sector || card.dataset.sector === sector;
         card.hidden = !match;
         if (match) shown++;
       });
