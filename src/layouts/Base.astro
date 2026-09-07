@@ -19,8 +19,6 @@ interface Props {
   locale: Locale;
   title: string;
   description?: string;
-  /** Set on the homepage so the title is not "Metal Holland | Metal Holland". */
-  bareTitle?: boolean;
   /** Absolute or root-relative path to the social share image. */
   ogImage?: string;
   /** Header starts transparent over a full-bleed hero. */
@@ -31,14 +29,13 @@ const {
   locale = defaultLocale,
   title,
   description,
-  bareTitle = false,
   ogImage = '/video/facility-poster.jpg',
   transparentHeader = false,
 } = Astro.props;
 
 const d = t(locale);
 const meta = localeMeta[locale];
-const pageTitle = bareTitle ? title : `${title} | ${site.shortName}`;
+const pageTitle = `${title} | ${site.shortName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 const ogImageUrl = new URL(ogImage, Astro.site ?? site.url).href;
 

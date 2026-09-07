@@ -42,7 +42,6 @@ const labelClass =
   <PageHero
     eyebrow={d.contactPage.eyebrow}
     title={d.contactPage.heroTitle}
-    lede={d.contactPage.heroLede}
     image="welding-dark"
     imageAlt={d.contactPage.heroAlt}
   />
@@ -53,7 +52,6 @@ const labelClass =
       <div class="lg:col-span-7">
         <Reveal>
           <h2 class="text-2xl sm:text-3xl">{d.contactPage.formTitle}</h2>
-          <p class="mt-3 text-sm leading-relaxed text-steel-400">{d.contactPage.formNote}</p>
         </Reveal>
 
         <Reveal delay={120}>
@@ -76,10 +74,10 @@ const labelClass =
             <input
               type="hidden"
               name="subject"
-              value="Quote request via metalholland.com"
+              value="Enquiry via metalholland.com"
             />
             <div>
-              <label class={labelClass} for="name">{d.contactPage.fields.name} *</label>
+              <label class={labelClass} for="name">{d.contactPage.fields.name}</label>
               <input
                 class={fieldClass}
                 id="name"
@@ -92,7 +90,7 @@ const labelClass =
             </div>
 
             <div>
-              <label class={labelClass} for="company">{d.contactPage.fields.company} *</label>
+              <label class={labelClass} for="company">{d.contactPage.fields.company}</label>
               <input
                 class={fieldClass}
                 id="company"
@@ -105,7 +103,7 @@ const labelClass =
             </div>
 
             <div>
-              <label class={labelClass} for="email">{d.contactPage.fields.email} *</label>
+              <label class={labelClass} for="email">{d.contactPage.fields.email}</label>
               <input
                 class={fieldClass}
                 id="email"
@@ -124,42 +122,15 @@ const labelClass =
                 id="phone"
                 name="phone"
                 type="tel"
+                required
                 autocomplete="tel"
                 placeholder={d.contactPage.fields.phonePlaceholder}
               />
             </div>
 
             <div class="sm:col-span-2">
-              <label class={labelClass} for="sector">{d.contactPage.fields.sector}</label>
-              <div class="relative">
-                <select class={`${fieldClass} appearance-none pr-10`} id="sector" name="sector">
-                  <option value="">{d.contactPage.fields.sectorPlaceholder}</option>
-                  {
-                    d.content.industries.map((industry) => (
-                      <option value={industry.title}>{industry.title}</option>
-                    ))
-                  }
-                  <option value="Other">{d.contactPage.fields.sectorOther}</option>
-                </select>
-                <svg
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  aria-hidden="true"
-                  class="pointer-events-none absolute right-4 top-1/2 h-3 w-3 -translate-y-1/2 text-steel-400"
-                >
-                  <path
-                    d="M3 6l5 5 5-5"
-                    stroke="currentColor"
-                    stroke-width="1.6"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"></path>
-                </svg>
-              </div>
-            </div>
-
-            <div class="sm:col-span-2">
               <label class={labelClass} for="message">
-                {d.contactPage.fields.message} *
+                {d.contactPage.fields.message}
               </label>
               <textarea
                 class={fieldClass}

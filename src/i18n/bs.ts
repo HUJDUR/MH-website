@@ -19,13 +19,14 @@ export const bs: Dictionary = {
 
   nav: {
     items: [
+      { href: '/about', label: 'O nama', blurb: 'Ko smo i kako radimo' },
       { href: '/capabilities', label: 'Mogućnosti', blurb: 'Rezanje, oblikovanje, zavarivanje, montaža' },
       { href: '/industries', label: 'Djelatnosti', blurb: 'Brodogradnja, offshore, infrastruktura' },
       { href: '/facility', label: 'Pogon', blurb: 'Hale, mašine, kapacitet' },
       { href: '/projects', label: 'Projekti', blurb: 'Odabrani radovi' },
-      { href: '/about', label: 'O nama', blurb: 'Ko smo i kako radimo' },
+      { href: '/careers', label: 'Posao', blurb: 'Zavarivači, bravari, inženjeri' },
+      { href: '/contact', label: 'Kontakt', blurb: 'Adresa, telefon, obrazac za upit' },
     ],
-    quote: 'Zatražite ponudu',
     toggleMenu: 'Otvori meni',
     siteSections: 'Sekcije stranice',
     primary: 'Glavna navigacija',
@@ -71,11 +72,11 @@ export const bs: Dictionary = {
     cookieSettings: 'Postavke kolačića',
     country: 'Bosna i Hercegovina',
 
-    officeLabel: 'Pogon i sjedište',
+    officeLabel: 'Lokacija firme',
   },
 
   common: {
-    requestQuote: 'Zatražite ponudu',
+    requestQuote: 'Javite nam se',
     ourCapabilities: 'Naše mogućnosti',
     allCapabilities: 'Sve mogućnosti',
     moreAbout: 'Više o Metal Hollandu',
@@ -88,6 +89,7 @@ export const bs: Dictionary = {
   },
 
   home: {
+    title: 'Početna',
     heroEyebrow: '20+ godina u čeličnim konstrukcijama',
     heroTitleA: 'Gradimo čelik',
     heroTitleB: 'na kojem drugi grade.',
@@ -122,6 +124,39 @@ export const bs: Dictionary = {
     industriesTitle: 'Četiri sektora. Jedan set standarda.',
     industriesLede:
       'Tolerancije i papirologija se razlikuju. Disciplina iza njih ne.',
+
+    assuranceEyebrow: 'What you get',
+    assuranceTitle: 'Every delivery arrives with its file.',
+    assuranceLede:
+      'The documentation is assembled while the work runs, not reconstructed afterwards. Unless your specification asks for more, this is what comes with the steel.',
+    assurance: [
+      {
+        title: 'Material certificates',
+        body: 'Mill certificates for the plate and sections used, traceable to the heat number in the finished construction.',
+      },
+      {
+        title: 'Welding procedures',
+        body: 'The qualified WPS for each joint type in the job, with the WPQR that supports it.',
+      },
+      {
+        title: 'Welder qualifications',
+        body: 'Certificates for every welder who worked on it, valid on the dates the work was actually done.',
+      },
+      {
+        title: 'Dimensional report',
+        body: 'Measured against the drawing before release. Where something deviates, it is recorded and reported rather than quietly absorbed.',
+      },
+      {
+        title: 'Inspection records',
+        body: 'Visual inspection throughout, and NDT reports where the specification calls for them, with method and operator named.',
+      },
+      {
+        title: 'Surface treatment',
+        body: 'Preparation grade, the product used, and measured dry film thickness.',
+      },
+    ],
+    assuranceNote:
+      'Ask and we will send a sample delivery file from recent work, with the client details removed, so you can judge the standard before you commit to anything.',
 
     energyEyebrow: 'Energija',
     energyTitle: 'Krov pokreće dobar dio pogona.',
@@ -311,15 +346,13 @@ export const bs: Dictionary = {
   contactPage: {
     title: 'Kontakt',
     description:
-      'Zatražite ponudu od Metal Hollanda — pošaljite crteže, obim i traženi rok isporuke, a mi ćemo se javiti s realnom cijenom i rokom.',
+      'Javite se Metal Hollandu — pošaljite crteže i traženi rok isporuke za cijenu i rok, ili pitajte o kapacitetu, materijalima i transportu prije nego ih imate.',
     eyebrow: 'Kontakt',
-    heroTitle: 'Pošaljite nam crteže.',
+    heroTitle: 'Stupite u kontakt.',
     heroLede:
-      'Recite nam šta treba izgraditi i do kada. Dobit ćete realnu cijenu, realan datum i sva pitanja koja crteži otvaraju.',
+      'Pošaljite crteže i traženi rok pa ćete dobiti realnu cijenu, realan datum i sva pitanja koja crteži otvaraju. Ako ste ranije od toga — provjeravate kapacitet, materijal ili može li sekcija napustiti naš krug — pišite svejedno i reći ćemo vam šta znamo.',
     heroAlt: 'Električni luk osvjetljava mrak proizvodne hale',
-    formTitle: 'Zatražite ponudu',
-    formNote:
-      'Polja označena zvjezdicom su obavezna. Crteži mogu stići naknadno e-poštom — javit ćemo vam adresu na koju ih pošaljete.',
+    formTitle: 'Javite nam se',
     fields: {
       name: 'Ime i prezime',
       namePlaceholder: 'Vaše ime',
@@ -328,20 +361,16 @@ export const bs: Dictionary = {
       email: 'E-pošta',
       emailPlaceholder: 'ime@firma.com',
       phone: 'Telefon',
-      phonePlaceholder: 'Opcionalno',
-      sector: 'Sektor',
-      sectorPlaceholder: 'Odaberite sektor',
-      sectorOther: 'Ostalo',
-      message: 'Šta treba izgraditi?',
-      messagePlaceholder:
-        'Obim, materijal, okvirna tonaža ili količina i datum do kojeg vam treba isporuka.',
+      phonePlaceholder: 'S pozivnim brojem države',
+      message: 'Poruka',
+      messagePlaceholder: 'Recite nam šta vam treba.',
       honeypot: 'Ostavite ovo polje prazno',
     },
-    submit: 'Pošalji upit',
+    submit: 'Pošalji poruku',
     sending: 'Šaljem…',
     success: 'Hvala — javit ćemo vam se ubrzo.',
     error: 'Nešto nije prošlo kako treba. Pišite nam direktno:',
-    subject: 'Upit za ponudu',
+    subject: 'Upit',
     directTitle: 'Direktno',
     emailLabel: 'E-pošta',
     phoneLabel: 'Telefon',

@@ -66,9 +66,9 @@ const SELECTION = [
   // Machines — slugs match `content.machines` in the locale dictionaries
   [`${MACHINES}/ESAB.JPG`, 'machine-esab', 2400],
   [`${MACHINES}/Messer.JPG`, 'machine-messer', 2400],
-  [`${MACHINES}/Durma.JPG`, 'machine-durma', 2400],
-  [`${MACHINES}/Vernet.JPG`, 'machine-vernet', 2400],
-  [`${MACHINES}/QFIN.JPG`, 'machine-qfin', 2400],
+  [`${MACHINES}/Durma.jpg`, 'machine-durma', 2400],
+  [`${MACHINES}/Vernet.jpg`, 'machine-vernet', 2400],
+  [`${MACHINES}/QFIN.jpg`, 'machine-qfin', 2400],
   // The forklift fleet is shown as video on the facility page, so the two
   // stills in media/Machines are not brought in — the clip's poster frame
   // (public/video/forklifts-poster.jpg) covers the no-video case.
