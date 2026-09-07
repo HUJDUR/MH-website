@@ -9,7 +9,6 @@ import Button from '../../components/Button.astro';
 import CallToAction from '../../components/CallToAction.astro';
 
 import { img } from '../../data/images';
-import { site } from '../../data/site';
 import { localePaths, t, href, localeMeta } from '../../i18n';
 import type { Locale } from '../../i18n';
 
@@ -23,8 +22,7 @@ const L = (path: string) => href(locale, path);
 
 <Base
   locale={locale}
-  title={`${site.name} — ${d.site.tagline}`}
-  bareTitle
+  title={d.home.title}
   description={d.site.description}
   transparentHeader
 >
@@ -39,7 +37,7 @@ const L = (path: string) => href(locale, path);
           <p class="eyebrow">{d.home.whoEyebrow}</p>
         </Reveal>
         <Reveal delay={80}>
-          <h2 class="mt-4 text-3xl leading-[1.08] sm:text-4xl lg:text-[3.25rem] lg:leading-[1.05]">
+          <h2 class="mt-4 text-[1.75rem] leading-[1.12] sm:text-[2.125rem] lg:text-[2.625rem] lg:leading-[1.1]">
             {d.home.whoTitle}
           </h2>
         </Reveal>
@@ -250,6 +248,48 @@ const L = (path: string) => href(locale, path);
           ))
         }
       </div>
+    </div>
+  </section>
+
+  <!-- ── What ships with the work ──────────────────────────────────────── -->
+  <section class="border-t border-line/8 bg-ink-900 py-24 lg:py-32">
+    <div class="shell">
+      <div class="max-w-2xl">
+        <SectionHeading
+          eyebrow={d.home.assuranceEyebrow}
+          title={d.home.assuranceTitle}
+          lede={d.home.assuranceLede}
+        />
+      </div>
+
+      <!-- Deliberately plain: this is a contents list, not a sales pitch. -->
+      <dl
+        class="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3"
+      >
+        {
+          d.home.assurance.map((item, i) => (
+            <Reveal delay={(i % 3) * 80} class="bg-ink-900 p-7 lg:p-8">
+              <dt class="flex items-baseline gap-3">
+                <span class="font-display text-xs font-semibold tabular-nums text-flame-500">
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <span class="font-display text-base font-semibold text-heading">
+                  {item.title}
+                </span>
+              </dt>
+              <dd class="mt-3 text-sm leading-relaxed text-steel-400">
+                {item.body}
+              </dd>
+            </Reveal>
+          ))
+        }
+      </dl>
+
+      <Reveal delay={280}>
+        <p class="mt-8 max-w-2xl text-sm leading-relaxed text-steel-300">
+          {d.home.assuranceNote}
+        </p>
+      </Reveal>
     </div>
   </section>
 

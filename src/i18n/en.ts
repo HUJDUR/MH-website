@@ -9,20 +9,21 @@
  */
 export const en = {
   site: {
-    tagline: 'Heavy steel fabrication, Dutch standards.',
+    tagline: 'Heavy welded steel constructions',
     description:
       'Metal Holland fabricates heavy welded steel constructions — plate work, sections and complete assemblies — for shipbuilding, offshore and infrastructure clients across Europe.',
   },
 
   nav: {
     items: [
+      { href: '/about', label: 'About', blurb: 'Who we are and how we work' },
       { href: '/capabilities', label: 'Capabilities', blurb: 'Cutting, forming, welding, assembly' },
       { href: '/industries', label: 'Industries', blurb: 'Shipbuilding, offshore, infrastructure' },
       { href: '/facility', label: 'Facility', blurb: 'Halls, machinery, capacity' },
       { href: '/projects', label: 'Projects', blurb: 'Selected work' },
-      { href: '/about', label: 'About', blurb: 'Who we are and how we work' },
+      { href: '/careers', label: 'Careers', blurb: 'Welders, fitters, engineers' },
+      { href: '/contact', label: 'Contact', blurb: 'Address, phone, enquiry form' },
     ],
-    quote: 'Request a quote',
     toggleMenu: 'Toggle menu',
     siteSections: 'Site sections',
     primary: 'Primary',
@@ -68,11 +69,11 @@ export const en = {
     cookieSettings: 'Cookie settings',
     country: 'Bosnia and Herzegovina',
 
-    officeLabel: 'Works & head office',
+    officeLabel: 'Company location',
   },
 
   common: {
-    requestQuote: 'Request a quote',
+    requestQuote: 'Reach out',
     ourCapabilities: 'Our capabilities',
     allCapabilities: 'All capabilities',
     moreAbout: 'More about Metal Holland',
@@ -85,25 +86,26 @@ export const en = {
   },
 
   home: {
+    title: 'Home',
     heroEyebrow: '20+ years of steel fabrication',
-    heroTitleA: 'We build the steel',
-    heroTitleB: 'others build on.',
+    heroTitleA: 'Steel structures,',
+    heroTitleB: 'built to your specification.',
     heroLede:
       'From single parts to complete steel structures — cutting, forming, welding and finishing under one roof.',
     heroAlt: 'A Metal Holland operator at the controls of a cutting machine',
 
     whoEyebrow: 'Who we are',
-    whoTitle: 'A fabrication shop, not a broker.',
+    whoTitle: 'Everything happens in our own halls.',
     whoBody1:
       'Metal Holland cuts, forms, welds and finishes heavy steel constructions in its own halls. Nothing is quietly passed down a chain of subcontractors — the plate that arrives on our yard leaves it as a finished section, with the documentation to match.',
     whoBody2:
-      'That is the whole proposition. Dutch project management and engineering discipline, combined with the capacity, cranage and skilled trades of a full production facility. Clients in shipbuilding, offshore and infrastructure use us because a single responsible party is simpler to plan around than five.',
+      'Project management and work preparation sit alongside the floor, so the people quoting your job are the people who have to build it. Clients in shipbuilding, offshore and infrastructure work with us because one responsible party is simpler to plan around than five.',
 
     capabilitiesEyebrow: 'Capabilities',
-    capabilitiesTitle: 'Everything from plate to primed section, under one roof.',
+    capabilitiesTitle: 'From plate to primed section, under one roof.',
 
     facilityEyebrow: 'The facility',
-    facilityTitle: 'Capacity you can plan a programme around.',
+    facilityTitle: 'Sized for the sections that are hard to place.',
     facilityLede:
       'Four halls, gantry cutting tables, drilling lines, rolls and welding bays — sized for sections that leave on a low-loader, not in a crate.',
     facilityAlt: 'Aerial view of the Metal Holland production facility and yard',
@@ -116,12 +118,45 @@ export const en = {
     ],
 
     industriesEyebrow: 'Industries',
-    industriesTitle: 'Four sectors. One set of standards.',
+    industriesTitle: 'Different sectors, the same standard.',
     industriesLede:
-      'The tolerances and the paperwork differ. The discipline behind them does not.',
+      'Each one brings its own tolerances and its own paperwork. What does not change is how the work is planned, welded and checked before it leaves.',
+
+    assuranceEyebrow: 'What you get',
+    assuranceTitle: 'Every delivery arrives with its file.',
+    assuranceLede:
+      'The documentation is assembled while the work runs, not reconstructed afterwards. Unless your specification asks for more, this is what comes with the steel.',
+    assurance: [
+      {
+        title: 'Material certificates',
+        body: 'Mill certificates for the plate and sections used, traceable to the heat number in the finished construction.',
+      },
+      {
+        title: 'Welding procedures',
+        body: 'The qualified WPS for each joint type in the job, with the WPQR that supports it.',
+      },
+      {
+        title: 'Welder qualifications',
+        body: 'Certificates for every welder who worked on it, valid on the dates the work was actually done.',
+      },
+      {
+        title: 'Dimensional report',
+        body: 'Measured against the drawing before release. Where something deviates, it is recorded and reported rather than quietly absorbed.',
+      },
+      {
+        title: 'Inspection records',
+        body: 'Visual inspection throughout, and NDT reports where the specification calls for them, with method and operator named.',
+      },
+      {
+        title: 'Surface treatment',
+        body: 'Preparation grade, the product used, and measured dry film thickness.',
+      },
+    ],
+    assuranceNote:
+      'Ask and we will send a sample delivery file from recent work, with the client details removed, so you can judge the standard before you commit to anything.',
 
     energyEyebrow: 'Energy',
-    energyTitle: 'The roof runs a good part of the shop.',
+    energyTitle: 'The hall roofs carry solar.',
     energyLede:
       'Every hall roof that could take panels now carries them. Fabrication is an energy-hungry business — generating our own is the part of that we can do something about.',
     energyBody:
@@ -138,7 +173,7 @@ export const en = {
     ],
 
     qualityEyebrow: 'Quality',
-    qualityTitle: 'The certificate is only the summary.',
+    qualityTitle: 'Quality control, recorded as the work runs.',
     qualityLede:
       'Qualified procedures, certified welders, recorded inspections. The delivery file is assembled as the work happens, not reconstructed afterwards.',
     qualityNote: 'Certificates and scope statements are available on request.',
@@ -154,9 +189,9 @@ export const en = {
       'Cutting, forming, welding, finishing and delivery run in one building, on one schedule, under one responsibility.',
     heroAlt: 'Plasma cutting head working across heavy steel plate',
     processEyebrow: 'How a project runs',
-    processTitle: 'Five stages, and you hear from us at each of them.',
+    processTitle: 'Five stages, with a report at each one.',
     processLede:
-      'Heavy fabrication goes wrong quietly, weeks before anyone notices. Our answer is a fixed rhythm of reporting rather than a promise to call if something comes up.',
+      'Problems in heavy fabrication tend to surface late. A fixed reporting rhythm is how we avoid that, rather than a promise to call if something comes up.',
     materialsEyebrow: 'Materials',
     materialsTitle: 'Carbon steel, stainless, aluminium.',
     materialsLede:
@@ -171,7 +206,7 @@ export const en = {
     ],
     ctaTitle: 'Not sure it can be built?',
     ctaBody:
-      'Send the drawing anyway. Half of what we do starts with a client asking whether a section can be made in one piece — and it usually can.',
+      'Send the drawing anyway. Much of our work starts with a client asking whether a section can be made in one piece. You will get an answer either way, before you commit to anything.',
   },
 
   industriesPage: {
@@ -184,7 +219,7 @@ export const en = {
       'Hulls, platforms, bridges and machines. Different rules, different paperwork, the same shop floor discipline behind all of them.',
     heroAlt: 'A vessel at sea at sunset',
     workingEyebrow: 'Working with us',
-    workingTitle: 'What a fabrication partner is actually for.',
+    workingTitle: 'What working with us involves.',
     working: [
       {
         title: 'Capacity that absorbs a peak',
@@ -229,7 +264,7 @@ export const en = {
     equipmentLede:
       'An indicative list. Ask us about a specific size, thickness or tolerance and you will get a straight answer about whether it fits.',
     machinesEyebrow: 'Machines',
-    machinesTitle: 'The ones worth naming.',
+    machinesTitle: 'The principal machines.',
     machinesLede:
       'Two thirty-metre plasma tables, a 320-tonne brake, a drilling line and a deburring machine. Between them they cover most of what arrives as a drawing.',
     galleryEyebrow: 'Inside the halls',
@@ -277,12 +312,12 @@ export const en = {
     description:
       'Metal Holland combines Dutch engineering and project management with a full steel fabrication facility — cutting, forming, welding and finishing heavy constructions in house.',
     eyebrow: 'About',
-    heroTitle: 'Dutch standards, real capacity.',
+    heroTitle: 'Engineering and capacity in one place.',
     heroLede:
-      'A fabrication company built the way its clients wish more suppliers were built: one shop, one responsible party, and a straight answer about what is possible.',
+      'One shop, one responsible party, and a straight answer about what is possible.',
     heroAlt: 'A Metal Holland operator at a machine control panel',
     storyEyebrow: 'Our story',
-    storyTitle: 'Built around a shop floor, not a sales desk.',
+    storyTitle: 'Why the company is set up this way.',
     storyLede:
       'Metal Holland exists because clients in the Dutch maritime and infrastructure world kept needing the same two things at once: engineering they could talk to in their own language, and fabrication capacity large enough to matter.',
     storyBody1:
@@ -290,16 +325,16 @@ export const en = {
     storyBody2:
       'The result is unglamorous and hard to fake: sections that arrive on the agreed date, at the agreed size, with the file that proves how they were made. Most of our work now comes from clients who have already sent us something once.',
     valuesEyebrow: 'How we work',
-    valuesTitle: 'Four things we will not trade away.',
+    valuesTitle: 'How we work.',
     peopleEyebrow: 'People',
-    peopleTitle: '50+ people, most of them holding a torch.',
+    peopleTitle: '50+ people, most of them on the floor.',
     peopleLede:
       'Welders, fitters, machine operators, work preparers and project engineers. The ratio matters: this is a company where the majority of staff are the ones actually making things.',
     peopleBody:
       'We train our own welders and keep their qualifications current because the alternative — hiring certification in when a project demands it — produces exactly the kind of surprise nobody wants three weeks before delivery.',
     peopleAlt: 'Metal Holland fabricators at work in the hall',
     certEyebrow: 'Certification',
-    certTitle: 'Audited, not asserted.',
+    certTitle: 'Certified and audited.',
     ctaTitle: 'Work with us.',
     ctaBody:
       'Whether you need a single section or a year of capacity, the conversation starts the same way — send the drawings and tell us the date.',
@@ -308,15 +343,13 @@ export const en = {
   contactPage: {
     title: 'Contact',
     description:
-      'Request a quote from Metal Holland — send your drawings, scope and required delivery date and we will come back with a realistic price and lead time.',
+      'Reach out to Metal Holland — send drawings and a delivery date for a price and a lead time, or ask about capacity, materials and transport before you have either.',
     eyebrow: 'Contact',
-    heroTitle: 'Send us the drawings.',
+    heroTitle: 'Get in touch.',
     heroLede:
-      'Tell us what you need built and by when. You will get a realistic price, a realistic date, and any questions the drawings raise.',
+      'Send drawings and a required date and you will get a realistic price, a realistic date, and any questions the drawings raise. If you are earlier than that — checking capacity, a material, or whether a section can leave our yard — write anyway and we will tell you what we know.',
     heroAlt: 'A welding arc lighting the dark of the fabrication hall',
-    formTitle: 'Request a quote',
-    formNote:
-      'Fields marked with an asterisk are required. Drawings can follow by email — we will reply with an address to send them to.',
+    formTitle: 'Reach out',
     fields: {
       name: 'Name',
       namePlaceholder: 'Your name',
@@ -325,25 +358,21 @@ export const en = {
       email: 'Email',
       emailPlaceholder: 'name@company.com',
       phone: 'Phone',
-      phonePlaceholder: 'Optional',
-      sector: 'Sector',
-      sectorPlaceholder: 'Select a sector',
-      sectorOther: 'Other',
-      message: 'What do you need built?',
-      messagePlaceholder:
-        'Scope, material, approximate tonnage or quantity, and the date you need it delivered.',
+      phonePlaceholder: 'Including country code',
+      message: 'Message',
+      messagePlaceholder: 'Tell us what you need.',
       honeypot: 'Leave this field empty',
     },
-    submit: 'Send enquiry',
+    submit: 'Send message',
     sending: 'Sending…',
     success: 'Thank you — we will come back to you shortly.',
     error: 'Something went wrong. Please email us directly:',
-    subject: 'Quote request',
+    subject: 'Enquiry',
     directTitle: 'Direct',
     emailLabel: 'Email',
     phoneLabel: 'Phone',
     hours: 'Monday – Friday, 07:00 – 15:45',
-    hoursLabel: 'Opening hours',
+    hoursLabel: 'Working hours',
     directions: 'Get directions',
     mapEyebrow: 'Where to find us',
     openInMaps: 'Open in Google Maps',
@@ -379,7 +408,7 @@ export const en = {
       },
       {
         title: 'Paid on time',
-        body: 'Wages arrive on the agreed date. It should not be a selling point, and yet.',
+        body: 'Wages arrive on the agreed date, every month.',
       },
     ],
     formTitle: 'Apply',
@@ -519,7 +548,7 @@ export const en = {
         summary:
           'Plate is nested and cut on our own gantry tables, so every part downstream starts from an accurate, repeatable profile.',
         detail:
-          'Cutting is where tolerance is won or lost. We nest for material yield, cut bevels in the same pass where the weld preparation calls for it, and hard-mark parts so they arrive at the fitting bench already identified.',
+          'Cutting sets the tolerance everything downstream inherits. We nest for material yield, cut bevels in the same pass where the weld preparation calls for it, and hard-mark parts so they arrive at the fitting bench already identified.',
         points: [
           'Gantry plasma and oxy-fuel cutting of heavy plate',
           'Bevel cutting for weld preparation',
@@ -549,7 +578,7 @@ export const en = {
         summary:
           'Qualified welders working to approved procedures, with the documentation to prove it.',
         detail:
-          'Welding is the discipline the rest of the shop is built around. Procedures are qualified for the material and thickness at hand, welders are certified against them, and the work is recorded so the file that ships with a construction stands up to review.',
+          'Procedures are qualified for the material and thickness at hand, welders are certified against them, and the work is recorded so the file that ships with a construction stands up to review.',
         points: [
           'MAG, MIG and submerged-arc welding',
           'Qualified procedures (WPS/WPQR) per project',
@@ -564,7 +593,7 @@ export const en = {
         summary:
           'Sections are built up, measured, surface-treated and shipped as complete units ready to install.',
         detail:
-          'We would rather hand over a section that fits than a pallet of parts that might. Sub-assemblies are jigged and measured, blasted and primed or fully coated to specification, then loaded and transported to the yard or site.',
+          'Sub-assemblies are jigged and measured, blasted and primed or fully coated to specification, then loaded and transported to the yard or site.',
         points: [
           'Jigged sub-assembly and complete sections',
           'Dimensional control before release',
@@ -720,19 +749,19 @@ export const en = {
 
     values: [
       {
-        title: 'We say what is possible',
+        title: 'Dates we can hold',
         body: 'A realistic date you can plan around is worth more than an optimistic one you cannot. If a schedule is tight, we say so before we accept it.',
       },
       {
-        title: 'The file is part of the product',
+        title: 'Documentation ships with the steel',
         body: 'Material certificates, weld procedures, inspection records. A construction that arrives without its documentation is not finished.',
       },
       {
-        title: 'One shop, one responsibility',
-        body: 'Cutting through to coating happens under our own roof, so there is no seam in the chain where accountability can go missing.',
+        title: 'One point of responsibility',
+        body: 'Cutting through to coating happens under our own roof. There is no seam in the chain for a problem to fall into.',
       },
       {
-        title: 'Built by people who weld',
+        title: 'Engineering next to the floor',
         body: 'Our engineering sits next to the shop floor. Decisions on paper get tested against the people who have to make them work in steel.',
       },
     ],

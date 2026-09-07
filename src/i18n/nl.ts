@@ -20,13 +20,14 @@ export const nl: Dictionary = {
 
   nav: {
     items: [
+      { href: '/about', label: 'Over ons', blurb: 'Wie we zijn en hoe we werken' },
       { href: '/capabilities', label: 'Mogelijkheden', blurb: 'Snijden, vormen, lassen, samenbouw' },
       { href: '/industries', label: 'Sectoren', blurb: 'Scheepsbouw, offshore, infrastructuur' },
       { href: '/facility', label: 'Bedrijf', blurb: 'Hallen, machines, capaciteit' },
       { href: '/projects', label: 'Projecten', blurb: 'Geselecteerd werk' },
-      { href: '/about', label: 'Over ons', blurb: 'Wie we zijn en hoe we werken' },
+      { href: '/careers', label: 'Vacatures', blurb: 'Lassers, bankwerkers, engineers' },
+      { href: '/contact', label: 'Contact', blurb: 'Adres, telefoon, aanvraagformulier' },
     ],
-    quote: 'Offerte aanvragen',
     toggleMenu: 'Menu openen',
     siteSections: 'Onderdelen van de site',
     primary: 'Hoofdnavigatie',
@@ -72,11 +73,11 @@ export const nl: Dictionary = {
     cookieSettings: 'Cookie-instellingen',
     country: 'Bosnië en Herzegovina',
 
-    officeLabel: 'Productie & hoofdkantoor',
+    officeLabel: 'Bedrijfslocatie',
   },
 
   common: {
-    requestQuote: 'Offerte aanvragen',
+    requestQuote: 'Neem contact op',
     ourCapabilities: 'Onze mogelijkheden',
     allCapabilities: 'Alle mogelijkheden',
     moreAbout: 'Meer over Metal Holland',
@@ -89,6 +90,7 @@ export const nl: Dictionary = {
   },
 
   home: {
+    title: 'Home',
     heroEyebrow: '20+ jaar staalconstructie',
     heroTitleA: 'Wij bouwen het staal',
     heroTitleB: 'waarop anderen bouwen.',
@@ -123,6 +125,39 @@ export const nl: Dictionary = {
     industriesTitle: 'Vier sectoren. Eén set normen.',
     industriesLede:
       'De toleranties en de papieren verschillen. De discipline erachter niet.',
+
+    assuranceEyebrow: 'What you get',
+    assuranceTitle: 'Every delivery arrives with its file.',
+    assuranceLede:
+      'The documentation is assembled while the work runs, not reconstructed afterwards. Unless your specification asks for more, this is what comes with the steel.',
+    assurance: [
+      {
+        title: 'Material certificates',
+        body: 'Mill certificates for the plate and sections used, traceable to the heat number in the finished construction.',
+      },
+      {
+        title: 'Welding procedures',
+        body: 'The qualified WPS for each joint type in the job, with the WPQR that supports it.',
+      },
+      {
+        title: 'Welder qualifications',
+        body: 'Certificates for every welder who worked on it, valid on the dates the work was actually done.',
+      },
+      {
+        title: 'Dimensional report',
+        body: 'Measured against the drawing before release. Where something deviates, it is recorded and reported rather than quietly absorbed.',
+      },
+      {
+        title: 'Inspection records',
+        body: 'Visual inspection throughout, and NDT reports where the specification calls for them, with method and operator named.',
+      },
+      {
+        title: 'Surface treatment',
+        body: 'Preparation grade, the product used, and measured dry film thickness.',
+      },
+    ],
+    assuranceNote:
+      'Ask and we will send a sample delivery file from recent work, with the client details removed, so you can judge the standard before you commit to anything.',
 
     energyEyebrow: 'Energie',
     energyTitle: 'Het dak draait een flink deel van de werkplaats.',
@@ -312,15 +347,13 @@ export const nl: Dictionary = {
   contactPage: {
     title: 'Contact',
     description:
-      'Vraag een offerte aan bij Metal Holland — stuur uw tekeningen, scope en gewenste leverdatum en wij komen terug met een reële prijs en levertijd.',
+      'Neem contact op met Metal Holland — stuur tekeningen en een leverdatum voor een prijs en een levertijd, of vraag naar capaciteit, materialen en transport voordat u die heeft.',
     eyebrow: 'Contact',
-    heroTitle: 'Stuur ons de tekeningen.',
+    heroTitle: 'Laat van u horen.',
     heroLede:
-      'Vertel ons wat er gebouwd moet worden en wanneer. U krijgt een reële prijs, een reële datum, en alle vragen die de tekeningen oproepen.',
+      'Stuur tekeningen en een gewenste datum en u krijgt een reële prijs, een reële datum, en alle vragen die de tekeningen oproepen. Bent u eerder dan dat — capaciteit, een materiaal, of de vraag of een sectie ons terrein af kan — schrijf dan toch en wij vertellen u wat we weten.',
     heroAlt: 'Een lasboog die het donker van de productiehal verlicht',
-    formTitle: 'Offerte aanvragen',
-    formNote:
-      'Velden met een sterretje zijn verplicht. Tekeningen mogen later per e-mail volgen — we sturen u een adres om ze heen te sturen.',
+    formTitle: 'Neem contact op',
     fields: {
       name: 'Naam',
       namePlaceholder: 'Uw naam',
@@ -329,25 +362,21 @@ export const nl: Dictionary = {
       email: 'E-mail',
       emailPlaceholder: 'naam@bedrijf.nl',
       phone: 'Telefoon',
-      phonePlaceholder: 'Optioneel',
-      sector: 'Sector',
-      sectorPlaceholder: 'Kies een sector',
-      sectorOther: 'Anders',
-      message: 'Wat moet er gebouwd worden?',
-      messagePlaceholder:
-        'Scope, materiaal, globaal tonnage of aantal, en de datum waarop u het geleverd wilt hebben.',
+      phonePlaceholder: 'Inclusief landcode',
+      message: 'Bericht',
+      messagePlaceholder: 'Vertel ons wat u nodig heeft.',
       honeypot: 'Laat dit veld leeg',
     },
-    submit: 'Aanvraag versturen',
+    submit: 'Bericht versturen',
     sending: 'Versturen…',
     success: 'Dank u — we komen snel bij u terug.',
     error: 'Er ging iets mis. Mail ons rechtstreeks:',
-    subject: 'Offerteaanvraag',
+    subject: 'Aanvraag',
     directTitle: 'Direct',
     emailLabel: 'E-mail',
     phoneLabel: 'Telefoon',
     hours: 'Maandag – vrijdag, 07:00 – 15:45',
-    hoursLabel: 'Openingstijden',
+    hoursLabel: 'Werktijden',
     directions: 'Routebeschrijving',
     mapEyebrow: 'Waar u ons vindt',
     openInMaps: 'Openen in Google Maps',

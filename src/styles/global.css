@@ -153,8 +153,10 @@ html[data-theme='light'] [data-theme='light'] {
   h3,
   h4 {
     @apply font-display text-heading;
-    font-variation-settings: 'wght' 700;
-    letter-spacing: -0.02em;
+    /* 600 rather than 700: at these display sizes the heavier weight read as
+       shouting. Deliberate — see the tone note in CLAUDE.md. */
+    font-variation-settings: 'wght' 600;
+    letter-spacing: -0.015em;
     text-wrap: balance;
   }
 
