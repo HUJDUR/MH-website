@@ -37,9 +37,5 @@ export const contact = {
   registration: {
     vat: 'VAT 401899980009',
   },
-
-  social: {
-    linkedin: '[https://www.linkedin.com/company/metal-holland]',
-  },
 } as const;
 

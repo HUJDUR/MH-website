@@ -91,7 +91,7 @@ export const en = {
     heroTitleA: 'Steel structures,',
     heroTitleB: 'built to your specification.',
     heroLede:
-      'From single parts to complete steel structures — cutting, forming, welding and finishing under one roof.',
+      'From single parts to complete steel structures — cutting, forming, welding and finishing in one place.',
     heroAlt: 'A Metal Holland operator at the controls of a cutting machine',
 
     whoEyebrow: 'Who we are',
@@ -349,7 +349,6 @@ export const en = {
     heroLede:
       'Send drawings and a required date and you will get a realistic price, a realistic date, and any questions the drawings raise. If you are earlier than that — checking capacity, a material, or whether a section can leave our yard — write anyway and we will tell you what we know.',
     heroAlt: 'A welding arc lighting the dark of the fabrication hall',
-    formTitle: 'Reach out',
     fields: {
       name: 'Name',
       namePlaceholder: 'Your name',
@@ -388,46 +387,23 @@ export const en = {
       'Work at Metal Holland: welders, fitters, machine operators, work preparers and project engineers at our fabrication works in Šamac.',
     eyebrow: 'Careers',
     heroTitle: 'Come and build with us.',
-    heroLede:
-      'Most of the people here make things for a living. If that is the work you want, we would like to hear from you.',
     heroAlt: 'Metal Holland fabricators at work in the hall',
-    introEyebrow: 'Working here',
-    introTitle: 'Steady work, real machines.',
-    introBody1:
-      'We are a fabrication works, not an agency. The people we hire stay on our payroll, work in our halls, and are trained on our own equipment. We qualify our welders ourselves and keep those qualifications current.',
-    introBody2:
-      'We take applications whether or not a vacancy is posted. Good fitters and welders are hard to find, so the file stays open.',
-    points: [
-      {
-        title: 'Trained, not just hired',
-        body: 'Welding qualifications are renewed on our account, and new starters learn on the machines they will run.',
-      },
-      {
-        title: 'One site, no travel',
-        body: 'The work is here in Šamac. You go home at the end of the shift, not to a hotel in another country.',
-      },
-      {
-        title: 'Paid on time',
-        body: 'Wages arrive on the agreed date, every month.',
-      },
-    ],
+    openingsEyebrow: 'Vacancies',
+    openingsTitle: 'Available positions.',
+    openingsBody: 'There are no open positions at the moment.',
     formTitle: 'Apply',
     formNote:
-      'Fields marked with an asterisk are required. Do not attach anything here — if we want a CV or certificates, we will reply with an address to send them to.',
+      'Even when nothing is posted, we are glad to meet people who might fit a job later in the future — reach out!',
     fields: {
       name: 'Name',
       namePlaceholder: 'Your name',
       email: 'Email',
       emailPlaceholder: 'name@example.com',
       phone: 'Phone',
-      phonePlaceholder: 'So we can call you',
-      role: 'Which work',
-      rolePlaceholder: 'Select a trade',
-      experience: 'Years of experience',
-      experiencePlaceholder: 'For example: 6',
-      availability: 'Available from',
-      availabilityPlaceholder: 'A date, or as soon as possible',
-      message: 'Tell us about your experience',
+      phonePlaceholder: '+387',
+      city: 'City',
+      cityPlaceholder: 'Where you live',
+      message: 'Tell us about yourself',
       messagePlaceholder:
         'What you have worked on, which machines or processes you know, and any certificates you hold.',
     },
@@ -437,11 +413,6 @@ export const en = {
     error: 'Something went wrong. Please email us directly:',
     subject: 'Job application',
     asideTitle: 'Prefer to call?',
-    asideBody:
-      'Ring the works during opening hours and ask for the shop. If nobody can take you round that day, we will arrange another.',
-    ctaTitle: 'Rather see the place first?',
-    ctaBody:
-      'Visits are welcome before you apply. Walk the halls, see the machines, and decide whether it is the shop you want to work in.',
   },
 
   cookiesPage: {
@@ -530,17 +501,6 @@ export const en = {
   },
 
   content: {
-    /** Trades offered in the careers form's select. */
-    roles: [
-      'Welder',
-      'Fitter / assembler',
-      'Machine operator',
-      'Work preparer',
-      'Project engineer',
-      'Blasting & coating',
-      'Something else',
-    ],
-
     capabilities: [
       {
         id: 'cutting',

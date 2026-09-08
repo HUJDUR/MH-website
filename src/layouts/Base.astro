@@ -1,5 +1,24 @@
 ---
 import '../styles/global.css';
+
+/**
+ * Preloaded by hand. Reached only through the stylesheet, these files are not
+ * discovered until the CSS has parsed — late enough that a navigation paints a
+ * frame or two in the fallback face and then reflows when the real one swaps
+ * in, which reads as the text twitching into position. Preloading starts the
+ * fetch alongside the HTML instead, so the face is normally ready by first
+ * paint. `?url` returns the same hashed asset the CSS points at, so this costs
+ * no extra request.
+ *
+ * Latin covers the bulk of every locale. Bosnian also needs latin-ext for
+ * č/ć/đ/š/ž throughout, so it pays for those two as well; English and Dutch
+ * only meet that subset in "Šamac" and can afford to swap it in late.
+ */
+import archivoLatin from '@fontsource-variable/archivo/files/archivo-latin-wght-normal.woff2?url';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url';
+import archivoLatinExt from '@fontsource-variable/archivo/files/archivo-latin-ext-wght-normal.woff2?url';
+import interLatinExt from '@fontsource-variable/inter/files/inter-latin-ext-wght-normal.woff2?url';
+
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
@@ -35,6 +54,12 @@ const {
 
 const d = t(locale);
 const meta = localeMeta[locale];
+
+const preloadedFonts = [
+  archivoLatin,
+  interLatin,
+  ...(locale === 'bs' ? [archivoLatinExt, interLatinExt] : []),
+];
 const pageTitle = `${title} | ${site.shortName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
 const ogImageUrl = new URL(ogImage, Astro.site ?? site.url).href;
@@ -87,6 +112,13 @@ const organizationSchema = {
       } catch {}
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    {
+      preloadedFonts.map((url) => (
+        <link rel="preload" as="font" type="font/woff2" href={url} crossorigin />
+      ))
+    }
+
     <title>{pageTitle}</title>
     <meta name="description" content={description ?? d.site.description} />
     <link rel="canonical" href={canonical} />

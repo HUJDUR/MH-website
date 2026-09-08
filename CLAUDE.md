@@ -100,6 +100,9 @@ Keys where `bs.ts` / `nl.ts` currently hold English text awaiting translation:
 - `home.assuranceEyebrow`, `home.assuranceTitle`, `home.assuranceLede`,
   `home.assuranceNote`, `home.assurance[]`
 
+- `careersPage.formNote`, `careersPage.fields.city`,
+  `careersPage.fields.cityPlaceholder`, `careersPage.fields.message`
+
 Also note: the Bosnian and Dutch drafts throughout were written by Claude
 alongside the English and have **not** been reviewed by a native speaker. Both
 dictionaries carry a header saying so. Flag this whenever the client discusses
@@ -153,8 +156,11 @@ file holds no copy.
   credential the browser sends. The protection that matters is the domain
   allowlist in the Web3Forms dashboard. Do not treat the key as a secret, and do
   not propose "hiding" it.
-- **No attachments.** Web3Forms does not relay them on this plan. Both forms say
-  to send CVs, certificates or drawings by email once we reply.
+- **No attachments.** Web3Forms does not relay them on this plan, and neither
+  form has a file field. Neither form says so any more either — the careers note
+  used to, and the client asked for it out (2026-09-07). So a CV or a drawing
+  reaches us only by email, and nothing on the page tells the sender that.
+  Raise it if a form is being reworked.
 - Do not add reCAPTCHA or hCaptcha. Both set third-party cookies, which would
   put the form behind the cookie consent gate. The `botcheck` honeypot plus the
   domain allowlist is the agreed approach.
@@ -246,6 +252,6 @@ Do not claim something works without having run it.
   run and nothing typechecks at build time.
 - Unconfirmed placeholders remain: number of halls, crane capacity, plate
   thickness, roll and press-brake figures, solar array capacity and share of
-  consumption, LinkedIn URL, and all project client names, years and tonnages.
+  consumption, and all project client names, years and tonnages.
 - Only one drone aerial exists; `facility-aerial` and `facility-aerial-2`
   currently resolve to the same photo.
