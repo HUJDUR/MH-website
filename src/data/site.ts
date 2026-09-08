@@ -34,8 +34,15 @@ export const contact = {
       'https://maps.google.com/maps?q=45.05029,18.4777441&z=16&hl=en&output=embed',
   },
 
+  /**
+   * Both carry their own label, because "401899980009" next to "4401899980009"
+   * is otherwise a typo waiting to be reported. The JIB is the company's
+   * registration number; the VAT number is the same digits without the leading
+   * 4, which is how the tax authority issues them.
+   */
   registration: {
     vat: 'VAT 401899980009',
+    jib: 'JIB 4401899980009',
   },
 } as const;
 

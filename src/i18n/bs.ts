@@ -19,11 +19,11 @@ export const bs: Dictionary = {
 
   nav: {
     items: [
-      { href: '/about', label: 'O nama', blurb: 'Ko smo i kako radimo' },
-      { href: '/capabilities', label: 'Mogućnosti', blurb: 'Rezanje, oblikovanje, zavarivanje, montaža' },
-      { href: '/industries', label: 'Djelatnosti', blurb: 'Brodogradnja, offshore, infrastruktura' },
-      { href: '/facility', label: 'Pogon', blurb: 'Hale, mašine, kapacitet' },
-      { href: '/projects', label: 'Projekti', blurb: 'Odabrani radovi' },
+      { href: '/#about', label: 'O nama', blurb: 'Ko smo i kako radimo' },
+      { href: '/#capabilities', label: 'Mogućnosti', blurb: 'Rezanje, oblikovanje, zavarivanje, montaža' },
+      { href: '/#industries', label: 'Djelatnosti', blurb: 'Ships, steelwork, ironwork, offshore' },
+      { href: '/#facility', label: 'Pogon', blurb: 'Hale, mašine, kapacitet' },
+      { href: '/media', label: 'Media', blurb: 'Photographs of the works' },
       { href: '/careers', label: 'Posao', blurb: 'Zavarivači, bravari, inženjeri' },
       { href: '/contact', label: 'Kontakt', blurb: 'Adresa, telefon, obrazac za upit' },
     ],
@@ -37,36 +37,6 @@ export const bs: Dictionary = {
   },
 
   footer: {
-    groups: [
-      {
-        title: 'Kompanija',
-        items: [
-          { href: '/about', label: 'O Metal Hollandu' },
-          { href: '/facility', label: 'Pogon i oprema' },
-          { href: '/projects', label: 'Projekti' },
-          { href: '/careers', label: 'Posao' },
-          { href: '/contact', label: 'Kontakt' },
-        ],
-      },
-      {
-        title: 'Šta radimo',
-        items: [
-          { href: '/capabilities#cutting', label: 'CNC plazma rezanje' },
-          { href: '/capabilities#forming', label: 'Oblikovanje i obrada' },
-          { href: '/capabilities#welding', label: 'Certificirano zavarivanje' },
-          { href: '/capabilities#assembly', label: 'Montaža i završna obrada' },
-        ],
-      },
-      {
-        title: 'Sektori',
-        items: [
-          { href: '/industries#shipbuilding', label: 'Brodogradnja i jahte' },
-          { href: '/industries#offshore', label: 'Offshore i energetika' },
-          { href: '/industries#infrastructure', label: 'Infrastruktura i mostovi' },
-          { href: '/industries#industrial', label: 'Industrija i mašinogradnja' },
-        ],
-      },
-    ],
     rights: 'Sva prava zadržana.',
     cookiePolicy: 'Politika kolačića',
     cookieSettings: 'Postavke kolačića',
@@ -77,12 +47,8 @@ export const bs: Dictionary = {
 
   common: {
     requestQuote: 'Javite nam se',
+    contactForm: 'Contact form',
     ourCapabilities: 'Naše mogućnosti',
-    allCapabilities: 'Sve mogućnosti',
-    moreAbout: 'Više o Metal Hollandu',
-    facilityEquipment: 'Pogon i oprema',
-    whatWeBuild: 'Šta gradimo',
-    seeWhatWeBuild: 'Pogledajte šta možemo izgraditi',
     backToHome: 'Nazad na početnu',
     contactUs: 'Kontaktirajte nas',
     sector: 'Sektor',
@@ -104,60 +70,6 @@ export const bs: Dictionary = {
     whoBody2:
       'To je cijela ponuda. Holandsko vođenje projekata i inženjerska disciplina, spojeni sa kapacitetom, dizalicama i školovanim majstorima punog proizvodnog pogona. Klijenti iz brodogradnje, offshorea i infrastrukture rade s nama jer je jedan odgovoran partner jednostavniji za planiranje nego pet.',
 
-    capabilitiesEyebrow: 'Mogućnosti',
-    capabilitiesTitle: 'Sve od lima do zaštićene sekcije, pod jednim krovom.',
-
-    facilityEyebrow: 'Pogon',
-    facilityTitle: 'Kapacitet oko kojeg možete planirati program.',
-    facilityLede:
-      'Četiri hale, portalni stolovi za rezanje, linije za bušenje, valjci i mjesta za zavarivanje — dimenzionirani za sekcije koje odlaze na labudici, a ne u sanduku.',
-    facilityAlt: 'Snimak iz zraka proizvodnog pogona i kruga Metal Hollanda',
-    facilityInset: 'proizvodne površine, sa mosnim dizalicama u svakoj hali',
-    facilityRows: [
-      { label: 'Natkrivene hale', value: 'Rezanje, oblikovanje, sklapanje, zavarivanje, završna obrada' },
-      { label: 'Mosne dizalice', value: 'Do [XX] tona po hali' },
-      { label: 'Vanjski krug', value: 'Pjeskarenje, temeljni premaz, skladištenje i utovar' },
-      { label: 'Transport', value: 'Vangabaritni tereti do brodogradilišta i gradilišta širom Evrope' },
-    ],
-
-    industriesEyebrow: 'Djelatnosti',
-    industriesTitle: 'Četiri sektora. Jedan set standarda.',
-    industriesLede:
-      'Tolerancije i papirologija se razlikuju. Disciplina iza njih ne.',
-
-    assuranceEyebrow: 'What you get',
-    assuranceTitle: 'Every delivery arrives with its file.',
-    assuranceLede:
-      'The documentation is assembled while the work runs, not reconstructed afterwards. Unless your specification asks for more, this is what comes with the steel.',
-    assurance: [
-      {
-        title: 'Material certificates',
-        body: 'Mill certificates for the plate and sections used, traceable to the heat number in the finished construction.',
-      },
-      {
-        title: 'Welding procedures',
-        body: 'The qualified WPS for each joint type in the job, with the WPQR that supports it.',
-      },
-      {
-        title: 'Welder qualifications',
-        body: 'Certificates for every welder who worked on it, valid on the dates the work was actually done.',
-      },
-      {
-        title: 'Dimensional report',
-        body: 'Measured against the drawing before release. Where something deviates, it is recorded and reported rather than quietly absorbed.',
-      },
-      {
-        title: 'Inspection records',
-        body: 'Visual inspection throughout, and NDT reports where the specification calls for them, with method and operator named.',
-      },
-      {
-        title: 'Surface treatment',
-        body: 'Preparation grade, the product used, and measured dry film thickness.',
-      },
-    ],
-    assuranceNote:
-      'Ask and we will send a sample delivery file from recent work, with the client details removed, so you can judge the standard before you commit to anything.',
-
     energyEyebrow: 'Energija',
     energyTitle: 'Krov pokreće dobar dio pogona.',
     energyLede:
@@ -165,9 +77,8 @@ export const bs: Dictionary = {
     energyBody:
       'Elektrana napaja pogon direktno. Dok ima sunca, na njoj rade stolovi za rezanje, odsis, dizalice i rasvjeta. To je ujedno razlog zašto naš certifikat EN ISO 14001 opisuje nešto više od fascikle u ormaru.',
     energyFigures: [
-      { value: '[XXX] kWp', label: 'Instalisana snaga' },
-      { value: '[XX]%', label: 'Godišnje potrošnje' },
-      { value: '[X]', label: 'Krovova hala pod panelima' },
+      { value: '240 kWp', label: 'Instalisana snaga' },
+      { value: '2 / 4', label: 'Krovova hala pod panelima' },
     ],
     energyImages: [
       { slug: 'solar-roof', alt: 'Solarni paneli na krovu hale Metal Hollanda' },
@@ -175,26 +86,9 @@ export const bs: Dictionary = {
       { slug: 'solar-overhead', alt: 'Krovovi hala i paneli snimljeni okomito odozgo' },
     ],
 
-    qualityEyebrow: 'Kvalitet',
-    qualityTitle: 'Certifikat je samo sažetak.',
-    qualityLede:
-      'Kvalificirani postupci, certificirani zavarivači, evidentirane kontrole. Dokumentacija o isporuci nastaje dok posao traje, a ne rekonstrukcijom poslije.',
-    qualityNote: 'Certifikati i izjave o obimu dostupni su na zahtjev.',
   },
 
   capabilitiesPage: {
-    title: 'Mogućnosti',
-    description:
-      'CNC plazma rezanje, oblikovanje i savijanje, certificirano zavarivanje, montaža i završna obrada — proizvodne mogućnosti Metal Hollanda od lima do zaštićene sekcije.',
-    eyebrow: 'Mogućnosti',
-    heroTitle: 'Od lima do zaštićene sekcije.',
-    heroLede:
-      'Rezanje, oblikovanje, zavarivanje, završna obrada i isporuka odvijaju se u jednoj zgradi, po jednom rasporedu, pod jednom odgovornošću.',
-    heroAlt: 'Glava za plazma rezanje pri radu na debelom čeličnom limu',
-    processEyebrow: 'Kako teče projekat',
-    processTitle: 'Pet faza, i u svakoj se javljamo.',
-    processLede:
-      'Teška proizvodnja krene po zlu tiho, sedmicama prije nego iko primijeti. Naš odgovor je utvrđen ritam izvještavanja, a ne obećanje da ćemo se javiti ako nešto iskrsne.',
     materialsEyebrow: 'Materijali',
     materialsTitle: 'Ugljični čelik, nerđajući čelik, aluminij.',
     materialsLede:
@@ -207,61 +101,14 @@ export const bs: Dictionary = {
       { term: 'Lim', detail: 'Debljine do [200] mm' },
       { term: 'Profili', detail: 'Nosači, kutijasti profili, cijevi i šipke' },
     ],
-    ctaTitle: 'Niste sigurni može li se izraditi?',
-    ctaBody:
-      'Pošaljite crtež svejedno. Pola našeg posla počinje pitanjem klijenta može li se sekcija napraviti iz jednog komada — i obično može.',
   },
 
   industriesPage: {
-    title: 'Djelatnosti',
-    description:
-      'Metal Holland proizvodi za brodogradnju i gradnju jahti, offshore i energetiku, infrastrukturu i mostove, te industrijsku mašinogradnju.',
     eyebrow: 'Djelatnosti',
     heroTitle: 'Gdje naš čelik završi.',
-    heroLede:
-      'Trupovi, platforme, mostovi i mašine. Različita pravila, različita papirologija, a iza svega ista disciplina pogona.',
-    heroAlt: 'Plovilo na moru u zalazak sunca',
-    workingEyebrow: 'Saradnja s nama',
-    workingTitle: 'Čemu proizvodni partner zapravo služi.',
-    working: [
-      {
-        title: 'Kapacitet koji prihvata vrhunac',
-        body: 'Brodogradilišta i OEM-ovi koriste nas da preuzmemo višak koji njihov pogon ne može progutati bez odgađanja svega ostalog.',
-      },
-      {
-        title: 'Jedan partner, cijeli obim',
-        body: 'Rezanje, zavarivanje, zaštita i transport dolaze od nas. Nema procjepa među dobavljačima u koji bi problem mogao propasti.',
-      },
-      {
-        title: 'Dokumentacija koja preživi reviziju',
-        body: 'Atesti, postupci i zapisi o kontroli prikupljaju se dok posao traje, pa primopredaja nije arheološki poduhvat.',
-      },
-    ],
-    ctaTitle: 'Vaš sektor nije naveden?',
-    ctaBody:
-      'Ako je teško, zavareno i od čelika, vjerovatno je posao koji poznajemo. Recite nam šta gradite.',
   },
 
   facilityPage: {
-    title: 'Pogon i oprema',
-    description:
-      'Proizvodni pogon Metal Hollanda: natkrivene hale, CNC stolovi za rezanje, linije za bušenje, valjci, mjesta za zavarivanje, pjeskarenje i temeljni premaz, te utovar za vangabaritni transport.',
-    eyebrow: 'Pogon',
-    heroTitle: 'Proizvodna hala.',
-    heroLede:
-      'Četiri natkrivene hale, portalno rezanje, dizalice u svakom polju i krug dimenzioniran za sekcije koje odlaze na labudici.',
-    heroAlt: 'Unutrašnjost proizvodne hale Metal Hollanda',
-    worksEyebrow: 'Pogon',
-    worksTitle: 'Jedna lokacija, od početka do kraja.',
-    worksLede:
-      'Lim ulazi na jednom kraju kruga, a na drugom izlazi kao zaštićena, izmjerena i dokumentovana sekcija. Ništa se ne prevozi preko grada između operacija.',
-    worksAlt: 'Snimak pogona Metal Hollanda iz zraka',
-    figures: [
-      { value: '32,000 m²+', label: 'Površina lokacije' },
-      { value: '[4]', label: 'Proizvodne hale' },
-      { value: '[XX] t', label: 'Najveća nosivost dizalice' },
-      { value: '13 m', label: 'Najduža obrađena sekcija' },
-    ],
     equipmentEyebrow: 'Oprema',
     equipmentTitle: 'Šta je u pogonu.',
     equipmentLede:
@@ -270,65 +117,101 @@ export const bs: Dictionary = {
     machinesTitle: 'One koje vrijedi imenovati.',
     machinesLede:
       'Dva tridesetmetarska plazma stola, presa od 320 tona, linija za bušenje i mašina za obradu ivica. Zajedno pokrivaju najveći dio onoga što stigne kao crtež.',
-    galleryEyebrow: 'U halama',
-    galleryTitle: 'Posao u toku.',
-    gallery: [
-      { slug: 'cnc-gantry', alt: 'CNC portalni sto za rezanje u hali za lim' },
-      { slug: 'welding-hall', alt: 'Zavarivači rade na sekcijama u proizvodnoj hali' },
-      { slug: 'nested-plate', alt: 'Dijelovi izrezani iz jednog lima' },
-      { slug: 'machine-hall', alt: 'Mašinska hala sa mosnom dizalicom' },
-      { slug: 'drilling-detail', alt: 'Bušenje profila na liniji za nosače' },
-      { slug: 'pipe-fabrication', alt: 'Izrada cijevnih sklopova u toku' },
-      { slug: 'steel-sections', alt: 'Zaštićene čelične sekcije spremne za otpremu' },
-    ],
-    logisticsEyebrow: 'Dostava do vas',
-    logisticsTitle: 'Sekcije odlaze cijele.',
-    logisticsLede:
-      'Radije ćemo riješiti transportni problem nego podijeliti konstrukciju na dijelove koji se moraju ponovo zavarivati na gradilištu. Vangabaritni tereti, pratnja i dozvole dio su posla, a ne naknadna misao.',
-    logisticsBody:
-      'Unutar ograde vrijedi isti argument. Vlastiti vozni park viljuškara premješta lim i gotove sekcije između hala i kruga, pa konstrukcija čeka na sljedeću operaciju, a ne na iznajmljenu mašinu.',
-    forkliftsAlt: 'Vozni park viljuškara Metal Hollanda poredan u krugu, snimljen iz zraka',
-    ctaTitle: 'Dođite i pogledajte.',
-    ctaBody:
-      'Posjete su dobrodošle. Prođite kroz hale, upoznajte ljude koji bi gradili vaš posao i sami procijenite pogon.',
   },
 
-  projectsPage: {
-    title: 'Projekti',
+  mediaPage: {
+    title: 'Media',
     description:
-      'Odabrani radovi Metal Hollanda — sekcije mostova, sekcije trupa, cijevni sklopovi, zavareni nosači i serijski mašinski okviri.',
-    eyebrow: 'Projekti',
-    heroTitle: 'Odabrani radovi.',
-    heroLede:
-      'Presjek onoga što napušta krug. Imena klijenata i brojke dijelimo na zahtjev, gdje povjerljivost to dopušta.',
-    heroAlt: 'Zavareni rešetkasti sklop na podupiračima u proizvodnoj hali',
+      'Photographs from the Metal Holland works — the shop floor, finished work leaving the yard, and the machines it is made on.',
+    eyebrow: 'Media',
+    heroTitle: 'The works, photographed.',
+    heroAlt: 'A welded beam on trestles in the fabrication hall',
     filter: 'Filter',
     all: 'Sve',
-    empty: 'U ovom sektoru još nema navedenih projekata.',
-    ctaTitle: 'Reference za vaš sektor.',
+    groups: [
+      { id: 'workshop', label: 'Workshop' },
+      { id: 'projects', label: 'Projects' },
+      { id: 'machines', label: 'Machines' },
+    ],
+    videoAlt: "Metal Holland's forklift fleet lined up in the yard, filmed from above",
+    album: [
+      { slug: 'arc-plume', alt: 'Welding arc lighting a plume of smoke in the dark of the hall', group: 'workshop' },
+      { slug: 'welding-dark', alt: 'A welder behind the arc, the hall lost in darkness around it', group: 'workshop' },
+      { slug: 'girder-welding', alt: 'Welding a stiffener into a primed girder section', group: 'workshop' },
+      { slug: 'arc-dark', alt: 'The arc at the moment of striking', group: 'workshop' },
+      { slug: 'beam-welding', alt: 'A welder working along a long primed beam', group: 'workshop' },
+      { slug: 'tube-grinding', alt: 'Grinding sparks running off a row of tubes on the bench', group: 'workshop' },
+      { slug: 'girder-sparks', alt: 'Dressing back the welds on a girder section', group: 'workshop' },
+      { slug: 'welder-beam', alt: 'A welder running a seam along a beam', group: 'workshop' },
+      { slug: 'hall-long-section', alt: 'A long fabricated section filling the length of the hall', group: 'workshop' },
+      { slug: 'welder-hall-dark', alt: 'Welder at work in the darkened hall, the arc the only light', group: 'workshop' },
+      { slug: 'operator-console', alt: 'An operator at a machine control panel', group: 'workshop' },
+      { slug: 'team-workshop', alt: 'Two fabricators setting up work on the bench', group: 'workshop' },
+      { slug: 'control-station', alt: 'Machine operator at the control station of the sawing line', group: 'workshop' },
+      { slug: 'steel-stock', alt: 'Steel flats stacked ready for cutting', group: 'workshop' },
+      { slug: 'workshop-hall', alt: 'Benches and trestles down the length of the workshop', group: 'workshop' },
+      { slug: 'drill-detail', alt: 'A drill working into a steel section', group: 'workshop' },
+      { slug: 'roller-detail', alt: 'Feed rollers on the drilling line', group: 'workshop' },
+      { slug: 'steel-sections', alt: 'Primed girder sections lined up in the hall', group: 'workshop' },
+      { slug: 'girder-line', alt: 'Welders working along a line of primed girder sections', group: 'workshop' },
+      { slug: 'pipe-spools', alt: 'Pipe spools laid out on trestles', group: 'workshop' },
+      { slug: 'pipe-fabrication', alt: 'A welded railing and cage ladder under construction', group: 'workshop' },
+      { slug: 'welding-arc', alt: 'Welding arc against a box girder', group: 'workshop' },
+      { slug: 'welded-frame', alt: 'A long welded frame set up on trestles', group: 'workshop' },
+      { slug: 'beam-sparks', alt: 'Sparks flying as a beam is cut to length', group: 'workshop' },
+      { slug: 'hall-beams', alt: 'Beams laid out across the hall, an arc burning at the far bench', group: 'workshop' },
+      { slug: 'truss-assembly', alt: 'Dressing back the welds on a long fabricated beam', group: 'workshop' },
+      { slug: 'long-beam', alt: 'A finished beam running the length of the hall floor', group: 'workshop' },
+      { slug: 'marked-parts', alt: 'Cut plate parts, hard-marked with their part numbers', group: 'workshop' },
+      { slug: 'hall-sparks', alt: 'Grinding sparks arcing across the hall floor', group: 'workshop' },
+      { slug: 'plasma-head-cut', alt: 'The plasma head cutting into plate', group: 'workshop' },
+      { slug: 'plasma-gantry', alt: 'The plasma gantry travelling along a full plate', group: 'workshop' },
+      { slug: 'nested-parts', alt: 'An operator lifting finished parts out of the cut nest', group: 'workshop' },
+      { slug: 'cutting-bed', alt: 'The cutting bed with a plate loaded', group: 'workshop' },
+      { slug: 'plasma-sparks', alt: 'Sparks streaming from the plasma cut across the bed', group: 'workshop' },
+      { slug: 'project-marked-plate', alt: 'Marked and cut plate parts on the bench', group: 'projects' },
+      { slug: 'bridge-transport', alt: 'A welded lattice girder loaded on a low-loader in the yard', group: 'projects' },
+      { slug: 'girder-transport-2', alt: 'The lattice girder leaving the works on its trailer', group: 'projects' },
+      { slug: 'girder-transport-3', alt: 'The lattice girder on the road outside the works', group: 'projects' },
+      { slug: 'steel-frame', alt: 'A large primed welded frame standing in the hall', group: 'projects' },
+      { slug: 'stainless-trough', alt: 'A stainless steel trough, welds dressed back', group: 'projects' },
+      { slug: 'stainless-trough-2', alt: 'The finished stainless trough seen along its length', group: 'projects' },
+      { slug: 'frame-assembly', alt: 'A heavy welded frame assembled on the shop floor', group: 'projects' },
+      { slug: 'frame-loaded', alt: 'A fabricated frame loaded on a trailer at the works', group: 'projects' },
+      { slug: 'frame-transport', alt: 'Two fabricated frames secured on a flatbed trailer', group: 'projects' },
+      { slug: 'frame-transport-2', alt: 'The loaded trailer leaving the yard', group: 'projects' },
+      { slug: 'crane-lift', alt: 'A mobile crane lifting a stainless vessel', group: 'projects' },
+      { slug: 'crane-lift-2', alt: 'The crane setting the load down', group: 'projects' },
+      { slug: 'access-platform', alt: 'An access platform with grating deck and tubular railings, assembled in the hall', group: 'projects' },
+      { slug: 'machine-esab', alt: 'ESAB CNC plasma cutting gantry over its thirty-metre table', group: 'machines' },
+      { slug: 'machine-messer', alt: 'Messer MultiTherm plasma cutting a steel plate', group: 'machines' },
+      { slug: 'machine-durma', alt: 'Durma AD-S 40320 CNC press brake in the forming bay', group: 'machines' },
+      { slug: 'machine-vernet', alt: 'Vernet Behringer FP 400 line with its control station', group: 'machines' },
+      { slug: 'machine-qfin', alt: 'QFIN SER 600 deburring and edge-rounding machine', group: 'machines' },
+      { slug: 'machine-bp40', alt: 'BP 40 horizontal press', group: 'machines' },
+      { slug: 'machine-fp80', alt: 'FP 80 horizontal press', group: 'machines' },
+      { slug: 'machine-jaespa', alt: 'Jaespa bandsaw on its roller feed', group: 'machines' },
+      { slug: 'machine-kaltenbach', alt: 'Kaltenbach saw', group: 'machines' },
+      { slug: 'machine-pilous', alt: 'Pilous bandsaw', group: 'machines' },
+      { slug: 'forklifts-yard', alt: 'The forklift fleet lined up in the yard', group: 'machines' },
+      { slug: 'forklifts-yard-2', alt: 'Forklifts parked along the edge of the yard', group: 'machines' },
+    ],
+    ctaTitle: 'Want to see the place itself?',
     ctaBody:
-      'Pitajte i povezat ćemo vas s klijentima koji rade poslove poput vašeg — najkorisnija referenca uvijek je ona koja odgovara vašim crtežima.',
+      'Photographs only go so far.\n\nVisits are welcome — walk the halls and see the production yourself!',
   },
 
   aboutPage: {
-    title: 'O nama',
-    description:
-      'Metal Holland spaja holandsko inženjerstvo i vođenje projekata sa kompletnim pogonom za čelične konstrukcije — rezanje, oblikovanje, zavarivanje i završnu obradu teških konstrukcija u vlastitoj režiji.',
     eyebrow: 'O nama',
     heroTitle: 'Holandski standard, stvarni kapacitet.',
     heroLede:
       'Proizvodna kompanija napravljena onako kako bi klijenti željeli da je više dobavljača napravljeno: jedan pogon, jedan odgovoran partner i jasan odgovor o tome šta je moguće.',
-    heroAlt: 'Operater Metal Hollanda za komandnim pultom mašine',
-    storyEyebrow: 'Naša priča',
-    storyTitle: 'Građeno oko proizvodne hale, a ne oko prodajnog stola.',
     storyLede:
       'Metal Holland postoji jer su klijentima iz holandskog pomorskog i infrastrukturnog svijeta stalno trebale dvije stvari odjednom: inženjerstvo s kojim mogu razgovarati na svom jeziku i proizvodni kapacitet dovoljno velik da nešto znači.',
     storyBody1:
       'Zato smo napravili oboje pod jednim krovom u Šamcu. Vođenje projekata, priprema rada i kontakt s klijentom sjede uz samu halu, a rezanje, oblikovanje, zavarivanje, završna obrada i utovar odvijaju se u našim halama, na našoj opremi, s našim ljudima. Između upita i čelika nema niza podizvođača.',
     storyBody2:
       'Rezultat je neupadljiv i teško ga je glumiti: sekcije koje stignu na dogovoreni datum, u dogovorenoj mjeri, s dokumentacijom koja dokazuje kako su nastale. Najveći dio našeg posla danas dolazi od klijenata koji su nam već jednom nešto poslali.',
-    valuesEyebrow: 'Kako radimo',
-    valuesTitle: 'Četiri stvari koje ne mijenjamo ni za šta.',
     peopleEyebrow: 'Ljudi',
     peopleTitle: '50+ ljudi, većina s gorionikom u ruci.',
     peopleLede:
@@ -570,55 +453,47 @@ export const bs: Dictionary = {
     industries: [
       {
         id: 'shipbuilding',
-        title: 'Brodogradnja i gradnja jahti',
-        summary:
-          'Sekcije trupa, temelji i opremni čelik izrađeni prema crtežima brodogradilišta i isporučeni po njegovom rasporedu.',
+        title: 'Shipbuilding & yacht building',
         bullets: [
-          'Sekcije trupa i nadgrađa',
-          'Pregrade, nosači i okvirna rebra',
-          'Temelji za motore i opremu',
-          'Opremni čelik i detalji od nerđajućeg čelika',
+          'Cutting and forming of hull sections',
+          'Prefabrication of smaller sections and sub-assemblies',
+          'Full plate traceability, from the mill certificate to the finished section',
+          'All material supplied with 3.2 certificates',
         ],
         image: 'industry-shipbuilding',
       },
       {
-        id: 'offshore',
-        title: 'Offshore i energetika',
-        summary:
-          'Teške zavarene konstrukcije za offshore i energetiku, gdje dokumentacija znači koliko i sam čelik.',
+        id: 'steelwork',
+        title: 'Classic steel construction',
         bullets: [
-          'Okviri, skidovi i noseće konstrukcije',
-          'Palubne sekcije i pristupni čelik',
-          'Cijevni sklopovi i oslonci cjevovoda',
-          'Potpuna sljedivost i dokumentacija zavarivanja',
+          'Access platforms and walkways',
+          'Stairs, landings and railings',
+          'Welded frames and supporting structures',
+          'Executed to EN 1090-2, execution class EXC2',
+        ],
+        image: 'pipe-fabrication',
+      },
+      {
+        id: 'ironwork',
+        title: 'Small ironwork in stainless, aluminium and steel',
+        bullets: [
+          'Equipment and machine foundations',
+          'Heavy ducting and ventilation steel',
+          'Drip trays and containment pans',
+          'Stainless, aluminium and carbon steel',
+        ],
+        image: 'stainless-trough',
+      },
+      {
+        id: 'offshore',
+        title: 'Accessories and parts for the offshore steel market',
+        bullets: [
+          'Working platforms and deck access steel',
+          'Railings, handrails and stanchions',
+          'Cage ladders and stair towers',
+          'Made throughout to offshore quality requirements',
         ],
         image: 'industry-offshore',
-      },
-      {
-        id: 'infrastructure',
-        title: 'Infrastruktura i mostovi',
-        summary:
-          'Mostovski nosači i modularni elementi mostova, izrađeni u sekcijama dimenzioniranim za cestovni transport.',
-        bullets: [
-          'Zavareni mostovski i kutijasti nosači',
-          'Modularni i privremeni elementi mostova',
-          'Čelične konstrukcije za ustave, brane i hidrotehniku',
-          'Ograde, rešetke i pristupne konstrukcije',
-        ],
-        image: 'industry-infrastructure',
-      },
-      {
-        id: 'industrial',
-        title: 'Industrija i mašinogradnja',
-        summary:
-          'Okviri, lijevci i mašinska postolja za OEM-ove kojima treba proizvodni kapacitet na koji mogu računati.',
-        bullets: [
-          'Mašinski okviri i zavarena postolja',
-          'Lijevci, žljebovi i transportne konstrukcije',
-          'Rezervoari i posude bez pritiska',
-          'Serijska i ponavljajuća proizvodnja',
-        ],
-        image: 'steel-frame',
       },
     ],
 
@@ -629,104 +504,12 @@ export const bs: Dictionary = {
       { value: '50+', label: 'Ljudi u pogonu', sub: 'Zavarivači, monteri, rukovaoci, inženjeri' },
     ],
 
-    processSteps: [
-      {
-        step: '01',
-        title: 'Upit i inženjerski pregled',
-        body: 'Crteže čitamo prije nego damo ponudu. Gdje se projekat i pogon ne slažu, čut ćete to u fazi upita — a ne tokom proizvodnje.',
-      },
-      {
-        step: '02',
-        title: 'Priprema rada',
-        body: 'Raspored rezanja, datoteke za rezanje, postupci zavarivanja i redoslijed montaže pripremaju se po projektu, pa pogon radi po jednom dogovorenom planu.',
-      },
-      {
-        step: '03',
-        title: 'Proizvodnja',
-        body: 'Rezanje, oblikovanje, sklapanje i zavarivanje odvijaju se pod jednim krovom. Napredak i kontrolne tačke javljaju se po dogovorenom ritmu.',
-      },
-      {
-        step: '04',
-        title: 'Kontrola i završna obrada',
-        body: 'Dimenzionalna kontrola, kontrola zavara i površinska zaštita, uz ateste i izvještaje prikupljene u dokumentaciju o isporuci.',
-      },
-      {
-        step: '05',
-        title: 'Isporuka',
-        body: 'Sekcije se utovaruju, osiguravaju i prevoze do vašeg brodogradilišta ili gradilišta — uključujući vangabaritne terete kada sekcija to traži.',
-      },
-    ],
-
     certifications: [
-      { code: 'EN 1090-2', label: 'Izvođenje čeličnih konstrukcija' },
+      { code: 'EN 1090-2 EXC2', label: 'Execution of steel structures, execution class 2' },
       { code: 'EN ISO 3834-2', label: 'Sveobuhvatni zahtjevi kvaliteta za zavarivanje taljenjem' },
       { code: 'EN ISO 9001', label: 'Upravljanje kvalitetom' },
       { code: 'EN ISO 14001', label: 'Upravljanje zaštitom okoliša' },
       { code: 'EN ISO 45001', label: 'Zaštita zdravlja i sigurnost na radu' },
-    ],
-
-    projects: [
-      {
-        title: 'Modularne sekcije mostova',
-        sector: 'Infrastruktura',
-        meta: '[Klijent] · [Godina] · [XXX] tona',
-        body: 'Zavarene rešetkaste sekcije izrađene, probno sklopljene i otpremljene kao cjeline u granicama cestovnog transporta, za montažu na licu mjesta.',
-        image: 'bridge-transport',
-      },
-      {
-        title: 'Sekcije trupa i temelji',
-        sector: 'Brodogradnja',
-        meta: '[Klijent] · [Godina] · [XXX] tona',
-        body: 'Pregrade, okvirna rebra i temelji opreme izrađeni prema crtežima brodogradilišta i isporučeni na navoz po redoslijedu.',
-        image: 'welding-hall',
-      },
-      {
-        title: 'Cijevni sklopovi i noseći čelik',
-        sector: 'Offshore i energetika',
-        meta: '[Klijent] · [Godina] · [XXX] sklopova',
-        body: 'Izrada cijevnih sklopova s potpunom sljedivošću zavara, isporučenih uz dokumentaciju kontrole koju traži offshore primopredaja.',
-        image: 'pipe-fabrication',
-      },
-      {
-        title: 'Teški zavareni nosači',
-        sector: 'Infrastruktura',
-        meta: '[Klijent] · [Godina] · [XXX] tona',
-        body: 'Limeni nosači izrezani, sklopljeni i zavareni postupkom EPP, zatim pjeskareni i temeljno premazani prije transporta.',
-        image: 'truss-assembly',
-      },
-      {
-        title: 'Mašinski okviri, serijska proizvodnja',
-        sector: 'Industrija',
-        meta: '[Klijent] · [Godina] · [XXX] komada',
-        body: 'Ponavljajuća proizvodnja zavarenih okvira iz fiksnog pripremka, uz dimenzionalnu kontrolu svakog komada.',
-        image: 'steel-frame',
-      },
-      {
-        title: 'Opremni čelik od nerđajućeg čelika',
-        sector: 'Gradnja jahti',
-        meta: '[Klijent] · [Godina] · [XXX] dijelova',
-        body: 'Oblikovani i polirani detalji od nerđajućeg čelika za unutrašnje i palubno opremanje, dovršeni do standarda vidljive površine.',
-        image: 'formed-plate',
-      },
-    ],
-
-    values: [
-      {
-        title: 'Kažemo šta je moguće',
-        body: 'Realan datum oko kojeg možete planirati vrijedi više od optimističnog koji ne možete ispoštovati. Ako je rok tijesan, kažemo to prije nego ga prihvatimo.',
-      },
-      {
-        title: 'Dokumentacija je dio proizvoda',
-        body: 'Atesti materijala, postupci zavarivanja, zapisi kontrole. Konstrukcija koja stigne bez dokumentacije nije završena.',
-      },
-      {
-        title: 'Jedan pogon, jedna odgovornost',
-        body: 'Od rezanja do zaštite sve se odvija pod našim krovom, pa u lancu nema šava na kojem bi se odgovornost mogla izgubiti.',
-      },
-      {
-        title: 'Grade ga ljudi koji zavaruju',
-        body: 'Naše inženjerstvo sjedi uz proizvodnu halu. Odluke na papiru provjeravaju se kod ljudi koji ih moraju izvesti u čeliku.',
-      },
     ],
 
     machines: [

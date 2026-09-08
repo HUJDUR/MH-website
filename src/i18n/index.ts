@@ -6,9 +6,10 @@ import type { Dictionary } from './types';
 /**
  * Locale plumbing.
  *
- * English is the source language and lives at the root (`/about`); the others
- * are prefixed (`/bs/about`, `/nl/about`). Pages are generated once per locale
- * from `src/pages/[...lang]/`, so there is one component per page, not three.
+ * English is the source language and lives at the root (`/contact`); the others
+ * are prefixed (`/bs/contact`, `/nl/contact`). Pages are generated once per
+ * locale from `src/pages/[...lang]/`, so there is one component per page, not
+ * three.
  */
 export const locales = ['en', 'bs', 'nl'] as const;
 export type Locale = (typeof locales)[number];
@@ -42,7 +43,11 @@ export function localePaths() {
   }));
 }
 
-/** Turns a canonical path ("/about") into the one for this locale. */
+/**
+ * Turns a canonical path ("/contact") into the one for this locale. A path that
+ * is only a fragment ("/#facility", for the sections merged into the home page)
+ * comes back locale-prefixed too, as "/bs/#facility".
+ */
 export function href(locale: Locale, path: string): string {
   const clean = path === '/' ? '' : path.replace(/^\/+|\/+$/g, '');
 

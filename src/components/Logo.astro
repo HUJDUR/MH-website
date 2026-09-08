@@ -1,0 +1,36 @@
+---
+import { site } from '../data/site';
+
+interface Props {
+  /** Intrinsic size, so the bar does not reflow while the SVG loads. */
+  width: number;
+  height: number;
+  class?: string;
+}
+
+const { width, height, class: className = '' } = Astro.props;
+---
+
+{/*
+  Two files, one visible at a time. The colour wordmark's cyan half is
+  unreadable on a light ground, so light mode swaps in the near-black one —
+  the rule lives in the wordmark block of global.css and keys on `data-theme`,
+  which means a dark island on a light page (the transparent header over a
+  hero, say) still gets the colour version it needs.
+*/}
+<img
+  data-logo="on-dark"
+  src="/logo/metal-holland-color.svg"
+  alt={site.name}
+  width={width}
+  height={height}
+  class={className}
+/>
+<img
+  data-logo="on-light"
+  src="/logo/metal-holland-dark.svg"
+  alt={site.name}
+  width={width}
+  height={height}
+  class={className}
+/>
