@@ -126,6 +126,35 @@ html[data-theme='light'] [data-theme='light'] {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   Wordmark. The one thing light mode cannot fix by re-pointing a token: the
+   logo is a two-colour SVG, and its cyan half falls to about 2:1 on the light
+   ground. Light mode swaps in the near-black file instead.
+
+   Keyed on `data-theme` rather than on the theme alone, so the dark islands
+   keep the colour mark they were drawn for — including the header while it is
+   still transparent over a hero photograph, which is a light-mode page showing
+   a dark surface. Header.astro drops that attribute once the bar goes solid,
+   and the mark follows.
+--------------------------------------------------------------------------- */
+[data-logo='on-light'] {
+  display: none;
+}
+
+html[data-theme='light'] [data-logo='on-dark'] {
+  display: none;
+}
+html[data-theme='light'] [data-logo='on-light'] {
+  display: block;
+}
+
+html[data-theme='light'] [data-theme='dark'] [data-logo='on-dark'] {
+  display: block;
+}
+html[data-theme='light'] [data-theme='dark'] [data-logo='on-light'] {
+  display: none;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;

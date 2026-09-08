@@ -16,11 +16,11 @@ export const en = {
 
   nav: {
     items: [
-      { href: '/about', label: 'About', blurb: 'Who we are and how we work' },
-      { href: '/capabilities', label: 'Capabilities', blurb: 'Cutting, forming, welding, assembly' },
-      { href: '/industries', label: 'Industries', blurb: 'Shipbuilding, offshore, infrastructure' },
-      { href: '/facility', label: 'Facility', blurb: 'Halls, machinery, capacity' },
-      { href: '/projects', label: 'Projects', blurb: 'Selected work' },
+      { href: '/#about', label: 'About', blurb: 'Who we are and how we work' },
+      { href: '/#capabilities', label: 'Capabilities', blurb: 'Cutting, forming, welding, assembly' },
+      { href: '/#industries', label: 'Industries', blurb: 'Ships, steelwork, ironwork, offshore' },
+      { href: '/#facility', label: 'Facility', blurb: 'Halls, machinery, capacity' },
+      { href: '/media', label: 'Media', blurb: 'Photographs of the works' },
       { href: '/careers', label: 'Careers', blurb: 'Welders, fitters, engineers' },
       { href: '/contact', label: 'Contact', blurb: 'Address, phone, enquiry form' },
     ],
@@ -34,36 +34,6 @@ export const en = {
   },
 
   footer: {
-    groups: [
-      {
-        title: 'Company',
-        items: [
-          { href: '/about', label: 'About Metal Holland' },
-          { href: '/facility', label: 'Facility & equipment' },
-          { href: '/projects', label: 'Projects' },
-          { href: '/careers', label: 'Careers' },
-          { href: '/contact', label: 'Contact' },
-        ],
-      },
-      {
-        title: 'What we do',
-        items: [
-          { href: '/capabilities#cutting', label: 'CNC plasma cutting' },
-          { href: '/capabilities#forming', label: 'Forming & machining' },
-          { href: '/capabilities#welding', label: 'Certified welding' },
-          { href: '/capabilities#assembly', label: 'Assembly & finishing' },
-        ],
-      },
-      {
-        title: 'Sectors',
-        items: [
-          { href: '/industries#shipbuilding', label: 'Shipbuilding & yachts' },
-          { href: '/industries#offshore', label: 'Offshore & energy' },
-          { href: '/industries#infrastructure', label: 'Infrastructure & bridges' },
-          { href: '/industries#industrial', label: 'Industrial & machine building' },
-        ],
-      },
-    ],
     rights: 'All rights reserved.',
     cookiePolicy: 'Cookie policy',
     cookieSettings: 'Cookie settings',
@@ -74,12 +44,8 @@ export const en = {
 
   common: {
     requestQuote: 'Reach out',
+    contactForm: 'Contact form',
     ourCapabilities: 'Our capabilities',
-    allCapabilities: 'All capabilities',
-    moreAbout: 'More about Metal Holland',
-    facilityEquipment: 'Facility & equipment',
-    whatWeBuild: 'What we build',
-    seeWhatWeBuild: 'See what we can build',
     backToHome: 'Back to home',
     contactUs: 'Contact us',
     sector: 'Sector',
@@ -101,70 +67,15 @@ export const en = {
     whoBody2:
       'Project management and work preparation sit alongside the floor, so the people quoting your job are the people who have to build it. Clients in shipbuilding, offshore and infrastructure work with us because one responsible party is simpler to plan around than five.',
 
-    capabilitiesEyebrow: 'Capabilities',
-    capabilitiesTitle: 'From plate to primed section, under one roof.',
-
-    facilityEyebrow: 'The facility',
-    facilityTitle: 'Sized for the sections that are hard to place.',
-    facilityLede:
-      'Four halls, gantry cutting tables, drilling lines, rolls and welding bays — sized for sections that leave on a low-loader, not in a crate.',
-    facilityAlt: 'Aerial view of the Metal Holland production facility and yard',
-    facilityInset: 'of production area, with overhead cranage in every hall',
-    facilityRows: [
-      { label: 'Covered halls', value: 'Cutting, forming, fitting, welding, finishing' },
-      { label: 'Overhead cranage', value: 'Up to [XX] tonnes per hall' },
-      { label: 'Outdoor yard', value: 'Blasting, priming, storage and loading' },
-      { label: 'Transport', value: 'Abnormal loads to yards and sites across Europe' },
-    ],
-
-    industriesEyebrow: 'Industries',
-    industriesTitle: 'Different sectors, the same standard.',
-    industriesLede:
-      'Each one brings its own tolerances and its own paperwork. What does not change is how the work is planned, welded and checked before it leaves.',
-
-    assuranceEyebrow: 'What you get',
-    assuranceTitle: 'Every delivery arrives with its file.',
-    assuranceLede:
-      'The documentation is assembled while the work runs, not reconstructed afterwards. Unless your specification asks for more, this is what comes with the steel.',
-    assurance: [
-      {
-        title: 'Material certificates',
-        body: 'Mill certificates for the plate and sections used, traceable to the heat number in the finished construction.',
-      },
-      {
-        title: 'Welding procedures',
-        body: 'The qualified WPS for each joint type in the job, with the WPQR that supports it.',
-      },
-      {
-        title: 'Welder qualifications',
-        body: 'Certificates for every welder who worked on it, valid on the dates the work was actually done.',
-      },
-      {
-        title: 'Dimensional report',
-        body: 'Measured against the drawing before release. Where something deviates, it is recorded and reported rather than quietly absorbed.',
-      },
-      {
-        title: 'Inspection records',
-        body: 'Visual inspection throughout, and NDT reports where the specification calls for them, with method and operator named.',
-      },
-      {
-        title: 'Surface treatment',
-        body: 'Preparation grade, the product used, and measured dry film thickness.',
-      },
-    ],
-    assuranceNote:
-      'Ask and we will send a sample delivery file from recent work, with the client details removed, so you can judge the standard before you commit to anything.',
-
     energyEyebrow: 'Energy',
-    energyTitle: 'The hall roofs carry solar.',
+    energyTitle: 'We are always looking for improvements.',
     energyLede:
-      'Every hall roof that could take panels now carries them. Fabrication is an energy-hungry business — generating our own is the part of that we can do something about.',
+      'Fabrication is an energy-intensive business. Solar panels on our hall roofs offset part of that load.',
     energyBody:
-      'The array feeds the works directly. While the sun is up, the cutting tables, the extraction, the cranes and the lights run on it. It is also the reason our EN ISO 14001 certificate describes something more than a filing cabinet.',
+      'This is one step in an ongoing shift toward cleaner energy use across the facility.',
     energyFigures: [
-      { value: '[XXX] kWp', label: 'Installed capacity' },
-      { value: '[XX]%', label: 'Of annual consumption' },
-      { value: '[X]', label: 'Hall roofs fitted' },
+      { value: '240 kWp', label: 'Installed capacity' },
+      { value: '2 / 4', label: 'Hall roofs fitted' },
     ],
     energyImages: [
       { slug: 'solar-roof', alt: 'Solar panels covering the roof of a Metal Holland hall' },
@@ -172,26 +83,9 @@ export const en = {
       { slug: 'solar-overhead', alt: 'The hall roofs and their panels seen from directly above' },
     ],
 
-    qualityEyebrow: 'Quality',
-    qualityTitle: 'Quality control, recorded as the work runs.',
-    qualityLede:
-      'Qualified procedures, certified welders, recorded inspections. The delivery file is assembled as the work happens, not reconstructed afterwards.',
-    qualityNote: 'Certificates and scope statements are available on request.',
   },
 
   capabilitiesPage: {
-    title: 'Capabilities',
-    description:
-      "CNC plasma cutting, forming and rolling, certified welding, assembly and finishing — Metal Holland's fabrication capabilities from plate to primed section.",
-    eyebrow: 'Capabilities',
-    heroTitle: 'From plate to primed section.',
-    heroLede:
-      'Cutting, forming, welding, finishing and delivery run in one building, on one schedule, under one responsibility.',
-    heroAlt: 'Plasma cutting head working across heavy steel plate',
-    processEyebrow: 'How a project runs',
-    processTitle: 'Five stages, with a report at each one.',
-    processLede:
-      'Problems in heavy fabrication tend to surface late. A fixed reporting rhythm is how we avoid that, rather than a promise to call if something comes up.',
     materialsEyebrow: 'Materials',
     materialsTitle: 'Carbon steel, stainless, aluminium.',
     materialsLede:
@@ -204,61 +98,14 @@ export const en = {
       { term: 'Plate', detail: 'Up to [200] mm thickness' },
       { term: 'Sections', detail: 'Beams, hollow sections, pipe and bar' },
     ],
-    ctaTitle: 'Not sure it can be built?',
-    ctaBody:
-      'Send the drawing anyway. Much of our work starts with a client asking whether a section can be made in one piece. You will get an answer either way, before you commit to anything.',
   },
 
   industriesPage: {
-    title: 'Industries',
-    description:
-      'Metal Holland fabricates for shipbuilding and yachtbuilding, offshore and energy, infrastructure and bridges, and industrial machine building.',
     eyebrow: 'Industries',
     heroTitle: 'Where our steel ends up.',
-    heroLede:
-      'Hulls, platforms, bridges and machines. Different rules, different paperwork, the same shop floor discipline behind all of them.',
-    heroAlt: 'A vessel at sea at sunset',
-    workingEyebrow: 'Working with us',
-    workingTitle: 'What working with us involves.',
-    working: [
-      {
-        title: 'Capacity that absorbs a peak',
-        body: 'Yards and OEMs use us to take the overflow their own shop cannot swallow without pushing everything else back.',
-      },
-      {
-        title: 'One party, whole scope',
-        body: 'Cutting, welding, coating and transport come from us. There is no gap between suppliers for a problem to fall into.',
-      },
-      {
-        title: 'Documentation that survives audit',
-        body: 'Certificates, procedures and inspection records are gathered as the work runs, so handover is not an archaeology exercise.',
-      },
-    ],
-    ctaTitle: 'Your sector not listed?',
-    ctaBody:
-      'If it is heavy, welded and made of steel, it is probably work we know. Tell us what you are building.',
   },
 
   facilityPage: {
-    title: 'Facility & equipment',
-    description:
-      "Metal Holland's production facility: covered fabrication halls, CNC cutting tables, drilling lines, rolls, welding bays, blasting and priming, and loading for abnormal transport.",
-    eyebrow: 'Facility',
-    heroTitle: 'The shop floor.',
-    heroLede:
-      'Four covered halls, gantry cutting, cranage in every bay and a yard sized for the sections that leave on a low-loader.',
-    heroAlt: 'Interior of a Metal Holland fabrication hall',
-    worksEyebrow: 'The works',
-    worksTitle: 'One site, start to finish.',
-    worksLede:
-      'Plate arrives at one end of the yard and leaves the other end as a coated, measured, documented section. Nothing is trucked across town between operations.',
-    worksAlt: 'Aerial view of the Metal Holland works',
-    figures: [
-      { value: '32,000 m²+', label: 'Site area' },
-      { value: '[4]', label: 'Fabrication halls' },
-      { value: '[XX] t', label: 'Max crane capacity' },
-      { value: '13 m', label: 'Longest section handled' },
-    ],
     equipmentEyebrow: 'Equipment',
     equipmentTitle: 'What is on the floor.',
     equipmentLede:
@@ -267,65 +114,101 @@ export const en = {
     machinesTitle: 'The principal machines.',
     machinesLede:
       'Two thirty-metre plasma tables, a 320-tonne brake, a drilling line and a deburring machine. Between them they cover most of what arrives as a drawing.',
-    galleryEyebrow: 'Inside the halls',
-    galleryTitle: 'Work in progress.',
-    gallery: [
-      { slug: 'cnc-gantry', alt: 'CNC gantry cutting table in the plate hall' },
-      { slug: 'welding-hall', alt: 'Welders working on sections in the fabrication hall' },
-      { slug: 'nested-plate', alt: 'Nested parts cut from a single plate' },
-      { slug: 'machine-hall', alt: 'Machine hall with overhead cranage' },
-      { slug: 'drilling-detail', alt: 'Drilling a section on the beam line' },
-      { slug: 'pipe-fabrication', alt: 'Pipe spool fabrication in progress' },
-      { slug: 'steel-sections', alt: 'Primed steel sections awaiting despatch' },
-    ],
-    logisticsEyebrow: 'Getting it to you',
-    logisticsTitle: 'Sections leave whole.',
-    logisticsLede:
-      'We would rather solve a transport problem than split a construction into pieces that have to be welded again on site. Abnormal loads, escorts and permits are part of the job, not an afterthought.',
-    logisticsBody:
-      'Inside the fence it is the same argument. Our own fleet of forklifts moves plate and finished sections between the halls and the yard, so a construction waits on the next operation rather than on a hired machine.',
-    forkliftsAlt: "Metal Holland's forklift fleet lined up in the yard, filmed from above",
-    ctaTitle: 'Come and see it.',
-    ctaBody:
-      'Visits are welcome. Walk the halls, meet the people who would build your work, and judge the shop for yourself.',
   },
 
-  projectsPage: {
-    title: 'Projects',
+  mediaPage: {
+    title: 'Media',
     description:
-      'Selected fabrication work by Metal Holland — bridge sections, hull sections, pipe spools, welded girders and serial machine frames.',
-    eyebrow: 'Projects',
-    heroTitle: 'Selected work.',
-    heroLede:
-      'A cross-section of what leaves the yard. Client names and figures are shared on request where confidentiality allows.',
-    heroAlt: 'A welded truss assembly on trestles in the fabrication hall',
+      'Photographs from the Metal Holland works — the shop floor, finished work leaving the yard, and the machines it is made on.',
+    eyebrow: 'Media',
+    heroTitle: 'The works, photographed.',
+    heroAlt: 'A welded beam on trestles in the fabrication hall',
     filter: 'Filter',
     all: 'All',
-    empty: 'No projects listed in this sector yet.',
-    ctaTitle: 'References for your sector.',
+    groups: [
+      { id: 'workshop', label: 'Workshop' },
+      { id: 'projects', label: 'Projects' },
+      { id: 'machines', label: 'Machines' },
+    ],
+    videoAlt: "Metal Holland's forklift fleet lined up in the yard, filmed from above",
+    album: [
+      { slug: 'arc-plume', alt: 'Welding arc lighting a plume of smoke in the dark of the hall', group: 'workshop' },
+      { slug: 'welding-dark', alt: 'A welder behind the arc, the hall lost in darkness around it', group: 'workshop' },
+      { slug: 'girder-welding', alt: 'Welding a stiffener into a primed girder section', group: 'workshop' },
+      { slug: 'arc-dark', alt: 'The arc at the moment of striking', group: 'workshop' },
+      { slug: 'beam-welding', alt: 'A welder working along a long primed beam', group: 'workshop' },
+      { slug: 'tube-grinding', alt: 'Grinding sparks running off a row of tubes on the bench', group: 'workshop' },
+      { slug: 'girder-sparks', alt: 'Dressing back the welds on a girder section', group: 'workshop' },
+      { slug: 'welder-beam', alt: 'A welder running a seam along a beam', group: 'workshop' },
+      { slug: 'hall-long-section', alt: 'A long fabricated section filling the length of the hall', group: 'workshop' },
+      { slug: 'welder-hall-dark', alt: 'Welder at work in the darkened hall, the arc the only light', group: 'workshop' },
+      { slug: 'operator-console', alt: 'An operator at a machine control panel', group: 'workshop' },
+      { slug: 'team-workshop', alt: 'Two fabricators setting up work on the bench', group: 'workshop' },
+      { slug: 'control-station', alt: 'Machine operator at the control station of the sawing line', group: 'workshop' },
+      { slug: 'steel-stock', alt: 'Steel flats stacked ready for cutting', group: 'workshop' },
+      { slug: 'workshop-hall', alt: 'Benches and trestles down the length of the workshop', group: 'workshop' },
+      { slug: 'drill-detail', alt: 'A drill working into a steel section', group: 'workshop' },
+      { slug: 'roller-detail', alt: 'Feed rollers on the drilling line', group: 'workshop' },
+      { slug: 'steel-sections', alt: 'Primed girder sections lined up in the hall', group: 'workshop' },
+      { slug: 'girder-line', alt: 'Welders working along a line of primed girder sections', group: 'workshop' },
+      { slug: 'pipe-spools', alt: 'Pipe spools laid out on trestles', group: 'workshop' },
+      { slug: 'pipe-fabrication', alt: 'A welded railing and cage ladder under construction', group: 'workshop' },
+      { slug: 'welding-arc', alt: 'Welding arc against a box girder', group: 'workshop' },
+      { slug: 'welded-frame', alt: 'A long welded frame set up on trestles', group: 'workshop' },
+      { slug: 'beam-sparks', alt: 'Sparks flying as a beam is cut to length', group: 'workshop' },
+      { slug: 'hall-beams', alt: 'Beams laid out across the hall, an arc burning at the far bench', group: 'workshop' },
+      { slug: 'truss-assembly', alt: 'Dressing back the welds on a long fabricated beam', group: 'workshop' },
+      { slug: 'long-beam', alt: 'A finished beam running the length of the hall floor', group: 'workshop' },
+      { slug: 'marked-parts', alt: 'Cut plate parts, hard-marked with their part numbers', group: 'workshop' },
+      { slug: 'hall-sparks', alt: 'Grinding sparks arcing across the hall floor', group: 'workshop' },
+      { slug: 'plasma-head-cut', alt: 'The plasma head cutting into plate', group: 'workshop' },
+      { slug: 'plasma-gantry', alt: 'The plasma gantry travelling along a full plate', group: 'workshop' },
+      { slug: 'nested-parts', alt: 'An operator lifting finished parts out of the cut nest', group: 'workshop' },
+      { slug: 'cutting-bed', alt: 'The cutting bed with a plate loaded', group: 'workshop' },
+      { slug: 'plasma-sparks', alt: 'Sparks streaming from the plasma cut across the bed', group: 'workshop' },
+      { slug: 'project-marked-plate', alt: 'Marked and cut plate parts on the bench', group: 'projects' },
+      { slug: 'bridge-transport', alt: 'A welded lattice girder loaded on a low-loader in the yard', group: 'projects' },
+      { slug: 'girder-transport-2', alt: 'The lattice girder leaving the works on its trailer', group: 'projects' },
+      { slug: 'girder-transport-3', alt: 'The lattice girder on the road outside the works', group: 'projects' },
+      { slug: 'steel-frame', alt: 'A large primed welded frame standing in the hall', group: 'projects' },
+      { slug: 'stainless-trough', alt: 'A stainless steel trough, welds dressed back', group: 'projects' },
+      { slug: 'stainless-trough-2', alt: 'The finished stainless trough seen along its length', group: 'projects' },
+      { slug: 'frame-assembly', alt: 'A heavy welded frame assembled on the shop floor', group: 'projects' },
+      { slug: 'frame-loaded', alt: 'A fabricated frame loaded on a trailer at the works', group: 'projects' },
+      { slug: 'frame-transport', alt: 'Two fabricated frames secured on a flatbed trailer', group: 'projects' },
+      { slug: 'frame-transport-2', alt: 'The loaded trailer leaving the yard', group: 'projects' },
+      { slug: 'crane-lift', alt: 'A mobile crane lifting a stainless vessel', group: 'projects' },
+      { slug: 'crane-lift-2', alt: 'The crane setting the load down', group: 'projects' },
+      { slug: 'access-platform', alt: 'An access platform with grating deck and tubular railings, assembled in the hall', group: 'projects' },
+      { slug: 'machine-esab', alt: 'ESAB CNC plasma cutting gantry over its thirty-metre table', group: 'machines' },
+      { slug: 'machine-messer', alt: 'Messer MultiTherm plasma cutting a steel plate', group: 'machines' },
+      { slug: 'machine-durma', alt: 'Durma AD-S 40320 CNC press brake in the forming bay', group: 'machines' },
+      { slug: 'machine-vernet', alt: 'Vernet Behringer FP 400 line with its control station', group: 'machines' },
+      { slug: 'machine-qfin', alt: 'QFIN SER 600 deburring and edge-rounding machine', group: 'machines' },
+      { slug: 'machine-bp40', alt: 'BP 40 horizontal press', group: 'machines' },
+      { slug: 'machine-fp80', alt: 'FP 80 horizontal press', group: 'machines' },
+      { slug: 'machine-jaespa', alt: 'Jaespa bandsaw on its roller feed', group: 'machines' },
+      { slug: 'machine-kaltenbach', alt: 'Kaltenbach saw', group: 'machines' },
+      { slug: 'machine-pilous', alt: 'Pilous bandsaw', group: 'machines' },
+      { slug: 'forklifts-yard', alt: 'The forklift fleet lined up in the yard', group: 'machines' },
+      { slug: 'forklifts-yard-2', alt: 'Forklifts parked along the edge of the yard', group: 'machines' },
+    ],
+    ctaTitle: 'Want to see the place itself?',
     ctaBody:
-      'Ask and we will put you in touch with clients doing work like yours — the most useful reference is always the one that matches your own drawings.',
+      'Photographs only go so far.\n\nVisits are welcome — walk the halls and see the production yourself!',
   },
 
   aboutPage: {
-    title: 'About',
-    description:
-      'Metal Holland combines Dutch engineering and project management with a full steel fabrication facility — cutting, forming, welding and finishing heavy constructions in house.',
     eyebrow: 'About',
     heroTitle: 'Engineering and capacity in one place.',
     heroLede:
       'One shop, one responsible party, and a straight answer about what is possible.',
-    heroAlt: 'A Metal Holland operator at a machine control panel',
-    storyEyebrow: 'Our story',
-    storyTitle: 'Why the company is set up this way.',
     storyLede:
       'Metal Holland exists because clients in the Dutch maritime and infrastructure world kept needing the same two things at once: engineering they could talk to in their own language, and fabrication capacity large enough to matter.',
     storyBody1:
       'So we built both under one roof in Šamac. Project management, work preparation and client contact sit alongside the floor, and cutting, forming, welding, finishing and loading happen in our own halls, on our own equipment, with our own people. There is no chain of subcontractors between an enquiry and the steel.',
     storyBody2:
       'The result is unglamorous and hard to fake: sections that arrive on the agreed date, at the agreed size, with the file that proves how they were made. Most of our work now comes from clients who have already sent us something once.',
-    valuesEyebrow: 'How we work',
-    valuesTitle: 'How we work.',
     peopleEyebrow: 'People',
     peopleTitle: '50+ people, most of them on the floor.',
     peopleLede:
@@ -335,9 +218,9 @@ export const en = {
     peopleAlt: 'Metal Holland fabricators at work in the hall',
     certEyebrow: 'Certification',
     certTitle: 'Certified and audited.',
-    ctaTitle: 'Work with us.',
+    ctaTitle: 'Reach out to us.',
     ctaBody:
-      'Whether you need a single section or a year of capacity, the conversation starts the same way — send the drawings and tell us the date.',
+      'We are always in search of new and stable suppliers and interested clients.',
   },
 
   contactPage: {
@@ -567,55 +450,47 @@ export const en = {
     industries: [
       {
         id: 'shipbuilding',
-        title: 'Shipbuilding & yachtbuilding',
-        summary:
-          'Hull sections, foundations and outfitting steel built to yard drawings and delivered on the yard schedule.',
+        title: 'Shipbuilding & yacht building',
         bullets: [
-          'Hull and superstructure sections',
-          'Bulkheads, girders and web frames',
-          'Engine and equipment foundations',
-          'Outfitting steel and stainless detail work',
+          'Cutting and forming of hull sections',
+          'Prefabrication of smaller sections and sub-assemblies',
+          'Full plate traceability, from the mill certificate to the finished section',
+          'All material supplied with 3.2 certificates',
         ],
         image: 'industry-shipbuilding',
       },
       {
-        id: 'offshore',
-        title: 'Offshore & energy',
-        summary:
-          'Heavy welded structures for offshore and energy work, where documentation matters as much as the steel.',
+        id: 'steelwork',
+        title: 'Classic steel construction',
         bullets: [
-          'Frames, skids and support structures',
-          'Deck sections and access steel',
-          'Pipe spools and pipe supports',
-          'Full traceability and weld documentation',
+          'Access platforms and walkways',
+          'Stairs, landings and railings',
+          'Welded frames and supporting structures',
+          'Executed to EN 1090-2, execution class EXC2',
+        ],
+        image: 'pipe-fabrication',
+      },
+      {
+        id: 'ironwork',
+        title: 'Small ironwork in stainless, aluminium and steel',
+        bullets: [
+          'Equipment and machine foundations',
+          'Heavy ducting and ventilation steel',
+          'Drip trays and containment pans',
+          'Stainless, aluminium and carbon steel',
+        ],
+        image: 'stainless-trough',
+      },
+      {
+        id: 'offshore',
+        title: 'Accessories and parts for the offshore steel market',
+        bullets: [
+          'Working platforms and deck access steel',
+          'Railings, handrails and stanchions',
+          'Cage ladders and stair towers',
+          'Made throughout to offshore quality requirements',
         ],
         image: 'industry-offshore',
-      },
-      {
-        id: 'infrastructure',
-        title: 'Infrastructure & bridges',
-        summary:
-          'Bridge girders and modular bridge components, fabricated in sections sized for road transport.',
-        bullets: [
-          'Welded bridge girders and box sections',
-          'Modular and temporary bridge components',
-          'Lock, weir and hydraulic steel structures',
-          'Railings, gratings and access structures',
-        ],
-        image: 'industry-infrastructure',
-      },
-      {
-        id: 'industrial',
-        title: 'Industrial & machine building',
-        summary:
-          'Frames, hoppers and machine bases for OEMs who need fabrication capacity they can plan around.',
-        bullets: [
-          'Machine frames and welded bases',
-          'Hoppers, chutes and conveyor structures',
-          'Storage tanks and pressure-free vessels',
-          'Serial and repeat production',
-        ],
-        image: 'steel-frame',
       },
     ],
 
@@ -626,104 +501,12 @@ export const en = {
       { value: '50+', label: 'People on the floor', sub: 'Welders, fitters, operators, engineers' },
     ],
 
-    processSteps: [
-      {
-        step: '01',
-        title: 'Enquiry & engineering review',
-        body: 'We read the drawings before we quote. Where the design and the workshop disagree, you hear about it at the enquiry stage — not during production.',
-      },
-      {
-        step: '02',
-        title: 'Work preparation',
-        body: 'Nesting, cutting files, weld procedures and a build sequence are prepared per project, so the floor works from one agreed plan.',
-      },
-      {
-        step: '03',
-        title: 'Fabrication',
-        body: 'Cutting, forming, fitting and welding run under one roof. Progress and inspection points are reported on an agreed rhythm.',
-      },
-      {
-        step: '04',
-        title: 'Inspection & finishing',
-        body: 'Dimensional control, weld inspection and surface treatment, with the certificates and reports collected into the delivery file.',
-      },
-      {
-        step: '05',
-        title: 'Delivery',
-        body: 'Sections are loaded, secured and transported to your yard or site — including abnormal loads where the section calls for it.',
-      },
-    ],
-
     certifications: [
-      { code: 'EN 1090-2', label: 'Execution of steel structures' },
+      { code: 'EN 1090-2 EXC2', label: 'Execution of steel structures, execution class 2' },
       { code: 'EN ISO 3834-2', label: 'Comprehensive quality requirements for fusion welding' },
       { code: 'EN ISO 9001', label: 'Quality management' },
       { code: 'EN ISO 14001', label: 'Environmental management' },
       { code: 'EN ISO 45001', label: 'Occupational health & safety' },
-    ],
-
-    projects: [
-      {
-        title: 'Modular bridge sections',
-        sector: 'Infrastructure',
-        meta: '[Client] · [Year] · [XXX] tonnes',
-        body: 'Welded truss sections fabricated, trial-assembled and shipped as road-legal units for on-site erection.',
-        image: 'bridge-transport',
-      },
-      {
-        title: 'Hull sections & foundations',
-        sector: 'Shipbuilding',
-        meta: '[Client] · [Year] · [XXX] tonnes',
-        body: 'Bulkheads, web frames and equipment foundations built to yard drawings and delivered to the building dock in sequence.',
-        image: 'welding-hall',
-      },
-      {
-        title: 'Pipe spools & support steel',
-        sector: 'Offshore & energy',
-        meta: '[Client] · [Year] · [XXX] spools',
-        body: 'Spool fabrication with full weld traceability, delivered with the inspection documentation required for offshore handover.',
-        image: 'pipe-fabrication',
-      },
-      {
-        title: 'Heavy welded girders',
-        sector: 'Infrastructure',
-        meta: '[Client] · [Year] · [XXX] tonnes',
-        body: 'Plate girders cut, assembled and submerged-arc welded, then blasted and primed before transport.',
-        image: 'truss-assembly',
-      },
-      {
-        title: 'Machine frames, serial production',
-        sector: 'Industrial',
-        meta: '[Client] · [Year] · [XXX] units',
-        body: 'Repeat production of welded frames from a fixed jig, with dimensional control on every unit.',
-        image: 'steel-frame',
-      },
-      {
-        title: 'Stainless outfitting steel',
-        sector: 'Yachtbuilding',
-        meta: '[Client] · [Year] · [XXX] parts',
-        body: 'Formed and polished stainless detail work for interior and deck outfitting, finished to a visible-surface standard.',
-        image: 'formed-plate',
-      },
-    ],
-
-    values: [
-      {
-        title: 'Dates we can hold',
-        body: 'A realistic date you can plan around is worth more than an optimistic one you cannot. If a schedule is tight, we say so before we accept it.',
-      },
-      {
-        title: 'Documentation ships with the steel',
-        body: 'Material certificates, weld procedures, inspection records. A construction that arrives without its documentation is not finished.',
-      },
-      {
-        title: 'One point of responsibility',
-        body: 'Cutting through to coating happens under our own roof. There is no seam in the chain for a problem to fall into.',
-      },
-      {
-        title: 'Engineering next to the floor',
-        body: 'Our engineering sits next to the shop floor. Decisions on paper get tested against the people who have to make them work in steel.',
-      },
     ],
 
     machines: [

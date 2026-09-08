@@ -20,11 +20,11 @@ export const nl: Dictionary = {
 
   nav: {
     items: [
-      { href: '/about', label: 'Over ons', blurb: 'Wie we zijn en hoe we werken' },
-      { href: '/capabilities', label: 'Mogelijkheden', blurb: 'Snijden, vormen, lassen, samenbouw' },
-      { href: '/industries', label: 'Sectoren', blurb: 'Scheepsbouw, offshore, infrastructuur' },
-      { href: '/facility', label: 'Bedrijf', blurb: 'Hallen, machines, capaciteit' },
-      { href: '/projects', label: 'Projecten', blurb: 'Geselecteerd werk' },
+      { href: '/#about', label: 'Over ons', blurb: 'Wie we zijn en hoe we werken' },
+      { href: '/#capabilities', label: 'Mogelijkheden', blurb: 'Snijden, vormen, lassen, samenbouw' },
+      { href: '/#industries', label: 'Sectoren', blurb: 'Ships, steelwork, ironwork, offshore' },
+      { href: '/#facility', label: 'Bedrijf', blurb: 'Hallen, machines, capaciteit' },
+      { href: '/media', label: 'Media', blurb: 'Photographs of the works' },
       { href: '/careers', label: 'Vacatures', blurb: 'Lassers, bankwerkers, engineers' },
       { href: '/contact', label: 'Contact', blurb: 'Adres, telefoon, aanvraagformulier' },
     ],
@@ -38,36 +38,6 @@ export const nl: Dictionary = {
   },
 
   footer: {
-    groups: [
-      {
-        title: 'Bedrijf',
-        items: [
-          { href: '/about', label: 'Over Metal Holland' },
-          { href: '/facility', label: 'Bedrijf & machinepark' },
-          { href: '/projects', label: 'Projecten' },
-          { href: '/careers', label: 'Werken bij ons' },
-          { href: '/contact', label: 'Contact' },
-        ],
-      },
-      {
-        title: 'Wat we doen',
-        items: [
-          { href: '/capabilities#cutting', label: 'CNC plasmasnijden' },
-          { href: '/capabilities#forming', label: 'Vormen & verspanen' },
-          { href: '/capabilities#welding', label: 'Gecertificeerd lassen' },
-          { href: '/capabilities#assembly', label: 'Samenbouw & afwerking' },
-        ],
-      },
-      {
-        title: 'Sectoren',
-        items: [
-          { href: '/industries#shipbuilding', label: 'Scheepsbouw & jachtbouw' },
-          { href: '/industries#offshore', label: 'Offshore & energie' },
-          { href: '/industries#infrastructure', label: 'Infrastructuur & bruggen' },
-          { href: '/industries#industrial', label: 'Industrie & machinebouw' },
-        ],
-      },
-    ],
     rights: 'Alle rechten voorbehouden.',
     cookiePolicy: 'Cookiebeleid',
     cookieSettings: 'Cookie-instellingen',
@@ -78,12 +48,8 @@ export const nl: Dictionary = {
 
   common: {
     requestQuote: 'Neem contact op',
+    contactForm: 'Contact form',
     ourCapabilities: 'Onze mogelijkheden',
-    allCapabilities: 'Alle mogelijkheden',
-    moreAbout: 'Meer over Metal Holland',
-    facilityEquipment: 'Bedrijf & machinepark',
-    whatWeBuild: 'Wat we bouwen',
-    seeWhatWeBuild: 'Bekijk wat we kunnen bouwen',
     backToHome: 'Terug naar home',
     contactUs: 'Neem contact op',
     sector: 'Sector',
@@ -105,60 +71,6 @@ export const nl: Dictionary = {
     whoBody2:
       'Dat is het hele voorstel. Nederlandse projectleiding en engineeringdiscipline, gecombineerd met de capaciteit, de kraanbaan en de vakmensen van een volwaardig productiebedrijf. Opdrachtgevers in scheepsbouw, offshore en infrastructuur werken met ons omdat één verantwoordelijke partij eenvoudiger te plannen is dan vijf.',
 
-    capabilitiesEyebrow: 'Mogelijkheden',
-    capabilitiesTitle: 'Alles van plaat tot geconserveerde sectie, onder één dak.',
-
-    facilityEyebrow: 'Het bedrijf',
-    facilityTitle: 'Capaciteit waar u een programma omheen plant.',
-    facilityLede:
-      'Vier hallen, portaalsnijtafels, boorlijnen, walsen en lasplaatsen — op maat van secties die op een dieplader vertrekken, niet in een kist.',
-    facilityAlt: 'Luchtfoto van het productiebedrijf en terrein van Metal Holland',
-    facilityInset: 'productieoppervlak, met bovenloopkranen in elke hal',
-    facilityRows: [
-      { label: 'Overdekte hallen', value: 'Snijden, vormen, passen, lassen, afwerken' },
-      { label: 'Bovenloopkranen', value: 'Tot [XX] ton per hal' },
-      { label: 'Buitenterrein', value: 'Stralen, gronden, opslag en belading' },
-      { label: 'Transport', value: 'Exceptioneel transport naar werven en locaties in heel Europa' },
-    ],
-
-    industriesEyebrow: 'Sectoren',
-    industriesTitle: 'Vier sectoren. Eén set normen.',
-    industriesLede:
-      'De toleranties en de papieren verschillen. De discipline erachter niet.',
-
-    assuranceEyebrow: 'What you get',
-    assuranceTitle: 'Every delivery arrives with its file.',
-    assuranceLede:
-      'The documentation is assembled while the work runs, not reconstructed afterwards. Unless your specification asks for more, this is what comes with the steel.',
-    assurance: [
-      {
-        title: 'Material certificates',
-        body: 'Mill certificates for the plate and sections used, traceable to the heat number in the finished construction.',
-      },
-      {
-        title: 'Welding procedures',
-        body: 'The qualified WPS for each joint type in the job, with the WPQR that supports it.',
-      },
-      {
-        title: 'Welder qualifications',
-        body: 'Certificates for every welder who worked on it, valid on the dates the work was actually done.',
-      },
-      {
-        title: 'Dimensional report',
-        body: 'Measured against the drawing before release. Where something deviates, it is recorded and reported rather than quietly absorbed.',
-      },
-      {
-        title: 'Inspection records',
-        body: 'Visual inspection throughout, and NDT reports where the specification calls for them, with method and operator named.',
-      },
-      {
-        title: 'Surface treatment',
-        body: 'Preparation grade, the product used, and measured dry film thickness.',
-      },
-    ],
-    assuranceNote:
-      'Ask and we will send a sample delivery file from recent work, with the client details removed, so you can judge the standard before you commit to anything.',
-
     energyEyebrow: 'Energie',
     energyTitle: 'Het dak draait een flink deel van de werkplaats.',
     energyLede:
@@ -166,9 +78,8 @@ export const nl: Dictionary = {
     energyBody:
       'De installatie voedt het bedrijf rechtstreeks. Zolang de zon schijnt, draaien de snijtafels, de afzuiging, de kranen en de verlichting erop. Het is ook de reden dat ons EN ISO 14001-certificaat over meer gaat dan een ordner in de kast.',
     energyFigures: [
-      { value: '[XXX] kWp', label: 'Opgesteld vermogen' },
-      { value: '[XX]%', label: 'Van het jaarverbruik' },
-      { value: '[X]', label: 'Haldaken voorzien' },
+      { value: '240 kWp', label: 'Opgesteld vermogen' },
+      { value: '2 / 4', label: 'Haldaken voorzien' },
     ],
     energyImages: [
       { slug: 'solar-roof', alt: 'Zonnepanelen op het dak van een hal van Metal Holland' },
@@ -176,26 +87,9 @@ export const nl: Dictionary = {
       { slug: 'solar-overhead', alt: 'De haldaken en hun panelen recht van boven gezien' },
     ],
 
-    qualityEyebrow: 'Kwaliteit',
-    qualityTitle: 'Het certificaat is slechts de samenvatting.',
-    qualityLede:
-      'Gekwalificeerde procedures, gecertificeerde lassers, vastgelegde keuringen. Het opleverdossier ontstaat tijdens het werk, het wordt achteraf niet gereconstrueerd.',
-    qualityNote: 'Certificaten en scopeverklaringen zijn op aanvraag beschikbaar.',
   },
 
   capabilitiesPage: {
-    title: 'Mogelijkheden',
-    description:
-      'CNC plasmasnijden, vormen en walsen, gecertificeerd lassen, samenbouw en afwerking — de mogelijkheden van Metal Holland van plaat tot geconserveerde sectie.',
-    eyebrow: 'Mogelijkheden',
-    heroTitle: 'Van plaat tot geconserveerde sectie.',
-    heroLede:
-      'Snijden, vormen, lassen, afwerken en leveren gebeuren in één gebouw, op één planning, onder één verantwoordelijkheid.',
-    heroAlt: 'Plasmasnijkop aan het werk over zware staalplaat',
-    processEyebrow: 'Hoe een project loopt',
-    processTitle: 'Vijf fasen, en bij elke hoort u van ons.',
-    processLede:
-      'Zware constructie gaat stilletjes mis, weken voordat iemand het merkt. Ons antwoord is een vast ritme van rapporteren, niet de belofte te bellen als er iets opduikt.',
     materialsEyebrow: 'Materialen',
     materialsTitle: 'Koolstofstaal, rvs, aluminium.',
     materialsLede:
@@ -208,61 +102,14 @@ export const nl: Dictionary = {
       { term: 'Plaat', detail: 'Tot [200] mm dikte' },
       { term: 'Profielen', detail: 'Liggers, kokerprofielen, buis en staf' },
     ],
-    ctaTitle: 'Twijfelt u of het te maken is?',
-    ctaBody:
-      'Stuur de tekening toch. De helft van ons werk begint met de vraag of een sectie uit één stuk kan — en dat kan meestal.',
   },
 
   industriesPage: {
-    title: 'Sectoren',
-    description:
-      'Metal Holland produceert voor scheepsbouw en jachtbouw, offshore en energie, infrastructuur en bruggen, en industriële machinebouw.',
     eyebrow: 'Sectoren',
     heroTitle: 'Waar ons staal terechtkomt.',
-    heroLede:
-      'Rompen, platforms, bruggen en machines. Andere regels, andere papieren, dezelfde discipline op de werkvloer.',
-    heroAlt: 'Een schip op zee bij zonsondergang',
-    workingEyebrow: 'Samenwerken',
-    workingTitle: 'Waar een constructiepartner eigenlijk voor is.',
-    working: [
-      {
-        title: 'Capaciteit die een piek opvangt',
-        body: 'Werven en OEM’s zetten ons in voor het werk dat hun eigen hal niet kan opnemen zonder al het andere op te schuiven.',
-      },
-      {
-        title: 'Eén partij, hele scope',
-        body: 'Snijden, lassen, conserveren en transport komen bij ons vandaan. Er zit geen naad tussen leveranciers waar een probleem in kan vallen.',
-      },
-      {
-        title: 'Documentatie die een audit doorstaat',
-        body: 'Certificaten, procedures en keuringsrapporten worden tijdens het werk verzameld, zodat oplevering geen opgraving wordt.',
-      },
-    ],
-    ctaTitle: 'Uw sector er niet bij?',
-    ctaBody:
-      'Als het zwaar is, gelast en van staal, kennen we het werk waarschijnlijk. Vertel ons wat u bouwt.',
   },
 
   facilityPage: {
-    title: 'Bedrijf & machinepark',
-    description:
-      'Het productiebedrijf van Metal Holland: overdekte hallen, CNC-snijtafels, boorlijnen, walsen, lasplaatsen, stralen en gronden, en belading voor exceptioneel transport.',
-    eyebrow: 'Bedrijf',
-    heroTitle: 'De werkvloer.',
-    heroLede:
-      'Vier overdekte hallen, portaalsnijden, kranen in elke beuk en een terrein op maat van secties die op een dieplader vertrekken.',
-    heroAlt: 'Interieur van een productiehal van Metal Holland',
-    worksEyebrow: 'Het bedrijf',
-    worksTitle: 'Eén locatie, van begin tot eind.',
-    worksLede:
-      'Plaat komt aan de ene kant van het terrein binnen en verlaat de andere kant als geconserveerde, ingemeten en gedocumenteerde sectie. Er wordt tussen bewerkingen niets door de stad gereden.',
-    worksAlt: 'Luchtfoto van het bedrijf van Metal Holland',
-    figures: [
-      { value: '32,000 m²+', label: 'Terreinoppervlak' },
-      { value: '[4]', label: 'Productiehallen' },
-      { value: '[XX] t', label: 'Max. kraancapaciteit' },
-      { value: '13 m', label: 'Langste verwerkte sectie' },
-    ],
     equipmentEyebrow: 'Machinepark',
     equipmentTitle: 'Wat er op de vloer staat.',
     equipmentLede:
@@ -271,65 +118,101 @@ export const nl: Dictionary = {
     machinesTitle: 'Die het noemen waard zijn.',
     machinesLede:
       'Twee plasmatafels van dertig meter, een kantbank van 320 ton, een boorlijn en een ontbraammachine. Samen dekken ze het meeste van wat als tekening binnenkomt.',
-    galleryEyebrow: 'In de hallen',
-    galleryTitle: 'Werk in uitvoering.',
-    gallery: [
-      { slug: 'cnc-gantry', alt: 'CNC-portaalsnijtafel in de plaathal' },
-      { slug: 'welding-hall', alt: 'Lassers werken aan secties in de productiehal' },
-      { slug: 'nested-plate', alt: 'Genest uitgesneden delen uit één plaat' },
-      { slug: 'machine-hall', alt: 'Machinehal met bovenloopkraan' },
-      { slug: 'drilling-detail', alt: 'Boren van een profiel op de boorlijn' },
-      { slug: 'pipe-fabrication', alt: 'Productie van pijpspools in uitvoering' },
-      { slug: 'steel-sections', alt: 'Gegronde staalsecties gereed voor verzending' },
-    ],
-    logisticsEyebrow: 'Bij u afgeleverd',
-    logisticsTitle: 'Secties vertrekken in één stuk.',
-    logisticsLede:
-      'Wij lossen liever een transportprobleem op dan een constructie op te delen in stukken die op locatie opnieuw gelast moeten worden. Exceptioneel transport, begeleiding en vergunningen horen bij het werk, ze zijn geen bijzaak.',
-    logisticsBody:
-      'Binnen het hek geldt hetzelfde. Ons eigen heftruckpark verplaatst plaat en afgewerkte secties tussen de hallen en het terrein, zodat een constructie wacht op de volgende bewerking en niet op een gehuurde machine.',
-    forkliftsAlt: 'Het heftruckpark van Metal Holland op een rij op het terrein, van bovenaf gefilmd',
-    ctaTitle: 'Kom het bekijken.',
-    ctaBody:
-      'Bezoek is welkom. Loop door de hallen, ontmoet de mensen die uw werk zouden bouwen, en beoordeel het bedrijf zelf.',
   },
 
-  projectsPage: {
-    title: 'Projecten',
+  mediaPage: {
+    title: 'Media',
     description:
-      'Geselecteerd werk van Metal Holland — brugsecties, rompsecties, pijpspools, gelaste liggers en machineframes in serie.',
-    eyebrow: 'Projecten',
-    heroTitle: 'Geselecteerd werk.',
-    heroLede:
-      'Een dwarsdoorsnede van wat het terrein verlaat. Namen van opdrachtgevers en cijfers delen we op aanvraag, waar vertrouwelijkheid dat toelaat.',
-    heroAlt: 'Een gelaste vakwerkconstructie op bokken in de productiehal',
+      'Photographs from the Metal Holland works — the shop floor, finished work leaving the yard, and the machines it is made on.',
+    eyebrow: 'Media',
+    heroTitle: 'The works, photographed.',
+    heroAlt: 'A welded beam on trestles in the fabrication hall',
     filter: 'Filter',
     all: 'Alles',
-    empty: 'Nog geen projecten vermeld in deze sector.',
-    ctaTitle: 'Referenties voor uw sector.',
+    groups: [
+      { id: 'workshop', label: 'Workshop' },
+      { id: 'projects', label: 'Projects' },
+      { id: 'machines', label: 'Machines' },
+    ],
+    videoAlt: "Metal Holland's forklift fleet lined up in the yard, filmed from above",
+    album: [
+      { slug: 'arc-plume', alt: 'Welding arc lighting a plume of smoke in the dark of the hall', group: 'workshop' },
+      { slug: 'welding-dark', alt: 'A welder behind the arc, the hall lost in darkness around it', group: 'workshop' },
+      { slug: 'girder-welding', alt: 'Welding a stiffener into a primed girder section', group: 'workshop' },
+      { slug: 'arc-dark', alt: 'The arc at the moment of striking', group: 'workshop' },
+      { slug: 'beam-welding', alt: 'A welder working along a long primed beam', group: 'workshop' },
+      { slug: 'tube-grinding', alt: 'Grinding sparks running off a row of tubes on the bench', group: 'workshop' },
+      { slug: 'girder-sparks', alt: 'Dressing back the welds on a girder section', group: 'workshop' },
+      { slug: 'welder-beam', alt: 'A welder running a seam along a beam', group: 'workshop' },
+      { slug: 'hall-long-section', alt: 'A long fabricated section filling the length of the hall', group: 'workshop' },
+      { slug: 'welder-hall-dark', alt: 'Welder at work in the darkened hall, the arc the only light', group: 'workshop' },
+      { slug: 'operator-console', alt: 'An operator at a machine control panel', group: 'workshop' },
+      { slug: 'team-workshop', alt: 'Two fabricators setting up work on the bench', group: 'workshop' },
+      { slug: 'control-station', alt: 'Machine operator at the control station of the sawing line', group: 'workshop' },
+      { slug: 'steel-stock', alt: 'Steel flats stacked ready for cutting', group: 'workshop' },
+      { slug: 'workshop-hall', alt: 'Benches and trestles down the length of the workshop', group: 'workshop' },
+      { slug: 'drill-detail', alt: 'A drill working into a steel section', group: 'workshop' },
+      { slug: 'roller-detail', alt: 'Feed rollers on the drilling line', group: 'workshop' },
+      { slug: 'steel-sections', alt: 'Primed girder sections lined up in the hall', group: 'workshop' },
+      { slug: 'girder-line', alt: 'Welders working along a line of primed girder sections', group: 'workshop' },
+      { slug: 'pipe-spools', alt: 'Pipe spools laid out on trestles', group: 'workshop' },
+      { slug: 'pipe-fabrication', alt: 'A welded railing and cage ladder under construction', group: 'workshop' },
+      { slug: 'welding-arc', alt: 'Welding arc against a box girder', group: 'workshop' },
+      { slug: 'welded-frame', alt: 'A long welded frame set up on trestles', group: 'workshop' },
+      { slug: 'beam-sparks', alt: 'Sparks flying as a beam is cut to length', group: 'workshop' },
+      { slug: 'hall-beams', alt: 'Beams laid out across the hall, an arc burning at the far bench', group: 'workshop' },
+      { slug: 'truss-assembly', alt: 'Dressing back the welds on a long fabricated beam', group: 'workshop' },
+      { slug: 'long-beam', alt: 'A finished beam running the length of the hall floor', group: 'workshop' },
+      { slug: 'marked-parts', alt: 'Cut plate parts, hard-marked with their part numbers', group: 'workshop' },
+      { slug: 'hall-sparks', alt: 'Grinding sparks arcing across the hall floor', group: 'workshop' },
+      { slug: 'plasma-head-cut', alt: 'The plasma head cutting into plate', group: 'workshop' },
+      { slug: 'plasma-gantry', alt: 'The plasma gantry travelling along a full plate', group: 'workshop' },
+      { slug: 'nested-parts', alt: 'An operator lifting finished parts out of the cut nest', group: 'workshop' },
+      { slug: 'cutting-bed', alt: 'The cutting bed with a plate loaded', group: 'workshop' },
+      { slug: 'plasma-sparks', alt: 'Sparks streaming from the plasma cut across the bed', group: 'workshop' },
+      { slug: 'project-marked-plate', alt: 'Marked and cut plate parts on the bench', group: 'projects' },
+      { slug: 'bridge-transport', alt: 'A welded lattice girder loaded on a low-loader in the yard', group: 'projects' },
+      { slug: 'girder-transport-2', alt: 'The lattice girder leaving the works on its trailer', group: 'projects' },
+      { slug: 'girder-transport-3', alt: 'The lattice girder on the road outside the works', group: 'projects' },
+      { slug: 'steel-frame', alt: 'A large primed welded frame standing in the hall', group: 'projects' },
+      { slug: 'stainless-trough', alt: 'A stainless steel trough, welds dressed back', group: 'projects' },
+      { slug: 'stainless-trough-2', alt: 'The finished stainless trough seen along its length', group: 'projects' },
+      { slug: 'frame-assembly', alt: 'A heavy welded frame assembled on the shop floor', group: 'projects' },
+      { slug: 'frame-loaded', alt: 'A fabricated frame loaded on a trailer at the works', group: 'projects' },
+      { slug: 'frame-transport', alt: 'Two fabricated frames secured on a flatbed trailer', group: 'projects' },
+      { slug: 'frame-transport-2', alt: 'The loaded trailer leaving the yard', group: 'projects' },
+      { slug: 'crane-lift', alt: 'A mobile crane lifting a stainless vessel', group: 'projects' },
+      { slug: 'crane-lift-2', alt: 'The crane setting the load down', group: 'projects' },
+      { slug: 'access-platform', alt: 'An access platform with grating deck and tubular railings, assembled in the hall', group: 'projects' },
+      { slug: 'machine-esab', alt: 'ESAB CNC plasma cutting gantry over its thirty-metre table', group: 'machines' },
+      { slug: 'machine-messer', alt: 'Messer MultiTherm plasma cutting a steel plate', group: 'machines' },
+      { slug: 'machine-durma', alt: 'Durma AD-S 40320 CNC press brake in the forming bay', group: 'machines' },
+      { slug: 'machine-vernet', alt: 'Vernet Behringer FP 400 line with its control station', group: 'machines' },
+      { slug: 'machine-qfin', alt: 'QFIN SER 600 deburring and edge-rounding machine', group: 'machines' },
+      { slug: 'machine-bp40', alt: 'BP 40 horizontal press', group: 'machines' },
+      { slug: 'machine-fp80', alt: 'FP 80 horizontal press', group: 'machines' },
+      { slug: 'machine-jaespa', alt: 'Jaespa bandsaw on its roller feed', group: 'machines' },
+      { slug: 'machine-kaltenbach', alt: 'Kaltenbach saw', group: 'machines' },
+      { slug: 'machine-pilous', alt: 'Pilous bandsaw', group: 'machines' },
+      { slug: 'forklifts-yard', alt: 'The forklift fleet lined up in the yard', group: 'machines' },
+      { slug: 'forklifts-yard-2', alt: 'Forklifts parked along the edge of the yard', group: 'machines' },
+    ],
+    ctaTitle: 'Want to see the place itself?',
     ctaBody:
-      'Vraag ernaar en we brengen u in contact met opdrachtgevers met werk zoals dat van u — de nuttigste referentie is altijd die bij uw eigen tekeningen past.',
+      'Photographs only go so far.\n\nVisits are welcome — walk the halls and see the production yourself!',
   },
 
   aboutPage: {
-    title: 'Over ons',
-    description:
-      'Metal Holland combineert Nederlandse engineering en projectleiding met een volledig productiebedrijf — snijden, vormen, lassen en afwerken van zware constructies in eigen huis.',
     eyebrow: 'Over ons',
     heroTitle: 'Nederlandse maatstaf, echte capaciteit.',
     heroLede:
       'Een constructiebedrijf gebouwd zoals opdrachtgevers wensen dat meer leveranciers gebouwd waren: één werkplaats, één verantwoordelijke partij, en een recht antwoord over wat er mogelijk is.',
-    heroAlt: 'Een operator van Metal Holland aan een bedieningspaneel',
-    storyEyebrow: 'Ons verhaal',
-    storyTitle: 'Gebouwd rond een werkvloer, niet rond een verkoopbalie.',
     storyLede:
       'Metal Holland bestaat omdat opdrachtgevers in de Nederlandse maritieme en infrastructuurwereld steeds twee dingen tegelijk nodig hadden: engineering waarmee ze in hun eigen taal konden overleggen, en productiecapaciteit die groot genoeg was om iets te betekenen.',
     storyBody1:
       'Dus bouwden we beide onder één dak in Šamac. Projectleiding, werkvoorbereiding en klantcontact zitten naast de vloer, en snijden, vormen, lassen, afwerken en beladen gebeuren in onze eigen hallen, op onze eigen machines, met onze eigen mensen. Tussen een aanvraag en het staal zit geen keten van onderaannemers.',
     storyBody2:
       'Het resultaat is onopvallend en moeilijk te veinzen: secties die op de afgesproken datum aankomen, op de afgesproken maat, met het dossier dat aantoont hoe ze gemaakt zijn. Het meeste van ons werk komt inmiddels van opdrachtgevers die ons al eens iets gestuurd hebben.',
-    valuesEyebrow: 'Hoe we werken',
-    valuesTitle: 'Vier dingen waar we niet aan tornen.',
     peopleEyebrow: 'Mensen',
     peopleTitle: '50+ mensen, de meesten met een toorts in de hand.',
     peopleLede:
@@ -571,55 +454,47 @@ export const nl: Dictionary = {
     industries: [
       {
         id: 'shipbuilding',
-        title: 'Scheepsbouw & jachtbouw',
-        summary:
-          'Rompsecties, fundaties en outfittingstaal, gebouwd volgens werftekeningen en geleverd op de planning van de werf.',
+        title: 'Shipbuilding & yacht building',
         bullets: [
-          'Romp- en bovenbouwsecties',
-          'Schotten, liggers en webframes',
-          'Motor- en apparatuurfundaties',
-          'Outfittingstaal en rvs-detailwerk',
+          'Cutting and forming of hull sections',
+          'Prefabrication of smaller sections and sub-assemblies',
+          'Full plate traceability, from the mill certificate to the finished section',
+          'All material supplied with 3.2 certificates',
         ],
         image: 'industry-shipbuilding',
       },
       {
-        id: 'offshore',
-        title: 'Offshore & energie',
-        summary:
-          'Zware gelaste constructies voor offshore en energie, waar documentatie net zo telt als het staal.',
+        id: 'steelwork',
+        title: 'Classic steel construction',
         bullets: [
-          'Frames, skids en draagconstructies',
-          'Deksecties en toegangsstaal',
-          'Pijpspools en leidingondersteuningen',
-          'Volledige traceerbaarheid en lasdocumentatie',
+          'Access platforms and walkways',
+          'Stairs, landings and railings',
+          'Welded frames and supporting structures',
+          'Executed to EN 1090-2, execution class EXC2',
+        ],
+        image: 'pipe-fabrication',
+      },
+      {
+        id: 'ironwork',
+        title: 'Small ironwork in stainless, aluminium and steel',
+        bullets: [
+          'Equipment and machine foundations',
+          'Heavy ducting and ventilation steel',
+          'Drip trays and containment pans',
+          'Stainless, aluminium and carbon steel',
+        ],
+        image: 'stainless-trough',
+      },
+      {
+        id: 'offshore',
+        title: 'Accessories and parts for the offshore steel market',
+        bullets: [
+          'Working platforms and deck access steel',
+          'Railings, handrails and stanchions',
+          'Cage ladders and stair towers',
+          'Made throughout to offshore quality requirements',
         ],
         image: 'industry-offshore',
-      },
-      {
-        id: 'infrastructure',
-        title: 'Infrastructuur & bruggen',
-        summary:
-          'Bruggenliggers en modulaire brugonderdelen, gefabriceerd in secties op maat van wegtransport.',
-        bullets: [
-          'Gelaste bruggenliggers en kokerliggers',
-          'Modulaire en tijdelijke brugonderdelen',
-          'Sluis-, stuw- en waterbouwkundig staal',
-          'Leuningen, roosters en toegangsconstructies',
-        ],
-        image: 'industry-infrastructure',
-      },
-      {
-        id: 'industrial',
-        title: 'Industrie & machinebouw',
-        summary:
-          'Frames, trechters en machinebedden voor OEM’s die productiecapaciteit nodig hebben waar ze op kunnen plannen.',
-        bullets: [
-          'Machineframes en gelaste bedden',
-          'Trechters, stortkokers en transportconstructies',
-          'Opslagtanks en drukloze vaten',
-          'Serie- en herhaalproductie',
-        ],
-        image: 'steel-frame',
       },
     ],
 
@@ -630,104 +505,12 @@ export const nl: Dictionary = {
       { value: '50+', label: 'Mensen op de vloer', sub: 'Lassers, monteurs, operators, ingenieurs' },
     ],
 
-    processSteps: [
-      {
-        step: '01',
-        title: 'Aanvraag & engineeringtoets',
-        body: 'We lezen de tekeningen voordat we offreren. Waar ontwerp en werkplaats elkaar tegenspreken, hoort u dat in de aanvraagfase — niet tijdens de productie.',
-      },
-      {
-        step: '02',
-        title: 'Werkvoorbereiding',
-        body: 'Nesting, snijbestanden, lasprocedures en een bouwvolgorde worden per project opgesteld, zodat de vloer vanuit één afgesproken plan werkt.',
-      },
-      {
-        step: '03',
-        title: 'Productie',
-        body: 'Snijden, vormen, passen en lassen gebeuren onder één dak. Voortgang en keuringspunten worden in een afgesproken ritme gerapporteerd.',
-      },
-      {
-        step: '04',
-        title: 'Keuring & afwerking',
-        body: 'Maatcontrole, laskeuring en oppervlaktebehandeling, met de certificaten en rapporten verzameld in het opleverdossier.',
-      },
-      {
-        step: '05',
-        title: 'Levering',
-        body: 'Secties worden beladen, gezekerd en naar uw werf of locatie vervoerd — inclusief exceptioneel transport waar de sectie daarom vraagt.',
-      },
-    ],
-
     certifications: [
-      { code: 'EN 1090-2', label: 'Uitvoering van staalconstructies' },
+      { code: 'EN 1090-2 EXC2', label: 'Execution of steel structures, execution class 2' },
       { code: 'EN ISO 3834-2', label: 'Uitgebreide kwaliteitseisen voor smeltlassen' },
       { code: 'EN ISO 9001', label: 'Kwaliteitsmanagement' },
       { code: 'EN ISO 14001', label: 'Milieumanagement' },
       { code: 'EN ISO 45001', label: 'Gezond en veilig werken' },
-    ],
-
-    projects: [
-      {
-        title: 'Modulaire brugsecties',
-        sector: 'Infrastructuur',
-        meta: '[Opdrachtgever] · [Jaar] · [XXX] ton',
-        body: 'Gelaste vakwerksecties gefabriceerd, proefgemonteerd en verzonden als transporteerbare eenheden voor montage op locatie.',
-        image: 'bridge-transport',
-      },
-      {
-        title: 'Rompsecties & fundaties',
-        sector: 'Scheepsbouw',
-        meta: '[Opdrachtgever] · [Jaar] · [XXX] ton',
-        body: 'Schotten, webframes en apparatuurfundaties gebouwd volgens werftekeningen en op volgorde aan de bouwdok geleverd.',
-        image: 'welding-hall',
-      },
-      {
-        title: 'Pijpspools & draagstaal',
-        sector: 'Offshore & energie',
-        meta: '[Opdrachtgever] · [Jaar] · [XXX] spools',
-        body: 'Spoolproductie met volledige lastraceerbaarheid, geleverd met de keuringsdocumentatie die offshore-oplevering vereist.',
-        image: 'pipe-fabrication',
-      },
-      {
-        title: 'Zware gelaste liggers',
-        sector: 'Infrastructuur',
-        meta: '[Opdrachtgever] · [Jaar] · [XXX] ton',
-        body: 'Plaatliggers gesneden, samengebouwd en onderpoederdek gelast, daarna gestraald en gegrond vóór transport.',
-        image: 'truss-assembly',
-      },
-      {
-        title: 'Machineframes, serieproductie',
-        sector: 'Industrie',
-        meta: '[Opdrachtgever] · [Jaar] · [XXX] stuks',
-        body: 'Herhaalproductie van gelaste frames uit een vaste mal, met maatcontrole op elk stuk.',
-        image: 'steel-frame',
-      },
-      {
-        title: 'Rvs outfittingstaal',
-        sector: 'Jachtbouw',
-        meta: '[Opdrachtgever] · [Jaar] · [XXX] delen',
-        body: 'Gevormd en gepolijst rvs-detailwerk voor interieur- en dekoutfitting, afgewerkt tot zichtvlakkwaliteit.',
-        image: 'formed-plate',
-      },
-    ],
-
-    values: [
-      {
-        title: 'We zeggen wat mogelijk is',
-        body: 'Een reële datum waar u omheen kunt plannen is meer waard dan een optimistische die u niet haalt. Is een planning krap, dan zeggen we dat voordat we hem aannemen.',
-      },
-      {
-        title: 'Het dossier hoort bij het product',
-        body: 'Materiaalcertificaten, lasprocedures, keuringsrapporten. Een constructie die zonder documentatie aankomt, is niet af.',
-      },
-      {
-        title: 'Eén werkplaats, één verantwoordelijkheid',
-        body: 'Van snijden tot conserveren gebeurt onder ons eigen dak, zodat er geen naad in de keten zit waar verantwoordelijkheid kan wegvallen.',
-      },
-      {
-        title: 'Gebouwd door mensen die lassen',
-        body: 'Onze engineering zit naast de werkvloer. Beslissingen op papier worden getoetst bij de mensen die ze in staal moeten laten werken.',
-      },
     ],
 
     machines: [

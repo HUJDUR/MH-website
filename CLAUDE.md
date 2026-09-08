@@ -67,8 +67,8 @@ bracketed placeholder and say so in the summary.
 
 ## Languages
 
-Three locales: **English at the root** (`/about`), Bosnian and Dutch prefixed
-(`/bs/about`, `/nl/about`). Every page is generated once per locale from
+Three locales: **English at the root** (`/contact`), Bosnian and Dutch prefixed
+(`/bs/contact`, `/nl/contact`). Every page is generated once per locale from
 `src/pages/[...lang]/`, so there is one component per page, not three.
 
 - All copy lives in `src/i18n/{en,bs,nl}.ts`. Nothing user-visible belongs in
@@ -102,6 +102,8 @@ Keys where `bs.ts` / `nl.ts` currently hold English text awaiting translation:
 
 - `careersPage.formNote`, `careersPage.fields.city`,
   `careersPage.fields.cityPlaceholder`, `careersPage.fields.message`
+
+- `common.contactForm`
 
 Also note: the Bosnian and Dutch drafts throughout were written by Claude
 alongside the English and have **not** been reviewed by a native speaker. Both
@@ -188,10 +190,17 @@ required. Raise it, do not quietly write one.
 `scripts/prepare-media.mjs` selects, downscales and writes to `src/assets/img/`;
 Astro generates responsive WebP from there.
 
-- `SELECTION` names each source file explicitly, so **renaming anything under
-  `media/` breaks the pipeline silently** — the build keeps working from
-  already-processed files, and the break only surfaces on the next
-  `prepare:media`. This has already happened once.
+- `SELECTION` names each source file explicitly, so renaming anything under
+  `media/` breaks the pipeline — the build keeps working from already-processed
+  files, so the break only surfaces on the next `prepare:media`. It now checks
+  every source before writing anything and exits with the list, rather than
+  failing halfway. This has happened twice.
+- **`KNOWN_MISSING` is not decoration.** The 2026-09-08 reorganisation moved most
+  originals from `media/Projects` into `media/Album` and dropped ten of them
+  altogether. Those ten slugs are still rendered by the site and survive **only**
+  as processed JPEGs in `src/assets/img/` — deleting that directory loses the
+  photographs for good. Repointing one at a surviving shot changes what a page
+  shows, so it waits for a person rather than a guess.
 - Only images actually referenced by a page belong in `src/assets/img/`;
   anything else is emitted into the build regardless.
 - Video (`public/video/`) is encoded by hand with ffmpeg, 1080p and 720p H.264,
@@ -212,6 +221,31 @@ src/
   scripts/           browser modules shared between pages
   styles/global.css  design tokens, theme, base layer, utilities
 ```
+
+Five routes: home, media, careers, contact, cookies. `/projects` became `/media`
+(2026-09-08): a filterable photo album of the whole shoot — `media/Album`,
+`media/Projects`, `media/Machines` — plus the forklift clip, in place of the six
+invented project cards. **About, Capabilities,
+Industries and Facility used to be pages and are now sections of the home page**
+(client's call, 2026-09-08). The nav points at fragments — `/#about`,
+`/#capabilities`, `/#cutting`, `/#shipbuilding` and so on — which `href()`
+prefixes per locale into `/bs/#about`. The footer used to carry three link
+columns doing the same; the client had them out (2026-09-08), so it is now
+contact details, location and hours only, and `footer.groups` is gone from the
+dictionaries and from `check-i18n.mjs`. Two consequences:
+
+- Those `id`s live in `index.astro`; four are written there by hand and the rest
+  come from `content.capabilities[].id` and `content.industries[].id`. Nothing
+  resolves an anchor at build time, so a renamed id breaks the nav in silence.
+  `npm run build` will not tell you.
+- The old URLs now 404. Nothing on the site links to them, but anything the
+  client has sent out, and anything Google has indexed, still points there —
+  worth redirects at the host if that matters.
+
+Three of the retired pages' hero copy became the heading that opens their
+section, so it still lives under `aboutPage`, `industriesPage` and
+`facilityPage` rather than moving to `home`. Capabilities has no heading of its
+own — `#capabilities` hangs on the list of processes itself.
 
 Design tokens live in the `@theme` block of `global.css` and derive from the
 logo: orange `#F16139`, cyan `#5DBEE4`, silver `#D2DCE2`, over a cold near-black
@@ -251,7 +285,8 @@ Do not claim something works without having run it.
 - `typescript` and `@astrojs/check` are not installed, so `astro check` cannot
   run and nothing typechecks at build time.
 - Unconfirmed placeholders remain: number of halls, crane capacity, plate
-  thickness, roll and press-brake figures, solar array capacity and share of
-  consumption, and all project client names, years and tonnages.
+  thickness, roll and press-brake figures, the solar array's share of annual
+  consumption, and all project client names, years and tonnages. The array is
+  confirmed at 240 kWp over 2 of 4 hall roofs (client, 2026-09-08).
 - Only one drone aerial exists; `facility-aerial` and `facility-aerial-2`
   currently resolve to the same photo.

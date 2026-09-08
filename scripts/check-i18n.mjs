@@ -46,9 +46,11 @@ walk(en, nl, 'nl');
 const shared = [
   ['content.capabilities', 'id'], ['content.capabilities', 'image'],
   ['content.industries', 'id'], ['content.industries', 'image'],
-  ['content.projects', 'image'], ['content.machines', 'image'],
+  ['content.machines', 'image'],
   ['content.certifications', 'code'],
-  ['content.stats', 'value'], ['facilityPage.gallery', 'slug'],
+  ['content.stats', 'value'],
+  ['mediaPage.album', 'slug'], ['mediaPage.album', 'group'],
+  ['mediaPage.groups', 'id'],
   ['nav.items', 'href'], ['cookiesPage.table', 'category'],
 ];
 const at = (obj, p) => p.split('.').reduce((o, k) => o[k], obj);
@@ -60,17 +62,6 @@ for (const [listPath, field] of shared) {
         problems.push(`${name}: ${listPath}[${i}].${field} is "${mine[field]}", must match English "${item[field]}"`);
     });
   }
-}
-
-// Footer link targets too (nested one level deeper).
-for (const [name, dict] of [['bs', bs], ['nl', nl]]) {
-  en.footer.groups.forEach((group, g) =>
-    group.items.forEach((item, i) => {
-      const mine = dict.footer.groups[g]?.items[i];
-      if (mine && mine.href !== item.href)
-        problems.push(`${name}: footer.groups[${g}].items[${i}].href is "${mine.href}", must match "${item.href}"`);
-    })
-  );
 }
 
 if (problems.length) {

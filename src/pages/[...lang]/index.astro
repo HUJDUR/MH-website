@@ -5,19 +5,29 @@ import HomeHero from '../../components/HomeHero.astro';
 import StatBand from '../../components/StatBand.astro';
 import SectionHeading from '../../components/SectionHeading.astro';
 import Reveal from '../../components/Reveal.astro';
-import Button from '../../components/Button.astro';
 import CallToAction from '../../components/CallToAction.astro';
 
 import { img } from '../../data/images';
-import { localePaths, t, href, localeMeta } from '../../i18n';
+import { localePaths, t, href } from '../../i18n';
 import type { Locale } from '../../i18n';
 
 export const getStaticPaths = localePaths;
 
 const { locale } = Astro.props as { locale: Locale };
 const d = t(locale);
-const L = (path: string) => href(locale, path);
 
+/**
+ * About, Capabilities, Industries and Facility used to be pages of their own.
+ * They are sections of this one now, and the four `id`s below are what the nav
+ * and the footer point at — renaming one breaks those links silently, since
+ * nothing resolves an anchor at build time.
+ *
+ * Two of the old page heroes survive as the heading that opens their area,
+ * which is why that copy still lives under `aboutPage` and `industriesPage`.
+ * Capabilities and Facility have no heading of their own any more, so their
+ * anchors hang on the first section of each — the list of processes and the
+ * equipment table.
+ */
 ---
 
 <Base
@@ -65,185 +75,251 @@ const L = (path: string) => href(locale, path);
         <Reveal delay={200}>
           <p class="mt-6 leading-relaxed text-steel-300">{d.home.whoBody2}</p>
         </Reveal>
-        <Reveal delay={280}>
-          <div class="mt-9">
-            <Button href={L('/about')} variant="ghost">{d.common.moreAbout}</Button>
-          </div>
-        </Reveal>
       </div>
     </div>
   </section>
 
-  <!-- ── Capabilities ──────────────────────────────────────────────────── -->
-  <section class="relative border-t border-line/8 bg-ink-900 py-24 lg:py-36">
-    <div class="shell">
-      <div class="flex flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+  <!-- ══ ABOUT ═══════════════════════════════════════════════════════════ -->
+  <section id="about" class="scroll-mt-24 border-t border-line/8 py-24 lg:py-32">
+    <div class="shell grid gap-14 lg:grid-cols-12 lg:gap-20">
+      <div class="lg:col-span-5">
         <SectionHeading
-          eyebrow={d.home.capabilitiesEyebrow}
-          title={d.home.capabilitiesTitle}
-          class="lg:max-w-2xl"
+          eyebrow={d.aboutPage.eyebrow}
+          title={d.aboutPage.heroTitle}
+          lede={d.aboutPage.heroLede}
         />
-        <Reveal delay={200} class="shrink-0">
-          <Button href={L('/capabilities')} variant="outline">
-            {d.common.allCapabilities}
-          </Button>
-        </Reveal>
       </div>
 
-      <div class="mt-16 grid gap-6 sm:grid-cols-2 lg:mt-20 lg:grid-cols-4">
-        {
-          d.content.capabilities.map((cap, i) => (
-            <Reveal
-              delay={i * 100}
-              as="article"
-              data-theme="dark"
-              class="group relative isolate flex min-h-[26rem] flex-col justify-end overflow-hidden rounded-2xl border border-line/8 bg-ink-850 p-7 transition-colors duration-500 hover:border-line/20"
-            >
-              <a href={`${L('/capabilities')}#${cap.id}`} class="absolute inset-0 z-20">
-                <span class="sr-only">{cap.title}</span>
-              </a>
-
-              <Image
-                src={img(cap.image)}
-                alt=""
-                widths={[400, 700, 1000]}
-                sizes="(min-width:1024px) 22vw, (min-width:640px) 45vw, 90vw"
-                loading="lazy"
-                class="absolute inset-0 -z-10 h-full w-full object-cover opacity-75 transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-108"
-              />
-              <div class="absolute inset-0 -z-10 bg-linear-to-t from-ink-950 via-ink-950/80 to-ink-950/25" />
-
-              <span class="font-display text-xs font-semibold tabular-nums text-flame-500">
-                {String(i + 1).padStart(2, '0')}
-              </span>
-              <h3 class="mt-3 text-xl leading-snug">{cap.title}</h3>
-              <p class="mt-3 text-sm leading-relaxed text-steel-300">
-                {cap.summary}
-              </p>
-            </Reveal>
-          ))
-        }
+      <div class="space-y-6 leading-relaxed text-steel-300 lg:col-span-6 lg:col-start-7">
+        <Reveal delay={120}>
+          <p class="lede">{d.aboutPage.storyLede}</p>
+        </Reveal>
+        <Reveal delay={180}>
+          <p>{d.aboutPage.storyBody1}</p>
+        </Reveal>
+        <Reveal delay={240}>
+          <p>{d.aboutPage.storyBody2}</p>
+        </Reveal>
       </div>
     </div>
   </section>
 
-  <!-- ── Split feature: the works ──────────────────────────────────────── -->
-  <section class="shell py-24 lg:py-36">
-    <div class="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-      <Reveal class="relative">
-        <div class="overflow-hidden rounded-2xl">
-          <Image
-            src={img('facility-aerial')}
-            alt={d.home.facilityAlt}
-            widths={[600, 900, 1400, 2000]}
-            sizes="(min-width:1024px) 46vw, 92vw"
-            loading="lazy"
-            class="aspect-4/3 w-full object-cover lg:aspect-5/6"
-          />
-        </div>
-        <!-- Inset card gives the flat aerial shot some depth. -->
-        <div
-          class="absolute -bottom-6 -right-2 hidden w-56 rounded-xl border border-line/10 bg-ink-850/95 p-5 backdrop-blur-md sm:block lg:-right-8"
-        >
-          <p class="font-display text-3xl font-bold text-heading">{d.content.stats[1].value}</p>
-          <p class="mt-1 text-xs leading-relaxed text-steel-400">
-            {d.home.facilityInset}
-          </p>
-        </div>
+  <!-- ── People ────────────────────────────────────────────────────────── -->
+  <section class="border-t border-line/8 bg-ink-900 py-24 lg:py-32">
+    <div class="shell grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <Reveal class="overflow-hidden rounded-2xl">
+        <Image
+          src={img('team-workshop')}
+          alt={d.aboutPage.peopleAlt}
+          widths={[600, 900, 1400]}
+          sizes="(min-width:1024px) 46vw, 92vw"
+          loading="lazy"
+          class="aspect-4/3 w-full object-cover"
+        />
       </Reveal>
 
       <div>
         <SectionHeading
-          eyebrow={d.home.facilityEyebrow}
-          title={d.home.facilityTitle}
-          lede={d.home.facilityLede}
+          eyebrow={d.aboutPage.peopleEyebrow}
+          title={d.aboutPage.peopleTitle}
+          lede={d.aboutPage.peopleLede}
         />
-
-        <Reveal delay={220}>
-          <ul class="mt-10 space-y-px overflow-hidden rounded-xl border border-line/8">
-            {
-              d.home.facilityRows.map(({ label, value }) => (
-                <li class="flex flex-col gap-1 bg-line/2 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
-                  <span class="font-display text-sm font-semibold text-heading">
-                    {label}
-                  </span>
-                  <span class="text-sm text-steel-400 sm:text-right">
-                    {value}
-                  </span>
-                </li>
-              ))
-            }
-          </ul>
-        </Reveal>
-
-        <Reveal delay={300}>
-          <div class="mt-9">
-            <Button href={L('/facility')} variant="ghost">
-              {d.common.facilityEquipment}
-            </Button>
-          </div>
+        <Reveal delay={240}>
+          <p class="mt-6 leading-relaxed text-steel-400">{d.aboutPage.peopleBody}</p>
         </Reveal>
       </div>
     </div>
   </section>
 
-  <!-- ── Industries ────────────────────────────────────────────────────── -->
-  <section class="border-t border-line/8 bg-ink-900 py-24 lg:py-36">
+  <!-- ── Capability detail ─────────────────────────────────────────────── -->
+  <div id="capabilities" class="scroll-mt-24 divide-y divide-line/8 border-t border-line/8">
+    {
+      d.content.capabilities.map((cap, i) => (
+        <section id={cap.id} class="scroll-mt-24 py-20 lg:py-28">
+          <div class="shell">
+            <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
+              <Reveal
+                class:list={[
+                  'overflow-hidden rounded-2xl',
+                  // Alternate the image side so the page does not march.
+                  i % 2 === 1 && 'lg:order-2',
+                ]}
+              >
+                <Image
+                  src={img(cap.image)}
+                  alt={cap.title}
+                  widths={[600, 900, 1400]}
+                  sizes="(min-width:1024px) 46vw, 92vw"
+                  loading="lazy"
+                  class="aspect-4/3 h-full w-full object-cover"
+                />
+              </Reveal>
+
+              <div>
+                <Reveal>
+                  <span class="font-display text-xs font-semibold tabular-nums tracking-[0.2em] text-flame-500">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </Reveal>
+                <Reveal delay={80}>
+                  <h3 class="mt-4 text-3xl leading-[1.1] sm:text-4xl lg:text-[2.75rem]">
+                    {cap.title}
+                  </h3>
+                </Reveal>
+                <Reveal delay={140}>
+                  <p class="mt-5 text-lg leading-relaxed text-steel-300">
+                    {cap.summary}
+                  </p>
+                </Reveal>
+                <Reveal delay={200}>
+                  <p class="mt-4 leading-relaxed text-steel-400">{cap.detail}</p>
+                </Reveal>
+
+                <Reveal delay={260}>
+                  <ul class="mt-8 grid gap-3 sm:grid-cols-2">
+                    {cap.points.map((point) => (
+                      <li class="flex gap-3 text-sm leading-relaxed text-steel-200">
+                        <span
+                          class="mt-2 h-1 w-1 shrink-0 rounded-full bg-flame-500"
+                          aria-hidden="true"
+                        />
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </Reveal>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))
+    }
+  </div>
+
+  <!-- ── Materials ─────────────────────────────────────────────────────── -->
+  <section class="border-t border-line/8 py-24 lg:py-32">
+    <div class="shell grid gap-14 lg:grid-cols-12 lg:gap-20">
+      <div class="lg:col-span-5">
+        <SectionHeading
+          eyebrow={d.capabilitiesPage.materialsEyebrow}
+          title={d.capabilitiesPage.materialsTitle}
+          lede={d.capabilitiesPage.materialsLede}
+        />
+      </div>
+      <div class="lg:col-span-6 lg:col-start-7">
+        <dl class="grid gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8 sm:grid-cols-2">
+          {
+            d.capabilitiesPage.materials.map(({ term, detail }, i) => (
+              <Reveal delay={i * 60} class="bg-ink-950 p-6">
+                <dt class="font-display text-sm font-semibold text-heading">
+                  {term}
+                </dt>
+                <dd class="mt-2 text-sm leading-relaxed text-steel-400">
+                  {detail}
+                </dd>
+              </Reveal>
+            ))
+          }
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ INDUSTRIES ══════════════════════════════════════════════════════ -->
+  {/* Heading and the four groups are one band: the heading introduces the
+      first sector rather than sitting in a strip of its own. The dividing
+      rules stay between the sectors, so nothing separates it from group 01. */}
+  <div id="industries" class="scroll-mt-24 border-t border-line/8">
+    <div class="shell pt-24 lg:pt-32">
+      <SectionHeading
+        eyebrow={d.industriesPage.eyebrow}
+        title={d.industriesPage.heroTitle}
+      />
+    </div>
+
+    <div class="divide-y divide-line/8">
+      {
+      d.content.industries.map((industry, i) => (
+        <section id={industry.id} class="scroll-mt-24 py-20 lg:py-28">
+          <div class="shell grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+            <Reveal
+              class:list={[
+                'relative overflow-hidden rounded-2xl lg:col-span-7',
+                i % 2 === 1 && 'lg:order-2 lg:col-start-6',
+              ]}
+            >
+              <Image
+                src={img(industry.image)}
+                alt={industry.title}
+                widths={[600, 1000, 1500]}
+                sizes="(min-width:1024px) 56vw, 92vw"
+                loading="lazy"
+                class="aspect-16/10 w-full object-cover"
+              />
+            </Reveal>
+
+            <div
+              class:list={[
+                'lg:col-span-5',
+                i % 2 === 1 ? 'lg:order-1 lg:col-start-1' : 'lg:col-start-8',
+              ]}
+            >
+              <Reveal>
+                <p class="eyebrow-arc">
+                  {String(i + 1).padStart(2, '0')} — {d.common.sector}
+                </p>
+              </Reveal>
+              <Reveal delay={80}>
+                <h3 class="mt-4 text-3xl leading-[1.1] sm:text-4xl">
+                  {industry.title}
+                </h3>
+              </Reveal>
+              {/* No summary line: every group now leads straight into its
+                  bullets, which is where the substance is. */}
+              <Reveal delay={200}>
+                <ul class="mt-8 space-y-px overflow-hidden rounded-xl border border-line/8">
+                  {industry.bullets.map((bullet) => (
+                    <li class="bg-line/2 px-5 py-3.5 text-sm text-steel-200">
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
+          </div>
+        </section>
+      ))
+      }
+    </div>
+  </div>
+
+  <!-- ── Equipment ─────────────────────────────────────────────────────── -->
+  <section id="facility" class="scroll-mt-24 border-y border-line/8 bg-ink-900 py-24 lg:py-32">
     <div class="shell">
       <SectionHeading
-        eyebrow={d.home.industriesEyebrow}
-        title={d.home.industriesTitle}
-        lede="The tolerances and the paperwork differ. The discipline behind them
-          does not."
+        eyebrow={d.facilityPage.equipmentEyebrow}
+        title={d.facilityPage.equipmentTitle}
+        lede={d.facilityPage.equipmentLede}
       />
 
-      <div class="mt-16 grid gap-6 md:grid-cols-2 lg:mt-20">
+      <div class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8 md:grid-cols-2 lg:mt-20 lg:grid-cols-4">
         {
-          d.content.industries.map((industry, i) => (
-            <Reveal
-              delay={(i % 2) * 120}
-              as="article"
-              class="group relative isolate overflow-hidden rounded-2xl border border-line/8"
-            >
-              <a href={`${L('/industries')}#${industry.id}`} class="absolute inset-0 z-20">
-                <span class="sr-only">{industry.title}</span>
-              </a>
-
-              <div class="relative aspect-16/10 overflow-hidden">
-                <Image
-                  src={img(industry.image)}
-                  alt={industry.title}
-                  widths={[500, 800, 1200, 1600]}
-                  sizes="(min-width:768px) 45vw, 92vw"
-                  loading="lazy"
-                  class="h-full w-full object-cover transition-transform duration-[1.2s] ease-[var(--ease-out-expo)] group-hover:scale-105"
-                />
-                <div class="absolute inset-0 bg-linear-to-t from-ink-950 via-ink-950/40 to-transparent" />
-              </div>
-
-              <div class="relative -mt-20 p-7">
-                <h3 class="text-2xl">{industry.title}</h3>
-                <p class="mt-3 max-w-md text-sm leading-relaxed text-steel-300">
-                  {industry.summary}
-                </p>
-                <span class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-flame-500">
-                  {d.common.whatWeBuild}
-                  <svg
-                    viewBox="0 0 16 16"
-                    fill="none"
-                    aria-hidden="true"
-                    class="h-3.5 w-3.5 transition-transform duration-300 ease-[var(--ease-out-expo)] group-hover:translate-x-1"
-                  >
-                    <path
-                      d="M1 8h13M9 3l5 5-5 5"
-                      stroke="currentColor"
-                      stroke-width="1.6"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
+          d.content.equipment.map((group, i) => (
+            <Reveal delay={i * 90} class="bg-ink-900 p-8">
+              <h3 class="font-display text-xs font-semibold uppercase tracking-[0.18em] text-flame-500">
+                {group.group}
+              </h3>
+              <ul class="mt-6 space-y-4">
+                {group.items.map((item) => (
+                  <li class="flex gap-3 text-sm leading-relaxed text-steel-200">
+                    <span
+                      class="mt-2 h-1 w-1 shrink-0 rounded-full bg-steel-400"
+                      aria-hidden="true"
                     />
-                  </svg>
-                </span>
-              </div>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
           ))
         }
@@ -251,45 +327,53 @@ const L = (path: string) => href(locale, path);
     </div>
   </section>
 
-  <!-- ── What ships with the work ──────────────────────────────────────── -->
-  <section class="border-t border-line/8 bg-ink-900 py-24 lg:py-32">
-    <div class="shell">
-      <div class="max-w-2xl">
-        <SectionHeading
-          eyebrow={d.home.assuranceEyebrow}
-          title={d.home.assuranceTitle}
-          lede={d.home.assuranceLede}
-        />
-      </div>
+  <!-- ── Machines ──────────────────────────────────────────────────────── -->
+  <section class="shell py-24 lg:py-32">
+    <SectionHeading
+      eyebrow={d.facilityPage.machinesEyebrow}
+      title={d.facilityPage.machinesTitle}
+      lede={d.facilityPage.machinesLede}
+    />
 
-      <!-- Deliberately plain: this is a contents list, not a sales pitch. -->
-      <dl
-        class="mt-14 grid gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8 sm:grid-cols-2 lg:mt-16 lg:grid-cols-3"
-      >
-        {
-          d.home.assurance.map((item, i) => (
-            <Reveal delay={(i % 3) * 80} class="bg-ink-900 p-7 lg:p-8">
-              <dt class="flex items-baseline gap-3">
-                <span class="font-display text-xs font-semibold tabular-nums text-flame-500">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span class="font-display text-base font-semibold text-heading">
-                  {item.title}
-                </span>
-              </dt>
-              <dd class="mt-3 text-sm leading-relaxed text-steel-400">
-                {item.body}
-              </dd>
+    <div class="mt-14 grid gap-5 lg:mt-16 lg:grid-cols-2">
+      {
+        d.content.machines.map((machine, i) => {
+          // An odd count would leave a hole; the last one runs wide instead.
+          const wide = i === d.content.machines.length - 1 && d.content.machines.length % 2 === 1;
+          return (
+            <Reveal
+              delay={(i % 2) * 90}
+              class={`group overflow-hidden rounded-2xl border border-line/8 bg-ink-900 ${
+                wide ? 'lg:col-span-2 lg:flex lg:items-stretch' : ''
+              }`}
+            >
+              <div class={wide ? 'lg:w-1/2' : ''}>
+                <Image
+                  src={img(machine.image)}
+                  alt={machine.imageAlt}
+                  widths={[500, 800, 1200, 1600]}
+                  sizes="(min-width:1024px) 46vw, 92vw"
+                  loading="lazy"
+                  class="aspect-16/10 w-full object-cover transition-transform duration-[1.4s] ease-[var(--ease-out-expo)] group-hover:scale-105 lg:h-full"
+                />
+              </div>
+              <div class={`p-8 ${wide ? 'lg:flex lg:w-1/2 lg:flex-col lg:justify-center lg:p-10' : ''}`}>
+                <h3 class="font-display text-xl font-bold text-heading">
+                  {machine.name}
+                </h3>
+                {machine.spec && (
+                  <p class="mt-2 font-display text-sm font-semibold text-flame-500 tabular-nums">
+                    {machine.spec}
+                  </p>
+                )}
+                <p class="mt-4 text-sm leading-relaxed text-steel-400">
+                  {machine.body}
+                </p>
+              </div>
             </Reveal>
-          ))
-        }
-      </dl>
-
-      <Reveal delay={280}>
-        <p class="mt-8 max-w-2xl text-sm leading-relaxed text-steel-300">
-          {d.home.assuranceNote}
-        </p>
-      </Reveal>
+          );
+        })
+      }
     </div>
   </section>
 
@@ -310,7 +394,14 @@ const L = (path: string) => href(locale, path);
           </Reveal>
 
           <Reveal delay={320}>
-            <dl class="mt-10 grid grid-cols-3 gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8">
+            {/* Column count follows the data: a figure removed from the
+                dictionary must not leave a blank cell in the row. */}
+            <dl
+              class:list={[
+                'mt-10 grid gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8',
+                d.home.energyFigures.length === 3 ? 'grid-cols-3' : 'grid-cols-2',
+              ]}
+            >
               {
                 d.home.energyFigures.map((figure) => (
                   <div class="flex flex-col bg-ink-900 p-5 sm:p-6">
@@ -361,48 +452,39 @@ const L = (path: string) => href(locale, path);
     </div>
   </section>
 
-  <!-- ── Quality / certification ───────────────────────────────────────── -->
-  <section class="shell py-24 lg:py-32">
-    <div class="grid gap-14 lg:grid-cols-12 lg:gap-20">
-      <div class="lg:col-span-5">
-        <SectionHeading
-          eyebrow={d.home.qualityEyebrow}
-          title={d.home.qualityTitle}
-          lede={d.home.qualityLede}
-        />
-      </div>
-
-      <div class="lg:col-span-6 lg:col-start-7">
-        <div class="grid gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8 sm:grid-cols-2">
-          {
-            d.content.certifications.map((cert, i) => (
-              <Reveal
-                delay={i * 90}
-                class={`flex flex-col justify-between gap-6 bg-ink-950 p-7 ${
-                  // An odd count would otherwise leave a hole in the last row.
-                  i === d.content.certifications.length - 1 && d.content.certifications.length % 2 === 1
-                    ? 'sm:col-span-2 sm:flex-row sm:items-center sm:gap-8'
-                    : ''
-                }`}
-              >
-                <span class="font-display text-lg font-bold text-heading">
-                  {cert.code}
-                </span>
-                <span class="text-sm leading-relaxed text-steel-400">
-                  {cert.label}
-                </span>
-              </Reveal>
-            ))
-          }
-        </div>
-        <Reveal delay={380}>
-          <p class="mt-5 text-xs leading-relaxed text-steel-400">
-            {d.home.qualityNote}
-          </p>
-        </Reveal>
+  <!-- ── Certification ─────────────────────────────────────────────────── -->
+  <section class="border-t border-line/8 bg-ink-900 py-24 lg:py-28">
+    <div class="shell">
+      <SectionHeading
+        eyebrow={d.aboutPage.certEyebrow}
+        title={d.aboutPage.certTitle}
+        align="center"
+      />
+      <div class="mx-auto mt-14 grid max-w-6xl gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8 sm:grid-cols-2 lg:grid-cols-5">
+        {
+          d.content.certifications.map((cert, i) => (
+            <Reveal
+              delay={i * 80}
+              class="flex flex-col items-center gap-3 bg-ink-900 p-6 text-center lg:p-7"
+            >
+              <span class="font-display text-base font-bold text-heading">
+                {cert.code}
+              </span>
+              <span class="text-xs leading-relaxed text-steel-400">
+                {cert.label}
+              </span>
+            </Reveal>
+          ))
+        }
       </div>
     </div>
   </section>
 
-  <CallToAction locale={locale} />
+  <CallToAction
+    locale={locale}
+    title={d.aboutPage.ctaTitle}
+    body={d.aboutPage.ctaBody}
+    cta={d.common.contactForm}
+    image="welder-beam"
+  />
 </Base>

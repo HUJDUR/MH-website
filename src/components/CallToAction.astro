@@ -10,6 +10,8 @@ interface Props {
   eyebrow?: string;
   title?: string;
   body?: string;
+  /** Button label; defaults to the shared "Reach out". */
+  cta?: string;
   image?: string;
 }
 
@@ -22,6 +24,7 @@ const d = t(locale);
 const eyebrow = Astro.props.eyebrow ?? d.contactPage.eyebrow;
 const title = Astro.props.title ?? d.contactPage.heroTitle;
 const body = Astro.props.body ?? d.contactPage.heroLede;
+const cta = Astro.props.cta ?? d.common.requestQuote;
 ---
 
 <section data-theme="dark" class="relative isolate grain overflow-hidden">
@@ -52,14 +55,14 @@ const body = Astro.props.body ?? d.contactPage.heroLede;
         </h2>
       </Reveal>
       <Reveal delay={160}>
-        <p class="lede mt-6">{body}</p>
+        {/* `whitespace-pre-line` so a body can break its own lines: the copy is
+            a plain string, and a newline in the dictionary is the only way to
+            ask for one without markup. */}
+        <p class="lede mt-6 whitespace-pre-line">{body}</p>
       </Reveal>
       <Reveal delay={240}>
-        <div class="mt-10 flex flex-wrap gap-3">
-          <Button href={href(locale, '/contact')}>{d.common.requestQuote}</Button>
-          <Button href={href(locale, '/capabilities')} variant="outline">
-            {d.common.seeWhatWeBuild}
-          </Button>
+        <div class="mt-10">
+          <Button href={href(locale, '/contact')}>{cta}</Button>
         </div>
       </Reveal>
     </div>

@@ -1,0 +1,239 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../../layouts/Base.astro';
+import PageHero from '../../components/PageHero.astro';
+import Reveal from '../../components/Reveal.astro';
+import AmbientVideo from '../../components/AmbientVideo.astro';
+import CallToAction from '../../components/CallToAction.astro';
+
+import { img } from '../../data/images';
+import { localePaths, t } from '../../i18n';
+import type { Locale } from '../../i18n';
+
+export const getStaticPaths = localePaths;
+
+const { locale } = Astro.props as { locale: Locale };
+const d = t(locale);
+
+/**
+ * The "all" pill carries an empty value rather than a label, so the filter
+ * script keeps working when the labels are translated.
+ */
+const filters = [
+  { value: '', label: d.mediaPage.all },
+  ...d.mediaPage.groups.map((g) => ({ value: g.id, label: g.label })),
+];
+---
+
+<Base
+  locale={locale}
+  title={d.mediaPage.title}
+  description={d.mediaPage.description}
+  transparentHeader
+>
+  <PageHero
+    eyebrow={d.mediaPage.eyebrow}
+    title={d.mediaPage.heroTitle}
+    image="truss-assembly"
+    imageAlt={d.mediaPage.heroAlt}
+  />
+
+  <section class="shell py-20 lg:py-28">
+    <!-- Client-side filter: progressive enhancement over a plain grid, so the
+         whole album is present for crawlers and no-JS visitors. -->
+    <Reveal>
+      <div
+        class="flex flex-wrap items-center gap-2 border-b border-line/8 pb-6"
+        data-filter-bar
+      >
+        <span class="mr-2 text-[0.6875rem] uppercase tracking-[0.18em] text-steel-400">
+          {d.mediaPage.filter}
+        </span>
+        {
+          filters.map((f, i) => (
+            <button
+              type="button"
+              data-filter={f.value}
+              aria-pressed={i === 0 ? 'true' : 'false'}
+              class="rounded-full border border-line/12 px-4 py-2 text-sm text-steel-300 transition-colors duration-300 hover:border-line/35 hover:text-heading aria-pressed:border-flame-500 aria-pressed:bg-flame-500 aria-pressed:text-white"
+            >
+              {f.label}
+            </button>
+          ))
+        }
+      </div>
+    </Reveal>
+
+    <div
+      class="mt-8 grid grid-cols-2 gap-3 sm:gap-4 lg:mt-10 lg:grid-cols-4"
+      data-album-grid
+    >
+      {
+        d.mediaPage.album.map((shot, i) => (
+          <Reveal
+            as="figure"
+            delay={(i % 4) * 70}
+            data-group={shot.group}
+            class="group relative overflow-hidden rounded-xl border border-line/8"
+          >
+            <button
+              type="button"
+              data-lightbox-open={i}
+              class="block w-full cursor-zoom-in focus:outline-none focus-visible:ring-2 focus-visible:ring-flame-500"
+            >
+              <Image
+                src={img(shot.slug)}
+                alt={shot.alt}
+                widths={[400, 700, 1100, 1800]}
+                sizes="(min-width:1024px) 23vw, 46vw"
+                loading={i < 8 ? 'eager' : 'lazy'}
+                class="aspect-4/3 w-full object-cover transition-transform duration-[1.3s] ease-[var(--ease-out-expo)] group-hover:scale-105"
+              />
+            </button>
+          </Reveal>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ── Forklift clip ─────────────────────────────────────────────────── -->
+  <section class="border-t border-line/8 bg-ink-900 py-20 lg:py-28">
+    <div class="shell">
+      <Reveal>
+        <AmbientVideo
+          src1080="/video/forklifts-1080.mp4"
+          src720="/video/forklifts-720.mp4"
+          poster="/video/forklifts-poster.jpg"
+          alt={d.mediaPage.videoAlt}
+          class="aspect-16/9 w-full rounded-2xl border border-line/8"
+        />
+      </Reveal>
+    </div>
+  </section>
+
+  <CallToAction
+    locale={locale}
+    title={d.mediaPage.ctaTitle}
+    body={d.mediaPage.ctaBody}
+    image="hall-beams"
+  />
+
+  <!-- Lightbox. Empty until a photograph is opened; the <img> src is taken
+       from the thumbnail's own srcset, so no second set of files is built. -->
+  <div
+    data-lightbox
+    hidden
+    class="fixed inset-0 z-100 hidden items-center justify-center bg-ink-950/95 p-4 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+  >
+    <button
+      type="button"
+      data-lightbox-close
+      aria-label={d.common.backToHome}
+      class="absolute right-4 top-4 rounded-full border border-line/15 p-3 text-heading transition-colors hover:border-line/40"
+    >
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="h-4 w-4">
+        <path
+          d="M3 3l10 10M13 3L3 13"
+          stroke="currentColor"
+          stroke-width="1.6"
+          stroke-linecap="round"></path>
+      </svg>
+    </button>
+
+    <!-- No caption: the alt text still names the photograph for a screen
+         reader, it is just not printed under it. -->
+    <img
+      data-lightbox-image
+      src=""
+      alt=""
+      class="max-h-[85vh] w-full max-w-5xl rounded-lg object-contain"
+    />
+  </div>
+</Base>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-filter-bar]');
+  const grid = document.querySelector<HTMLElement>('[data-album-grid]');
+
+  if (bar && grid) {
+    const buttons = bar.querySelectorAll<HTMLButtonElement>('[data-filter]');
+    const figures = grid.querySelectorAll<HTMLElement>('[data-group]');
+
+    bar.addEventListener('click', (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLButtonElement>(
+        '[data-filter]'
+      );
+      if (!button) return;
+
+      const group = button.dataset.filter ?? '';
+      buttons.forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+      figures.forEach((fig) => {
+        fig.hidden = !!group && fig.dataset.group !== group;
+      });
+    });
+  }
+
+  // --- Lightbox ---------------------------------------------------------
+  const box = document.querySelector<HTMLElement>('[data-lightbox]');
+  const boxImage = document.querySelector<HTMLImageElement>('[data-lightbox-image]');
+
+  if (box && boxImage && grid) {
+    const thumbs = [...grid.querySelectorAll<HTMLImageElement>('img')];
+    let current = 0;
+    let opener: HTMLElement | null = null;
+
+    const show = (index: number) => {
+      // Only visible figures are navigable, so the arrows follow the filter.
+      const visible = thumbs.filter((t) => !t.closest<HTMLElement>('[data-group]')!.hidden);
+      if (!visible.length) return;
+      current = (index + visible.length) % visible.length;
+      const thumb = visible[current];
+      // Largest candidate in the srcset, not the thumbnail the grid picked,
+      // or opening a photograph would show it no bigger than the tile.
+      const largest = thumb.srcset.split(',').pop()?.trim().split(/\s+/)[0];
+      boxImage.src = largest || thumb.currentSrc || thumb.src;
+      boxImage.alt = thumb.alt;
+    };
+
+    const open = (thumb: HTMLImageElement, from: HTMLElement) => {
+      const visible = thumbs.filter((t) => !t.closest<HTMLElement>('[data-group]')!.hidden);
+      opener = from;
+      show(visible.indexOf(thumb));
+      box.hidden = false;
+      box.classList.remove('hidden');
+      box.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      box.querySelector<HTMLButtonElement>('[data-lightbox-close]')?.focus();
+    };
+
+    const close = () => {
+      box.hidden = true;
+      box.classList.add('hidden');
+      box.classList.remove('flex');
+      document.body.style.overflow = '';
+      opener?.focus();
+    };
+
+    grid.addEventListener('click', (event) => {
+      const button = (event.target as HTMLElement).closest<HTMLElement>(
+        '[data-lightbox-open]'
+      );
+      const thumb = button?.querySelector('img');
+      if (button && thumb) open(thumb, button);
+    });
+
+    box.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      if (target.closest('[data-lightbox-close]') || target === box) close();
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (box.hidden) return;
+      if (event.key === 'Escape') close();
+      if (event.key === 'ArrowRight') show(current + 1);
+      if (event.key === 'ArrowLeft') show(current - 1);
+    });
+  }
+</script>

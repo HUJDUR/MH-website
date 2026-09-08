@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import Logo from './Logo.astro';
 import ThemeToggle from './ThemeToggle.astro';
 import LanguageToggle from './LanguageToggle.astro';
 import { t, href, canonicalPath, type Locale } from '../i18n';
@@ -36,11 +37,9 @@ const isActive = (target: string) =>
       class="group relative z-10 flex items-center gap-3"
       aria-label={`${site.name} — ${d.common.backToHome}`}
     >
-      <img
-        src="/logo/metal-holland-color.svg"
-        alt={site.name}
-        width="180"
-        height="30"
+      <Logo
+        width={180}
+        height={30}
         class="h-6 w-auto transition-opacity duration-300 group-hover:opacity-80 sm:h-7"
       />
     </a>
