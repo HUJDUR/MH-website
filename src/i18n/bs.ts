@@ -352,7 +352,6 @@ export const bs: Dictionary = {
     heroLede:
       'Pošaljite crteže i traženi rok pa ćete dobiti realnu cijenu, realan datum i sva pitanja koja crteži otvaraju. Ako ste ranije od toga — provjeravate kapacitet, materijal ili može li sekcija napustiti naš krug — pišite svejedno i reći ćemo vam šta znamo.',
     heroAlt: 'Električni luk osvjetljava mrak proizvodne hale',
-    formTitle: 'Javite nam se',
     fields: {
       name: 'Ime i prezime',
       namePlaceholder: 'Vaše ime',
@@ -391,46 +390,23 @@ export const bs: Dictionary = {
       'Posao u Metal Hollandu: zavarivači, monteri, rukovaoci mašinama, pripremači rada i projektni inženjeri u našem pogonu u Šamcu.',
     eyebrow: 'Posao',
     heroTitle: 'Dođite da gradite s nama.',
-    heroLede:
-      'Većina ljudi ovdje živi od toga što nešto pravi. Ako je to posao koji želite, javite nam se.',
     heroAlt: 'Radnici Metal Hollanda pri poslu u hali',
-    introEyebrow: 'Rad kod nas',
-    introTitle: 'Siguran posao, prave mašine.',
-    introBody1:
-      'Mi smo proizvodni pogon, a ne agencija. Ljudi koje zaposlimo ostaju na našem platnom spisku, rade u našim halama i obučavaju se na našoj opremi. Zavarivače kvalifikujemo sami i njihove kvalifikacije držimo važećim.',
-    introBody2:
-      'Prijave primamo bez obzira na to je li konkurs raspisan. Dobre montere i zavarivače teško je naći, pa je dosje uvijek otvoren.',
-    points: [
-      {
-        title: 'Obučeni, a ne samo primljeni',
-        body: 'Kvalifikacije za zavarivanje obnavljamo o svom trošku, a novi radnici uče na mašinama na kojima će raditi.',
-      },
-      {
-        title: 'Jedna lokacija, bez putovanja',
-        body: 'Posao je ovdje u Šamcu. Nakon smjene idete kući, a ne u hotel u drugoj državi.',
-      },
-      {
-        title: 'Plata na vrijeme',
-        body: 'Plata stiže na dogovoreni datum. Ne bi to trebalo biti prednost, a ipak jeste.',
-      },
-    ],
+    openingsEyebrow: 'Vacancies',
+    openingsTitle: 'Available positions.',
+    openingsBody: 'There are no open positions at the moment.',
     formTitle: 'Prijava',
     formNote:
-      'Polja označena zvjezdicom su obavezna. Ne prilažite ništa ovdje — ako nam zatreba CV ili certifikati, javit ćemo vam adresu na koju ih pošaljete.',
+      'Even when nothing is posted, we are glad to meet people who might fit a job later in the future — reach out!',
     fields: {
       name: 'Ime i prezime',
       namePlaceholder: 'Vaše ime',
       email: 'E-pošta',
       emailPlaceholder: 'ime@primjer.com',
       phone: 'Telefon',
-      phonePlaceholder: 'Da vas možemo nazvati',
-      role: 'Koji posao',
-      rolePlaceholder: 'Odaberite zanimanje',
-      experience: 'Godina iskustva',
-      experiencePlaceholder: 'Na primjer: 6',
-      availability: 'Slobodni od',
-      availabilityPlaceholder: 'Datum ili što prije',
-      message: 'Recite nam o svom iskustvu',
+      phonePlaceholder: '+387',
+      city: 'City',
+      cityPlaceholder: 'Where you live',
+      message: 'Tell us about yourself',
       messagePlaceholder:
         'Na čemu ste radili, koje mašine ili postupke poznajete i koje certifikate imate.',
     },
@@ -440,11 +416,6 @@ export const bs: Dictionary = {
     error: 'Nešto nije prošlo kako treba. Pišite nam direktno:',
     subject: 'Prijava za posao',
     asideTitle: 'Radije biste nazvali?',
-    asideBody:
-      'Nazovite pogon u toku radnog vremena i tražite halu. Ako vas taj dan nema ko provesti, dogovorit ćemo drugi termin.',
-    ctaTitle: 'Želite prvo vidjeti pogon?',
-    ctaBody:
-      'Posjete su dobrodošle i prije prijave. Prođite kroz hale, pogledajte mašine i odlučite je li to pogon u kojem želite raditi.',
   },
 
   cookiesPage: {
@@ -533,17 +504,6 @@ export const bs: Dictionary = {
   },
 
   content: {
-    /** Trades offered in the careers form's select. */
-    roles: [
-      'Zavarivač',
-      'Monter / bravar',
-      'Rukovalac mašinom',
-      'Pripremač rada',
-      'Projektni inženjer',
-      'Pjeskarenje i zaštita',
-      'Nešto drugo',
-    ],
-
     capabilities: [
       {
         id: 'cutting',

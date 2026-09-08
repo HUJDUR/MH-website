@@ -51,10 +51,6 @@ const labelClass =
       <!-- ── Form ──────────────────────────────────────────────────────── -->
       <div class="lg:col-span-7">
         <Reveal>
-          <h2 class="text-2xl sm:text-3xl">{d.contactPage.formTitle}</h2>
-        </Reveal>
-
-        <Reveal delay={120}>
           <form
             data-web3-form
             data-subject-field="company"
@@ -63,7 +59,7 @@ const labelClass =
             data-msg-success={d.contactPage.success}
             data-msg-error={d.contactPage.error}
             data-msg-subject={d.contactPage.subject}
-            class="mt-10 grid gap-5 sm:grid-cols-2"
+            class="grid gap-5 sm:grid-cols-2"
             method="post"
             action={FORM_ENDPOINT}
           >

@@ -353,7 +353,6 @@ export const nl: Dictionary = {
     heroLede:
       'Stuur tekeningen en een gewenste datum en u krijgt een reële prijs, een reële datum, en alle vragen die de tekeningen oproepen. Bent u eerder dan dat — capaciteit, een materiaal, of de vraag of een sectie ons terrein af kan — schrijf dan toch en wij vertellen u wat we weten.',
     heroAlt: 'Een lasboog die het donker van de productiehal verlicht',
-    formTitle: 'Neem contact op',
     fields: {
       name: 'Naam',
       namePlaceholder: 'Uw naam',
@@ -392,46 +391,23 @@ export const nl: Dictionary = {
       'Werken bij Metal Holland: lassers, monteurs, machineoperators, werkvoorbereiders en projectingenieurs in ons bedrijf in Šamac.',
     eyebrow: 'Vacatures',
     heroTitle: 'Kom met ons bouwen.',
-    heroLede:
-      'De meeste mensen hier maken dingen voor de kost. Is dat het werk dat u zoekt, dan horen we graag van u.',
     heroAlt: 'Constructiewerkers van Metal Holland aan het werk in de hal',
-    introEyebrow: 'Werken hier',
-    introTitle: 'Vast werk, echte machines.',
-    introBody1:
-      'Wij zijn een constructiebedrijf, geen uitzendbureau. Wie we aannemen blijft bij ons in dienst, werkt in onze hallen en wordt opgeleid op onze eigen machines. Onze lassers kwalificeren we zelf en die kwalificaties houden we actueel.',
-    introBody2:
-      'We nemen sollicitaties aan of er nu een vacature openstaat of niet. Goede monteurs en lassers zijn schaars, dus het dossier blijft open.',
-    points: [
-      {
-        title: 'Opgeleid, niet alleen aangenomen',
-        body: 'Laskwalificaties worden op onze rekening verlengd, en nieuwe mensen leren op de machines die ze gaan draaien.',
-      },
-      {
-        title: 'Eén locatie, geen reizen',
-        body: 'Het werk is hier in Šamac. Na de dienst gaat u naar huis, niet naar een hotel in een ander land.',
-      },
-      {
-        title: 'Op tijd betaald',
-        body: 'Het loon staat op de afgesproken datum op de rekening. Dat zou geen argument moeten zijn, en toch.',
-      },
-    ],
+    openingsEyebrow: 'Vacancies',
+    openingsTitle: 'Available positions.',
+    openingsBody: 'There are no open positions at the moment.',
     formTitle: 'Solliciteren',
     formNote:
-      'Velden met een sterretje zijn verplicht. Voeg hier niets toe als bijlage — willen we een cv of certificaten, dan sturen we u een adres om ze heen te sturen.',
+      'Even when nothing is posted, we are glad to meet people who might fit a job later in the future — reach out!',
     fields: {
       name: 'Naam',
       namePlaceholder: 'Uw naam',
       email: 'E-mail',
       emailPlaceholder: 'naam@voorbeeld.nl',
       phone: 'Telefoon',
-      phonePlaceholder: 'Zodat we u kunnen bellen',
-      role: 'Welk werk',
-      rolePlaceholder: 'Kies een vak',
-      experience: 'Jaren ervaring',
-      experiencePlaceholder: 'Bijvoorbeeld: 6',
-      availability: 'Beschikbaar vanaf',
-      availabilityPlaceholder: 'Een datum, of zo snel mogelijk',
-      message: 'Vertel ons over uw ervaring',
+      phonePlaceholder: '+387',
+      city: 'City',
+      cityPlaceholder: 'Where you live',
+      message: 'Tell us about yourself',
       messagePlaceholder:
         'Waaraan u hebt gewerkt, welke machines of processen u kent, en welke certificaten u hebt.',
     },
@@ -441,11 +417,6 @@ export const nl: Dictionary = {
     error: 'Er ging iets mis. Mail ons rechtstreeks:',
     subject: 'Sollicitatie',
     asideTitle: 'Liever bellen?',
-    asideBody:
-      'Bel het bedrijf tijdens openingstijden en vraag naar de werkplaats. Kan niemand u die dag rondleiden, dan spreken we een andere keer af.',
-    ctaTitle: 'Eerst de werkplaats zien?',
-    ctaBody:
-      'Bezoek is welkom, ook voordat u solliciteert. Loop door de hallen, bekijk de machines, en beslis of dit de werkplaats is waar u wilt werken.',
   },
 
   cookiesPage: {
@@ -534,17 +505,6 @@ export const nl: Dictionary = {
   },
 
   content: {
-    /** Trades offered in the careers form's select. */
-    roles: [
-      'Lasser',
-      'Monteur / samenbouwer',
-      'Machineoperator',
-      'Werkvoorbereider',
-      'Projectingenieur',
-      'Stralen & conserveren',
-      'Iets anders',
-    ],
-
     capabilities: [
       {
         id: 'cutting',
