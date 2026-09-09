@@ -44,12 +44,11 @@ walk(en, nl, 'nl');
 // deliberately absent: it carries a descriptor ("ESAB CNC plasma") that does
 // translate, while the model designations inside it are already fixed text.
 const shared = [
-  ['content.capabilities', 'id'], ['content.capabilities', 'image'],
   ['content.industries', 'id'], ['content.industries', 'image'],
-  ['content.machines', 'image'],
   ['content.certifications', 'code'],
   ['content.stats', 'value'],
   ['mediaPage.album', 'slug'], ['mediaPage.album', 'group'],
+  ['home.energyImages', 'slug'], ['home.investmentImages', 'slug'],
   ['mediaPage.groups', 'id'],
   ['nav.items', 'href'], ['cookiesPage.table', 'category'],
 ];
