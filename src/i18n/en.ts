@@ -16,10 +16,7 @@ export const en = {
 
   nav: {
     items: [
-      { href: '/#about', label: 'About', blurb: 'Who we are and how we work' },
-      { href: '/#capabilities', label: 'Capabilities', blurb: 'Cutting, forming, welding, assembly' },
-      { href: '/#industries', label: 'Industries', blurb: 'Ships, steelwork, ironwork, offshore' },
-      { href: '/#facility', label: 'Facility', blurb: 'Halls, machinery, capacity' },
+      { href: '/', label: 'Home', blurb: 'Who we are and what we build' },
       { href: '/media', label: 'Media', blurb: 'Photographs of the works' },
       { href: '/careers', label: 'Careers', blurb: 'Welders, fitters, engineers' },
       { href: '/contact', label: 'Contact', blurb: 'Address, phone, enquiry form' },
@@ -45,7 +42,6 @@ export const en = {
   common: {
     requestQuote: 'Reach out',
     contactForm: 'Contact form',
-    ourCapabilities: 'Our capabilities',
     backToHome: 'Back to home',
     contactUs: 'Contact us',
     sector: 'Sector',
@@ -61,11 +57,11 @@ export const en = {
     heroAlt: 'A Metal Holland operator at the controls of a cutting machine',
 
     whoEyebrow: 'Who we are',
-    whoTitle: 'Everything happens in our own halls.',
+    whoTitle: 'Family Business. Global Reach.',
     whoBody1:
-      'Metal Holland cuts, forms, welds and finishes heavy steel constructions in its own halls. Nothing is quietly passed down a chain of subcontractors — the plate that arrives on our yard leaves it as a finished section, with the documentation to match.',
+      'Metal Holland is a family business founded in 2005 in a small city on the border of the European Union. We started out with a handful of workers making greenhouses for the locals, and today we make products for some of the most exclusive industries in the world. We’re involved in superyachts, offshore projects, and general steel construction for clients mostly across the Benelux region.',
     whoBody2:
-      'Project management and work preparation sit alongside the floor, so the people quoting your job are the people who have to build it. Clients in shipbuilding, offshore and infrastructure work with us because one responsible party is simpler to plan around than five.',
+      'Even though we’ve grown considerably over the past decade, at our core we remain a family-owned company — one that stays connected to its workers, their families, and the local community.',
 
     energyEyebrow: 'Energy',
     energyTitle: 'We are always looking for improvements.',
@@ -83,37 +79,26 @@ export const en = {
       { slug: 'solar-overhead', alt: 'The hall roofs and their panels seen from directly above' },
     ],
 
-  },
-
-  capabilitiesPage: {
-    materialsEyebrow: 'Materials',
-    materialsTitle: 'Carbon steel, stainless, aluminium.',
-    materialsLede:
-      'Material is ordered against certificate and kept traceable through cutting, fitting and welding, so the heat number on the delivery file is the heat number in the construction.',
-    materials: [
-      { term: 'Structural steel', detail: 'S235 · S275 · S355 · higher grades on request' },
-      { term: 'Shipbuilding grades', detail: 'Classification-approved plate and sections' },
-      { term: 'Stainless', detail: '304 · 316 and duplex, in a separated work area' },
-      { term: 'Aluminium', detail: 'Marine grades, welded by qualified procedure' },
-      { term: 'Plate', detail: 'Up to [200] mm thickness' },
-      { term: 'Sections', detail: 'Beams, hollow sections, pipe and bar' },
+    investmentTitle: 'Investing in Ourselves',
+    investmentNote:
+      'Most of our resources go back into improving how we work — new machines, better tools, faster processes in production halls.',
+    investmentImages: [
+      { slug: 'machine-messer', alt: 'Messer MultiTherm plasma cutting a steel plate' },
+      { slug: 'machine-durma', alt: 'Durma AD-S 40320 CNC press brake in the forming bay' },
+      { slug: 'machine-qfin', alt: 'QFIN SER 600 deburring and edge-rounding machine' },
+      { slug: 'machine-kaltenbach', alt: 'Kaltenbach saw' },
+      { slug: 'machine-bp40', alt: 'BP 40 horizontal press' },
+      { slug: 'machine-fp80', alt: 'FP 80 horizontal press' },
+      { slug: 'machine-jaespa', alt: 'Jaespa bandsaw on its roller feed' },
+      { slug: 'forklifts-yard', alt: 'The forklift fleet lined up in the yard' },
+      { slug: 'flatbed-trailer', alt: 'A flatbed transport trailer standing in the hall' },
     ],
+
   },
 
   industriesPage: {
     eyebrow: 'Industries',
     heroTitle: 'Where our steel ends up.',
-  },
-
-  facilityPage: {
-    equipmentEyebrow: 'Equipment',
-    equipmentTitle: 'What is on the floor.',
-    equipmentLede:
-      'An indicative list. Ask us about a specific size, thickness or tolerance and you will get a straight answer about whether it fits.',
-    machinesEyebrow: 'Machines',
-    machinesTitle: 'The principal machines.',
-    machinesLede:
-      'Two thirty-metre plasma tables, a 320-tonne brake, a drilling line and a deburring machine. Between them they cover most of what arrives as a drawing.',
   },
 
   mediaPage: {
@@ -199,22 +184,8 @@ export const en = {
   },
 
   aboutPage: {
-    eyebrow: 'About',
-    heroTitle: 'Engineering and capacity in one place.',
-    heroLede:
-      'One shop, one responsible party, and a straight answer about what is possible.',
-    storyLede:
-      'Metal Holland exists because clients in the Dutch maritime and infrastructure world kept needing the same two things at once: engineering they could talk to in their own language, and fabrication capacity large enough to matter.',
-    storyBody1:
-      'So we built both under one roof in Šamac. Project management, work preparation and client contact sit alongside the floor, and cutting, forming, welding, finishing and loading happen in our own halls, on our own equipment, with our own people. There is no chain of subcontractors between an enquiry and the steel.',
-    storyBody2:
-      'The result is unglamorous and hard to fake: sections that arrive on the agreed date, at the agreed size, with the file that proves how they were made. Most of our work now comes from clients who have already sent us something once.',
     peopleEyebrow: 'People',
-    peopleTitle: '50+ people, most of them on the floor.',
-    peopleLede:
-      'Welders, fitters, machine operators, work preparers and project engineers. The ratio matters: this is a company where the majority of staff are the ones actually making things.',
-    peopleBody:
-      'We train our own welders and keep their qualifications current because the alternative — hiring certification in when a project demands it — produces exactly the kind of surprise nobody wants three weeks before delivery.',
+    peopleTitle: '50+ people,\nSome have been with us since day one,\nMost stay for years',
     peopleAlt: 'Metal Holland fabricators at work in the hall',
     certEyebrow: 'Certification',
     certTitle: 'Certified and audited.',
@@ -384,69 +355,6 @@ export const en = {
   },
 
   content: {
-    capabilities: [
-      {
-        id: 'cutting',
-        title: 'CNC plasma & oxy-fuel cutting',
-        summary:
-          'Plate is nested and cut on our own gantry tables, so every part downstream starts from an accurate, repeatable profile.',
-        detail:
-          'Cutting sets the tolerance everything downstream inherits. We nest for material yield, cut bevels in the same pass where the weld preparation calls for it, and hard-mark parts so they arrive at the fitting bench already identified.',
-        points: [
-          'Gantry plasma and oxy-fuel cutting of heavy plate',
-          'Bevel cutting for weld preparation',
-          'Nesting optimised for material yield',
-          'Part marking and identification at source',
-        ],
-        image: 'plasma-cutting',
-      },
-      {
-        id: 'forming',
-        title: 'Forming, rolling & machining',
-        summary:
-          'Rolled shells, pressed brackets, drilled and sawn sections — the shaping work that turns flat stock into structure.',
-        detail:
-          'Curved shell plate, knuckles and cone sections are rolled and checked against templates. Drilling lines and sawing bring beams and hollow sections to length and hole pattern before they ever reach assembly.',
-        points: [
-          'Plate rolling and press braking',
-          'Beam drilling lines and band sawing',
-          'Template-checked curved and conical sections',
-          'Machining of connection and bearing surfaces',
-        ],
-        image: 'formed-plate',
-      },
-      {
-        id: 'welding',
-        title: 'Certified welding',
-        summary:
-          'Qualified welders working to approved procedures, with the documentation to prove it.',
-        detail:
-          'Procedures are qualified for the material and thickness at hand, welders are certified against them, and the work is recorded so the file that ships with a construction stands up to review.',
-        points: [
-          'MAG, MIG and submerged-arc welding',
-          'Qualified procedures (WPS/WPQR) per project',
-          'Certified welders with maintained qualifications',
-          'Visual, dimensional and NDT inspection on request',
-        ],
-        image: 'welding-arc',
-      },
-      {
-        id: 'assembly',
-        title: 'Assembly, finishing & delivery',
-        summary:
-          'Sections are built up, measured, surface-treated and shipped as complete units ready to install.',
-        detail:
-          'Sub-assemblies are jigged and measured, blasted and primed or fully coated to specification, then loaded and transported to the yard or site.',
-        points: [
-          'Jigged sub-assembly and complete sections',
-          'Dimensional control before release',
-          'Blasting, priming and coating to specification',
-          'Transport to yard or site across Europe',
-        ],
-        image: 'steel-sections',
-      },
-    ],
-
     industries: [
       {
         id: 'shipbuilding',
@@ -509,83 +417,6 @@ export const en = {
       { code: 'EN ISO 45001', label: 'Occupational health & safety' },
     ],
 
-    machines: [
-      {
-        name: 'ESAB CNC plasma',
-        spec: '30,000 × 3,000 mm table',
-        body: 'Gantry plasma cutting on a thirty-metre bed, so long plate is cut in one setup instead of being indexed and re-registered halfway.',
-        image: 'machine-esab',
-        imageAlt: 'ESAB CNC plasma cutting gantry over its thirty-metre table',
-      },
-      {
-        name: 'Messer MultiTherm',
-        spec: '30,000 × 3,000 mm table · Kjellberg Q3000 plus',
-        body: 'Our second thirty-metre table, running a Kjellberg Q3000 plus source — the cut quality that keeps weld preparation off the grinder.',
-        image: 'machine-messer',
-        imageAlt: 'Messer MultiTherm plasma cutting a steel plate, arc lit',
-      },
-      {
-        name: 'Durma AD-S 40320',
-        spec: '4,050 mm · 320 tonnes',
-        body: 'CNC press brake for the heavy forming: four metres of bending length at three hundred and twenty tonnes.',
-        image: 'machine-durma',
-        imageAlt: 'Durma AD-S 40320 CNC press brake in the forming bay',
-      },
-      {
-        name: 'Vernet Behringer FP 400',
-        spec: '',
-        body: 'CNC line for flats and plate — drilling, marking and tapping in one pass, with a Behringer saw alongside for cutting to length.',
-        image: 'machine-vernet',
-        imageAlt: 'Vernet Behringer FP 400 drilling line with its control station',
-      },
-      {
-        name: 'QFIN SER 600',
-        spec: '',
-        body: 'Deburring and edge rounding for cut parts, so what leaves the cutting hall is ready to handle, coat and weld.',
-        image: 'machine-qfin',
-        imageAlt: 'QFIN SER 600 deburring and edge-rounding machine',
-      },
-    ],
-
-    equipment: [
-      {
-        group: 'Cutting',
-        items: [
-          'Two CNC gantry plasma tables, 30,000 × 3,000 mm each',
-          'Oxy-fuel cutting for heavy plate up to [200] mm',
-          'Bevel-cutting head for weld preparation',
-          'Band saws for sections and hollow profiles',
-        ],
-      },
-      {
-        group: 'Forming & machining',
-        items: [
-          'Plate rolls, capacity to [XX] mm × [X,XXX] mm',
-          'CNC press brake, 4,050 mm at 320 tonnes',
-          'CNC drilling and marking line for flats and plate',
-          'Conventional turning and milling',
-        ],
-      },
-      {
-        group: 'Welding',
-        items: [
-          'MAG/MIG welding stations across all halls',
-          'Submerged-arc welding for girders and long seams',
-          'Welding positioners and rotators',
-          'Dedicated stainless welding area',
-        ],
-      },
-      {
-        group: 'Handling & finishing',
-        items: [
-          'Overhead cranes to [XX] tonnes per hall',
-          'Forklift fleet for movement between halls and yard',
-          'Deburring and edge rounding for cut parts',
-          'Blasting and priming facility',
-          'Loading for abnormal and oversized transport',
-        ],
-      },
-    ],
   },
 };
 

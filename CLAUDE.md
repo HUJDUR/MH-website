@@ -84,31 +84,29 @@ Three locales: **English at the root** (`/contact`), Bosnian and Dutch prefixed
 
 ### Current working arrangement (2026-09)
 
-The client is settling the **English** copy first; Bosnian and Dutch will be
-re-translated from it once it stops moving. So:
+The client settles the **English** copy first; Bosnian and Dutch follow it. So:
 
-- Copy changes go into `en.ts` only.
-- If a change **adds or removes a key**, the same key must still be added to
-  `bs.ts` and `nl.ts` or the build breaks. Put the English string in as a
-  placeholder and list it under "Pending translation" below.
-- Do not spend effort translating copy that is still being revised.
+- Copy changes go into `en.ts` first.
+- If a change **adds or removes a key**, the same key must be added to `bs.ts`
+  and `nl.ts` or the build breaks.
+- When a revision is still in flux, put the English string in as a placeholder
+  and list it under "Pending translation" below rather than translating twice.
 
 ### Pending translation
 
-Keys where `bs.ts` / `nl.ts` currently hold English text awaiting translation:
+Nothing. All three dictionaries were brought level on 2026-09-09. To check
+this claim rather than trust it, walk the three shapes and report every leaf
+string where `bs` or `nl` still equals `en` — ignoring `slug`, `href`, `id`,
+`group`, `image`, `code`, `value` and `category`, which are shared by design.
+About eighteen legitimate matches remain: words that are the same in the target
+language (Dutch *Home*, *Contact*, *Sector*, *Machines*, *Cookies*; *Media* and
+*Filter* in both) and identifiers such as `mh_cookie_consent` and `+387`.
 
-- `home.assuranceEyebrow`, `home.assuranceTitle`, `home.assuranceLede`,
-  `home.assuranceNote`, `home.assurance[]`
-
-- `careersPage.formNote`, `careersPage.fields.city`,
-  `careersPage.fields.cityPlaceholder`, `careersPage.fields.message`
-
-- `common.contactForm`
-
-Also note: the Bosnian and Dutch drafts throughout were written by Claude
-alongside the English and have **not** been reviewed by a native speaker. Both
+Also note: the Bosnian and Dutch throughout were written by Claude alongside
+the English and have **not** been reviewed by a native speaker. Both
 dictionaries carry a header saying so. Flag this whenever the client discusses
-launch.
+launch — the trade vocabulary in particular (`apkant preša`, `zetafdeling`,
+`bordessen`, `scepters`) deserves a working shop's eye, not a dictionary's.
 
 ### Watch for mixed scripts
 
@@ -203,6 +201,12 @@ Astro generates responsive WebP from there.
   shows, so it waits for a person rather than a guess.
 - Only images actually referenced by a page belong in `src/assets/img/`;
   anything else is emitted into the build regardless.
+- **`steel-sections.jpg` was replaced by hand (2026-09-08)** and no longer
+  matches what `SELECTION` would produce from `media/Album/Z62_2317.JPG`. The
+  next `prepare:media` run silently overwrites it. Either point that line at the
+  new original or accept losing the swap. The replacement also arrived as
+  `.JPG`; the glob in `src/data/images.ts` is `*.jpg` and case-sensitive, so the
+  slug vanished and `/media` failed to build until it was renamed.
 - Video (`public/video/`) is encoded by hand with ffmpeg, 1080p and 720p H.264,
   ~2.2 Mbit/s ceiling, no audio, plus a poster frame. `AmbientVideo.astro`
   handles lazy loading; clips are skipped entirely for reduced-motion, metered
@@ -228,24 +232,36 @@ Five routes: home, media, careers, contact, cookies. `/projects` became `/media`
 invented project cards. **About, Capabilities,
 Industries and Facility used to be pages and are now sections of the home page**
 (client's call, 2026-09-08). The nav points at fragments — `/#about`,
-`/#capabilities`, `/#cutting`, `/#shipbuilding` and so on — which `href()`
-prefixes per locale into `/bs/#about`. The footer used to carry three link
+`/#industries`, `/#shipbuilding` and so on — which `href()` prefixes per locale
+into `/bs/#about`. The footer used to carry three link
 columns doing the same; the client had them out (2026-09-08), so it is now
 contact details, location and hours only, and `footer.groups` is gone from the
 dictionaries and from `check-i18n.mjs`. Two consequences:
 
-- Those `id`s live in `index.astro`; four are written there by hand and the rest
-  come from `content.capabilities[].id` and `content.industries[].id`. Nothing
-  resolves an anchor at build time, so a renamed id breaks the nav in silence.
-  `npm run build` will not tell you.
+- Those `id`s live in `index.astro`; three are written there by hand and the
+  rest come from `content.industries[].id`. Nothing resolves an anchor at build
+  time, so a renamed id breaks the nav in silence. `npm run build` will not
+  tell you.
 - The old URLs now 404. Nothing on the site links to them, but anything the
   client has sent out, and anything Google has indexed, still points there —
   worth redirects at the host if that matters.
 
-Three of the retired pages' hero copy became the heading that opens their
-section, so it still lives under `aboutPage`, `industriesPage` and
-`facilityPage` rather than moving to `home`. Capabilities has no heading of its
-own — `#capabilities` hangs on the list of processes itself.
+The home page was cut down hard on 2026-09-08 at the client's request. Gone:
+the "Engineering and capacity in one place" story, the per-process capability
+blocks, the materials table, the equipment list, the machines grid, and the
+people section's two paragraphs. With them went `content.capabilities`,
+`content.equipment`, `content.machines`, the whole `capabilitiesPage` and
+`facilityPage` objects, and `aboutPage`'s hero, story, `peopleLede` and
+`peopleBody` keys — plus their rules in `check-i18n.mjs`.
+
+`#about` was re-homed onto the "Who we are" intro rather than left dangling.
+`#capabilities` and `#facility` had no successor, so **the Capabilities and
+Facility items were removed from the nav**; it is now About, Industries, Media,
+Careers, Contact. The order is intro, industries, people, energy,
+certification, CTA — industries before people is the client's call.
+
+`industriesPage` still carries the heading that opens its section, left over
+from when it was a page of its own.
 
 Design tokens live in the `@theme` block of `global.css` and derive from the
 logo: orange `#F16139`, cyan `#5DBEE4`, silver `#D2DCE2`, over a cold near-black

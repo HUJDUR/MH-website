@@ -96,6 +96,10 @@ const SELECTION = [
   [`${MACHINES}/Vernet.jpg`, 'machine-vernet', 2400],
   [`${MACHINES}/QFIN.jpg`, 'machine-qfin', 2400],
 
+  // Reinvestment strip under the energy section. The trailer is shop-made
+  // rather than a machine; it sits in media/Machines all the same.
+  [`${MACHINES}/Plato.JPG`, 'flatbed-trailer', 2400],
+
   // ── The photo album on /media ──────────────────────────────────────────
   // Only ever shown in a grid, so 2000px is plenty. Slugs above are reused by
   // the album where the photograph is the same file; these are the rest.

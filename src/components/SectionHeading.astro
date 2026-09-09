@@ -38,9 +38,12 @@ const Heading = `h${level}` as 'h2' | 'h3';
     )
   }
 
+  {/* `whitespace-pre-line` so a title can break its own lines: the copy is a
+      plain string, and a newline in the dictionary is the only way to ask for
+      one without markup. */}
   <Reveal delay={eyebrow ? 80 : 0}>
     <Heading
-      class="mt-4 text-[1.75rem] leading-[1.12] sm:text-[2.125rem] lg:text-[2.625rem] lg:leading-[1.1]"
+      class="mt-4 whitespace-pre-line text-[1.75rem] leading-[1.12] sm:text-[2.125rem] lg:text-[2.625rem] lg:leading-[1.1]"
     >
       {title}
     </Heading>

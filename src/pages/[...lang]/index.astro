@@ -40,8 +40,8 @@ const d = t(locale);
   <StatBand locale={locale} />
 
   <!-- ── Intro ─────────────────────────────────────────────────────────── -->
-  <section class="shell py-24 lg:py-36">
-    <div class="grid gap-14 lg:grid-cols-12 lg:gap-20">
+  <section id="about" class="shell scroll-mt-24 py-24 lg:py-36">
+    <div class="grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-20">
       <div class="lg:col-span-5">
         <Reveal>
           <p class="eyebrow">{d.home.whoEyebrow}</p>
@@ -79,157 +79,11 @@ const d = t(locale);
     </div>
   </section>
 
-  <!-- ══ ABOUT ═══════════════════════════════════════════════════════════ -->
-  <section id="about" class="scroll-mt-24 border-t border-line/8 py-24 lg:py-32">
-    <div class="shell grid gap-14 lg:grid-cols-12 lg:gap-20">
-      <div class="lg:col-span-5">
-        <SectionHeading
-          eyebrow={d.aboutPage.eyebrow}
-          title={d.aboutPage.heroTitle}
-          lede={d.aboutPage.heroLede}
-        />
-      </div>
-
-      <div class="space-y-6 leading-relaxed text-steel-300 lg:col-span-6 lg:col-start-7">
-        <Reveal delay={120}>
-          <p class="lede">{d.aboutPage.storyLede}</p>
-        </Reveal>
-        <Reveal delay={180}>
-          <p>{d.aboutPage.storyBody1}</p>
-        </Reveal>
-        <Reveal delay={240}>
-          <p>{d.aboutPage.storyBody2}</p>
-        </Reveal>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── People ────────────────────────────────────────────────────────── -->
-  <section class="border-t border-line/8 bg-ink-900 py-24 lg:py-32">
-    <div class="shell grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-      <Reveal class="overflow-hidden rounded-2xl">
-        <Image
-          src={img('team-workshop')}
-          alt={d.aboutPage.peopleAlt}
-          widths={[600, 900, 1400]}
-          sizes="(min-width:1024px) 46vw, 92vw"
-          loading="lazy"
-          class="aspect-4/3 w-full object-cover"
-        />
-      </Reveal>
-
-      <div>
-        <SectionHeading
-          eyebrow={d.aboutPage.peopleEyebrow}
-          title={d.aboutPage.peopleTitle}
-          lede={d.aboutPage.peopleLede}
-        />
-        <Reveal delay={240}>
-          <p class="mt-6 leading-relaxed text-steel-400">{d.aboutPage.peopleBody}</p>
-        </Reveal>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Capability detail ─────────────────────────────────────────────── -->
-  <div id="capabilities" class="scroll-mt-24 divide-y divide-line/8 border-t border-line/8">
-    {
-      d.content.capabilities.map((cap, i) => (
-        <section id={cap.id} class="scroll-mt-24 py-20 lg:py-28">
-          <div class="shell">
-            <div class="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
-              <Reveal
-                class:list={[
-                  'overflow-hidden rounded-2xl',
-                  // Alternate the image side so the page does not march.
-                  i % 2 === 1 && 'lg:order-2',
-                ]}
-              >
-                <Image
-                  src={img(cap.image)}
-                  alt={cap.title}
-                  widths={[600, 900, 1400]}
-                  sizes="(min-width:1024px) 46vw, 92vw"
-                  loading="lazy"
-                  class="aspect-4/3 h-full w-full object-cover"
-                />
-              </Reveal>
-
-              <div>
-                <Reveal>
-                  <span class="font-display text-xs font-semibold tabular-nums tracking-[0.2em] text-flame-500">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                </Reveal>
-                <Reveal delay={80}>
-                  <h3 class="mt-4 text-3xl leading-[1.1] sm:text-4xl lg:text-[2.75rem]">
-                    {cap.title}
-                  </h3>
-                </Reveal>
-                <Reveal delay={140}>
-                  <p class="mt-5 text-lg leading-relaxed text-steel-300">
-                    {cap.summary}
-                  </p>
-                </Reveal>
-                <Reveal delay={200}>
-                  <p class="mt-4 leading-relaxed text-steel-400">{cap.detail}</p>
-                </Reveal>
-
-                <Reveal delay={260}>
-                  <ul class="mt-8 grid gap-3 sm:grid-cols-2">
-                    {cap.points.map((point) => (
-                      <li class="flex gap-3 text-sm leading-relaxed text-steel-200">
-                        <span
-                          class="mt-2 h-1 w-1 shrink-0 rounded-full bg-flame-500"
-                          aria-hidden="true"
-                        />
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                </Reveal>
-              </div>
-            </div>
-          </div>
-        </section>
-      ))
-    }
-  </div>
-
-  <!-- ── Materials ─────────────────────────────────────────────────────── -->
-  <section class="border-t border-line/8 py-24 lg:py-32">
-    <div class="shell grid gap-14 lg:grid-cols-12 lg:gap-20">
-      <div class="lg:col-span-5">
-        <SectionHeading
-          eyebrow={d.capabilitiesPage.materialsEyebrow}
-          title={d.capabilitiesPage.materialsTitle}
-          lede={d.capabilitiesPage.materialsLede}
-        />
-      </div>
-      <div class="lg:col-span-6 lg:col-start-7">
-        <dl class="grid gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8 sm:grid-cols-2">
-          {
-            d.capabilitiesPage.materials.map(({ term, detail }, i) => (
-              <Reveal delay={i * 60} class="bg-ink-950 p-6">
-                <dt class="font-display text-sm font-semibold text-heading">
-                  {term}
-                </dt>
-                <dd class="mt-2 text-sm leading-relaxed text-steel-400">
-                  {detail}
-                </dd>
-              </Reveal>
-            ))
-          }
-        </dl>
-      </div>
-    </div>
-  </section>
-
   <!-- ══ INDUSTRIES ══════════════════════════════════════════════════════ -->
   {/* Heading and the four groups are one band: the heading introduces the
       first sector rather than sitting in a strip of its own. The dividing
       rules stay between the sectors, so nothing separates it from group 01. */}
-  <div id="industries" class="scroll-mt-24 border-t border-line/8">
+  <div id="industries" class="scroll-mt-24 border-t border-line/8 bg-ink-900">
     <div class="shell pt-24 lg:pt-32">
       <SectionHeading
         eyebrow={d.industriesPage.eyebrow}
@@ -265,7 +119,9 @@ const d = t(locale);
               ]}
             >
               <Reveal>
-                <p class="eyebrow-arc">
+                {/* Alternating accent, so the eye can tell one sector from the
+                    next at a glance: 01 and 03 cyan, 02 and 04 orange. */}
+                <p class:list={[i % 2 === 0 ? 'eyebrow-arc' : 'eyebrow']}>
                   {String(i + 1).padStart(2, '0')} — {d.common.sector}
                 </p>
               </Reveal>
@@ -293,87 +149,26 @@ const d = t(locale);
     </div>
   </div>
 
-  <!-- ── Equipment ─────────────────────────────────────────────────────── -->
-  <section id="facility" class="scroll-mt-24 border-y border-line/8 bg-ink-900 py-24 lg:py-32">
-    <div class="shell">
-      <SectionHeading
-        eyebrow={d.facilityPage.equipmentEyebrow}
-        title={d.facilityPage.equipmentTitle}
-        lede={d.facilityPage.equipmentLede}
-      />
+  <!-- ── People ────────────────────────────────────────────────────────── -->
+  <section class="border-t border-line/8 py-24 lg:py-32">
+    <div class="shell grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+      <Reveal class="overflow-hidden rounded-2xl">
+        <Image
+          src={img('team-workshop')}
+          alt={d.aboutPage.peopleAlt}
+          widths={[600, 900, 1400]}
+          sizes="(min-width:1024px) 46vw, 92vw"
+          loading="lazy"
+          class="aspect-4/3 w-full object-cover"
+        />
+      </Reveal>
 
-      <div class="mt-16 grid gap-px overflow-hidden rounded-2xl border border-line/8 bg-line/8 md:grid-cols-2 lg:mt-20 lg:grid-cols-4">
-        {
-          d.content.equipment.map((group, i) => (
-            <Reveal delay={i * 90} class="bg-ink-900 p-8">
-              <h3 class="font-display text-xs font-semibold uppercase tracking-[0.18em] text-flame-500">
-                {group.group}
-              </h3>
-              <ul class="mt-6 space-y-4">
-                {group.items.map((item) => (
-                  <li class="flex gap-3 text-sm leading-relaxed text-steel-200">
-                    <span
-                      class="mt-2 h-1 w-1 shrink-0 rounded-full bg-steel-400"
-                      aria-hidden="true"
-                    />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-          ))
-        }
+      <div>
+        <SectionHeading
+          eyebrow={d.aboutPage.peopleEyebrow}
+          title={d.aboutPage.peopleTitle}
+        />
       </div>
-    </div>
-  </section>
-
-  <!-- ── Machines ──────────────────────────────────────────────────────── -->
-  <section class="shell py-24 lg:py-32">
-    <SectionHeading
-      eyebrow={d.facilityPage.machinesEyebrow}
-      title={d.facilityPage.machinesTitle}
-      lede={d.facilityPage.machinesLede}
-    />
-
-    <div class="mt-14 grid gap-5 lg:mt-16 lg:grid-cols-2">
-      {
-        d.content.machines.map((machine, i) => {
-          // An odd count would leave a hole; the last one runs wide instead.
-          const wide = i === d.content.machines.length - 1 && d.content.machines.length % 2 === 1;
-          return (
-            <Reveal
-              delay={(i % 2) * 90}
-              class={`group overflow-hidden rounded-2xl border border-line/8 bg-ink-900 ${
-                wide ? 'lg:col-span-2 lg:flex lg:items-stretch' : ''
-              }`}
-            >
-              <div class={wide ? 'lg:w-1/2' : ''}>
-                <Image
-                  src={img(machine.image)}
-                  alt={machine.imageAlt}
-                  widths={[500, 800, 1200, 1600]}
-                  sizes="(min-width:1024px) 46vw, 92vw"
-                  loading="lazy"
-                  class="aspect-16/10 w-full object-cover transition-transform duration-[1.4s] ease-[var(--ease-out-expo)] group-hover:scale-105 lg:h-full"
-                />
-              </div>
-              <div class={`p-8 ${wide ? 'lg:flex lg:w-1/2 lg:flex-col lg:justify-center lg:p-10' : ''}`}>
-                <h3 class="font-display text-xl font-bold text-heading">
-                  {machine.name}
-                </h3>
-                {machine.spec && (
-                  <p class="mt-2 font-display text-sm font-semibold text-flame-500 tabular-nums">
-                    {machine.spec}
-                  </p>
-                )}
-                <p class="mt-4 text-sm leading-relaxed text-steel-400">
-                  {machine.body}
-                </p>
-              </div>
-            </Reveal>
-          );
-        })
-      }
     </div>
   </section>
 
@@ -449,11 +244,46 @@ const d = t(locale);
           </div>
         </div>
       </div>
+
+      {/* The panels are one piece of a wider spend; this block is the rest of
+          it. Photographs sit left of the midpoint and the text right, the
+          mirror of the solar block above. */}
+      <div class="mt-16 grid gap-12 lg:mt-24 lg:grid-cols-12 lg:items-center lg:gap-16">
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:col-span-6">
+          {
+            d.home.investmentImages.map((shot, i) => (
+              <Reveal delay={160 + i * 70} class="overflow-hidden rounded-2xl">
+                <Image
+                  src={img(shot.slug)}
+                  alt={shot.alt}
+                  widths={[300, 500, 800]}
+                  sizes="(min-width:1024px) 16vw, (min-width:640px) 30vw, 46vw"
+                  loading="lazy"
+                  class="aspect-4/3 w-full object-cover"
+                />
+              </Reveal>
+            ))
+          }
+        </div>
+
+        <div class="lg:col-span-5 lg:col-start-8">
+          <Reveal>
+            <h3 class="text-2xl leading-[1.15] sm:text-[1.75rem]">
+              {d.home.investmentTitle}
+            </h3>
+          </Reveal>
+          <Reveal delay={80}>
+            <p class="mt-5 leading-relaxed text-steel-300">
+              {d.home.investmentNote}
+            </p>
+          </Reveal>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ── Certification ─────────────────────────────────────────────────── -->
-  <section class="border-t border-line/8 bg-ink-900 py-24 lg:py-28">
+  <section class="border-t border-line/8 py-24 lg:py-28">
     <div class="shell">
       <SectionHeading
         eyebrow={d.aboutPage.certEyebrow}
@@ -465,7 +295,7 @@ const d = t(locale);
           d.content.certifications.map((cert, i) => (
             <Reveal
               delay={i * 80}
-              class="flex flex-col items-center gap-3 bg-ink-900 p-6 text-center lg:p-7"
+              class="flex flex-col items-center gap-3 bg-ink-950 p-6 text-center lg:p-7"
             >
               <span class="font-display text-base font-bold text-heading">
                 {cert.code}
