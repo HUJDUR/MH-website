@@ -35,14 +35,16 @@ export const contact = {
   },
 
   /**
-   * Both carry their own label, because "401899980009" next to "4401899980009"
-   * is otherwise a typo waiting to be reported. The JIB is the company's
-   * registration number; the VAT number is the same digits without the leading
-   * 4, which is how the tax authority issues them.
+   * Numbers only. Each is always rendered behind its label from the locale
+   * dictionary (`common.vatLabel` / `common.jibLabel`), because "401899980009"
+   * next to "4401899980009" is otherwise a typo waiting to be reported — and
+   * because the VAT label itself translates (VAT / PDV / btw) while the digits
+   * do not. The JIB is the company's registration number; the VAT number is the
+   * same digits without the leading 4, which is how the tax authority issues them.
    */
   registration: {
-    vat: 'VAT 401899980009',
-    jib: 'JIB 4401899980009',
+    vat: '401899980009',
+    jib: '4401899980009',
   },
 } as const;
 

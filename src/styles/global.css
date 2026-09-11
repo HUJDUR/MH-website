@@ -46,6 +46,21 @@
   --breakpoint-xs: 30rem;
 }
 
+/* Depth. Dark mode carries its depth in the ground itself — a panel one step
+   off near-black already reads as raised — so most of these are `none` here
+   and do their work in light mode. They live outside `@theme` because they are
+   effects rather than colours, and nothing should be able to write
+   `shadow-mh-panel` by accident. */
+:root {
+  --mh-shadow-panel: none;
+  --mh-shadow-header: 0 1px 0 0 rgb(255 255 255 / 0.06);
+  --mh-shadow-pop: 0 24px 60px -20px rgb(0 0 0 / 0.9);
+  --mh-photo: none;
+  --mh-hatch: 3%;
+  --mh-rule-from: 12%;
+  --mh-rule-via: 6%;
+}
+
 /* ---------------------------------------------------------------------------
    Theme. Dark is the default and the design's native state; light re-points
    the same tokens so every existing utility flips without touching markup.
@@ -59,13 +74,17 @@
 --------------------------------------------------------------------------- */
 html[data-theme='light'],
 html[data-theme='light'] [data-theme='light'] {
-  --color-ink-950: #eef1f4;
+  /* The gap between 950 (the page) and 900 (a panel, and every alternating
+     full-width band) is what gives the page its rhythm, so it is deliberately
+     wider than a single step elsewhere in the ramp. 800 and below are wells and
+     fills that have to stay clearly below the page, not float above it. */
+  --color-ink-950: #edf1f4;
   --color-ink-900: #ffffff;
-  --color-ink-850: #f7f9fa;
-  --color-ink-800: #eff3f6;
-  --color-ink-700: #e2e8ed;
-  --color-ink-600: #d3dbe2;
-  --color-ink-500: #bcc7d1;
+  --color-ink-850: #f8fafb;
+  --color-ink-800: #e7ecf1;
+  --color-ink-700: #dae1e8;
+  --color-ink-600: #c6d0da;
+  --color-ink-500: #aab7c3;
 
   --color-steel-400: #5d6c7a;
   --color-steel-300: #4a5865;
@@ -75,18 +94,42 @@ html[data-theme='light'] [data-theme='light'] {
 
   /* Both accents are darkened until small text on them clears WCAG AA (4.5:1)
      against the page ground — the untouched brand values sit near 3:1 on
-     white, which fails at the 11px the eyebrows use. */
-  --color-flame-600: #9c3208;
-  --color-flame-500: #bd3e0e;
-  --color-flame-400: #d24f18;
-  --color-flame-300: #e4703c;
+     white, which fails at the 11px the eyebrows use. A colour's ratio against
+     white is the same number whichever way round it is read, so these clear AA
+     as a fill under white button text as well: flame-500 is 4.6:1 on the page
+     ground and 5.2:1 under white.
 
-  --color-arc-600: #12657f;
-  --color-arc-500: #156b8a;
-  --color-arc-400: #166f92;
+     `flame-400` is the hover step and goes *darker* here rather than lighter.
+     Lifting an orange on a pale ground both loses contrast and reads as
+     disabled; going deeper is what reads as pressed. */
+  --color-flame-600: #8c2e07;
+  --color-flame-500: #c2410c;
+  --color-flame-400: #a5350a;
+  --color-flame-300: #8c2e07;
+
+  --color-arc-600: #0f6d8c;
+  --color-arc-500: #0f6d8c;
+  --color-arc-400: #0e657f;
 
   --color-heading: #0b1116;
   --color-line: #0b1116;
+
+  /* Shadows are tinted with the ink hue rather than pure black — a neutral
+     black shadow on a cool ground reads as dirt. */
+  --mh-shadow-panel:
+    0 1px 2px -1px rgb(13 27 42 / 0.08),
+    0 8px 20px -12px rgb(13 27 42 / 0.16);
+  --mh-shadow-header:
+    0 1px 0 0 rgb(13 27 42 / 0.08),
+    0 4px 12px -10px rgb(13 27 42 / 0.30);
+  --mh-shadow-pop: 0 28px 64px -24px rgb(13 27 42 / 0.30);
+  /* Lifts the blacks in shop photographs so they sit on the page rather than
+     punching holes in it. Contrast is pulled down more than brightness is
+     pushed up, because it is the crushed shadows that read as a hole. */
+  --mh-photo: brightness(1.05) contrast(0.90) saturate(1.04);
+  --mh-hatch: 6%;
+  --mh-rule-from: 18%;
+  --mh-rule-via: 9%;
 
   color-scheme: light;
 }
@@ -118,6 +161,14 @@ html[data-theme='light'] [data-theme='light'] {
 
   --color-heading: #ffffff;
   --color-line: #ffffff;
+
+  --mh-shadow-panel: none;
+  --mh-shadow-header: 0 1px 0 0 rgb(255 255 255 / 0.06);
+  --mh-shadow-pop: 0 24px 60px -20px rgb(0 0 0 / 0.9);
+  --mh-photo: none;
+  --mh-hatch: 3%;
+  --mh-rule-from: 12%;
+  --mh-rule-via: 6%;
 }
 
 @layer base {
@@ -159,6 +210,13 @@ html[data-theme='light'] [data-theme='dark'] [data-logo='on-light'] {
   html {
     scroll-behavior: smooth;
     -webkit-tap-highlight-color: transparent;
+    /* Reserve the scrollbar's column whether or not it is showing. The page
+       loader sets `overflow: hidden` while it is up, and without this the
+       classic scrollbar disappears with it — the document goes 15px wider
+       behind the curtain and snaps back the moment it lifts, which reads as
+       the whole page stuttering as it arrives. Reserving the gutter also stops
+       the older jump between a short page and a long one. */
+    scrollbar-gutter: stable;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -226,10 +284,121 @@ html[data-theme='light'] [data-theme='dark'] [data-logo='on-light'] {
     @apply text-lg leading-relaxed text-steel-300 sm:text-xl sm:leading-relaxed;
   }
 
-  /* Hairline used to separate stacked blocks without a hard border. */
+  /* Hairline used to separate stacked blocks without a hard border. The
+     alphas come from the theme because black on paper needs more of them than
+     white on steel does — see "Light mode structure" below. */
   .rule {
-    @apply h-px w-full bg-linear-to-r from-line/12 via-line/6 to-transparent;
+    height: 1px;
+    width: 100%;
+    background-image: linear-gradient(
+      to right,
+      color-mix(in oklab, var(--color-line) var(--mh-rule-from), transparent),
+      color-mix(in oklab, var(--color-line) var(--mh-rule-via), transparent),
+      transparent
+    );
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Light mode structure.
+
+   Dark mode gets its depth for free. A panel one step off a near-black ground
+   reads as raised on its own, and a white hairline at 8% is plainly visible.
+   Neither holds on paper: black at 8% over the page ground lands near #dcdfe2,
+   which is technically a border and practically a smudge, and a white card on
+   a pale ground with no shadow does not read as a card at all. That flatness
+   is what made light mode look like an afterthought.
+
+   It cannot be fixed by re-pointing a token, because the alpha is baked into
+   the utility class rather than into the colour — `border-line/8` compiles to
+   a `color-mix` at 8% whatever `--color-line` is. So this block is the one
+   place light mode does not ride the tokens. It restates the faint `line`
+   alphas at roughly 1.7x and gives rounded panels a shadow.
+
+   Only the alphas the site actually uses are listed. Anything else keeps the
+   token value, which degrades softly — a new alpha simply looks the way every
+   alpha looks today, rather than breaking.
+--------------------------------------------------------------------------- */
+@layer utilities {
+  html[data-theme='light'] .border-line\/8 {
+    border-color: color-mix(in oklab, var(--color-line) 14%, transparent);
+  }
+  html[data-theme='light'] .border-line\/10 {
+    border-color: color-mix(in oklab, var(--color-line) 17%, transparent);
+  }
+  html[data-theme='light'] .border-line\/12 {
+    border-color: color-mix(in oklab, var(--color-line) 20%, transparent);
+  }
+  html[data-theme='light'] .border-line\/15 {
+    border-color: color-mix(in oklab, var(--color-line) 24%, transparent);
+  }
+
+  /* Used as grid gaps — `gap-px bg-line/8` draws the dividers between the
+     certification cards — so these are read as lines, not as fills. */
+  html[data-theme='light'] .bg-line\/2 {
+    background-color: color-mix(in oklab, var(--color-line) 4%, transparent);
+  }
+  html[data-theme='light'] .bg-line\/5 {
+    background-color: color-mix(in oklab, var(--color-line) 9%, transparent);
+  }
+  html[data-theme='light'] .bg-line\/8 {
+    background-color: color-mix(in oklab, var(--color-line) 13%, transparent);
+  }
+
+  /* Hover targets need to move further than the resting state does, or the
+     hover reads as a rendering artefact rather than a response. */
+  html[data-theme='light'] .hover\:border-line\/35:hover {
+    border-color: color-mix(in oklab, var(--color-line) 45%, transparent);
+  }
+}
+
+/* Elevation. `bg-ink-900` is both a card surface and a full-width alternating
+   band, and only the first of those wants a shadow — so this keys on the
+   corner radius, which is what actually distinguishes them in the markup. */
+html[data-theme='light']
+  :where(.rounded-xl, .rounded-2xl, .rounded-3xl):where(.bg-ink-900, .bg-ink-850) {
+  box-shadow: var(--mh-shadow-panel);
+}
+
+/* Photographs. The shop is dark and lit by an arc, so most of these images are
+   most of the way to black; dropped onto paper unaltered they read as holes
+   punched in the page. The lift is small on purpose — it has to survive being
+   seen next to the same photograph in dark mode.
+
+   Scoped away from the dark islands, which are showing the picture the way it
+   was graded, and away from `svg` so icons and the wordmark are untouched. */
+html[data-theme='light'] :where(img, video) {
+  filter: var(--mh-photo);
+}
+
+html[data-theme='light'] [data-theme='dark'] :where(img, video) {
+  filter: none;
+}
+
+/* Ground. A flat fill over a full page of scrolling is what reads as
+   unfinished more than any single element does. Two very wide, very weak
+   washes in the brand's own two accents give the paper somewhere to sit
+   without ever becoming a visible gradient — they are only seen where a
+   section does not paint its own background.
+
+   Fixed to the viewport rather than the document: every page here opens on a
+   full-bleed dark hero, so a wash anchored to the top of the document would be
+   painted underneath it and never seen. Two gradients cost nothing to keep
+   still; the usual warning about `fixed` backgrounds is about large images. */
+html[data-theme='light'] body {
+  background-attachment: fixed;
+  background-image:
+    radial-gradient(
+      64rem 40rem at 8% -6%,
+      color-mix(in srgb, var(--color-arc-500) 7%, transparent),
+      transparent 72%
+    ),
+    radial-gradient(
+      56rem 36rem at 96% 2%,
+      color-mix(in srgb, var(--color-flame-500) 5%, transparent),
+      transparent 70%
+    );
+  background-repeat: no-repeat;
 }
 
 /* ---------------------------------------------------------------------------
@@ -296,8 +465,8 @@ html.js [data-reveal='is-visible'] {
 .hatch {
   background-image: repeating-linear-gradient(
     135deg,
-    color-mix(in srgb, var(--color-line) 3%, transparent) 0px,
-    color-mix(in srgb, var(--color-line) 3%, transparent) 1px,
+    color-mix(in srgb, var(--color-line) var(--mh-hatch), transparent) 0px,
+    color-mix(in srgb, var(--color-line) var(--mh-hatch), transparent) 1px,
     transparent 1px,
     transparent 7px
   );

@@ -45,6 +45,8 @@ export const en = {
     backToHome: 'Back to home',
     contactUs: 'Contact us',
     sector: 'Sector',
+    vatLabel: 'VAT',
+    jibLabel: 'JIB',
   },
 
   home: {
@@ -165,6 +167,9 @@ export const en = {
       { slug: 'crane-lift', alt: 'A mobile crane lifting a stainless vessel', group: 'projects' },
       { slug: 'crane-lift-2', alt: 'The crane setting the load down', group: 'projects' },
       { slug: 'access-platform', alt: 'An access platform with grating deck and tubular railings, assembled in the hall', group: 'projects' },
+      { slug: 'crawler-frame', alt: 'A welded machine frame, painted orange, on its crawler undercarriage on a low-loader in the yard', group: 'projects' },
+      { slug: 'crawler-frame-2', alt: 'The same frame from the rear quarter, chained down on the trailer bed', group: 'projects' },
+      { slug: 'crawler-frame-3', alt: 'The frame seen from the other side, ready to leave the works', group: 'projects' },
       { slug: 'machine-esab', alt: 'ESAB CNC plasma cutting gantry over its thirty-metre table', group: 'machines' },
       { slug: 'machine-messer', alt: 'Messer MultiTherm plasma cutting a steel plate', group: 'machines' },
       { slug: 'machine-durma', alt: 'Durma AD-S 40320 CNC press brake in the forming bay', group: 'machines' },

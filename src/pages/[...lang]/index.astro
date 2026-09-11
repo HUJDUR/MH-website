@@ -52,9 +52,13 @@ const d = t(locale);
           </h2>
         </Reveal>
 
-        <!-- Anchors the short column so the section does not read as a hole
-             next to the body copy. -->
-        <Reveal delay={220} class="mt-10 hidden lg:block">
+        <!-- On wide screens this anchors the short column so the section does
+             not read as a hole next to the body copy. It used to be hidden
+             below `lg` for that reason alone, which left the whole section
+             wordy and pictureless on a phone — the one place it most needed
+             something to look at. It now runs at every width, sitting between
+             the heading and the copy on a narrow screen. -->
+        <Reveal delay={220} class="mt-10">
           <div class="overflow-hidden rounded-2xl">
             <Image
               src={img('operator-console')}
@@ -247,9 +251,27 @@ const d = t(locale);
 
       {/* The panels are one piece of a wider spend; this block is the rest of
           it. Photographs sit left of the midpoint and the text right, the
-          mirror of the solar block above. */}
+          mirror of the solar block above — which is why both children carry an
+          explicit row and column: the text comes first in the markup so that a
+          narrow screen reads the heading before the grid of machines, and the
+          placement puts it back on the right once there are two columns to
+          play with. Dropping either `lg:row-start-1` wraps the photographs onto
+          a second row. */}
       <div class="mt-16 grid gap-12 lg:mt-24 lg:grid-cols-12 lg:items-center lg:gap-16">
-        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:col-span-6">
+        <div class="lg:col-span-5 lg:col-start-8 lg:row-start-1">
+          <Reveal>
+            <h3 class="text-2xl leading-[1.15] sm:text-[1.75rem]">
+              {d.home.investmentTitle}
+            </h3>
+          </Reveal>
+          <Reveal delay={80}>
+            <p class="mt-5 leading-relaxed text-steel-300">
+              {d.home.investmentNote}
+            </p>
+          </Reveal>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:col-span-6 lg:col-start-1 lg:row-start-1">
           {
             d.home.investmentImages.map((shot, i) => (
               <Reveal delay={160 + i * 70} class="overflow-hidden rounded-2xl">
@@ -264,19 +286,6 @@ const d = t(locale);
               </Reveal>
             ))
           }
-        </div>
-
-        <div class="lg:col-span-5 lg:col-start-8">
-          <Reveal>
-            <h3 class="text-2xl leading-[1.15] sm:text-[1.75rem]">
-              {d.home.investmentTitle}
-            </h3>
-          </Reveal>
-          <Reveal delay={80}>
-            <p class="mt-5 leading-relaxed text-steel-300">
-              {d.home.investmentNote}
-            </p>
-          </Reveal>
         </div>
       </div>
     </div>

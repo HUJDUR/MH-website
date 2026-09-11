@@ -1,0 +1,229 @@
+---
+/**
+ * Full-screen loader, held over the page until everything has finished
+ * downloading.
+ *
+ * Three things make it safe rather than just decorative:
+ *
+ * - It is scoped to `html.js`, the same gate the reveal animations use. A
+ *   visitor without scripting never sees it, because nothing would ever take
+ *   it away again.
+ * - It has a hard ceiling as well as a floor. `load` waits on every image in
+ *   the viewport, and one stalled request would otherwise leave someone
+ *   staring at a mark forever, so it lifts at `MAX_MS` whatever happened.
+ * - Every exit runs through one idempotent `finish()`, which is also what
+ *   restores scrolling. A second path to hiding it would be a second way to
+ *   leave the page locked.
+ *
+ * The theme is already settled by the inline script in `Base.astro` before
+ * first paint, so the ground below is simply `--color-ink-950` and follows the
+ * visitor's stored choice with no work of its own.
+ */
+---
+
+<div data-page-loader aria-hidden="true">
+  <div class="mh-loader-inner">
+    {/* Arc rather than a full ring, so the rotation is visible at all — a
+        complete circle spinning looks static. r=56 in a 128 box leaves room
+        for the 2px stroke to sit inside the viewBox and clears the mark. */}
+    <svg
+      class="mh-loader-ring"
+      viewBox="0 0 128 128"
+      width="128"
+      height="128"
+      role="presentation"
+      focusable="false"
+    >
+      <circle class="mh-ring-track" cx="64" cy="64" r="56" />
+      <circle class="mh-ring-arc" cx="64" cy="64" r="56" />
+    </svg>
+
+    {/* Inlined rather than linked: an external mark is one more request that
+        could itself be the slow one, and the whole file is under half a
+        kilobyte. Light mode takes the whole thing to the wordmark's near-black
+        — the brand cyan sits near 2:1 on a pale ground. */}
+    <svg
+      class="mh-loader-mark"
+      viewBox="0 0 482 419"
+      width="62"
+      height="54"
+      role="presentation"
+      focusable="false"
+    >
+      <polygon
+        class="mh-mark-top"
+        points="323,39 406,77 406,77 482,112 398,152 322,116 249,150 325,186 241,225 0,112 84,73 166,112 239,78 157,39 241,0 323,39 "
+      />
+      <polygon
+        class="mh-mark-bottom"
+        points="0,123 241,234 241,234 481,123 481,363 361,419 361,299 241,355 241,355 120,299 120,419 0,363 "
+      />
+    </svg>
+  </div>
+</div>
+
+<style>
+  /* Hidden by default and revealed only under `html.js`, so a no-JS visitor
+     gets the page rather than a permanent curtain. */
+  [data-page-loader] {
+    display: none;
+  }
+
+  /* Second gate: once per visit, not once per navigation. Set in the head so
+     the curtain never paints on page two — see the note in `Base.astro`. */
+  :global(html.mh-loader-seen) [data-page-loader] {
+    display: none;
+  }
+
+  :global(html.js) [data-page-loader] {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    display: grid;
+    place-items: center;
+    background-color: var(--color-ink-950);
+    opacity: 1;
+    transition: opacity 0.45s var(--ease-out-expo);
+  }
+
+  :global(html.js) [data-page-loader].is-done {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* The mark is centred in the same box the ring is drawn in, so the two share
+     a centre without either having to know the other's size. */
+  .mh-loader-inner {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 128px;
+    height: 128px;
+  }
+
+  .mh-loader-mark {
+    position: relative;
+  }
+
+  .mh-loader-ring {
+    position: absolute;
+    inset: 0;
+    /* Linear, not eased: a continuous rotation with an ease reads as a wobble
+       rather than a turn. */
+    animation: mh-loader-spin 1.25s linear infinite;
+  }
+
+  .mh-ring-track,
+  .mh-ring-arc {
+    fill: none;
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  .mh-ring-track {
+    stroke: color-mix(in oklab, var(--color-line) 10%, transparent);
+  }
+
+  /* Circumference at r=56 is ~351.9, so 78 is a little over a fifth of the
+     circle — long enough to read as an arc, short enough to see it travel. */
+  .mh-ring-arc {
+    stroke: var(--color-flame-500);
+    stroke-dasharray: 78 274;
+  }
+
+  @keyframes mh-loader-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* The whole mark goes to the wordmark's near-black on a light ground. */
+  .mh-mark-top {
+    fill: #f16139;
+  }
+
+  .mh-mark-bottom {
+    fill: #5dbee4;
+  }
+
+  :global(html[data-theme='light']) .mh-mark-top,
+  :global(html[data-theme='light']) .mh-mark-bottom {
+    fill: #232830;
+  }
+
+  /* No spin and no fade for anyone who asked for less motion — the arc becomes
+     a plain closed ring. The minimum hold still applies: it is a pause, not an
+     animation. */
+  @media (prefers-reduced-motion: reduce) {
+    .mh-loader-ring {
+      animation: none;
+    }
+
+    .mh-ring-arc {
+      stroke-dasharray: none;
+      opacity: 0.45;
+    }
+
+    :global(html.js) [data-page-loader] {
+      transition: none;
+    }
+  }
+</style>
+
+<script is:inline>
+  (function () {
+    var el = document.querySelector('[data-page-loader]');
+    if (!el) return;
+
+    /* Already shown this visit. Bailing here matters as much as the CSS does:
+       without it the scroll lock would still be taken out behind a curtain
+       nobody can see. */
+    if (document.documentElement.classList.contains('mh-loader-seen')) {
+      el.parentNode.removeChild(el);
+      return;
+    }
+
+    /* Shown for at least this long so it is never a flicker on a warm cache,
+       and never longer than this so a stalled request cannot strand anyone. */
+    var MIN_MS = 1000;
+    var MAX_MS = 8000;
+
+    var root = document.documentElement;
+    var previousOverflow = root.style.overflow;
+    root.style.overflow = 'hidden';
+    root.setAttribute('aria-busy', 'true');
+
+    var done = false;
+
+    function finish() {
+      if (done) return;
+      done = true;
+
+      root.style.overflow = previousOverflow;
+      root.removeAttribute('aria-busy');
+      el.classList.add('is-done');
+
+      /* Taken out of the document rather than left transparent over the page,
+         so it can never swallow a click. */
+      var drop = function () {
+        if (el.parentNode) el.parentNode.removeChild(el);
+      };
+      el.addEventListener('transitionend', drop, { once: true });
+      setTimeout(drop, 700);
+    }
+
+    function schedule() {
+      /* `performance.now()` is measured from navigation start, so this is the
+         time the visitor has actually been looking at the loader. */
+      setTimeout(finish, Math.max(0, MIN_MS - performance.now()));
+    }
+
+    if (document.readyState === 'complete') schedule();
+    else window.addEventListener('load', schedule, { once: true });
+
+    setTimeout(finish, MAX_MS);
+  })();
+</script>

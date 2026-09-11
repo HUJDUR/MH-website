@@ -122,21 +122,104 @@ Dark is the default and the design's native state. A visitor who has never
 touched the toggle gets dark **whatever their OS prefers** — this is deliberate,
 do not "fix" it to respect `prefers-color-scheme`.
 
-Light mode re-points the design tokens rather than duplicating styles, so
-existing utility classes flip on their own. See the theme block in
-`src/styles/global.css`. Three rules:
+Light mode mostly re-points the design tokens rather than duplicating styles,
+so existing utility classes flip on their own. See the theme block in
+`src/styles/global.css`. Four rules:
 
 1. Sections sitting on a photograph carry `data-theme="dark"`, which re-asserts
    the dark tokens for their subtree. They stay dark islands on a light page —
-   white text on a dark image is correct in both themes.
+   white text on a dark image is correct in both themes. The media lightbox is
+   one of these: a photograph wants a dark surround, and a near-white scrim
+   over a near-white page would not read as a layer at all.
 2. `text-heading` and `border-line` are the semantic pair that inverts. Literal
    `text-white` is reserved for text on orange, which never flips. **Do not
    introduce new `text-white` on a surface.**
 3. Accents are darkened in light mode until small text clears WCAG AA against
-   the page ground. Check contrast before changing any accent value.
+   the page ground. Check contrast before changing any accent value. Note that
+   a colour's ratio against white is the same number whichever way round it is
+   read, so an accent that clears AA as text also clears it as a button fill
+   under white text — one value covers both, which is why there is only one.
+4. **Token re-pointing is not sufficient on its own**, and the "Light mode
+   structure" block in `global.css` is where it stops. Alphas are baked into
+   the utility class rather than the colour — `border-line/8` is a `color-mix`
+   at 8% whatever `--color-line` says — and 8% black on paper is a smudge where
+   8% white on steel is a hairline. That block restates the faint `line` alphas
+   at roughly 1.7x, gives rounded panels a shadow, and lifts photographs. Only
+   the alphas the site uses are listed; a new one degrades softly rather than
+   breaking. Depth effects reach it through `--mh-*` custom properties, which
+   are declared three times: `:root`, the light block, and the dark-island
+   block, so an island on a light page gets dark shadows back.
+
+Photographs are lifted in light mode with a CSS filter
+(`brightness(1.05) contrast(0.90)`) because the shop is dark and lit by an arc,
+and unaltered these images read as holes punched in the page. The lift is
+scoped away from dark islands, so the same photograph is graded one way inside
+the hero and another in the media grid. It is deliberately small — it has to
+survive being seen next to the dark-mode version. If a genuinely lighter set is
+ever wanted, that is a re-grade in `prepare-media.mjs`, not a bigger filter,
+and it would need a second set of files so dark mode keeps the originals.
 
 The choice is stored in `localStorage` as `mh-theme` and applied by an inline
 script in `Base.astro` before first paint.
+
+## Page loader
+
+`PageLoader.astro` is the first element in `<body>` and holds a full-screen
+curtain over the page until `load` fires. Four things about it are load-bearing:
+
+- **It is gated on `html.js`**, the same class the reveal animations use. With
+  scripting off nothing would ever take it away, so it must stay `display:none`
+  there. Do not move that rule.
+- **It has a floor and a ceiling.** 1000 ms minimum, so it is never a flicker
+  on a warm cache — that was the point of asking for it. 8000 ms maximum,
+  because `load` waits on every image in the viewport and one stalled request
+  would otherwise strand the visitor behind it.
+- **Every exit runs through one idempotent `finish()`**, which is also what
+  restores `overflow` on `<html>`. A second path to hiding it is a second way
+  to leave the page unscrollable.
+- **The mark is inlined**, not linked. An external file is one more request
+  that could itself be the slow one, and the whole SVG is under half a
+  kilobyte. On a light ground the whole mark goes to the wordmark's `#232830`,
+  because the brand cyan sits near 2:1 there.
+- **It depends on `scrollbar-gutter: stable`** in the base layer of
+  `global.css`. Locking `overflow` takes the classic scrollbar away with it, so
+  without the reserved gutter the document is 15px wider behind the curtain and
+  snaps back the moment it lifts — measured at an 8px jump of every centred
+  element. Remove that line and the stutter returns.
+
+The theme is already settled by the inline script in `Base.astro` before first
+paint, so the curtain is just `--color-ink-950` and follows the stored choice
+without doing anything itself.
+
+**Once per visit, not once per navigation.** This is a multi-page site, so a
+nav click is a fresh document and would otherwise be a fresh curtain. A
+`sessionStorage` flag, `mh-loader-seen`, is read *and written* in the head of
+`Base.astro` — in the head because the decision has to precede the first paint
+the same way the theme does, and written on read rather than when the loader
+finishes so that navigating away mid-load does not earn a second curtain. The
+flag adds `html.mh-loader-seen`, which the component hides on, and the
+component's script bails on the same class. Both halves are needed: the CSS
+alone would leave the scroll lock taken out behind a curtain nobody can see.
+
+`sessionStorage` clears with the tab, which is the definition of "once per
+visit" wanted here. If it throws — some private modes — nothing is added and
+the loader simply shows every time, which is the old behaviour rather than a
+break.
+
+## Prefetch
+
+`prefetch: { prefetchAll: true, defaultStrategy: 'hover' }` in
+`astro.config.mjs`. Every internal link is fetched 80ms after the pointer
+settles on it, so the next page's HTML is usually in cache before the click
+lands — measured at ~140ms saved per navigation on an emulated slow 4G, which
+is the round trip, so a real host with real TTFB saves more.
+
+It is cheap: all five pages of a locale are ~52 KB gzipped, less than one of
+the font files, and the prefetch runtime is 1.1 KB gzipped. Astro drops the
+hover strategy on `saveData` and any 2g connection and falls back to fetching
+on mousedown/touchstart, by which point the visitor has committed anyway
+(`astro/dist/prefetch/index.js`). Nothing needs doing per link; `prefetchAll`
+opts them all in and `data-astro-prefetch="false"` opts one out.
 
 ## Forms
 

@@ -22,6 +22,7 @@ import interLatinExt from '@fontsource-variable/inter/files/inter-latin-ext-wght
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
+import PageLoader from '../components/PageLoader.astro';
 import { site, contact } from '../data/site';
 import {
   locales,
@@ -150,9 +151,24 @@ const organizationSchema = {
     <meta name="generator" content={Astro.generator} />
 
     <!-- Reveal animations only apply when scripting is on, so no-JS visitors
-         are never left with permanently hidden content. -->
+         are never left with permanently hidden content.
+
+         The loader flag is settled here rather than in the component, for the
+         same reason the theme is: this is a multi-page site, so a second page
+         is a second full document, and the curtain has to be decided before
+         the first paint or it flashes on every click. The flag is written the
+         moment it is read, not when the loader finishes, so navigating away
+         mid-load does not earn a second curtain. `sessionStorage` clears with
+         the tab, which is the definition of "once per visit" we want. -->
     <script is:inline>
       document.documentElement.classList.add('js');
+      try {
+        if (sessionStorage.getItem('mh-loader-seen')) {
+          document.documentElement.classList.add('mh-loader-seen');
+        } else {
+          sessionStorage.setItem('mh-loader-seen', '1');
+        }
+      } catch {}
     </script>
 
     <script
@@ -162,6 +178,8 @@ const organizationSchema = {
   </head>
 
   <body>
+    <PageLoader />
+
     <a
       href="#main"
       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-100 focus:rounded-full focus:bg-flame-500 focus:px-5 focus:py-2.5 focus:text-sm focus:font-semibold focus:text-white"

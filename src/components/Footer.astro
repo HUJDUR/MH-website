@@ -79,8 +79,8 @@ const year = new Date().getFullYear();
     >
       <p>&copy; {year} {site.name}. {d.footer.rights}</p>
       <p class="flex flex-wrap items-center gap-x-5 gap-y-2">
-        <span>{contact.registration.vat}</span>
-        <span>{contact.registration.jib}</span>
+        <span>{d.common.vatLabel} {contact.registration.vat}</span>
+        <span>{d.common.jibLabel} {contact.registration.jib}</span>
         <a
           href={href(locale, '/cookies')}
           class="transition-colors hover:text-flame-500"

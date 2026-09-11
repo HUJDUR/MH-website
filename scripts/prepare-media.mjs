@@ -144,6 +144,9 @@ const SELECTION = [
   [`${PHOTOS}/IMG_8778.JPG`, 'crane-lift', 2000],
   [`${PHOTOS}/IMG_8781.JPG`, 'crane-lift-2', 2000],
   [`${PHOTOS}/WhatsApp Image 2026-08-14 at 08.38.33.jpeg`, 'access-platform', 1600],
+  [`${PHOTOS}/IMG_4278.jpg`, 'crawler-frame', 2000],
+  [`${PHOTOS}/IMG_4279.jpg`, 'crawler-frame-2', 2000],
+  [`${PHOTOS}/IMG_4280.jpg`, 'crawler-frame-3', 2000],
 
   // Machines
   [`${MACHINES}/BP 40 horizontal press.jpeg`, 'machine-bp40', 2000],
