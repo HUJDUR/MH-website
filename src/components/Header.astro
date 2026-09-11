@@ -151,7 +151,7 @@ const isActive = (target: string) =>
       // Menu open counts as "scrolled" so the bar never sits on a bare hero.
       const solid = window.scrollY > 24 || header.dataset.menuOpen === 'true';
       if (!startsTransparent) return;
-      header.classList.toggle('shadow-[0_1px_0_0_rgb(255,255,255,0.06)]', solid);
+      header.classList.toggle('shadow-[var(--mh-shadow-header)]', solid);
       // Over the hero photo the bar keeps light text whatever the page theme;
       // once it has a solid background it follows the theme like everything else.
       if (solid) delete header.dataset.theme;

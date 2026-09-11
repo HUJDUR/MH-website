@@ -12,14 +12,14 @@ import type { Dictionary } from './en';
  */
 export const bs: Dictionary = {
   site: {
-    tagline: 'Teške čelične konstrukcije, holandski standard.',
+    tagline: 'Teške zavarene čelične konstrukcije',
     description:
       'Metal Holland proizvodi teške zavarene čelične konstrukcije — obradu lima, sekcije i kompletne sklopove — za brodogradnju, offshore i infrastrukturu širom Evrope.',
   },
 
   nav: {
     items: [
-      { href: '/', label: 'Početna', blurb: 'Ko smo i kako radimo' },
+      { href: '/', label: 'Početna', blurb: 'Ko smo i šta gradimo' },
       { href: '/media', label: 'Media', blurb: 'Fotografije iz pogona' },
       { href: '/careers', label: 'Posao', blurb: 'Zavarivači, bravari, inženjeri' },
       { href: '/contact', label: 'Kontakt', blurb: 'Adresa, telefon, obrazac za upit' },
@@ -44,37 +44,39 @@ export const bs: Dictionary = {
 
   common: {
     requestQuote: 'Javite nam se',
-    contactForm: 'Obrazac za kontakt',
+    contactForm: 'Kontakt forma',
     backToHome: 'Nazad na početnu',
     contactUs: 'Kontaktirajte nas',
     sector: 'Sektor',
+    vatLabel: 'PDV',
+    jibLabel: 'JIB',
   },
 
   home: {
     title: 'Početna',
     heroEyebrow: '20+ godina u čeličnim konstrukcijama',
-    heroTitleA: 'Gradimo čelik',
-    heroTitleB: 'na kojem drugi grade.',
+    heroTitleA: 'Čelične konstrukcije,',
+    heroTitleB: 'izrađene prema vašoj specifikaciji.',
     heroLede:
-      'Od pojedinačnih dijelova do kompletnih čeličnih konstrukcija — rezanje, oblikovanje, zavarivanje i završna obrada pod jednim krovom.',
+      'Od pojedinačnih dijelova do kompletnih čeličnih konstrukcija — rezanje, oblikovanje, zavarivanje i završna obrada, sve na jednome mjestu.',
     heroAlt: 'Operater Metal Hollanda za komandama mašine za rezanje',
 
-    whoEyebrow: 'Ko smo',
-    whoTitle: 'Proizvodni pogon, a ne posrednik.',
+    whoEyebrow: 'O nama',
+    whoTitle: 'Porodična firma. Globalni doseg.',
     whoBody1:
-      'Metal Holland reže, oblikuje, zavaruje i završno obrađuje teške čelične konstrukcije u vlastitim halama. Ništa se tiho ne prosljeđuje nizu podizvođača — lim koji stigne u naš krug iz njega izlazi kao gotova sekcija, sa pripadajućom dokumentacijom.',
+      'Metal Holland je porodična firma osnovana 2005. godine u malom gradu na granici Evropske unije. Počeli smo sa nekolicinom radnika koji su u početku pravili plastenike za lokalno stanovništvo, a danas izrađujemo proizvode za neke od najekskluzivnijih industrija na svijetu. Radimo na superjahtama, offshore projektima i općim čeličnim konstrukcijama, uglavnom za klijente iz regije Beneluksa.',
     whoBody2:
-      'To je cijela ponuda. Holandsko vođenje projekata i inženjerska disciplina, spojeni sa kapacitetom, dizalicama i školovanim majstorima punog proizvodnog pogona. Klijenti iz brodogradnje, offshorea i infrastrukture rade s nama jer je jedan odgovoran partner jednostavniji za planiranje nego pet.',
+      'Iako smo u posljednjih deset godina znatno napredovali, u srži ostajemo porodična firma — ona koja ostaje povezana sa svojim radnicima, njihovim porodicama i lokalnom zajednicom.',
 
     energyEyebrow: 'Energija',
-    energyTitle: 'Krov pokreće dobar dio pogona.',
+    energyTitle: 'Uvijek tražimo poboljšanja.',
     energyLede:
-      'Svaki krov hale na koji su paneli mogli stati sada ih nosi. Proizvodnja čeličnih konstrukcija troši mnogo energije — proizvodnja vlastite je dio na koji možemo uticati.',
+      'Proizvodnja čeličnih konstrukcija troši mnogo energije. Solarni paneli na krovovima naših hala pokrivaju dio tog opterećenja.',
     energyBody:
-      'Elektrana napaja pogon direktno. Dok ima sunca, na njoj rade stolovi za rezanje, odsis, dizalice i rasvjeta. To je ujedno razlog zašto naš certifikat EN ISO 14001 opisuje nešto više od fascikle u ormaru.',
+      'To je jedan korak u kontinuiranom prelasku na čistiju potrošnju energije u cijelom pogonu.',
     energyFigures: [
       { value: '240 kWp', label: 'Instalisana snaga' },
-      { value: '2 / 4', label: 'Krovova hala pod panelima' },
+      { value: '2 / 4', label: 'Krova pod panelima' },
     ],
     energyImages: [
       { slug: 'solar-roof', alt: 'Solarni paneli na krovu hale Metal Hollanda' },
@@ -100,7 +102,7 @@ export const bs: Dictionary = {
   },
 
   industriesPage: {
-    eyebrow: 'Djelatnosti',
+    eyebrow: 'Industrije',
     heroTitle: 'Gdje naš čelik završi.',
   },
 
@@ -114,7 +116,7 @@ export const bs: Dictionary = {
     filter: 'Filter',
     all: 'Sve',
     groups: [
-      { id: 'workshop', label: 'Radionica' },
+      { id: 'workshop', label: 'Pogon' },
       { id: 'projects', label: 'Projekti' },
       { id: 'machines', label: 'Mašine' },
     ],
@@ -134,7 +136,7 @@ export const bs: Dictionary = {
       { slug: 'team-workshop', alt: 'Dva bravara pripremaju rad na stolu', group: 'workshop' },
       { slug: 'control-station', alt: 'Rukovalac mašinom za komandnim pultom linije za rezanje', group: 'workshop' },
       { slug: 'steel-stock', alt: 'Čelične flahe složene i spremne za rezanje', group: 'workshop' },
-      { slug: 'workshop-hall', alt: 'Stolovi i nogari uzduž radionice', group: 'workshop' },
+      { slug: 'workshop-hall', alt: 'Stolovi i nogari uzduž pogona', group: 'workshop' },
       { slug: 'drill-detail', alt: 'Burgija ulazi u čelični profil', group: 'workshop' },
       { slug: 'roller-detail', alt: 'Valjci za dodavanje na liniji za bušenje', group: 'workshop' },
       { slug: 'steel-sections', alt: 'Temeljno obojene sekcije nosača poredane u hali', group: 'workshop' },
@@ -168,6 +170,9 @@ export const bs: Dictionary = {
       { slug: 'crane-lift', alt: 'Auto-dizalica podiže posudu od nerđajućeg čelika', group: 'projects' },
       { slug: 'crane-lift-2', alt: 'Dizalica spušta teret', group: 'projects' },
       { slug: 'access-platform', alt: 'Prilazna platforma s rešetkastim podom i cijevnom ogradom, sastavljena u hali', group: 'projects' },
+      { slug: 'crawler-frame', alt: 'Zavareni ram mašine, obojen narandžasto, na gusjeničnom podvozju i natovaren na niskonoseću prikolicu u krugu pogona', group: 'projects' },
+      { slug: 'crawler-frame-2', alt: 'Isti ram sa zadnje strane, vezan lancima na platformi prikolice', group: 'projects' },
+      { slug: 'crawler-frame-3', alt: 'Ram s druge strane, spreman da napusti pogon', group: 'projects' },
       { slug: 'machine-esab', alt: 'ESAB CNC portal za rezanje plazmom nad stolom od trideset metara', group: 'machines' },
       { slug: 'machine-messer', alt: 'Messer MultiTherm reže čeličnu ploču plazmom', group: 'machines' },
       { slug: 'machine-durma', alt: 'Durma AD-S 40320 CNC apkant preša u pogonu za oblikovanje', group: 'machines' },
@@ -183,18 +188,18 @@ export const bs: Dictionary = {
     ],
     ctaTitle: 'Želite vidjeti pogon uživo?',
     ctaBody:
-      'Fotografija ima svoje granice.\n\nPosjete su dobrodošle — prođite kroz hale i vidite proizvodnju svojim očima!',
+      'Fotografije mogu pružiti samo ograničen uvid.\n\nPosjete su dobrodošle — prođite kroz hale i vidite proizvodnju svojim očima!',
   },
 
   aboutPage: {
     peopleEyebrow: 'Ljudi',
-    peopleTitle: '50+ ljudi, većina s gorionikom u ruci.',
+    peopleTitle: '50+ ljudi,\nNeki su s nama od prvog dana,\nVećina ostaje godinama',
     peopleAlt: 'Radnici Metal Hollanda pri poslu u hali',
     certEyebrow: 'Certifikacija',
-    certTitle: 'Provjereno, a ne samo tvrđeno.',
-    ctaTitle: 'Radite s nama.',
+    certTitle: 'Certificirano i auditirano.',
+    ctaTitle: 'Javite nam se.',
     ctaBody:
-      'Bilo da vam treba jedna sekcija ili godina kapaciteta, razgovor počinje isto — pošaljite crteže i recite datum.',
+      'Uvijek smo u potrazi za novim i stabilnim dobavljačima i zainteresovanim klijentima.',
   },
 
   contactPage: {
@@ -230,7 +235,7 @@ export const bs: Dictionary = {
     hours: 'Ponedjeljak – petak, 07:00 – 15:45',
     hoursLabel: 'Radno vrijeme',
     directions: 'Upute za dolazak',
-    mapEyebrow: 'Gdje smo',
+    mapEyebrow: 'Gdje se nalazimo',
     openInMaps: 'Otvori u Google Mapama',
     mapConsent:
       'Mapu učitava Google Maps, koji postavlja vlastite kolačiće. Učitajte je da vidite pogon na karti ili otvorite lokaciju direktno u Google Mapama.',
@@ -241,7 +246,7 @@ export const bs: Dictionary = {
   careersPage: {
     title: 'Posao',
     description:
-      'Posao u Metal Hollandu: zavarivači, monteri, rukovaoci mašinama, pripremači rada i projektni inženjeri u našem pogonu u Šamcu.',
+      'Posao u Metal Hollandu: zavarivači, monteri, operateri mašina, pripremači rada i projektni inženjeri u našem pogonu u Šamcu.',
     eyebrow: 'Posao',
     heroTitle: 'Dođite da gradite s nama.',
     heroAlt: 'Radnici Metal Hollanda pri poslu u hali',
@@ -250,7 +255,7 @@ export const bs: Dictionary = {
     openingsBody: 'Trenutno nema otvorenih pozicija.',
     formTitle: 'Prijava',
     formNote:
-      'I kada ništa nije objavljeno, rado ćemo upoznati ljude koji bi kasnije mogli odgovarati nekom poslu — javite se!',
+      'I kada nema otvorenih pozicija, rado upoznajemo nove ljude koji će se moći uklopiti u firmu kasnije u budućnosti — javite nam se!',
     fields: {
       name: 'Ime i prezime',
       namePlaceholder: 'Vaše ime',
@@ -286,19 +291,19 @@ export const bs: Dictionary = {
       'Kolačić je mala tekstualna datoteka koju stranica traži od vašeg preglednika da sačuva. Omogućava stranici da zapamti nešto između učitavanja — postavku, sesiju ili, na mnogim stranicama, vaše ponašanje širom interneta. Slične tehnologije, poput lokalne pohrane, u praksi rade isto i obuhvaćene su ovom politikom.',
     useTitle: 'Šta koristimo',
     useBody1:
-      'Ova stranica postavlja jedan vlastiti kolačić. On bilježi da li ste prihvatili ili odbili opcionalne kolačiće, kako se traka ne bi ponavljala na svakoj stranici. Ne sadrži ništa drugo — nijedan identifikator, profil ni istoriju.',
+      'Ova stranica postavlja jedan vlastiti kolačić. On bilježi da li ste prihvatili ili odbili opcionalne kolačiće, kako se notifikacija ne bi ponavljala na svakoj stranici. Ne sadrži ništa drugo — nijedan identifikator, profil ni historiju.',
     useBody2:
-      'Još jedna postavka — jeste li prebacili stranicu na svijetli prikaz i koji jezik čitate — čuva se u lokalnoj pohrani vašeg preglednika. To nije kolačić, nikada nam se ne šalje i ne radi ništa osim što vraća izgled koji ste odabrali.',
+      'Još jedna postavka — jeste li prebacili stranicu na svijetli prikaz i koji jezik koristite — čuva se u lokalnoj pohrani vašeg preglednika. To nije kolačić, nikada nam se ne šalje i ne radi ništa osim što vraća izgled koji ste odabrali.',
     useBody3:
-      'Ne koristimo analitiku, oglasne piksele ni pratioce društvenih mreža. Ništa vas s ove stranice ne prati na drugu.',
+      'Ne koristimo analitiku, oglase ni pratioce društvenih mreža. Ništa vas s ove stranice ne prati na drugu.',
     thirdTitle: 'Jedina treća strana',
     thirdBody1:
-      'Naša kontakt stranica može prikazati našu lokaciju na ugrađenoj Google mapi. Google postavlja vlastite kolačiće kada se ta mapa učita, i zato mapa ostaje isključena dok ne prihvatite opcionalne kolačiće ili ne pritisnete Učitaj mapu. Ako odbijete, mapa se nikada ne traži i Google se nikada ne kontaktira — a istu lokaciju i dalje možete otvoriti direktno u Google Mapama, pod Googleovim uslovima, putem linka pored.',
+      'Naša kontakt stranica može prikazati našu lokaciju na ugrađenoj Google mapi. Google postavlja vlastite kolačiće kada se ta mapa učita, i zato mapa ostaje isključena dok ne prihvatite opcionalne kolačiće ili ne pritisnete Učitaj mapu. Ako odbijete, mapa se nikada ne traži i Google se nikada ne kontaktira — a istu lokaciju i dalje možete otvoriti direktno u Google Mapama, pod Googleovim uvjetima, putem linka pored.',
     thirdBody2:
-      'Šta Google radi s tim kolačićima uređuje njegova politika privatnosti, a ne naša.',
+      'Šta Google radi s tim kolačićima uređuje njihova politika privatnosti, a ne naša.',
     changeTitle: 'Ako se predomislite',
     changeBody1:
-      'Vaš izbor nije konačan. Dugmetom ispod ponovo otvorite traku i odlučite iznova — odbijanje nakon prihvatanja takođe uklanja mapu sa stranice.',
+      'Vaš izbor nije konačan. Dugmetom ispod ponovo otvorite traku i odlučite ponovo — odbijanje nakon prihvatanja također uklanja mapu sa stranice.',
     changeBody2:
       'Kolačiće možete obrisati u bilo kojem trenutku u postavkama preglednika ili ih potpuno blokirati. Blokiranje kolačića o saglasnosti znači samo da ćemo vas pitati ponovo pri sljedećoj posjeti; ništa drugo na ovoj stranici ne ovisi o kolačićima.',
     settingsButton: 'Postavke kolačića',
@@ -325,7 +330,7 @@ export const bs: Dictionary = {
         name: 'mh-theme, mh-lang (lokalna pohrana)',
         provider: 'Metal Holland (ova stranica)',
         purpose:
-          'Pamte jeste li prebacili stranicu na svijetli prikaz i koji ste jezik posljednji čitali. Nisu kolačići i nikada nam se ne šalju — ostaju u vašem pregledniku.',
+          'Pamte jeste li prebacili stranicu na svijetli prikaz i koji ste jezik posljednji koristili. Nisu kolačići i nikada nam se ne šalju — ostaju u vašem pregledniku.',
         duration: 'Dok ne obrišete podatke preglednika',
         category: 'essential',
       },
@@ -364,9 +369,9 @@ export const bs: Dictionary = {
         title: 'Brodogradnja i gradnja jahti',
         bullets: [
           'Rezanje i oblikovanje sekcija trupa',
-          'Prefabrikacija manjih sekcija i podsklopova',
-          'Potpuna sljedivost lima, od certifikata valjaonice do gotove sekcije',
-          'Sav materijal isporučen s certifikatima 3.2',
+          'Izrada manjih sekcija i podsklopova',
+          'Potpuna sljedivost lima, od certifikata iz željezare do gotove sekcije',
+          'Sav materijal isporučen sa 3.2 certifikatima',
         ],
         image: 'industry-shipbuilding',
       },
@@ -383,22 +388,22 @@ export const bs: Dictionary = {
       },
       {
         id: 'ironwork',
-        title: 'Sitna bravarija u nerđajućem čeliku, aluminijumu i čeliku',
+        title: 'Sitna bravarija u nehrđajućem čeliku, aluminiju i čeliku',
         bullets: [
           'Temelji za opremu i mašine',
-          'Teški kanali i ventilacijska konstrukcija',
-          'Tave za skupljanje i zaštitne kade',
-          'Nerđajući čelik, aluminijum i ugljični čelik',
+          'Masivni kanali i ventilacijska konstrukcija',
+          'Posude za kapanje i skupljanje',
+          'Nehrđajući čelik, aluminij i ugljični čelik',
         ],
         image: 'stainless-trough',
       },
       {
         id: 'offshore',
-        title: 'Pribor i dijelovi za offshore tržište čelika',
+        title: 'Dodatna oprema i dijelovi za offshore tržište',
         bullets: [
           'Radne platforme i konstrukcija za pristup palubi',
-          'Ograde, rukohvati i stupovi ograde',
-          'Ljestve s korpom i stepenišni tornjevi',
+          'Ograde, rukohvati i stubovi',
+          'Kavezne ljestve i stepenišni tornjevi',
           'Sve izrađeno prema offshore zahtjevima kvaliteta',
         ],
         image: 'industry-offshore',
@@ -408,13 +413,13 @@ export const bs: Dictionary = {
     stats: [
       { value: '20+', label: 'Godina u teškim konstrukcijama', sub: 'Za evropske klijente' },
       { value: '32,000 m²+', label: 'Proizvodna površina', sub: 'U [4] proizvodne hale' },
-      { value: '1,000 t+', label: 'Čelika obrađeno godišnje', sub: 'Lim, profili i kutijasti profili' },
-      { value: '50+', label: 'Ljudi u pogonu', sub: 'Zavarivači, monteri, rukovaoci, inženjeri' },
+      { value: '1,000 t+', label: 'Čelika obrađeno godišnje', sub: 'Lim, profili i cijevi' },
+      { value: '50+', label: 'Ljudi u pogonu', sub: 'Zavarivači, monteri, operateri, inženjeri' },
     ],
 
     certifications: [
       { code: 'EN 1090-2 EXC2', label: 'Izvedba čeličnih konstrukcija, klasa izvedbe 2' },
-      { code: 'EN ISO 3834-2', label: 'Sveobuhvatni zahtjevi kvaliteta za zavarivanje taljenjem' },
+      { code: 'EN ISO 3834-2', label: 'Sveobuhvatni zahtjevi kvaliteta za zavarivanje topljenjem' },
       { code: 'EN ISO 9001', label: 'Upravljanje kvalitetom' },
       { code: 'EN ISO 14001', label: 'Upravljanje zaštitom okoliša' },
       { code: 'EN ISO 45001', label: 'Zaštita zdravlja i sigurnost na radu' },

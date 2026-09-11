@@ -13,14 +13,14 @@ import type { Dictionary } from './en';
  */
 export const nl: Dictionary = {
   site: {
-    tagline: 'Zware staalconstructies, Nederlandse maatstaf.',
+    tagline: 'Zware gelaste staalconstructies',
     description:
       'Metal Holland vervaardigt zware gelaste staalconstructies — plaatwerk, secties en complete samenstellingen — voor scheepsbouw, offshore en infrastructuur in heel Europa.',
   },
 
   nav: {
     items: [
-      { href: '/', label: 'Home', blurb: 'Wie we zijn en hoe we werken' },
+      { href: '/', label: 'Home', blurb: 'Wie we zijn en wat we bouwen' },
       { href: '/media', label: 'Media', blurb: "Foto's van het bedrijf" },
       { href: '/careers', label: 'Vacatures', blurb: 'Lassers, bankwerkers, engineers' },
       { href: '/contact', label: 'Contact', blurb: 'Adres, telefoon, aanvraagformulier' },
@@ -49,30 +49,32 @@ export const nl: Dictionary = {
     backToHome: 'Terug naar home',
     contactUs: 'Neem contact op',
     sector: 'Sector',
+    vatLabel: 'btw',
+    jibLabel: 'JIB',
   },
 
   home: {
     title: 'Home',
     heroEyebrow: '20+ jaar staalconstructie',
-    heroTitleA: 'Wij bouwen het staal',
-    heroTitleB: 'waarop anderen bouwen.',
+    heroTitleA: 'Staalconstructies,',
+    heroTitleB: 'gebouwd volgens uw specificatie.',
     heroLede:
       'Van losse onderdelen tot complete staalconstructies — snijden, vormen, lassen en afwerken onder één dak.',
     heroAlt: 'Een operator van Metal Holland aan de besturing van een snijmachine',
 
     whoEyebrow: 'Wie we zijn',
-    whoTitle: 'Een constructiebedrijf, geen tussenhandel.',
+    whoTitle: 'Familiebedrijf. Wereldwijd bereik.',
     whoBody1:
-      'Metal Holland snijdt, vormt, last en werkt zware staalconstructies af in eigen hallen. Er wordt niets stilletjes doorgeschoven naar een keten van onderaannemers — de plaat die op ons terrein aankomt, verlaat het als afgewerkte sectie, met de documentatie erbij.',
+      'Metal Holland is een familiebedrijf, in 2005 opgericht in een kleine stad aan de grens van de Europese Unie. We begonnen met een handvol werknemers die kassen bouwden voor de streek, en vandaag maken we producten voor enkele van de meest exclusieve industrieën ter wereld. We werken aan superjachten, offshoreprojecten en algemene staalbouw, voornamelijk voor opdrachtgevers in de Benelux.',
     whoBody2:
-      'Dat is het hele voorstel. Nederlandse projectleiding en engineeringdiscipline, gecombineerd met de capaciteit, de kraanbaan en de vakmensen van een volwaardig productiebedrijf. Opdrachtgevers in scheepsbouw, offshore en infrastructuur werken met ons omdat één verantwoordelijke partij eenvoudiger te plannen is dan vijf.',
+      'Hoewel we het afgelopen decennium flink zijn gegroeid, blijven we in de kern een familiebedrijf — een bedrijf dat verbonden blijft met zijn werknemers, hun gezinnen en de lokale gemeenschap.',
 
     energyEyebrow: 'Energie',
-    energyTitle: 'Het dak draait een flink deel van de werkplaats.',
+    energyTitle: 'We zoeken altijd naar verbeteringen.',
     energyLede:
-      'Elk haldak waar panelen op pasten, ligt er inmiddels vol mee. Staalconstructie is een energieslurpend vak — zelf opwekken is het deel waar we iets aan kunnen doen.',
+      'Staalbouw is een energie-intensief vak. Zonnepanelen op onze haldaken vangen een deel van die belasting op.',
     energyBody:
-      'De installatie voedt het bedrijf rechtstreeks. Zolang de zon schijnt, draaien de snijtafels, de afzuiging, de kranen en de verlichting erop. Het is ook de reden dat ons EN ISO 14001-certificaat over meer gaat dan een ordner in de kast.',
+      'Dit is één stap in een lopende overgang naar schoner energiegebruik in het hele bedrijf.',
     energyFigures: [
       { value: '240 kWp', label: 'Opgesteld vermogen' },
       { value: '2 / 4', label: 'Haldaken voorzien' },
@@ -169,6 +171,9 @@ export const nl: Dictionary = {
       { slug: 'crane-lift', alt: 'Een mobiele kraan hijst een roestvaststalen vat', group: 'projects' },
       { slug: 'crane-lift-2', alt: 'De kraan zet de last neer', group: 'projects' },
       { slug: 'access-platform', alt: 'Een bordes met roosterdek en buisleuningen, samengesteld in de hal', group: 'projects' },
+      { slug: 'crawler-frame', alt: 'Een gelast machineframe, oranje gelakt, op zijn rupsonderstel op een dieplader op het terrein', group: 'projects' },
+      { slug: 'crawler-frame-2', alt: 'Hetzelfde frame vanaf de achterzijde, vastgeketend op de opleggervloer', group: 'projects' },
+      { slug: 'crawler-frame-3', alt: 'Het frame vanaf de andere kant, klaar om het terrein te verlaten', group: 'projects' },
       { slug: 'machine-esab', alt: 'ESAB CNC-plasmasnijportaal boven zijn tafel van dertig meter', group: 'machines' },
       { slug: 'machine-messer', alt: 'Messer MultiTherm snijdt een stalen plaat met plasma', group: 'machines' },
       { slug: 'machine-durma', alt: 'Durma AD-S 40320 CNC-kantpers in de zetafdeling', group: 'machines' },
@@ -189,13 +194,13 @@ export const nl: Dictionary = {
 
   aboutPage: {
     peopleEyebrow: 'Mensen',
-    peopleTitle: '50+ mensen, de meesten met een toorts in de hand.',
+    peopleTitle: '50+ mensen,\nSommigen zijn er vanaf dag één,\nDe meesten blijven jaren',
     peopleAlt: 'Constructiewerkers van Metal Holland aan het werk in de hal',
     certEyebrow: 'Certificering',
-    certTitle: 'Geaudit, niet beweerd.',
-    ctaTitle: 'Werk met ons.',
+    certTitle: 'Gecertificeerd en geaudit.',
+    ctaTitle: 'Neem contact met ons op.',
     ctaBody:
-      'Of u nu één sectie nodig hebt of een jaar capaciteit, het gesprek begint hetzelfde — stuur de tekeningen en noem de datum.',
+      'We zijn altijd op zoek naar nieuwe en stabiele leveranciers en geïnteresseerde opdrachtgevers.',
   },
 
   contactPage: {

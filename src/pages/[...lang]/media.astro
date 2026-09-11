@@ -119,9 +119,15 @@ const filters = [
   />
 
   <!-- Lightbox. Empty until a photograph is opened; the <img> src is taken
-       from the thumbnail's own srcset, so no second set of files is built. -->
+       from the thumbnail's own srcset, so no second set of files is built.
+
+       Held dark in both themes: a photograph wants a dark surround to be read
+       against, and a near-white scrim over a near-white page would not read as
+       a layer at all. The attribute also keeps the close button light-on-dark
+       and exempts the image from the light-mode tonal lift. -->
   <div
     data-lightbox
+    data-theme="dark"
     hidden
     class="fixed inset-0 z-100 hidden items-center justify-center bg-ink-950/95 p-4 backdrop-blur-sm"
     role="dialog"
