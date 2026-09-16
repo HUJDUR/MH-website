@@ -32,6 +32,12 @@
   --color-arc-500: #5dbee4;
   --color-arc-400: #8ad3ef;
 
+  /* The only green on the site: the leaf beside the energy heading. Pitched at
+     the same weight as `arc-500` rather than picked by eye — 9.3:1 on ink-900
+     against the cyan's 9.2:1 — so it reads as a third accent in the same family
+     and not as a warning colour borrowed from somewhere else. */
+  --color-leaf-500: #52c98f;
+
   /* Semantic pair. Headings and hairlines are the two things that must invert
      with the theme; everything else rides on the ramps above. Literal
      `text-white` is reserved for text sitting on orange, which never flips. */
@@ -111,6 +117,10 @@ html[data-theme='light'] [data-theme='light'] {
   --color-arc-500: #0f6d8c;
   --color-arc-400: #0e657f;
 
+  /* 5.9:1 on white, which is arc-500's 5.9:1 to two figures. Clears AA as text
+     as well as the 3:1 a graphic needs, so the leaf survives being reused. */
+  --color-leaf-500: #157347;
+
   --color-heading: #0b1116;
   --color-line: #0b1116;
 
@@ -158,6 +168,8 @@ html[data-theme='light'] [data-theme='light'] {
   --color-arc-600: #3ba3cd;
   --color-arc-500: #5dbee4;
   --color-arc-400: #8ad3ef;
+
+  --color-leaf-500: #52c98f;
 
   --color-heading: #ffffff;
   --color-line: #ffffff;

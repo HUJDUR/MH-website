@@ -2,7 +2,7 @@
 import Base from '../../layouts/Base.astro';
 import PageHero from '../../components/PageHero.astro';
 import Reveal from '../../components/Reveal.astro';
-import { contact, site } from '../../data/site';
+import { contact, site, web3forms } from '../../data/site';
 
 import { localePaths, t, href, localeMeta } from '../../i18n';
 import type { Locale } from '../../i18n';
@@ -15,17 +15,12 @@ const L = (path: string) => href(locale, path);
 
 /**
  * The site is static, so submissions go through Web3Forms, which forwards
- * them to info@metalholland.com. Web3Forms stores nothing — it relays.
- *
- * The access key is a submit-only credential and is public by design: it
- * cannot read past submissions or reach the account. Any key the browser
- * uses is visible to the browser, so do not treat this as a secret. The
- * protection that matters is the domain allowlist in the Web3Forms
- * dashboard — restrict this key to metalholland.com so nobody can post to
- * it from elsewhere.
+ * them to info@metalholland.com and stores nothing. Endpoint and key are
+ * shared with the /careers form and live in data/site.ts — including the note
+ * on why the key is public by design.
  */
-const FORM_ENDPOINT = 'https://api.web3forms.com/submit';
-const WEB3FORMS_KEY = '64977760-c428-4e97-af05-a8eec75b5c8e';
+const FORM_ENDPOINT = web3forms.endpoint;
+const WEB3FORMS_KEY = web3forms.accessKey;
 
 const fieldClass =
   'w-full rounded-xl border border-line/12 bg-ink-900 px-4 py-3.5 text-sm text-heading placeholder:text-steel-400 transition-colors duration-300 focus:border-flame-500 focus:outline-none';

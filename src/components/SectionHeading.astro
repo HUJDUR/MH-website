@@ -33,7 +33,10 @@ const Heading = `h${level}` as 'h2' | 'h3';
   {
     eyebrow && (
       <Reveal>
-        <p class="eyebrow">{eyebrow}</p>
+        <p class="eyebrow">
+          {eyebrow}
+          <slot name="eyebrow-after" />
+        </p>
       </Reveal>
     )
   }

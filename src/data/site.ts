@@ -48,3 +48,24 @@ export const contact = {
   },
 } as const;
 
+/**
+ * Both forms — the enquiry form on /contact and the application form on
+ * /careers — post here, and both must keep posting to the same place: the
+ * relay forwards to info@metalholland.com and stores nothing, so a second key
+ * would mean a second dashboard to watch and a second allowlist to keep in
+ * step. They are only told apart in the inbox by the subject prefix each page
+ * sets. Defined once here rather than per page because the two literals had
+ * no way of staying equal on their own.
+ *
+ * The access key is a submit-only credential and is public by design: it
+ * cannot read past submissions or reach the account. Any key the browser uses
+ * is visible to the browser, so do not treat this as a secret and do not
+ * propose hiding it. The protection that matters is the domain allowlist in
+ * the Web3Forms dashboard — restrict this key to metalholland.com so nobody
+ * can post to it from elsewhere.
+ */
+export const web3forms = {
+  endpoint: 'https://api.web3forms.com/submit',
+  accessKey: '64977760-c428-4e97-af05-a8eec75b5c8e',
+} as const;
+
