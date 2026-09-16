@@ -11,7 +11,6 @@ import path from 'node:path';
 const PHOTOS = 'media/Projects';
 const ALBUM = 'media/Album';
 const INDUSTRIES = 'media/Industries present';
-const MACHINES = 'media/Machines';
 const OUT = 'src/assets/img';
 
 /**
@@ -41,6 +40,23 @@ const KNOWN_MISSING = {
   'formed-plate': `${PHOTOS}/Z62_2416.JPG`,
   'hall-overview': `${PHOTOS}/Z62_2276.JPG`,
   'machine-hall': `${PHOTOS}/IMG_1069.JPG`,
+
+  // media/Machines was deleted wholesale on 2026-09-15 (bar the two forklift
+  // shots, which moved to media/Album) and the machines came
+  // off /media and off the home page's reinvestment strip with it. Nothing
+  // renders these now, so they look like dead weight twice over — unreferenced
+  // *and* ungrouped. They are still the only copies of the photographs.
+  'machine-esab': 'media/Machines/ESAB.JPG',
+  'machine-messer': 'media/Machines/Messer.JPG',
+  'machine-durma': 'media/Machines/Durma.jpg',
+  'machine-vernet': 'media/Machines/Vernet.jpg',
+  'machine-qfin': 'media/Machines/QFIN.jpg',
+  'machine-bp40': 'media/Machines/BP 40 horizontal press.jpeg',
+  'machine-fp80': 'media/Machines/FP 80 horizontal press.jpeg',
+  'machine-jaespa': 'media/Machines/Jaespa bandsaw.jpeg',
+  'machine-kaltenbach': 'media/Machines/Kaltenbach saw.jpeg',
+  'machine-pilous': 'media/Machines/Pilous bandsaw.jpeg',
+  'flatbed-trailer': 'media/Machines/Plato.JPG',
 };
 
 /**
@@ -70,10 +86,10 @@ const SELECTION = [
 
   // Facility
   [`${ALBUM}/Z62_2292.JPG`, 'workshop-hall', 2400],
-  // One drone shot now stands in for both aerials — the second angle was
-  // dropped from /media. Add a source here if another one turns up.
-  ['media/MH sky.jpg', 'facility-aerial', 2600],
-  ['media/MH sky.jpg', 'facility-aerial-2', 2600],
+  // The drone aerial. Replaced 2026-09-16 and now does two jobs — the album's
+  // workshop group and the reinvestment strip on the home page — so it is
+  // processed at 2400 rather than the album's usual 2000.
+  ['media/MH sky.jpg', 'facility-aerial', 2400],
 
   // People
   [`${ALBUM}/Z62_2283.JPG`, 'operator-console', 2400],
@@ -82,23 +98,14 @@ const SELECTION = [
   // Industries served
   [`${INDUSTRIES}/Shipbuilding.jpg`, 'industry-shipbuilding', 2400],
   [`${INDUSTRIES}/Offshore sector.jpg`, 'industry-offshore', 2400],
-  [`${INDUSTRIES}/Infrastructure.jpg`, 'industry-infrastructure', 2400],
+  // No infrastructure sector on the page since the industries list was cut to
+  // four, so its photograph is not processed. Source kept in media/.
 
   // Renewable energy — rooftop arrays on the halls
   ['media/Solar panels 2.jpg', 'solar-roof', 2400],
   ['media/Solar panels 3.jpg', 'solar-array', 2400],
   ['media/Solar panels 1.jpg', 'solar-overhead', 2400],
 
-  // Machines — slugs match `content.machines` in the locale dictionaries
-  [`${MACHINES}/ESAB.JPG`, 'machine-esab', 2400],
-  [`${MACHINES}/Messer.JPG`, 'machine-messer', 2400],
-  [`${MACHINES}/Durma.jpg`, 'machine-durma', 2400],
-  [`${MACHINES}/Vernet.jpg`, 'machine-vernet', 2400],
-  [`${MACHINES}/QFIN.jpg`, 'machine-qfin', 2400],
-
-  // Reinvestment strip under the energy section. The trailer is shop-made
-  // rather than a machine; it sits in media/Machines all the same.
-  [`${MACHINES}/Plato.JPG`, 'flatbed-trailer', 2400],
 
   // ── The photo album on /media ──────────────────────────────────────────
   // Only ever shown in a grid, so 2000px is plenty. Slugs above are reused by
@@ -148,14 +155,12 @@ const SELECTION = [
   [`${PHOTOS}/IMG_4279.jpg`, 'crawler-frame-2', 2000],
   [`${PHOTOS}/IMG_4280.jpg`, 'crawler-frame-3', 2000],
 
-  // Machines
-  [`${MACHINES}/BP 40 horizontal press.jpeg`, 'machine-bp40', 2000],
-  [`${MACHINES}/FP 80 horizontal press.jpeg`, 'machine-fp80', 2000],
-  [`${MACHINES}/Jaespa bandsaw.jpeg`, 'machine-jaespa', 2000],
-  [`${MACHINES}/Kaltenbach saw.jpeg`, 'machine-kaltenbach', 2000],
-  [`${MACHINES}/Pilous bandsaw.jpeg`, 'machine-pilous', 2000],
-  [`${MACHINES}/Forklifts 1.JPG`, 'forklifts-yard', 2000],
-  [`${MACHINES}/Forklifts 2.JPG`, 'forklifts-yard-2', 2000],
+  // The forklift pair moved out of media/Machines with the rest of that folder
+  // (2026-09-15) but was kept, and now sits in the album as workshop rather
+  // than as machines.
+  [`${ALBUM}/Forklifts 1.JPG`, 'forklifts-yard', 2000],
+  [`${ALBUM}/Forklifts 2.JPG`, 'forklifts-yard-2', 2000],
+
 ];
 
 // Fail before writing anything, so a moved source is caught here rather than

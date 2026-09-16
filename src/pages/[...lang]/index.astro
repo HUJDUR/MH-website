@@ -108,7 +108,7 @@ const d = t(locale);
             >
               <Image
                 src={img(industry.image)}
-                alt={industry.title}
+                alt=""
                 widths={[600, 1000, 1500]}
                 sizes="(min-width:1024px) 56vw, 92vw"
                 loading="lazy"
@@ -185,7 +185,37 @@ const d = t(locale);
             eyebrow={d.home.energyEyebrow}
             title={d.home.energyTitle}
             lede={d.home.energyLede}
-          />
+          >
+            {/* Decorative, so `aria-hidden` and no alt-equivalent: the eyebrow
+                already says what the section is about and a screen reader
+                gains nothing from "leaf". The midrib is stroked in the section
+                ground rather than a darker green, so it stays a cut-out
+                through the theme flip instead of needing a second token; it is
+                widened here because the eyebrow renders at 11px, where the
+                heading's hairline vein would close up and read as a blob.
+                The eyebrow's own 0.22em letter-spacing contributes only ~2.4px
+                of trailing gap at that size, which is not enough to keep the
+                leaf clear of the Y, so the margin adds to it rather than
+                cancelling it. */}
+            <svg
+              slot="eyebrow-after"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              class="ml-1.5 inline-block h-[1.25em] w-[1.25em] align-[-0.3em] text-leaf-500"
+            >
+              <path
+                d="M20.6 3.4C11.3 4.5 4.4 9.6 4.4 16.3c0 2.4 1.5 4 3.8 4.3 7.4-1.1 12.4-8.2 12.4-17.2Z"
+                fill="currentColor"
+              />
+              <path
+                d="M20.6 3.4C14.7 7.8 10.4 13.7 8.2 20.6"
+                fill="none"
+                stroke-width="2.6"
+                stroke-linecap="round"
+                style="stroke: var(--color-ink-900)"
+              />
+            </svg>
+          </SectionHeading>
           <Reveal delay={240}>
             <p class="mt-6 max-w-xl leading-relaxed text-steel-400">
               {d.home.energyBody}
@@ -253,10 +283,17 @@ const d = t(locale);
           it. Photographs sit left of the midpoint and the text right, the
           mirror of the solar block above — which is why both children carry an
           explicit row and column: the text comes first in the markup so that a
-          narrow screen reads the heading before the grid of machines, and the
+          narrow screen reads the heading before the photographs, and the
           placement puts it back on the right once there are two columns to
           play with. Dropping either `lg:row-start-1` wraps the photographs onto
-          a second row. */}
+          a second row.
+
+          Column count follows the data, the same way the figures row above
+          does: the strip was nine machine thumbnails until media/Machines was
+          deleted, and is one drone aerial now. A single photograph left in a
+          three-column grid would render as a thumbnail stranded top-left, so
+          one image gets the whole column — and `sizes` has to follow, or the
+          browser picks a 300px candidate for a half-page image. */}
       <div class="mt-16 grid gap-12 lg:mt-24 lg:grid-cols-12 lg:items-center lg:gap-16">
         <div class="lg:col-span-5 lg:col-start-8 lg:row-start-1">
           <Reveal>
@@ -271,15 +308,28 @@ const d = t(locale);
           </Reveal>
         </div>
 
-        <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:col-span-6 lg:col-start-1 lg:row-start-1">
+        <div
+          class:list={[
+            'grid gap-4 lg:col-span-6 lg:col-start-1 lg:row-start-1',
+            d.home.investmentImages.length > 1 && 'grid-cols-2 sm:grid-cols-3',
+          ]}
+        >
           {
             d.home.investmentImages.map((shot, i) => (
               <Reveal delay={160 + i * 70} class="overflow-hidden rounded-2xl">
                 <Image
                   src={img(shot.slug)}
                   alt={shot.alt}
-                  widths={[300, 500, 800]}
-                  sizes="(min-width:1024px) 16vw, (min-width:640px) 30vw, 46vw"
+                  widths={
+                    d.home.investmentImages.length > 1
+                      ? [300, 500, 800]
+                      : [600, 1000, 1500]
+                  }
+                  sizes={
+                    d.home.investmentImages.length > 1
+                      ? '(min-width:1024px) 16vw, (min-width:640px) 30vw, 46vw'
+                      : '(min-width:1024px) 48vw, 92vw'
+                  }
                   loading="lazy"
                   class="aspect-4/3 w-full object-cover"
                 />
