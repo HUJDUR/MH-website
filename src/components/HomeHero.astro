@@ -1,5 +1,5 @@
 ---
-import { t, type Locale } from '../i18n';
+import { t, asset, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
@@ -19,14 +19,16 @@ const d = t(locale);
     <!-- Cooled and knocked back so the daylight footage sits inside the dark
          palette instead of fighting it. -->
     <img
-      src="/video/facility-poster.jpg"
+      src={asset("/video/facility-poster.jpg")}
       alt=""
       aria-hidden="true"
       class="absolute inset-0 h-full w-full scale-105 object-cover [filter:saturate(0.62)_contrast(1.08)_brightness(0.72)]"
     />
     <video
       data-hero-video
-      poster="/video/facility-poster.jpg"
+      data-src1080={asset('/video/facility-1080.mp4')}
+      data-src720={asset('/video/facility-720.mp4')}
+      poster={asset('/video/facility-poster.jpg')}
       autoplay
       muted
       loop
@@ -99,12 +101,22 @@ const d = t(locale);
     const slowNetwork = /2g/.test(connection?.effectiveType ?? '');
 
     if (!prefersReducedMotion && !saveData && !slowNetwork) {
+      // Both paths arrive as data attributes rather than being written here.
+      // A client <script> is a separate module from the frontmatter above, so
+      // the `asset()` import is not in scope in it — and a literal path would
+      // miss the /MH-website base and 404 on GitHub Pages.
+      //
+      // No hyphen before the digits: `data-src-1080` would key the dataset as
+      // `src-1080`, because only a hyphen followed by a *letter* is camel-cased.
+      // `video.dataset.src1080` would then be undefined and the hero silently
+      // stay on its poster.
       const src =
-        window.innerWidth >= 1024
-          ? '/video/facility-1080.mp4'
-          : '/video/facility-720.mp4';
+        (window.innerWidth >= 1024
+          ? video.dataset.src1080
+          : video.dataset.src720) ?? '';
 
       const start = () => {
+        if (!src) return;
         video.src = src;
         video.load();
         video.addEventListener(

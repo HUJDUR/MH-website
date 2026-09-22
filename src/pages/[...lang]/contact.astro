@@ -168,6 +168,16 @@ const labelClass =
               </a>
             </div>
           </form>
+          {/* Both forms collect personal data, so each one points at the
+              policy that says what happens to it. */}
+          <p class="mt-5 text-sm text-steel-400">
+            <a
+              href={L('/privacy')}
+              class="underline-offset-4 transition-colors hover:text-heading hover:underline"
+            >
+              {d.common.policyLink}
+            </a>
+          </p>
         </Reveal>
       </div>
 

@@ -4,8 +4,14 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // Update to the production domain before launch — used for canonical URLs and sitemap.
-  site: 'https://www.metalholland.com',
+  // Used for canonical URLs and the sitemap. GitHub Pages serves this repo as a
+  // project page, so the origin is the github.io host and `base` is the repo
+  // name — together they make https://hujdur.github.io/MH-website/. Moving to
+  // metalholland.com later means setting `site` to it, deleting `base`, and
+  // adding public/CNAME; nothing in the components has to change, because
+  // every path goes through href()/asset() in src/i18n/index.ts.
+  site: 'https://hujdur.github.io',
+  base: '/MH-website',
   // English lives at the root; the other two are prefixed. Pages are generated
   // from src/pages/[...lang]/ — see src/i18n/index.ts.
   i18n: {

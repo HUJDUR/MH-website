@@ -34,7 +34,7 @@ export const nl: Dictionary = {
 
   footer: {
     rights: 'Alle rechten voorbehouden.',
-    cookiePolicy: 'Cookiebeleid',
+    cookiePolicy: 'Privacy- en cookiebeleid',
     cookieSettings: 'Cookie-instellingen',
     country: 'Bosnië en Herzegovina',
 
@@ -47,6 +47,7 @@ export const nl: Dictionary = {
     backToHome: 'Terug naar home',
     contactUs: 'Neem contact op',
     sector: 'Sector',
+    policyLink: 'Bekijk ons privacy- en cookiebeleid',
     vatLabel: 'btw',
     jibLabel: 'JIB',
   },
@@ -258,14 +259,45 @@ export const nl: Dictionary = {
   },
 
   cookiesPage: {
-    title: 'Cookiebeleid',
+    title: 'Privacy- en cookiebeleid',
     description:
-      'Hoe Metal Holland cookies gebruikt: één noodzakelijke cookie die uw keuze onthoudt, en cookies van derden alleen als u de Google Maps-kaart laadt.',
+      'Welke persoonsgegevens Metal Holland verzamelt, wie ze ziet en hoe lang we ze bewaren — en de cookies die we plaatsen: één noodzakelijke, en cookies van derden alleen als u de Google Maps-kaart laadt.',
     eyebrow: 'Juridisch',
-    heroTitle: 'Cookiebeleid.',
+    heroTitle: 'Privacy- en cookiebeleid.',
     heroLede:
-      'Een kort beleid, want het is een korte lijst. We plaatsen één eigen cookie en geen enkele trackingcookie.',
+      'Wat we met uw gegevens doen, en wat we in uw browser bewaren. Beide lijsten zijn kort: we plaatsen één eigen cookie en geen enkele trackingcookie.',
     heroAlt: '',
+    privacyTitle: 'Privacy',
+    whoWeAreTitle: 'Wie wij zijn',
+    whoWeAreLede:
+      'Verantwoordelijk voor de persoonsgegevens die op deze pagina worden beschreven is:',
+    whoWeAreContact: 'Contact',
+    collectTitle: 'Wat we verzamelen',
+    collectBody1:
+      'Wanneer u ons contactformulier gebruikt, ontvangen wij uw naam, bedrijf, e-mailadres, telefoonnummer en bericht, en gebruiken die alleen om te antwoorden.',
+    collectBody2:
+      'Wanneer u naar een baan solliciteert, ontvangen wij uw naam, e-mailadres, telefoonnummer, woonplaats en wat u ons over uw ervaring vertelt, en gebruiken die alleen om u voor werk in overweging te nemen.',
+    collectBody3:
+      'Onze hostingpartij bewaart korte technische logbestanden, met inbegrip van IP-adressen, voor de beveiliging.',
+    shareTitle: 'Wie het verder ziet',
+    shareBody1:
+      'Alleen onze hosting- en e-mailproviders, die gegevens namens ons verwerken, en Google als u ervoor kiest de kaart op onze contactpagina te laden.',
+    shareBody2:
+      'We verkopen of delen uw gegevens nooit voor marketingdoeleinden.',
+    retentionTitle: 'Hoe lang',
+    retentionInquiries: 'Aanvragen',
+    retentionInquiriesValue: '2 jaar',
+    retentionApplications: 'Sollicitaties',
+    retentionApplicationsValue: '6 maanden',
+    retentionLogs: 'Logbestanden',
+    retentionLogsValue: '30 dagen',
+    retentionBody:
+      'We bewaren gegevens alleen langer waar de wet dat vereist, bijvoorbeeld contracten en facturen.',
+    rightsTitle: 'Uw rechten',
+    rightsBody1:
+      'U kunt ons vragen uw gegevens in te zien, te corrigeren of te verwijderen, of uw toestemming intrekken, door te schrijven naar',
+    rightsBody2:
+      'U kunt ook een klacht indienen bij een toezichthoudende autoriteit voor gegevensbescherming.',
     whatTitle: 'Wat cookies zijn',
     whatBody:
       'Een cookie is een klein tekstbestand dat een website uw browser vraagt te bewaren. Daarmee kan een site iets onthouden tussen paginaweergaven — een voorkeur, een sessie, of, op veel sites, uw gedrag over het hele web. Vergelijkbare technieken zoals local storage werken in de praktijk hetzelfde en vallen onder dit beleid.',
@@ -273,7 +305,7 @@ export const nl: Dictionary = {
     useBody1:
       'Deze website plaatst één eigen cookie. Die legt vast of u optionele cookies hebt geaccepteerd of geweigerd, zodat de balk niet op elke pagina terugkomt. Meer staat er niet in — geen identificatie, geen profiel, geen geschiedenis.',
     useBody2:
-      'Nog één voorkeur — of u de site op lichte weergave hebt gezet en welke taal u leest — wordt bewaard in de local storage van uw browser. Dat is geen cookie, het wordt nooit naar ons verstuurd, en het doet niets anders dan de weergave herstellen die u koos.',
+      'Twee voorkeuren worden in de browser zelf bewaard, niet in een cookie: of u de site op lichte weergave hebt gezet, en of de openingsanimatie dit bezoek al gespeeld heeft. Geen van beide wordt ooit naar ons verstuurd, en geen van beide doet iets anders dan herstellen wat u koos.',
     useBody3:
       'We gebruiken geen analytics, geen advertentiepixels en geen social-mediatrackers. Niets op deze site volgt u naar een andere.',
     thirdTitle: 'De enige derde partij',
@@ -307,11 +339,19 @@ export const nl: Dictionary = {
         category: 'essential',
       },
       {
-        name: 'mh-theme, mh-lang (local storage)',
+        name: 'mh-theme (local storage)',
         provider: 'Metal Holland (deze website)',
         purpose:
-          'Onthouden of u de site op lichte weergave hebt gezet en welke taal u het laatst las. Het zijn geen cookies en ze worden nooit naar ons verstuurd — ze blijven in uw browser.',
+          'Onthoudt of u de site op lichte weergave hebt gezet. Geen cookie en wordt nooit naar ons verstuurd — het blijft in uw browser.',
         duration: 'Tot u uw browsergegevens wist',
+        category: 'essential',
+      },
+      {
+        name: 'mh-loader-seen (session storage)',
+        provider: 'Metal Holland (deze website)',
+        purpose:
+          'Registreert dat de openingsanimatie al gespeeld heeft, zodat die één keer per bezoek draait en niet op elke pagina. Geen cookie en wordt nooit naar ons verstuurd.',
+        duration: 'Tot u het tabblad sluit',
         category: 'essential',
       },
       {
@@ -330,14 +370,23 @@ export const nl: Dictionary = {
     body: 'We gebruiken één noodzakelijke cookie om deze keuze te onthouden. Optionele cookies worden alleen geplaatst door de ingesloten Google-kaart op onze contactpagina — weiger ze en de kaart wordt simpelweg niet geladen. We doen niet aan advertenties of analytics.',
     accept: 'Alles accepteren',
     reject: 'Optionele weigeren',
-    policy: 'Cookiebeleid',
+    policy: 'Privacy- en cookiebeleid',
     label: 'Cookietoestemming',
   },
 
+  /**
+   * Never rendered. 404.astro sits outside the locale route and always builds
+   * with `defaultLocale`, so a static host's single /404.html answers every
+   * unmatched path in English — including /nl/anything. Kept because
+   * `Dictionary` is `typeof en` and check-i18n walks all three shapes, so the
+   * keys cannot simply be dropped here. Decided deliberately (2026-09-16):
+   * English-only 404. Do not spend time polishing this copy, and do not treat
+   * it as drift — it is unreachable either way.
+   */
   notFound: {
     title: 'Pagina niet gevonden',
     description: 'De pagina die u zocht staat hier niet.',
-    heading: 'Deze is niet van de plaat gekomen.',
+    heading: 'Pagina niet gevonden',
     body: 'De pagina die u zocht is verplaatst of heeft nooit bestaan. De rest van de site is intact.',
   },
 

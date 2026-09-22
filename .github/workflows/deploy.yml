@@ -1,0 +1,67 @@
+# Builds the static site and publishes it to GitHub Pages.
+#
+# Pages serves this repo as a *project* page, so the site lives under
+# /MH-website/ rather than at the host root. That prefix comes from `base` in
+# astro.config.mjs — it is not set here, so this workflow stays correct if the
+# site later moves to a custom domain.
+#
+# Deploys only from `main`. Feature branches never publish; use the Actions tab
+# ("Run workflow") to deploy by hand without pushing.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Least privilege: the job needs to write Pages and prove its identity to the
+# deployment API, and nothing else.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time. `cancel-in-progress: false` so a run that is already
+# uploading is allowed to finish rather than leaving Pages half-written — the
+# queued run supersedes it afterwards.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # `npm ci` needs the lockfile, which is committed. The Node version is
+      # pinned rather than floating so a Node release cannot change the build
+      # without the change appearing in this file.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - run: npm ci
+
+      # The dictionaries are the one thing the build itself cannot catch: Astro
+      # strips types without checking them, so a missing key renders as nothing
+      # rather than failing. Run the guard before the build, not after, so a
+      # broken locale stops the deploy instead of shipping blank text.
+      - run: npm run check:i18n
+
+      - run: npm run build
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

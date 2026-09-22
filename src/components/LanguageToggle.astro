@@ -83,17 +83,11 @@ const here = canonicalPath(path);
       if (event.key === 'Escape') closeAll();
     });
 
-    // Remember the reader's choice so a later visit to the root can offer it.
-    switchers.forEach((el) =>
-      el.querySelectorAll('a[lang]').forEach((link) =>
-        link.addEventListener('click', () => {
-          try {
-            localStorage.setItem('mh-lang', link.getAttribute('lang') ?? 'en');
-          } catch {
-            /* Blocked storage — the choice just will not be remembered. */
-          }
-        })
-      )
-    );
+    /* There was a `mh-lang` write here that recorded the reader's choice "so a
+       later visit to the root can offer it". Nothing was ever built to read it
+       back — locale comes from the URL — so it stored a language preference
+       for no purpose and had to be declared on /privacy for no benefit.
+       Removed 2026-09-16. If the root ever does offer a remembered language,
+       bring back the write *and* the row in `cookiesPage.table`. */
   }
 </script>

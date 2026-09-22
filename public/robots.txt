@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.metalholland.com/sitemap-index.xml
+Sitemap: https://hujdur.github.io/MH-website/sitemap-index.xml

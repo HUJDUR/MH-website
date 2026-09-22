@@ -7,6 +7,12 @@ import { t, href, defaultLocale } from '../i18n';
 
 // The 404 answers for any unmatched path, so it uses the default language;
 // the header's language switcher still takes the visitor anywhere.
+//
+// English-only is the settled choice (2026-09-16), not a gap: a static host
+// serves one /404.html for everything, so /bs/ and /nl/ misses land here too.
+// `notFound` in bs.ts and nl.ts is therefore unreachable copy — see the note
+// above those blocks. Localising this would mean emitting a 404 per locale
+// directory and relying on the host to pick the nearest one.
 const locale = defaultLocale;
 const d = t(locale);
 ---
