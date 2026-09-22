@@ -106,6 +106,9 @@ export const bs: Dictionary = {
     heroAlt: '',
     filter: 'Filter',
     all: 'Sve',
+    prev: 'Prethodna fotografija',
+    next: 'Sljedeća fotografija',
+    close: 'Zatvori',
     groups: [
       { id: 'workshop', label: 'Pogon' },
       { id: 'projects', label: 'Projekti' },

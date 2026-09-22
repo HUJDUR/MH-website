@@ -103,6 +103,9 @@ export const en = {
     heroAlt: '',
     filter: 'Filter',
     all: 'All',
+    prev: 'Previous photograph',
+    next: 'Next photograph',
+    close: 'Close',
     groups: [
       { id: 'workshop', label: 'Workshop' },
       { id: 'projects', label: 'Projects' },

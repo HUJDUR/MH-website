@@ -107,6 +107,9 @@ export const nl: Dictionary = {
     heroAlt: '',
     filter: 'Filter',
     all: 'Alles',
+    prev: 'Vorige foto',
+    next: 'Volgende foto',
+    close: 'Sluiten',
     groups: [
       { id: 'workshop', label: 'Werkplaats' },
       { id: 'projects', label: 'Projecten' },
