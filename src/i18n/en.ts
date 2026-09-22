@@ -15,10 +15,10 @@ export const en = {
 
   nav: {
     items: [
-      { href: '/', label: 'Home', blurb: 'Who we are and what we build' },
-      { href: '/media', label: 'Media', blurb: 'Photographs of the works' },
-      { href: '/careers', label: 'Careers', blurb: 'Welders, fitters, engineers' },
-      { href: '/contact', label: 'Contact', blurb: 'Address, phone, enquiry form' },
+      { href: '/', label: 'Home' },
+      { href: '/media', label: 'Media' },
+      { href: '/careers', label: 'Careers' },
+      { href: '/contact', label: 'Contact' },
     ],
     toggleMenu: 'Toggle menu',
     siteSections: 'Site sections',
