@@ -30,6 +30,7 @@ import {
   defaultLocale,
   href,
   canonicalPath,
+  asset,
   t,
   type Locale,
 } from '../i18n';
@@ -63,7 +64,7 @@ const preloadedFonts = [
 ];
 const pageTitle = `${title} | ${site.shortName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
-const ogImageUrl = new URL(ogImage, Astro.site ?? site.url).href;
+const ogImageUrl = new URL(asset(ogImage), Astro.site ?? site.url).href;
 
 /** The same page in every language, for hreflang. */
 const here = canonicalPath(Astro.url.pathname);
@@ -79,7 +80,7 @@ const organizationSchema = {
   name: site.name,
   url: site.url,
   description: d.site.description,
-  logo: new URL('/logo/metal-holland-color.svg', Astro.site ?? site.url).href,
+  logo: new URL(asset('/logo/metal-holland-color.svg'), Astro.site ?? site.url).href,
   email: contact.email,
   telephone: contact.phone,
   vatID: '401899980009',
@@ -136,7 +137,7 @@ const organizationSchema = {
       href={new URL(href(defaultLocale, here), Astro.site ?? site.url).href}
     />
 
-    <link rel="icon" type="image/svg+xml" href="/logo/mh-mark-color.svg" />
+    <link rel="icon" type="image/svg+xml" href={asset("/logo/mh-mark-color.svg")} />
     <meta name="theme-color" content="#06090c" />
 
     <meta property="og:type" content="website" />

@@ -30,7 +30,7 @@ export const en = {
 
   footer: {
     rights: 'All rights reserved.',
-    cookiePolicy: 'Cookie policy',
+    cookiePolicy: 'Privacy and cookie policy',
     cookieSettings: 'Cookie settings',
     country: 'Bosnia and Herzegovina',
 
@@ -43,6 +43,7 @@ export const en = {
     backToHome: 'Back to home',
     contactUs: 'Contact us',
     sector: 'Sector',
+    policyLink: 'See our privacy and cookie policy',
     vatLabel: 'VAT',
     jibLabel: 'JIB',
   },
@@ -254,14 +255,43 @@ export const en = {
   },
 
   cookiesPage: {
-    title: 'Cookie policy',
+    title: 'Privacy and cookie policy',
     description:
-      'How Metal Holland uses cookies: one essential cookie to remember your choice, and optional third-party cookies only if you load the Google Maps embed.',
+      'What personal data Metal Holland collects, who sees it and how long we keep it — and the cookies we set: one essential cookie, and optional third-party cookies only if you load the Google Maps embed.',
     eyebrow: 'Legal',
-    heroTitle: 'Cookie policy.',
+    heroTitle: 'Privacy and cookie policy.',
     heroLede:
-      'A short policy, because it is a short list. We set one cookie of our own and no tracking cookies at all.',
+      'What we do with your data, and what we store in your browser. Both lists are short: we set one cookie of our own and no tracking cookies at all.',
     heroAlt: '',
+    privacyTitle: 'Privacy',
+    whoWeAreTitle: 'Who we are',
+    whoWeAreLede:
+      'The company responsible for the personal data described on this page is:',
+    whoWeAreContact: 'Contact',
+    collectTitle: 'What we collect',
+    collectBody1:
+      'When you use our contact form, we receive your name, company, email, phone and message, and use them only to reply.',
+    collectBody2:
+      'When you apply for a job, we receive your name, email, phone, city and what you tell us about your experience, and use them only to consider you for work.',
+    collectBody3:
+      'Our host keeps short technical logs, including IP addresses, for security.',
+    shareTitle: 'Who else sees it',
+    shareBody1:
+      'Only our hosting and email providers, who handle data on our behalf, and Google if you choose to load the map on our contact page.',
+    shareBody2: 'We never sell or share your data for marketing.',
+    retentionTitle: 'How long',
+    retentionInquiries: 'Inquiries',
+    retentionInquiriesValue: '2 years',
+    retentionApplications: 'Applications',
+    retentionApplicationsValue: '6 months',
+    retentionLogs: 'Logs',
+    retentionLogsValue: '30 days',
+    retentionBody:
+      'We keep data longer only where the law requires it, for example contracts and invoices.',
+    rightsTitle: 'Your rights',
+    rightsBody1:
+      'You can ask us to show, correct or delete your data, or withdraw your consent, by writing to',
+    rightsBody2: 'You can also complain to a data protection authority.',
     whatTitle: 'What cookies are',
     whatBody:
       'A cookie is a small text file that a website asks your browser to store. It lets a site remember something between page loads — a preference, a session, or, on many sites, your behaviour across the web. Similar technologies such as local storage work the same way in practice and are covered by this policy.',
@@ -269,7 +299,7 @@ export const en = {
     useBody1:
       'This website sets one cookie of its own. It records whether you accepted or rejected optional cookies, so the banner does not reappear on every page. It holds nothing else — no identifier, no profile, no history.',
     useBody2:
-      'One further preference — whether you switched the site to light mode, and which language you are reading — is kept in your browser’s local storage. It is not a cookie, it is never sent to us, and it does nothing but restore the look you chose.',
+      'Two further preferences are kept in your browser itself, not in a cookie: whether you switched the site to light mode, and whether the opening animation has already played this visit. Neither is ever sent to us, and neither does anything but restore what you chose.',
     useBody3:
       'We run no analytics, no advertising pixels and no social media trackers. Nothing on this site follows you to another one.',
     thirdTitle: 'The one third party',
@@ -303,11 +333,19 @@ export const en = {
         category: 'essential',
       },
       {
-        name: 'mh-theme, mh-lang (local storage)',
+        name: 'mh-theme (local storage)',
         provider: 'Metal Holland (this website)',
         purpose:
-          'Remember whether you switched the site to light mode and which language you last read. Not cookies and never sent to us — they stay in your browser.',
+          'Remembers whether you switched the site to light mode. Not a cookie and never sent to us — it stays in your browser.',
         duration: 'Until you clear your browser data',
+        category: 'essential',
+      },
+      {
+        name: 'mh-loader-seen (session storage)',
+        provider: 'Metal Holland (this website)',
+        purpose:
+          'Records that the opening animation has already played, so it runs once per visit rather than on every page. Not a cookie and never sent to us.',
+        duration: 'Until you close the tab',
         category: 'essential',
       },
       {
@@ -326,14 +364,14 @@ export const en = {
     body: 'We use one essential cookie to remember this choice. Optional cookies are set only by the Google Maps embed on our contact page — reject them and the map simply is not loaded. We run no advertising or analytics tracking.',
     accept: 'Accept all',
     reject: 'Reject optional',
-    policy: 'Cookie policy',
+    policy: 'Privacy and cookie policy',
     label: 'Cookie consent',
   },
 
   notFound: {
     title: 'Page not found',
     description: 'The page you were looking for is not here.',
-    heading: 'This one did not make it off the plate.',
+    heading: 'Page not found',
     body: 'The page you were looking for has moved or never existed. The rest of the site is intact.',
   },
 

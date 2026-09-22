@@ -32,6 +32,101 @@ const L = (path: string) => href(locale, path);
     <div class="grid gap-14 lg:grid-cols-12 lg:gap-16">
       <div class="lg:col-span-7">
         <div class="space-y-10 leading-relaxed text-steel-300">
+          {/* Privacy first, cookies after: both forms collect personal data, so
+              this half of the page is the part a visitor is owed. The company
+              block, the JIB and the address are read from data/site.ts rather
+              than written into the three dictionaries — an address that has to
+              be corrected in three places is an address that ends up differing
+              between locales. Only the country line is translated, the same way
+              the footer does it. */}
+          <Reveal>
+            <div>
+              <h2 class="text-2xl text-heading sm:text-3xl">
+                {d.cookiesPage.whoWeAreTitle}
+              </h2>
+              <p class="mt-4">{d.cookiesPage.whoWeAreLede}</p>
+              <address class="mt-4 not-italic">
+                <span class="block text-heading">{site.legalName}</span>
+                {[...contact.works.lines, d.footer.country].map((line) => (
+                  <span class="block">{line}</span>
+                ))}
+                <span class="block">
+                  {d.common.jibLabel} {contact.registration.jib}
+                </span>
+                <span class="mt-3 block">
+                  {d.cookiesPage.whoWeAreContact}:{' '}
+                  <a
+                    href={`mailto:${contact.email}`}
+                    class="text-flame-500 underline-offset-4 transition-colors hover:text-heading hover:underline"
+                    >{contact.email}</a
+                  >
+                </span>
+              </address>
+            </div>
+          </Reveal>
+
+          <Reveal delay={60}>
+            <div>
+              <h2 class="text-2xl text-heading sm:text-3xl">
+                {d.cookiesPage.collectTitle}
+              </h2>
+              <p class="mt-4">{d.cookiesPage.collectBody1}</p>
+              <p class="mt-4">{d.cookiesPage.collectBody2}</p>
+              <p class="mt-4">{d.cookiesPage.collectBody3}</p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <div>
+              <h2 class="text-2xl text-heading sm:text-3xl">
+                {d.cookiesPage.shareTitle}
+              </h2>
+              <p class="mt-4">{d.cookiesPage.shareBody1}</p>
+              <p class="mt-4">{d.cookiesPage.shareBody2}</p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={140}>
+            <div>
+              <h2 class="text-2xl text-heading sm:text-3xl">
+                {d.cookiesPage.retentionTitle}
+              </h2>
+              {/* A retention period is a commitment, so it gets the same
+                  label/value treatment as the figures elsewhere on the site
+                  rather than being buried mid-sentence. */}
+              <dl class="mt-4 divide-y divide-line/8 border-y border-line/8">
+                {[
+                  [d.cookiesPage.retentionInquiries, d.cookiesPage.retentionInquiriesValue],
+                  [d.cookiesPage.retentionApplications, d.cookiesPage.retentionApplicationsValue],
+                  [d.cookiesPage.retentionLogs, d.cookiesPage.retentionLogsValue],
+                ].map(([label, value]) => (
+                  <div class="flex items-baseline justify-between gap-6 py-2.5">
+                    <dt>{label}</dt>
+                    <dd class="text-heading">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+              <p class="mt-4">{d.cookiesPage.retentionBody}</p>
+            </div>
+          </Reveal>
+
+          <Reveal delay={180}>
+            <div>
+              <h2 class="text-2xl text-heading sm:text-3xl">
+                {d.cookiesPage.rightsTitle}
+              </h2>
+              <p class="mt-4">
+                {d.cookiesPage.rightsBody1}{' '}
+                <a
+                  href={`mailto:${contact.email}`}
+                  class="text-flame-500 underline-offset-4 transition-colors hover:text-heading hover:underline"
+                  >{contact.email}</a
+                >.
+              </p>
+              <p class="mt-4">{d.cookiesPage.rightsBody2}</p>
+            </div>
+          </Reveal>
+
           <Reveal>
             <div>
               <h2 class="text-2xl text-heading sm:text-3xl">{d.cookiesPage.whatTitle}</h2>

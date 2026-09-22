@@ -1,5 +1,6 @@
 ---
 import { site } from '../data/site';
+import { asset } from '../i18n';
 
 interface Props {
   /** Intrinsic size, so the bar does not reflow while the SVG loads. */
@@ -20,7 +21,7 @@ const { width, height, class: className = '' } = Astro.props;
 */}
 <img
   data-logo="on-dark"
-  src="/logo/metal-holland-color.svg"
+  src={asset("/logo/metal-holland-color.svg")}
   alt={site.name}
   width={width}
   height={height}
@@ -28,7 +29,7 @@ const { width, height, class: className = '' } = Astro.props;
 />
 <img
   data-logo="on-light"
-  src="/logo/metal-holland-dark.svg"
+  src={asset("/logo/metal-holland-dark.svg")}
   alt={site.name}
   width={width}
   height={height}

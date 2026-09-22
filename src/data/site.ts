@@ -11,10 +11,16 @@
 
 export const site = {
   name: 'Metal Holland',
+  /**
+   * The registered entity, for places that must name the legal person rather
+   * than the brand — the privacy policy's controller block above all. Kept
+   * apart from `name` so headings and nav stay unencumbered by the d.o.o.
+   */
+  legalName: 'Metal Holland d.o.o.',
   /** Used in <title> after the page name. */
   shortName: 'Metal Holland',
-  /** Update together with `site` in astro.config.mjs. */
-  url: 'https://www.metalholland.com',
+  /** Update together with `site` and `base` in astro.config.mjs. */
+  url: 'https://hujdur.github.io/MH-website',
 } as const;
 
 export const contact = {

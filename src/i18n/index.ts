@@ -44,6 +44,26 @@ export function localePaths() {
 }
 
 /**
+ * GitHub Pages serves this repo from a subdirectory (/MH-website/) rather than
+ * a domain root, so every path the site emits has to carry that prefix or it
+ * 404s. Astro exposes it as BASE_URL, which is "/" on a root deploy and
+ * "/MH-website/" here; trimming the trailing slash gives a bare prefix ("" or
+ * "/MH-website") that the helpers below can concatenate either way. Move to a
+ * custom domain later and only `base` in astro.config.mjs has to change — this
+ * collapses back to the root behaviour on its own.
+ */
+const BASE = import.meta.env.BASE_URL.replace(/\/+$/, '');
+
+/**
+ * Prefixes a file served from public/ — logos, video, the poster frames.
+ * Astro rewrites the assets it processes itself, but anything referenced by a
+ * literal path in markup is left alone and needs this.
+ */
+export function asset(path: string): string {
+  return `${BASE}${path.startsWith('/') ? path : `/${path}`}`;
+}
+
+/**
  * Turns a canonical path ("/contact") into the one for this locale. A path that
  * is only a fragment ("/#facility", for the sections merged into the home page)
  * comes back locale-prefixed too, as "/bs/#facility".
@@ -51,8 +71,8 @@ export function localePaths() {
 export function href(locale: Locale, path: string): string {
   const clean = path === '/' ? '' : path.replace(/^\/+|\/+$/g, '');
 
-  if (locale === defaultLocale) return clean ? `/${clean}` : '/';
-  return clean ? `/${locale}/${clean}` : `/${locale}/`;
+  if (locale === defaultLocale) return clean ? `${BASE}/${clean}` : `${BASE}/`;
+  return clean ? `${BASE}/${locale}/${clean}` : `${BASE}/${locale}/`;
 }
 
 /**
@@ -60,7 +80,12 @@ export function href(locale: Locale, path: string): string {
  * what the language switcher needs to point at the same page elsewhere.
  */
 export function canonicalPath(pathname: string): string {
-  const stripped = pathname.replace(
+  // The base comes off first. `Astro.url.pathname` carries it, and a locale
+  // sitting behind "/MH-website" would otherwise never match the prefix below,
+  // leaving the language switcher pointing every locale at the home page.
+  const unbased =
+    BASE && pathname.startsWith(BASE) ? pathname.slice(BASE.length) || '/' : pathname;
+  const stripped = unbased.replace(
     new RegExp(`^/(${locales.filter((l) => l !== defaultLocale).join('|')})(?=/|$)`),
     ''
   );

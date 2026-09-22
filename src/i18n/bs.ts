@@ -33,7 +33,7 @@ export const bs: Dictionary = {
 
   footer: {
     rights: 'Sva prava zadržana.',
-    cookiePolicy: 'Politika kolačića',
+    cookiePolicy: 'Politika privatnosti i kolačića',
     cookieSettings: 'Postavke kolačića',
     country: 'Bosna i Hercegovina',
 
@@ -46,6 +46,7 @@ export const bs: Dictionary = {
     backToHome: 'Nazad na početnu',
     contactUs: 'Kontaktirajte nas',
     sector: 'Sektor',
+    policyLink: 'Pogledajte našu politiku privatnosti i kolačića',
     vatLabel: 'PDV',
     jibLabel: 'JIB',
   },
@@ -257,22 +258,53 @@ export const bs: Dictionary = {
   },
 
   cookiesPage: {
-    title: 'Politika kolačića',
+    title: 'Politika privatnosti i kolačića',
     description:
-      'Kako Metal Holland koristi kolačiće: jedan neophodan kolačić koji pamti vaš izbor i opcionalni kolačići trećih strana samo ako učitate Google mapu.',
+      'Koje lične podatke Metal Holland prikuplja, ko ih vidi i koliko dugo ih čuvamo — te kolačići koje postavljamo: jedan neophodan, a kolačići trećih strana samo ako učitate Google mapu.',
     eyebrow: 'Pravno',
-    heroTitle: 'Politika kolačića.',
+    heroTitle: 'Politika privatnosti i kolačića.',
     heroLede:
-      'Kratka politika, jer je i spisak kratak. Postavljamo jedan vlastiti kolačić i nijedan kolačić za praćenje.',
+      'Šta radimo s vašim podacima i šta čuvamo u vašem pregledniku. Oba spiska su kratka: postavljamo jedan vlastiti kolačić i niti jedan kolačić za praćenje.',
     heroAlt: '',
+    privacyTitle: 'Privatnost',
+    whoWeAreTitle: 'Ko smo mi',
+    whoWeAreLede:
+      'Za lične podatke opisane na ovoj stranici odgovorna je firma:',
+    whoWeAreContact: 'Kontakt',
+    collectTitle: 'Šta prikupljamo',
+    collectBody1:
+      'Kada koristite našu kontakt formu, primamo vaše ime, firmu, e-poštu, telefon i poruku, i koristimo ih samo da vam odgovorimo.',
+    collectBody2:
+      'Kada se prijavite za posao, primamo vaše ime, e-poštu, telefon, grad i ono što nam kažete o svom iskustvu, i koristimo ih samo da vas razmotrimo za posao.',
+    collectBody3:
+      'Naš hosting čuva kratke tehničke zapise, uključujući IP adrese, radi sigurnosti.',
+    shareTitle: 'Ko ih još vidi',
+    shareBody1:
+      'Samo naši pružaoci hostinga i e-pošte, koji podatke obrađuju u naše ime, i Google ako odaberete da učitate mapu na našoj kontakt stranici.',
+    shareBody2:
+      'Vaše podatke nikada ne prodajemo niti dijelimo u marketinške svrhe.',
+    retentionTitle: 'Koliko dugo',
+    retentionInquiries: 'Upiti',
+    retentionInquiriesValue: '2 godine',
+    retentionApplications: 'Prijave za posao',
+    retentionApplicationsValue: '6 mjeseci',
+    retentionLogs: 'Tehnički zapisi',
+    retentionLogsValue: '30 dana',
+    retentionBody:
+      'Podatke čuvamo duže samo tamo gdje to zakon zahtijeva, naprimjer ugovore i fakture.',
+    rightsTitle: 'Vaša prava',
+    rightsBody1:
+      'Možete od nas tražiti da vam pokažemo, ispravimo ili obrišemo vaše podatke, ili povući svoju saglasnost, slanjem maila na',
+    rightsBody2:
+      'Također se možete obratiti nadležnom organu za zaštitu ličnih podataka.',
     whatTitle: 'Šta su kolačići',
     whatBody:
       'Kolačić je mala tekstualna datoteka koju stranica traži od vašeg preglednika da sačuva. Omogućava stranici da zapamti nešto između učitavanja — postavku, sesiju ili, na mnogim stranicama, vaše ponašanje širom interneta. Slične tehnologije, poput lokalne pohrane, u praksi rade isto i obuhvaćene su ovom politikom.',
     useTitle: 'Šta koristimo',
     useBody1:
-      'Ova stranica postavlja jedan vlastiti kolačić. On bilježi da li ste prihvatili ili odbili opcionalne kolačiće, kako se notifikacija ne bi ponavljala na svakoj stranici. Ne sadrži ništa drugo — nijedan identifikator, profil ni historiju.',
+      'Ova stranica postavlja jedan vlastiti kolačić. On bilježi da li ste prihvatili ili odbili opcionalne kolačiće, kako se notifikacija ne bi ponavljala na svakoj stranici. Ne sadrži ništa drugo — niti jedan identifikator, profil ni historiju.',
     useBody2:
-      'Još jedna postavka — jeste li prebacili stranicu na svijetli prikaz i koji jezik koristite — čuva se u lokalnoj pohrani vašeg preglednika. To nije kolačić, nikada nam se ne šalje i ne radi ništa osim što vraća izgled koji ste odabrali.',
+      'Dvije postavke čuvaju se u samom pregledniku, a ne u kolačiću: jeste li prebacili stranicu na svijetli prikaz i da li se uvodna animacija već prikazala u ovoj posjeti. Nijedna nam se nikada ne šalje i nijedna ne radi ništa osim što vraća ono što ste odabrali.',
     useBody3:
       'Ne koristimo analitiku, oglase ni pratioce društvenih mreža. Ništa vas s ove stranice ne prati na drugu.',
     thirdTitle: 'Jedina treća strana',
@@ -306,11 +338,19 @@ export const bs: Dictionary = {
         category: 'essential',
       },
       {
-        name: 'mh-theme, mh-lang (lokalna pohrana)',
+        name: 'mh-theme (lokalna pohrana)',
         provider: 'Metal Holland (ova stranica)',
         purpose:
-          'Pamte jeste li prebacili stranicu na svijetli prikaz i koji ste jezik posljednji koristili. Nisu kolačići i nikada nam se ne šalju — ostaju u vašem pregledniku.',
+          'Pamti jeste li prebacili stranicu na svijetli prikaz. Nije kolačić i nikada nam se ne šalje — ostaje u vašem pregledniku.',
         duration: 'Dok ne obrišete podatke preglednika',
+        category: 'essential',
+      },
+      {
+        name: 'mh-loader-seen (sesijska pohrana)',
+        provider: 'Metal Holland (ova stranica)',
+        purpose:
+          'Bilježi da se uvodna animacija već prikazala, kako bi se prikazala jednom po posjeti, a ne na svakoj stranici. Nije kolačić i nikada nam se ne šalje.',
+        duration: 'Dok ne zatvorite karticu',
         category: 'essential',
       },
       {
@@ -329,14 +369,23 @@ export const bs: Dictionary = {
     body: 'Koristimo jedan neophodan kolačić da zapamtimo ovaj izbor. Opcionalne kolačiće postavlja samo ugrađena Google mapa na kontakt stranici — odbijte ih i mapa se jednostavno neće učitati. Ne koristimo oglašavanje ni analitičko praćenje.',
     accept: 'Prihvati sve',
     reject: 'Odbij opcionalne',
-    policy: 'Politika kolačića',
+    policy: 'Politika privatnosti i kolačića',
     label: 'Saglasnost za kolačiće',
   },
 
+  /**
+   * Never rendered. 404.astro sits outside the locale route and always builds
+   * with `defaultLocale`, so a static host's single /404.html answers every
+   * unmatched path in English — including /bs/anything. Kept because
+   * `Dictionary` is `typeof en` and check-i18n walks all three shapes, so the
+   * keys cannot simply be dropped here. Decided deliberately (2026-09-16):
+   * English-only 404. Do not spend time polishing this copy, and do not treat
+   * it as drift — it is unreachable either way.
+   */
   notFound: {
     title: 'Stranica nije pronađena',
     description: 'Stranica koju ste tražili nije ovdje.',
-    heading: 'Ova nije izašla s lima.',
+    heading: 'Stranica nije pronađena',
     body: 'Stranica koju ste tražili premještena je ili nikada nije postojala. Ostatak stranice je čitav.',
   },
 
