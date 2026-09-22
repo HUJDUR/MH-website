@@ -18,10 +18,10 @@ export const bs: Dictionary = {
 
   nav: {
     items: [
-      { href: '/', label: 'Početna', blurb: 'Ko smo i šta gradimo' },
-      { href: '/media', label: 'Media', blurb: 'Fotografije iz pogona' },
-      { href: '/careers', label: 'Posao', blurb: 'Zavarivači, bravari, inženjeri' },
-      { href: '/contact', label: 'Kontakt', blurb: 'Adresa, telefon, obrazac za upit' },
+      { href: '/', label: 'Početna' },
+      { href: '/media', label: 'Media' },
+      { href: '/careers', label: 'Posao' },
+      { href: '/contact', label: 'Kontakt' },
     ],
     toggleMenu: 'Otvori meni',
     siteSections: 'Sekcije stranice',

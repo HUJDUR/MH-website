@@ -19,10 +19,10 @@ export const nl: Dictionary = {
 
   nav: {
     items: [
-      { href: '/', label: 'Home', blurb: 'Wie we zijn en wat we bouwen' },
-      { href: '/media', label: 'Media', blurb: "Foto's van het bedrijf" },
-      { href: '/careers', label: 'Vacatures', blurb: 'Lassers, bankwerkers, engineers' },
-      { href: '/contact', label: 'Contact', blurb: 'Adres, telefoon, aanvraagformulier' },
+      { href: '/', label: 'Home' },
+      { href: '/media', label: 'Media' },
+      { href: '/careers', label: 'Vacatures' },
+      { href: '/contact', label: 'Contact' },
     ],
     toggleMenu: 'Menu openen',
     siteSections: 'Onderdelen van de site',
