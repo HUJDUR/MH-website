@@ -36,10 +36,11 @@ jobs:
 
       # `npm ci` needs the lockfile, which is committed. The Node version is
       # pinned rather than floating so a Node release cannot change the build
-      # without the change appearing in this file.
+      # without the change appearing in this file. 24 matches the local dev
+      # machine; Astro 7 refuses anything below 22.12, so this cannot go lower.
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
       - run: npm ci
