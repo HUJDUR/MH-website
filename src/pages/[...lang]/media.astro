@@ -136,8 +136,8 @@ const filters = [
     <button
       type="button"
       data-lightbox-close
-      aria-label={d.common.backToHome}
-      class="absolute right-4 top-4 rounded-full border border-line/15 p-3 text-heading transition-colors hover:border-line/40"
+      aria-label={d.mediaPage.close}
+      class="absolute right-4 top-4 z-20 rounded-full border border-line/15 p-3 text-heading transition-colors hover:border-line/40"
     >
       <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="h-4 w-4">
         <path
@@ -152,10 +152,63 @@ const filters = [
          reader, it is just not printed under it. -->
     <img
       data-lightbox-image
-      src=""
       alt=""
-      class="max-h-[85vh] w-full max-w-5xl rounded-lg object-contain"
+      class="max-h-[85vh] w-full max-w-5xl rounded-lg object-contain opacity-0 transition-opacity duration-200"
     />
+
+    {/* Full-height hit zones down each edge, so the sides of the photograph
+        step through the album. Real buttons rather than listeners on the
+        backdrop: they take focus, carry a label, and are reachable by keyboard
+        for anyone who cannot use the arrow keys.
+
+        They sit *under* the close button (z-10 against its z-20) because the
+        top-right corner belongs to closing, and they stop short of covering
+        the middle, so clicking the backdrop beside the photograph still closes
+        as it always did. Tailwind v4 wraps `hover:` in `@media (hover: hover)`
+        on its own, so the chevrons never stick on a touch screen. */}
+    {
+      (
+        [
+          ['prev', d.mediaPage.prev, 'left-0 justify-start pl-3 sm:pl-5', 'from-ink-950/70', '-translate-x-1', 'M10 3L5 8l5 5'],
+          ['next', d.mediaPage.next, 'right-0 justify-end pr-3 sm:pr-5', 'from-ink-950/70', 'translate-x-1', 'M6 3l5 5-5 5'],
+        ] as const
+      ).map(([dir, label, place, grad, slide, path]) => (
+        <button
+          type="button"
+          data-lightbox-nav={dir}
+          aria-label={label}
+          class:list={[
+            'group absolute inset-y-0 z-10 flex w-[26%] max-w-44 items-center focus:outline-none',
+            place,
+          ]}
+        >
+          <span
+            class:list={[
+              'pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100',
+              dir === 'prev' ? 'bg-linear-to-r' : 'bg-linear-to-l',
+              grad,
+              'to-transparent',
+            ]}
+          />
+          <span
+            class:list={[
+              'pointer-events-none relative flex h-11 w-11 items-center justify-center rounded-full border border-line/15 bg-ink-950/40 text-heading opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100 group-focus-visible:translate-x-0 group-focus-visible:opacity-100',
+              slide,
+            ]}
+          >
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" class="h-4 w-4">
+              <path
+                d={path}
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
+        </button>
+      ))
+    }
   </div>
 </Base>
 
@@ -190,6 +243,12 @@ const filters = [
     let current = 0;
     let opener: HTMLElement | null = null;
 
+    // Bumped on every show() and on close(), so a reveal that is still waiting
+    // on decode() cannot paint after the visitor has moved on — arrowing
+    // quickly through the album would otherwise let a slow image win the race
+    // and land on top of a later one.
+    let request = 0;
+
     const show = (index: number) => {
       // Only visible figures are navigable, so the arrows follow the filter.
       const visible = thumbs.filter((t) => !t.closest<HTMLElement>('[data-group]')!.hidden);
@@ -199,8 +258,22 @@ const filters = [
       // Largest candidate in the srcset, not the thumbnail the grid picked,
       // or opening a photograph would show it no bigger than the tile.
       const largest = thumb.srcset.split(',').pop()?.trim().split(/\s+/)[0];
-      boxImage.src = largest || thumb.currentSrc || thumb.src;
+
+      // Assigning src does not clear what is on screen: the browser keeps
+      // painting the previously decoded frame until the new file is ready, so
+      // opening a second photograph showed the first one for a beat. Hide the
+      // element, then bring it back only once the new image has decoded.
+      const mine = ++request;
+      boxImage.classList.add('opacity-0');
       boxImage.alt = thumb.alt;
+      boxImage.src = largest || thumb.currentSrc || thumb.src;
+
+      const reveal = () => {
+        if (mine === request) boxImage.classList.remove('opacity-0');
+      };
+      // decode() rejects when src is replaced mid-flight; the guard above
+      // makes that harmless, and the catch keeps a decode-less browser working.
+      boxImage.decode ? boxImage.decode().then(reveal).catch(reveal) : reveal();
     };
 
     const open = (thumb: HTMLImageElement, from: HTMLElement) => {
@@ -219,6 +292,13 @@ const filters = [
       box.classList.add('hidden');
       box.classList.remove('flex');
       document.body.style.overflow = '';
+      // Drop the file so a stale frame cannot survive to the next opening.
+      // removeAttribute, not src = '': an empty src resolves to the page URL,
+      // which the browser then requests and reports as a broken image.
+      request++;
+      boxImage.classList.add('opacity-0');
+      boxImage.removeAttribute('src');
+      boxImage.alt = '';
       opener?.focus();
     };
 
@@ -230,10 +310,62 @@ const filters = [
       if (button && thumb) open(thumb, button);
     });
 
+    // A swipe ends in a click on whatever was under the finger, which would
+    // step the album a second time or close it. One flag, cleared on the next
+    // touchstart, swallows exactly that click.
+    let swallowClick = false;
+
     box.addEventListener('click', (event) => {
+      if (swallowClick) {
+        swallowClick = false;
+        return;
+      }
       const target = event.target as HTMLElement;
-      if (target.closest('[data-lightbox-close]') || target === box) close();
+      if (target.closest('[data-lightbox-close]')) return close();
+
+      const nav = target.closest<HTMLElement>('[data-lightbox-nav]');
+      if (nav) return show(current + (nav.dataset.lightboxNav === 'next' ? 1 : -1));
+
+      // Only the backdrop itself closes. The photograph and the two hit zones
+      // are children, so they never match.
+      if (target === box) close();
     });
+
+    // Horizontal swipe on touch. Thresholded against the vertical delta so a
+    // scroll-like drag down the screen is not read as a page turn, and time-
+    // boxed so a slow drag while pinching does not count either.
+    let touchX = 0;
+    let touchY = 0;
+    let touchAt = 0;
+
+    box.addEventListener(
+      'touchstart',
+      (event) => {
+        swallowClick = false;
+        if (event.touches.length !== 1) return;
+        touchX = event.touches[0].clientX;
+        touchY = event.touches[0].clientY;
+        touchAt = Date.now();
+      },
+      { passive: true }
+    );
+
+    box.addEventListener(
+      'touchend',
+      (event) => {
+        if (!touchAt || event.changedTouches.length !== 1) return;
+        const dx = event.changedTouches[0].clientX - touchX;
+        const dy = event.changedTouches[0].clientY - touchY;
+        const elapsed = Date.now() - touchAt;
+        touchAt = 0;
+
+        if (Math.abs(dx) < 45 || Math.abs(dx) <= Math.abs(dy) || elapsed > 700) return;
+        swallowClick = true;
+        // Swipe left to advance, matching the direction the photographs move.
+        show(current + (dx < 0 ? 1 : -1));
+      },
+      { passive: true }
+    );
 
     document.addEventListener('keydown', (event) => {
       if (box.hidden) return;
