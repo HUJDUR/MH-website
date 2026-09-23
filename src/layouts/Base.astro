@@ -64,6 +64,17 @@ const preloadedFonts = [
 ];
 const pageTitle = `${title} | ${site.shortName}`;
 const canonical = new URL(Astro.url.pathname, Astro.site ?? site.url).href;
+
+/**
+ * Staging must never be indexed: a second copy of the same copy competes with
+ * the real site and can outrank it. Derived from `site` in astro.config.mjs
+ * rather than hardcoded, because a `noindex` left behind on the production
+ * build is the more expensive mistake of the two — change `site` to the live
+ * host and this switches itself off. Anything that is not the production
+ * hostname counts as staging, so a preview URL is covered too.
+ */
+const isStaging =
+  (Astro.site?.hostname ?? new URL(site.url).hostname) !== 'www.metalholland.com';
 const ogImageUrl = new URL(asset(ogImage), Astro.site ?? site.url).href;
 
 /** The same page in every language, for hreflang. */
@@ -125,6 +136,7 @@ const organizationSchema = {
     <title>{pageTitle}</title>
     <meta name="description" content={description ?? d.site.description} />
     <link rel="canonical" href={canonical} />
+    {isStaging && <meta name="robots" content="noindex, nofollow" />}
 
     {
       alternates.map((alt) => (

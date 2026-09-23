@@ -19,8 +19,8 @@ export const site = {
   legalName: 'Metal Holland d.o.o.',
   /** Used in <title> after the page name. */
   shortName: 'Metal Holland',
-  /** Update together with `site` and `base` in astro.config.mjs. */
-  url: 'https://hujdur.github.io/MH-website',
+  /** Update together with `site` in astro.config.mjs. */
+  url: 'https://test.metalholland.com',
 } as const;
 
 export const contact = {

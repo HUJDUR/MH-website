@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://hujdur.github.io/MH-website/sitemap-index.xml
