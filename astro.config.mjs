@@ -4,14 +4,16 @@ import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  // Used for canonical URLs and the sitemap. GitHub Pages serves this repo as a
-  // project page, so the origin is the github.io host and `base` is the repo
-  // name — together they make https://hujdur.github.io/MH-website/. Moving to
-  // metalholland.com later means setting `site` to it, deleting `base`, and
-  // adding public/CNAME; nothing in the components has to change, because
-  // every path goes through href()/asset() in src/i18n/index.ts.
-  site: 'https://hujdur.github.io',
-  base: '/MH-website',
+  // Used for canonical URLs and the sitemap. This is the staging subdomain, so
+  // the site sits at the root of its own host and needs no `base` — the helpers
+  // in src/i18n/index.ts read BASE_URL, which is "/" without it, so every link
+  // and asset path collapses back to root form on its own. Nothing else had to
+  // be reverted when `base` was dropped.
+  //
+  // Going live means changing this one line to the production host. Do that and
+  // the noindex in Base.astro and the Disallow in src/pages/robots.txt.ts both
+  // switch themselves off — see the note in each.
+  site: 'https://test.metalholland.com',
   // English lives at the root; the other two are prefixed. Pages are generated
   // from src/pages/[...lang]/ — see src/i18n/index.ts.
   i18n: {
